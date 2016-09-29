@@ -1,26 +1,45 @@
 /***********************************
 Imports
 ***********************************/
+import Album from './Album.js';
 require('../scss/app.scss')
 
 /***********************************
 App Settings
 ***********************************/
 let options = {
-  app:  '#app',
-  data: './json/albums.json'
+  app:                    '#app',
+  data:                   './json/playlist.json',
+  spotify: {
+    id:                   '6db74688ff0349308c85371275ab285a',
+    secret:               '0988cd08186746218c146fe49c0d2042',
+    api:                  'https://api.spotify.com/v1/'
+  },
+  youtube: {
+    api:                  'https://www.youtube.com/player_api'
+  }
 }
 
 let state = {
-  albums:         []
+  loggedIn:               false,
+  playlist:               []
 }
 
 /***********************************
 Model - Fetch
 ***********************************/
-fetch ('./json/albums.json')
+fetch (options.data)
 .then(response => response.json())
-.then(data => console.log(data))
+.then(playlist => {
+  playlist.albums.map((album) => {
+    state.playlist.push(
+      new Album({
+        spotifyID:          album.spotifyID,
+        youtubeID:          album.youtubeID
+      })
+    )
+  })
+})
 
 /***********************************
 Controller - Events
