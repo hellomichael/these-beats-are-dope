@@ -12,6 +12,12 @@ module.exports = {
   },
   module: {
     loaders: [
+      test: /\.(jpg|png)$/,
+      loader: 'url-loader',
+      query: {
+          limit: 8192,
+          name: 'images/[name].[ext]'
+      },
       {
         test:     /\.js$/,
         include: path.join(__dirname, 'js'),
