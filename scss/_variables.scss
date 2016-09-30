@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+// Layout
+$gutter-xxs:          5px;
+$gutter-xs:           10px;
+$gutter-sm: 	        20px;
+$gutter-md: 	        30px;
+$gutter-lg: 	        50px;
+$gutter-xl: 	        75px;
+$gutter-xxl:          100px;
+
+// Colors
+$white:               #FFF;
+$black:               #000;
+
+$colors: (
+  white:              $white,
+  black:              $black
+);
+
+// Type
+$font-family-sans-serif:    Arial, sans-serif;
+$font-family-serif:         Georgia, Times, "Times New Roman", serif;
+
+$font-weight-regular:		    300;
+$font-weight-bold: 			    700;
+
+$font-size-root:            16px;
+$font-height-root:          24px;
+
+$font-size:                 18px;
+$font-height:               32px;
+
+$h1-size: 	                64px;
+$h1-height:                 72px;
+
+$h2-size: 	                48px;
+$h2-height:                 60px;
+
+$h3-size: 	                36px;
+$h3-height:                 45px;
+
+$h4-size: 	                24px;
+$h4-height:                 30px;
+
+$h5-size: 	                18px;
+$h5-height:                 30px;
+
+$h6-size: 	                14px;
+$h6-height:                 24px;
+
+$small-size:                12px;
+$small-height:              24px;
+
+// Icons
+$icon-xs:                   15px;
+$icon-sm:                   25px;
+$icon-md:                   30px;
+$icon-lg:                   60px;
+$icon-xl:                   75px;
+
+// Easing
+$ease-linear:               linear;
+$ease-in-out:               ease-in-out;
+$ease-in-out-back:          cubic-bezier(0.740, -0.315, 0.525, 1.005);
+$ease-out-quint:            cubic-bezier(0.230, 1.000, 0.320, 1.000);
+$ease-in-out-quint:         cubic-bezier(0.860, 0.000, 0.070, 1.000);
+$ease-in-out-expo:          cubic-bezier(1.000, 0.000, 0.000, 1.000);

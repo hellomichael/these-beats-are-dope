@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Placeholders
+   ========================================================================== */
+// Pseudo elements
+%before-after {
+  position: relative;
+
+  &:before,
+  &:after {
+    content: '';
+    display: inline-block;
+  }
+}
+
+%before {
+  position: relative;
+
+  &:before {
+    content: '';
+    display: inline-block;
+  }
+}
+
+%after {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: inline-block;
+  }
+}
+
+// Layout
+%center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+%center-horizontally {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+%center-vertically {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// Table Layouts
+%table-layout {
+  display: table;
+  table-layout: fixed;
+  border-collapse: separate;
+
+  > * {
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+  }
+}

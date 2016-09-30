@@ -8,7 +8,7 @@ require('../scss/app.scss')
 App Settings
 ***********************************/
 let options = {
-  app:                    document.querySelector('#app'),
+  app:                    document.querySelector('.playlist'),
   data:                   './json/playlist.json',
   spotify: {
     id:                   '6db74688ff0349308c85371275ab285a',
@@ -39,6 +39,7 @@ fetch (options.data)
       })
     )
   })
+  
 
   render(state, options.app)
 })
@@ -81,19 +82,17 @@ function renderPlaylist () {
   }).join('')
 
   return `
-    <div class="playlist">
-      <div class="playlist__frame-top"></div>
-      <div class="playlist__frame-right"></div>
-      <div class="playlist__frame-bottom"></div>
-      <div class="playlist__frame-left"></div>
+    <div class="playlist__frame playlist__frame--top"></div>
+    <div class="playlist__frame playlist__frame--right"></div>
+    <div class="playlist__frame playlist__frame--bottom"></div>
+    <div class="playlist__frame playlist__frame--left"></div>
 
-      <div class="playlist__progress-bar"></div>
-      <div class="playlist__control playlist__control--prev"></div>
-      <div class="playlist__control playlist__control--next"></div>
+    <div class="playlist__progress-bar"></div>
+    <div class="playlist__control playlist__control--prev"></div>
+    <div class="playlist__control playlist__control--next"></div>
 
-      <div class="playlist__albums">
-        ${playlist}
-      </div>
+    <div class="playlist__albums">
+      ${playlist}
     </div>
   `
 }

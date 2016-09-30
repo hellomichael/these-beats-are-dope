@@ -7,14 +7,45 @@ $module: 'playlist';
   /* ==========================================================================
   Elements
   ========================================================================== */
-  &-element {
+  &__frame {
+    &--top, &--right, &--bottom, &--left {
+      position: fixed;
+    }
 
+    &--top, &--bottom {
+      height: 30px;
+      width: 100%;
+      background: url(../img/playlist-frame-top-bottom.png);
+    }
+
+    &--top {
+      transform: scale(-1);
+    }
+
+    &--bottom {
+      bottom: 0;
+    }
+
+    &--left, &--right {
+      height: 100%;
+      width: 30px;
+      background: url(../img/playlist-frame-left-right.png);
+    }
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+      transform: scale(-1);
+    }
   }
 
   /* ==========================================================================
   Modifiers
   ========================================================================== */
-  &-modifier {
+  &--modifier {
 
   }
 }
