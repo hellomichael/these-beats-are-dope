@@ -42,6 +42,24 @@ $module: 'playlist';
     }
   }
 
+  &__control {
+    @extend %center-vertically;
+    position: fixed;
+    height: 55px;
+    width: 55px;
+    background: url(../img/playlist-controls.png);
+    background-size: cover;
+
+    &--prev {
+      left: $gutter-xl;
+      transform: translateY(-50%) scale(-1);
+    }
+
+    &--next {
+      right: $gutter-xl;
+    }
+  }
+
   /* ==========================================================================
   Modifiers
   ========================================================================== */
