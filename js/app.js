@@ -28,21 +28,21 @@ let state = {
 /***********************************
 Model - Fetch
 ***********************************/
-fetch (options.data)
+fetch(options.data)
 .then(response => response.json())
 .then(playlist => {
   playlist.albums.map((album) => {
     state.playlist.push(
       new Album({
-        album:              album.album,
-        song:               album.song,
+        // album:              album.album,
+        // song:               album.song,
         spotifyID:          album.spotifyID,
         youtubeID:          album.youtubeID
       })
     )
   })
 
-  console.log(state.playlist)
+  // console.log(state.playlist)
 
   render(state, options.app)
 })
@@ -54,34 +54,9 @@ Controller - Events
 /***********************************
 Views - Render
 ***********************************/
-function renderAlbum () {
-  return `
-    <div class="album">
-      <div class="album__video">
-
-      </div>
-
-      <div class="album__track">
-        <div class="album__cd cd">
-          <div class="cd__front"></div>
-          <div class="cd__back"></div>
-        </div>
-
-        <h4 class="album__single">
-
-        </h4>
-
-        <h2 class="album__title">
-
-        </h2>
-      </div>
-    </div>
-  `
-}
-
-function renderPlaylist () {
+function renderPlaylist() {
   let playlist = state.playlist.map((album) => {
-    return renderAlbum()
+    return album.renderAlbum()
   }).join('')
 
   return `
@@ -100,6 +75,6 @@ function renderPlaylist () {
   `
 }
 
-function render (state, element) {
+function render(state, element) {
   element.innerHTML = renderPlaylist()
 }
