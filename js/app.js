@@ -34,12 +34,15 @@ fetch (options.data)
   playlist.albums.map((album) => {
     state.playlist.push(
       new Album({
+        album:              album.album,
+        song:               album.song,
         spotifyID:          album.spotifyID,
         youtubeID:          album.youtubeID
       })
     )
   })
 
+  console.log(state.playlist)
 
   render(state, options.app)
 })

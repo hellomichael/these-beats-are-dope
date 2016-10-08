@@ -1,12 +1,58 @@
 {
 	"albums": [
 		{
-		"spotifyID": "0Wi7iEDGFY7I7NkYU6gS4n",
-		"youtubeID": "j1mYWYV9nAM"
+			"album": 		 "The College Dropout (2004)",
+			"song": 		 "Never Let Me Down",
+			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
+			"youtubeID": "CDyrWWPt534"
 		},
 		{
+			"album": 		 "Late Registration (2005)",
+			"song": 		 "Hey Mama",
+			"spotifyID": "2FgkwIXC52sHCbqVL8jE41",
+			"youtubeID": "JCYAjGnvc7U"
+		},
+		{
+			"album": 		 "Graduation (2007)",
+			"song": 		 "Good Life",
+			"spotifyID": "7rWwv1ePazmRzmJs4sARhI",
+			"youtubeID": "hCx4LfPDWSY"
+		},
+		{
+			"album": 		 "808s & Heartbreak (2008)",
+			"song": 		 "Love Lockdown",
+			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
+			"youtubeID": "QWb6losRD38"
+		},
+		{
+			"album": 		 "Watch the Throne (2011)",
+			"song": 		 "Ni**as In Paris",
 			"spotifyID": "gG_dA32oH44",
 			"youtubeID": "4Li2WHPkuyCdtmokzW2007"
+		},
+		{
+			"album": 		 "My Beautiful Dark Twisted Fantasy (2010)",
+			"song": 		 "Blame Game",
+			"spotifyID": "4Li2WHPkuyCdtmokzW2007",
+			"youtubeID": "0hdQmd0uug0"
+		},
+		{
+			"album": 		 "Yeezus (2013)",
+			"song": 		 "Black Skinhead",
+			"spotifyID": "1ce3DvvGQn6hY2LMGMLCr5",
+			"youtubeID": "xuhl6Ji5zHM"
+		},
+		{
+			"album": 		 "All Day (2015)",
+			"song": 		 "All Day",
+			"spotifyID": "1YD3Dg7Olipi5FGVDLHWAu",
+			"youtubeID": "_ABk7TmjnVk"
+		},
+		{
+			"album": 		 "The Life of Pablo (2016)",
+			"song": 		 "Ultralight Beam",
+			"spotifyID": "0Wi7iEDGFY7I7NkYU6gS4n",
+			"youtubeID": "j1mYWYV9nAM"
 		}
 	]
 }
