@@ -39,7 +39,7 @@ fetch (options.data)
       })
     )
   })
-  
+
 
   render(state, options.app)
 })
