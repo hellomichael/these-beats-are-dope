@@ -1,6 +1,7 @@
 /***********************************
 Imports
 ***********************************/
+import Playlist from './Playlist.js'
 import Album from './Album.js';
 require('../scss/app.scss')
 
@@ -8,73 +9,36 @@ require('../scss/app.scss')
 App Settings
 ***********************************/
 let options = {
-  app:                    document.querySelector('.playlist'),
-  data:                   './json/playlist.json',
-  spotify: {
-    id:                   '6db74688ff0349308c85371275ab285a',
-    secret:               '0988cd08186746218c146fe49c0d2042',
-    api:                  'https://api.spotify.com/v1/'
-  },
-  youtube: {
-    api:                  'https://www.youtube.com/player_api'
-  }
-}
-
-let state = {
-  loggedIn:               false,
-  playlist:               []
+  app:                    document.querySelector('#app'),
+  json:                   './json/playlist.json'
 }
 
 /***********************************
-Model - Fetch
+App Initialize
 ***********************************/
-fetch(options.data)
+// Fetch playlist data
+fetch(options.json)
 .then(response => response.json())
-.then(playlist => {
-  playlist.albums.map((album) => {
-    state.playlist.push(
-      new Album({
-        // album:              album.album,
-        // song:               album.song,
-        spotifyID:          album.spotifyID,
-        youtubeID:          album.youtubeID
-      })
-    )
+.then(json => {
+  let albums = []
+  let promises = []
+
+  // Fetch album data
+  json.albums.map((album) => {
+    let promise = fetch(`https://api.spotify.com/v1/tracks/${album.spotifyID}`)
+    .then(response => response.json())
+    .then(data => {
+      albums.push(new Album(data))
+    })
+
+    promises.push(promise)
   })
 
-  // console.log(state.playlist)
+  Promise.all(promises).then(data => {
+    // Create playlist
+    let playlist = new Playlist({albums})
 
-  render(state, options.app)
+    // Render playlist
+    options.app.innerHTML = playlist.render()
+  })
 })
-
-/***********************************
-Controller - Events
-***********************************/
-
-/***********************************
-Views - Render
-***********************************/
-function renderPlaylist() {
-  let playlist = state.playlist.map((album) => {
-    return album.renderAlbum()
-  }).join('')
-
-  return `
-    <div class="playlist__frame playlist__frame--top"></div>
-    <div class="playlist__frame playlist__frame--right"></div>
-    <div class="playlist__frame playlist__frame--bottom"></div>
-    <div class="playlist__frame playlist__frame--left"></div>
-
-    <div class="playlist__progress-bar"></div>
-    <div class="playlist__control playlist__control--prev"></div>
-    <div class="playlist__control playlist__control--next"></div>
-
-    <div class="playlist__albums">
-      ${playlist}
-    </div>
-  `
-}
-
-function render(state, element) {
-  element.innerHTML = renderPlaylist()
-}

@@ -1,23 +1,11 @@
 export default class Album {
   constructor(options) {
-    //this.album = options.album,
-    //this.song =  options.song,
-    this.spotifyID = options.spotifyID,
-    this.youtubeID = options.youtubeID
-
-    this.getSpotifyData()
-    .then(data => Object.assign(this, data))
-    .then(console.log(this))
+    Object.assign(this, options)
   }
 
-  getSpotifyData() {
-    return fetch(`https://api.spotify.com/v1/tracks/${this.spotifyID}`)
-    .then(response => response.json())
-    .then(data => data)
-  }
-
-  renderAlbum() {
+  render() {
     return `
+      <!-- Album Begin --!>
       <div class="album">
         <div class="album__video">
 
@@ -38,6 +26,8 @@ export default class Album {
           </h2>
         </div>
       </div>
+      <!-- Album End --!>
+
     `
   }
 }
