@@ -1,3 +1,5 @@
+require('../scss/_playlist.scss')
+
 export default class Playlist {
   constructor(options) {
     Object.assign(this, options)
@@ -9,7 +11,7 @@ export default class Playlist {
     }).join('')
 
     return `
-      <!-- Playlist Begin --!>
+      <!-- Playlist --!>
       <div class="playlist">
         <div class="playlist__frame playlist__frame--top"></div>
         <div class="playlist__frame playlist__frame--right"></div>
@@ -17,14 +19,13 @@ export default class Playlist {
         <div class="playlist__frame playlist__frame--left"></div>
 
         <div class="playlist__progress-bar"></div>
-        <div class="playlist__control playlist__control--prev"></div>
-        <div class="playlist__control playlist__control--next"></div>
+        <a href="#" class="playlist__control playlist__control--prev"></a>
+        <a href="#" class="playlist__control playlist__control--next"></a>
 
         <div class="playlist__albums">
           ${albums}
         </div>
       </div>
-      <!-- Playlist End --!>
     `
   }
 }

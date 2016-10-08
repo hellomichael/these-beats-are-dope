@@ -30,10 +30,16 @@ module.exports = {
         test: /\.scss$/,
         include: path.join(__dirname, 'scss'),
         exclude: /node_modules/,
-        loader: extractTextPlugin.extract('style-loader', ['css-loader', 'sass-loader'])
+        loader: extractTextPlugin.extract(
+          'style',
+          'css' +
+          '!sass' +
+          '!sass-resources'
+        ),
       }
     ]
   },
+  sassResources: ['./scss/_variables.scss', './scss/_mixins.scss', './scss/_placeholders.scss' ],
   plugins: [
     new extractTextPlugin('app.css', {
       allChunks: true
