@@ -14,9 +14,9 @@ export default class Album {
         </div>
 
         <div class="album__track">
-          <div class="album__cd cd">
-            <div class="cd__front"><img src="${this.album.images[1].url}" alt=""/></div>
-            <div class="cd__back"></div>
+          <div class="album__vinyl">
+            <div class="album__vinyl__front"><img src="${this.album.images[1].url}" alt=""/></div>
+            <div class="album__vinyl__back"></div>
           </div>
 
           <h4 class="album__single">

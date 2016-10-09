@@ -14,6 +14,16 @@ $module: 'playlist';
   /* ==========================================================================
   Elements
   ========================================================================== */
+  &__slideshow, &__slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &__slideshow {
+    transition: 1s transform $ease-out-quint;
+  }
+
   &__frame {
     &--top, &--right, &--bottom, &--left {
       position: fixed;

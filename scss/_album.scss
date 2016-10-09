@@ -4,17 +4,24 @@
 $module: 'album';
 
 .#{$module} {
-  float: left;
+  @extend %center;
+  position: absolute;
+  width: 300px;
 
   /* ==========================================================================
   Elements
   ========================================================================== */
-  &__single {
-    margin: 0;
+  &__vinyl {
+    width: 300px;
+    height: 300px;
   }
 
-  &__title {
-    margin: 0;
+  &__single, &__title {
+    width: 400px;
+  }
+
+  &__single {
+    margin-bottom: 0;
   }
 
   /* ==========================================================================
