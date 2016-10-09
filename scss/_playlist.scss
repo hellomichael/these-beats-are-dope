@@ -64,7 +64,7 @@ $module: 'playlist';
     position: fixed;
     height: 55px;
     width: 55px;
-    background: transparent url(../img/playlist-controls.png);
+    background: url(../img/playlist-controls.png);
     background-size: cover;
     transition: 0.25s transform $ease-out-quint;
 
