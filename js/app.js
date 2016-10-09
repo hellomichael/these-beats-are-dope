@@ -36,7 +36,7 @@ fetch(options.json)
 
   Promise.all(promises).then(data => {
     // Create playlist
-    let playlist = new Playlist({albums})
+    let playlist = new Playlist({app: options.app, albums})
 
     // Render playlist
     options.app.innerHTML = playlist.render()

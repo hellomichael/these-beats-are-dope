@@ -7,6 +7,7 @@ $module: 'album';
   @extend %center;
   position: absolute;
   width: 300px;
+  transition: 1s transform $ease-out-quint;
 
   /* ==========================================================================
   Elements
@@ -15,6 +16,7 @@ $module: 'album';
     width: 300px;
     height: 300px;
     margin: 0 0 $gutter-lg;
+    transition: 1s transform $ease-out-quint;
 
     img {
       width: 100%;
@@ -24,6 +26,15 @@ $module: 'album';
 
   &__single, &__title {
     width: 500px;
+    transition: 1s transform $ease-out-quint;
+
+    &.no-transition {
+      transition: none;
+    }
+  }
+
+  &__title {
+    margin: 0;
   }
 
   /* ==========================================================================
