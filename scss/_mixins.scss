@@ -3,7 +3,7 @@
    ========================================================================== */
 // Create rems from pixels
 @mixin rem($property, $px-values) {
-  $baseline-rem: $font-size-root/1rem;
+  $baseline-rem: $font-size/1rem;
   #{$property}: $px-values;
 
   @if type-of($px-values) == "number" {

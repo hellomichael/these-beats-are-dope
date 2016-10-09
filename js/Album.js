@@ -19,12 +19,12 @@ export default class Album {
             <div class="album__vinyl__back"></div>
           </div>
 
-          <h4 class="album__single">
+          <h5 class="album__single">
             ${this.name}
           </h4>
 
-          <h2 class="album__title">
-            ${this.album.name}
+          <h3 class="album__title">
+            ${this.album.name.replace(/ *\([^)]*\) */g, '')}
           </h2>
         </div>
       </div>
