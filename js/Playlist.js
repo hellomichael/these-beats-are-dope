@@ -96,9 +96,11 @@ export default class Playlist {
   }
 
   render() {
-    let albums = this.albums.map((album, index) => {
+    let playlistSlides = this.albums.map((album, index) => {
       return `
         <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
+          <div class="video"></div>
+
           ${album.render()}
         </div>`
     }).join('')
@@ -107,7 +109,7 @@ export default class Playlist {
       <!-- Playlist --!>
       <div class="playlist">
         <div class="playlist__slideshow" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
-          ${albums}
+          ${playlistSlides}
         </div>
 
         <div class="playlist__frame playlist__frame--top"></div>
