@@ -30,16 +30,16 @@ module.exports = {
         test: /\.scss$/,
         include: path.join(__dirname, 'scss'),
         exclude: /node_modules/,
-        loader: extractTextPlugin.extract(
-          'style',
-          'css' +
-          '!sass' +
-          '!sass-resources'
-        ),
+        loader: extractTextPlugin.extract('style-loader', ['css-loader', 'postcss-loader', 'sass-loader', 'sass-resources'])
       }
     ]
   },
   sassResources: ['./scss/_variables.scss', './scss/_mixins.scss', './scss/_placeholders.scss' ],
+  postcss: function () {
+    return [
+      require('autoprefixer')
+    ];
+  },
   plugins: [
     new extractTextPlugin('App.css', {
       allChunks: true
