@@ -3,11 +3,11 @@ let extractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
-    './js/app.js'
+    './js/App.js'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'app.js',
+    filename: 'App.js',
     publicPath: '/dist/'
   },
   module: {
@@ -41,7 +41,7 @@ module.exports = {
   },
   sassResources: ['./scss/_variables.scss', './scss/_mixins.scss', './scss/_placeholders.scss' ],
   plugins: [
-    new extractTextPlugin('app.css', {
+    new extractTextPlugin('App.css', {
       allChunks: true
     })
   ]

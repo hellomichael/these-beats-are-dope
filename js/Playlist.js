@@ -2,9 +2,10 @@ require('../scss/_playlist.scss')
 
 export default class Playlist {
   constructor(options) {
+    Object.assign(this, options)
     this.width = window.innerWidth
     this.height = window.innerHeight
-    Object.assign(this, options)
+
     this.state = {
       currentSlide: 0,
       direction:    null
@@ -19,6 +20,7 @@ export default class Playlist {
     let slide = Array.from(slideshow.children)[this.state.currentSlide]
     let slideChildren = slide.querySelector('.playlist__content').children
     let slideDistance = (this.state.direction === 'rtl') ? this.width/2 : -this.width/2
+    let slideRotation = (this.state.direction === 'rtl') ? 225 : -225
 
     // Animate slide
     slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
@@ -26,13 +28,21 @@ export default class Playlist {
     Array.from(slideChildren).map((child, index) => {
       // Reset position
       child.classList.add('no-transition');
-      child.style.transform = `translateX(${slideDistance}px)`
+
+      // 3D rotate vinyl
+      if (child.classList.contains('album__vinyl')) {
+        child.style.transform = `translateX(${slideDistance}px) rotateY(${slideRotation}deg)`
+      }
+
+      else {
+        child.style.transform = `translateX(${slideDistance}px) rotateY(${slideRotation/10}deg)`
+      }
 
       // Stagger animation
       setTimeout(()=>{
         child.classList.remove('no-transition');
-        child.style.transform = `translateX(0)`
-      }, 75 * index)
+        child.style.transform = `translateX(0) rotateY(-15deg)`
+      }, (75 * index) + 15)
     })
   }
 
