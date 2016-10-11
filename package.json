@@ -20,7 +20,8 @@
     "postcss-loader": "^0.13.0",
     "sass-loader": "^4.0.2",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "youtube-player": "^3.0.4"
   },
   "dependencies": {
     "sass-resources-loader": "^1.1.0",

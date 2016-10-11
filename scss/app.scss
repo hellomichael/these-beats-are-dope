@@ -18,7 +18,7 @@ html {
 body {
   margin: 0;
   color: $white;
-  background: $dark-grey;
+  background: $black;
   font-family: $font-family-sans-serif;
 }
 
@@ -86,4 +86,17 @@ h1, h2, h3, h4 {
 
 h5, h6 {
   margin: 0 0 $gutter-xxs;
+}
+
+/* ==========================================================================
+   Youtube
+   ========================================================================== */
+
+// Youtube
+#player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  transform: translateY(-300px);
 }
