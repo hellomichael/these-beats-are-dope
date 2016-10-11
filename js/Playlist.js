@@ -3,6 +3,9 @@ require('../scss/_playlist.scss')
 export default class Playlist {
   constructor(options) {
     Object.assign(this, options)
+
+    // this.app = options.app
+    // this.albums = options.albums
     this.width = window.innerWidth
     this.height = window.innerHeight
 
