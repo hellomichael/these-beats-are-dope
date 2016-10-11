@@ -52,6 +52,7 @@ $albumSize: 300px;
       width: $albumSize;
       height: $albumSize;
       border-radius: 3px;
+      outline: 1px solid transparent;
     }
 
     &__front, &__back {
