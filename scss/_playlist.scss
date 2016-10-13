@@ -50,7 +50,8 @@ $module: 'playlist';
 
     &__indicator {
       z-index: 1;
-      transition: 1s width $ease-out-quint;
+      width: 0;
+      transition: 0.25s width $ease-out-quint;
     }
   }
 

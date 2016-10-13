@@ -15,11 +15,18 @@ export default class Playlist {
     // this.timelines = options.timelines
     // this.albums = options.albums
 
+    // Dom
+    this.dom = {
+      slideshow: null,
+      slides: null,
+      indicator: null
+    }
+
     // State
     this.state = {
       currentSlide: 0,
       prevSlide:    0,
-      direction:    null
+      direction:    'rtl'
     }
 
     // Events
@@ -30,6 +37,10 @@ export default class Playlist {
 
   // Mounting
   componentDidMount() {
+    this.dom.slideshow = document.querySelector('.playlist__slideshow')
+    this.dom.slides = document.querySelectorAll('.playlist__slide')
+    this.dom.indicator = document.querySelector('.playlist__progress__indicator')
+
     this.renderYoutube()
   }
 
@@ -62,19 +73,15 @@ export default class Playlist {
   // Resizing
   handleResize() {
     window.addEventListener('resize', (event) => {
-      // Set local variables
-      let slideshow = document.querySelector('.playlist__slideshow')
-      let slides = document.querySelectorAll('.playlist__slide')
-
       // Update state
       this.width = window.innerWidth
       this.height = window.innerHeight
 
       // Update slideshow
-      slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
+      this.dom.slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
 
       // Update slide
-      Array.from(slides).map((slide, index) => {
+      Array.from(this.dom.slides).map((slide, index) => {
         slide.style.width = `${this.width}px`
         slide.style.height = `${this.height}px`
         slide.style.transform = `translateX(${index * 100}%)`
@@ -83,23 +90,32 @@ export default class Playlist {
   }
 
   // Animations
+  animateProgress(seconds) {
+    this.videos[this.state.currentSlide].getDuration()
+    .then((duration) => {
+      this.dom.indicator.style.width = `${(seconds/duration) * 100}%`
+    })
+  }
+
   animateSlide() {
-    let slideshow = document.querySelector('.playlist__slideshow')
-    let slide = Array.from(slideshow.children)[this.state.currentSlide]
+    // Set local variables
+    let slide = Array.from(this.dom.slideshow.children)[this.state.currentSlide]
     let slideChildren = slide.querySelector('.playlist__content').children
     let slideDistance = (this.state.direction === 'rtl') ? this.width/1.5 : -this.width/1.5
     let slideRotation = (this.state.direction === 'rtl') ? 225 : -225
 
     // Reset video
-    this.videos[this.state.prevSlide].stopVideo()
+    this.videos[this.state.prevSlide].pauseVideo()
     this.videos[this.state.currentSlide].playVideo()
 
     // Reset timeline
     this.timelines[this.state.prevSlide].stopTimeline()
-    this.timelines[this.state.currentSlide].playTimeline()
+    this.timelines[this.state.currentSlide].playTimeline(
+      this.animateProgress.bind(this)
+    )
 
     // Animate slide
-    slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
+    this.dom.slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
 
     Array.from(slideChildren).map((child, index) => {
       // Reset position
@@ -123,11 +139,8 @@ export default class Playlist {
   }
 
   renderYoutube() {
-    // Render youtube
-    let slides = document.querySelectorAll('.playlist__slide')
-
     this.albums.map((album, index) => {
-      let video = new YouTube(slides[index].querySelector('.video'), {
+      let video = new YouTube(this.dom.slides[index].querySelector('.video'), {
         width: window.innerWidth,
         height: window.innerHeight + 600,
         videoId: album.youtubeID,
@@ -142,17 +155,20 @@ export default class Playlist {
       })
 
       // Events
-      video.on('ready', function () {
+      video.on('ready', (event) => {
         video.setPlaybackQuality('hd720')
-        video.stopVideo()
+        video.pauseVideo()
 
-        window.addEventListener('resize', event => {
-          slides[index].querySelector('.video').setAttribute('width', window.innerWidth)
-          slides[index].querySelector('.video').setAttribute('height', window.innerHeight + 600)
+        video.getIframe()
+        .then(iframe => {
+          window.addEventListener('resize', event => {
+            iframe.setAttribute('width', window.innerWidth)
+            iframe.setAttribute('height', window.innerHeight + 600)
+          })
         })
       })
 
-      video.on('stateChange', function (event) {
+      video.on('stateChange', (event) => {
         let stateNames = {
           '-1': 'unstarted',
           0: 'ended',
@@ -192,7 +208,7 @@ export default class Playlist {
           <div class="playlist__progress__track"></div>
           <div class="playlist__progress__indicator"></div>
         </div>
-        
+
         <a href="#" class="playlist__control playlist__control--prev"></a>
         <a href="#" class="playlist__control playlist__control--next"></a>
 
