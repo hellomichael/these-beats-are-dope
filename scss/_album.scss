@@ -62,13 +62,13 @@ $albumSize: 300px;
 
     &__back {
       display: block;
-      width: 100%;
-      height: 100%;
+      width: $albumSize;
+      height: $albumSize;
       position: absolute;
-      top: 0;
-      left: 0;
-      transform: translateZ(-2px) scale(0.99);
-      background: $white url(../img/album-vinyl.png);
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%) translateZ(-2px) scale(0.99);
+      background: $white url(../img/album-vinyl.png) center center;
       border-radius: 3px;
     }
   }
