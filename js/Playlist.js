@@ -1,24 +1,83 @@
+import YouTube from 'youtube-player'
 require('../scss/_playlist.scss')
 
 export default class Playlist {
   constructor(options) {
+    // Props
     Object.assign(this, options)
-
-    // this.app = options.app
-    // this.albums = options.albums
+    this.videos = []
     this.width = window.innerWidth
     this.height = window.innerHeight
+    // this.app = options.app
+    // this.albums = options.albums
 
+    // State
     this.state = {
       currentSlide: 0,
       direction:    null
     }
 
+    // Events
     this.handleClick()
     this.handleResize()
+    this.render()
   }
 
-  animateSlide () {
+  // Mounting
+  componentDidMount() {
+    this.renderYoutube()
+  }
+
+  // Controls
+  handleClick() {s
+    this.app.addEventListener('click', (event) => {
+      event.preventDefault()
+
+      // Next
+      if (event.target.matches('.playlist__control--next')) {
+        if (this.state.currentSlide < this.albums.length - 1) {
+          this.state.currentSlide++
+          this.state.direction = 'rtl'
+          this.animateSlide()
+        }
+      }
+
+      // Previous
+      else if (event.target.matches('.playlist__control--prev')) {
+        if (this.state.currentSlide > 0) {
+          this.state.currentSlide--
+          this.state.direction = 'ltr'
+          this.animateSlide()
+        }
+      }
+    })
+  }
+
+  // Resizing
+  handleResize() {
+    window.addEventListener('resize', (event) => {
+      // Set local variables
+      let slideshow = document.querySelector('.playlist__slideshow')
+      let slides = document.querySelectorAll('.playlist__slide')
+
+      // Update state
+      this.width = window.innerWidth
+      this.height = window.innerHeight
+
+      // Update slideshow
+      slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
+
+      // Update slide
+      Array.from(slides).map((slide, index) => {
+        slide.style.width = `${this.width}px`
+        slide.style.height = `${this.height}px`
+        slide.style.transform = `translateX(${index * 100}%)`
+      })
+    })
+  }
+
+  // Animations
+  animateSlide() {
     let slideshow = document.querySelector('.playlist__slideshow')
     let slide = Array.from(slideshow.children)[this.state.currentSlide]
     let slideChildren = slide.querySelector('.playlist__content').children
@@ -49,49 +108,24 @@ export default class Playlist {
     })
   }
 
-  handleClick () {
-    // Controls
-    this.app.addEventListener('click', (event) => {
-      event.preventDefault()
+  renderYoutube() {
+    // Render youtube
+    let slides = document.querySelectorAll('.playlist__slide')
 
-      if (event.target.matches('.playlist__control--next')) {
-        if (this.state.currentSlide < this.albums.length - 1) {
-          this.state.currentSlide++
-          this.state.direction = 'rtl'
-          this.animateSlide()
+    this.albums.map((album, index) => {
+      this.videos.push(new YouTube(slides[index].querySelector('.video'), {
+        videoId: album.youtubeID,
+        width: window.innerWidth,
+        height: window.innerHeight + 600,
+        playerVars: {
+          autoplay: 1,
+          controls: 0,
+          modestbranding: 1,
+          rel: 0,
+          showInfo: 0,
+          iv_load_policy: 3,
         }
-      }
-
-      else if (event.target.matches('.playlist__control--prev')) {
-        if (this.state.currentSlide > 0) {
-          this.state.currentSlide--
-          this.state.direction = 'ltr'
-          this.animateSlide()
-        }
-      }
-    })
-  }
-
-  handleResize() {
-    // Resizing
-    window.addEventListener('resize', (event) => {
-      // Set local variables
-      let slideshow = document.querySelector('.playlist__slideshow')
-      let slides = document.querySelectorAll('.playlist__slide')
-
-      // Update state
-      this.width = window.innerWidth
-      this.height = window.innerHeight
-
-      // Update slideshow
-      slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
-
-      // Update slide
-      Array.from(slides).map((slide, index) => {
-        slide.style.width = `${this.width}px`
-        slide.style.height = `${this.height}px`
-        slide.style.transform = `translateX(${index * 100}%)`
-      })
+      }).stopVideo())
     })
   }
 
@@ -105,7 +139,7 @@ export default class Playlist {
         </div>`
     }).join('')
 
-    return `
+    this.app.innerHTML = `
       <!-- Playlist --!>
       <div class="playlist">
         <div class="playlist__slideshow" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
@@ -122,5 +156,7 @@ export default class Playlist {
         <a href="#" class="playlist__control playlist__control--next"></a>
       </div>
     `
+
+    return this.componentDidMount()
   }
 }
