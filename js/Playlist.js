@@ -1,14 +1,18 @@
 import YouTube from 'youtube-player'
+import Timeline from './Timeline.js'
 require('../scss/_playlist.scss')
 
 export default class Playlist {
   constructor(options) {
     // Props
     Object.assign(this, options)
-    this.videos = []
     this.width = window.innerWidth
     this.height = window.innerHeight
+
+    this.videos = []
+    this.timelines = []
     // this.app = options.app
+    // this.timelines = options.timelines
     // this.albums = options.albums
 
     // State
@@ -86,9 +90,12 @@ export default class Playlist {
     let slideDistance = (this.state.direction === 'rtl') ? this.width/1.5 : -this.width/1.5
     let slideRotation = (this.state.direction === 'rtl') ? 225 : -225
 
-    // Reset video
-    this.videos[this.state.prevSlide].pauseVideo()
+    // Reset video/timelines
+    this.videos[this.state.prevSlide].stopVideo()
     this.videos[this.state.currentSlide].playVideo()
+
+    this.timelines[this.state.prevSlide].stopTimeline()
+    this.timelines[this.state.currentSlide].playTimeline()
 
     // Animate slide
     slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
@@ -136,7 +143,7 @@ export default class Playlist {
       // Events
       video.on('ready', function () {
         video.setPlaybackQuality('hd720')
-        video.pauseVideo()
+        video.stopVideo()
 
         window.addEventListener('resize', event => {
           slides[index].querySelector('.video').setAttribute('width', window.innerWidth)
@@ -154,6 +161,10 @@ export default class Playlist {
           5: 'video cued'
         }
       })
+
+      this.timelines.push(new Timeline({
+        getCurrentTime: video.getCurrentTime
+      }))
 
       this.videos.push(video)
     })
