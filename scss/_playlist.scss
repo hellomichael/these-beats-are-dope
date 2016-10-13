@@ -17,7 +17,7 @@ $module: 'playlist';
   &__content {
     perspective: 1000px;
   }
-  
+
   &__slideshow, &__slide {
     position: absolute;
     top: 0;
@@ -28,7 +28,35 @@ $module: 'playlist';
     transition: 1s transform $ease-out-quint;
   }
 
+  &__progress {
+    position: fixed;
+    z-index: 0;
+    height: 30px;
+    width: calc(100% - #{($gutter-sm * 2)});
+
+    &__track, &__indicator {
+      position: absolute;
+      left: $gutter-sm;
+      top: $gutter-xs;
+      height: 30px;
+      width: 100%;
+      background: url(../img/progress.png);
+    }
+
+    &__track {
+      filter: grayscale(100%);
+      z-index: 0;
+    }
+
+    &__indicator {
+      z-index: 1;
+      transition: 1s width $ease-out-quint;
+    }
+  }
+
   &__frame {
+    z-index: 1;
+
     &--top, &--right, &--bottom, &--left {
       position: fixed;
     }

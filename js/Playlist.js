@@ -90,10 +90,11 @@ export default class Playlist {
     let slideDistance = (this.state.direction === 'rtl') ? this.width/1.5 : -this.width/1.5
     let slideRotation = (this.state.direction === 'rtl') ? 225 : -225
 
-    // Reset video/timelines
+    // Reset video
     this.videos[this.state.prevSlide].stopVideo()
     this.videos[this.state.currentSlide].playVideo()
 
+    // Reset timeline
     this.timelines[this.state.prevSlide].stopTimeline()
     this.timelines[this.state.currentSlide].playTimeline()
 
@@ -187,14 +188,18 @@ export default class Playlist {
           ${playlistSlides}
         </div>
 
+        <div class="playlist__progress">
+          <div class="playlist__progress__track"></div>
+          <div class="playlist__progress__indicator"></div>
+        </div>
+        
+        <a href="#" class="playlist__control playlist__control--prev"></a>
+        <a href="#" class="playlist__control playlist__control--next"></a>
+
         <div class="playlist__frame playlist__frame--top"></div>
         <div class="playlist__frame playlist__frame--right"></div>
         <div class="playlist__frame playlist__frame--bottom"></div>
         <div class="playlist__frame playlist__frame--left"></div>
-
-        <div class="playlist__progress-bar"></div>
-        <a href="#" class="playlist__control playlist__control--prev"></a>
-        <a href="#" class="playlist__control playlist__control--next"></a>
       </div>
     `
 
