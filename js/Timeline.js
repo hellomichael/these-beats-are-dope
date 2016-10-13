@@ -7,9 +7,13 @@ export default class Timeline {
     // this.getCurrentTime = options.getCurrentTime
   }
 
-  playTimeline() {
+  stopTimeline() {
+    clearTimeout(this.timeline)
+  }
+
+  playTimeline(callback) {
     this.timeline = setTimeout(() => {
-      requestAnimationFrame(this.playTimeline.bind(this))
+      requestAnimationFrame(this.playTimeline.bind(this, callback))
 
       // Set current time
       this.getCurrentTime()
@@ -17,12 +21,8 @@ export default class Timeline {
         this.currentTime = seconds
       })
 
-      this.render(this.currentTime)
+      this.render(callback)
     }, 1000/60)
-  }
-
-  stopTimeline() {
-    clearTimeout(this.timeline)
   }
 
   getSeconds(timecode) {
@@ -54,9 +54,10 @@ export default class Timeline {
     return min + ':' + sec + ':' + milli
   }
 
-  render(seconds) {
-    if (seconds) {
-      console.log(this.getTimecode(seconds))
+  render(callback) {
+    if (this.currentTime) {
+      // console.log(this.getTimecode(this.currentTime))
+      callback(this.currentTime)
     }
   }
 }
