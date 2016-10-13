@@ -21,7 +21,6 @@ fetch(options.json)
 .then(response => response.json())
 .then(json => {
   let albums = []
-  let videos = []
   let promises = []
 
   // Fetch album data
