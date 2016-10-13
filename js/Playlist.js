@@ -14,6 +14,7 @@ export default class Playlist {
     // State
     this.state = {
       currentSlide: 0,
+      prevSlide:    0,
       direction:    null
     }
 
@@ -29,9 +30,10 @@ export default class Playlist {
   }
 
   // Controls
-  handleClick() {s
+  handleClick() {
     this.app.addEventListener('click', (event) => {
       event.preventDefault()
+      this.state.prevSlide = this.state.currentSlide
 
       // Next
       if (event.target.matches('.playlist__control--next')) {
@@ -81,15 +83,19 @@ export default class Playlist {
     let slideshow = document.querySelector('.playlist__slideshow')
     let slide = Array.from(slideshow.children)[this.state.currentSlide]
     let slideChildren = slide.querySelector('.playlist__content').children
-    let slideDistance = (this.state.direction === 'rtl') ? this.width/2 : -this.width/2
+    let slideDistance = (this.state.direction === 'rtl') ? this.width/1.5 : -this.width/1.5
     let slideRotation = (this.state.direction === 'rtl') ? 225 : -225
+
+    // Reset video
+    this.videos[this.state.prevSlide].pauseVideo()
+    this.videos[this.state.currentSlide].playVideo()
 
     // Animate slide
     slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
 
     Array.from(slideChildren).map((child, index) => {
       // Reset position
-      child.classList.add('no-transition');
+      child.classList.add('no-transition')
 
       // 3D rotate vinyl
       if (child.classList.contains('album__vinyl')) {
@@ -102,7 +108,7 @@ export default class Playlist {
 
       // Stagger animation
       setTimeout(()=>{
-        child.classList.remove('no-transition');
+        child.classList.remove('no-transition')
         child.style.transform = `translateX(0) rotateY(-15deg)`
       }, (75 * index) + 15)
     })
@@ -113,10 +119,10 @@ export default class Playlist {
     let slides = document.querySelectorAll('.playlist__slide')
 
     this.albums.map((album, index) => {
-      this.videos.push(new YouTube(slides[index].querySelector('.video'), {
-        videoId: album.youtubeID,
+      let video = new YouTube(slides[index].querySelector('.video'), {
         width: window.innerWidth,
         height: window.innerHeight + 600,
+        videoId: album.youtubeID,
         playerVars: {
           autoplay: 1,
           controls: 0,
@@ -125,7 +131,31 @@ export default class Playlist {
           showInfo: 0,
           iv_load_policy: 3,
         }
-      }).stopVideo())
+      })
+
+      // Events
+      video.on('ready', function () {
+        video.setPlaybackQuality('hd720')
+        video.pauseVideo()
+
+        window.addEventListener('resize', event => {
+          slides[index].querySelector('.video').setAttribute('width', window.innerWidth)
+          slides[index].querySelector('.video').setAttribute('height', window.innerHeight + 600)
+        })
+      })
+
+      video.on('stateChange', function (event) {
+        let stateNames = {
+          '-1': 'unstarted',
+          0: 'ended',
+          1: 'playing',
+          2: 'paused',
+          3: 'buffering',
+          5: 'video cued'
+        }
+      })
+
+      this.videos.push(video)
     })
   }
 
