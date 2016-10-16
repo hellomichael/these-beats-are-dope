@@ -5,10 +5,15 @@ export default class Timeline {
     this.timeline = null
     this.requestAnimationFrame = null
     this.currentTime = 0
+    this.duration = -1
     this.keyframes = []
+    this.keyframesClone = [...this.keyframes]
     Object.assign(this, options)
 
-    this.keyframesClone = [...this.keyframes]
+    this.setDuration()
+    .then((duration) => {
+      this.duration = duration
+    })
   }
 
   stopTimeline() {
@@ -43,6 +48,14 @@ export default class Timeline {
 
   getCurrentTime() {
     return this.currentTime.toFixed(2)
+  }
+
+  getDuration() {
+    return this.duration.toFixed(2)
+  }
+
+  getProgress() {
+    return (this.getCurrentTime()/this.getDuration() * 100).toFixed(2)
   }
 
   getSeconds(timecode) {

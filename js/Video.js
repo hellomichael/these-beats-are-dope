@@ -5,7 +5,6 @@ export default class Video {
     // Props
     this.youtubeID = null
     this.element = null
-    this.duration = -1
     this.fadeInterval = null
     Object.assign(this, options)
 
@@ -45,12 +44,6 @@ export default class Video {
       //this.youtube.setPlaybackQuality('hd720')
       this.youtube.setPlaybackQuality('small')
 
-      // Set duration
-      this.youtube.getDuration()
-      .then((duration) => {
-        this.duration = duration
-      })
-
       // Stop video
       this.youtube.pauseVideo()
       this.youtube.seekTo(0)
@@ -71,10 +64,6 @@ export default class Video {
         iframe.setAttribute('height', window.innerHeight + 600)
       })
     })
-  }
-
-  getDuration() {
-    return this.duration
   }
 
   seekVideo(seconds) {
