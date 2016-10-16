@@ -50,14 +50,14 @@ export default class Video {
         this.duration = duration
       })
 
-      // Pause video
-      this.stopVideo()
+      // Stop video
+      this.youtube.pauseVideo()
     })
   }
 
   handleStateChange() {
     this.youtube.on('stateChange', (event) => {
-      console.log(`${this.youtubeID}: ${this.states[event.data]}`)
+      // console.log(`${this.youtubeID}: ${this.states[event.data]}`)
     })
   }
 
@@ -75,15 +75,68 @@ export default class Video {
     return this.duration
   }
 
-  pauseVideo() {
-    this.youtube.pauseVideo()
+  playVideo() {
+    this.fadeIn()
+    this.youtube.playVideo()
   }
 
   stopVideo() {
-    this.youtube.stopVideo()
+    this.fadeOut(() => {
+      this.youtube.pauseVideo()
+      this.youtube.seekTo(0)
+    })
   }
 
-  playVideo() {
-    this.youtube.playVideo()
+  pauseVideo() {
+    this.fadeOut(() => {
+      this.youtube.pauseVideo()
+    })
+  }
+
+  fadeIn(callback) {
+    this.youtube.getVolume()
+    .then(currentVolume => {
+      let volume = currentVolume
+
+      let interval = setInterval(() => {
+        if (volume < 100) {
+          volume += 2.5
+
+          this.youtube.setVolume(volume)
+        }
+
+        else {
+          this.youtube.setVolume(100)
+          clearInterval(interval)
+
+          if (callback) {
+            callback()
+          }
+        }
+      }, 25)
+    })
+  }
+
+  fadeOut(callback) {
+    this.youtube.getVolume()
+    .then(currentVolume => {
+      let volume = currentVolume
+
+      let interval = setInterval(() => {
+        if (volume > 0) {
+          volume -= 2.5
+          this.youtube.setVolume(volume)
+        }
+
+        else {
+          this.youtube.setVolume(0)
+          clearInterval(interval)
+
+          if (callback) {
+            callback()
+          }
+        }
+      }, 25)
+    })
   }
 }

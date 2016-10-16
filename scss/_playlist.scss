@@ -51,7 +51,7 @@ $module: 'playlist';
     &__indicator {
       z-index: 1;
       width: 0;
-      transition: 0.25s width $ease-out-quint;
+      transition: 0.25s width $ease-linear;
     }
   }
 
