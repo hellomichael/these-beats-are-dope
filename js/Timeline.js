@@ -1,29 +1,48 @@
 export default class Timeline {
   constructor(options) {
     // Props
+    this.youtubeID = null
     this.timeline = null
+    this.requestAnimationFrame = null
     this.currentTime = 0
+    this.keyframes = []
     Object.assign(this, options)
+
+    this.keyframesClone = [...this.keyframes]
   }
 
   stopTimeline() {
+    cancelAnimationFrame(this.requestAnimationFrame)
     clearTimeout(this.timeline)
   }
 
   playTimeline() {
     this.timeline = setTimeout(() => {
-      requestAnimationFrame(this.playTimeline.bind(this))
+      this.requestAnimationFrame = requestAnimationFrame(this.playTimeline.bind(this))
 
       // Set current time
       this.setCurrentTime()
       .then(seconds => {
         this.currentTime = seconds
       })
+
+      // Play keyframes
+      this.playKeyframes()
+
+      console.log(`${this.youtubeID}: ${this.getCurrentTime()}`)
     }, 1000/60)
   }
 
+  playKeyframes() {
+    let keyframe = this.keyframesClone.length ? this.keyframesClone[0] : null
+
+    if (keyframe && this.getCurrentTime() >= this.getSeconds(keyframe.timecode)) {
+      this.keyframesClone.shift();
+    }
+  }
+
   getCurrentTime() {
-    return this.currentTime
+    return this.currentTime.toFixed(2)
   }
 
   getSeconds(timecode) {
