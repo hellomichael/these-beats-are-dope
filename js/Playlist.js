@@ -29,6 +29,7 @@ export default class Playlist {
 
     // Events
     this.handleClick()
+    this.handleKeypress()
     this.handleResize()
     this.render()
   }
@@ -64,27 +65,33 @@ export default class Playlist {
 
   // Controls
   handleClick() {
-    this.app.addEventListener('click', (event) => {
+    this.app.addEventListener('click', event => {
       event.preventDefault()
 
       // Next
       if (event.target.matches('.playlist__control--next')) {
-        if (this.state.currentSlide < this.albums.length - 1) {
-          this.state.prevSlide = this.state.currentSlide
-          this.state.currentSlide++
-          this.state.direction = 'rtl'
-          this.animateSlide()
-        }
+        this.nextSlide()
       }
 
       // Previous
       else if (event.target.matches('.playlist__control--prev')) {
-        if (this.state.currentSlide > 0) {
-          this.state.prevSlide = this.state.currentSlide
-          this.state.currentSlide--
-          this.state.direction = 'ltr'
-          this.animateSlide()
-        }
+        this.prevSlide()
+      }
+    })
+  }
+
+  handleKeypress() {
+    window.addEventListener('keydown', event => {
+      event.preventDefault()
+
+      // Next
+      if (event.keyCode === 39) {
+        this.nextSlide()
+      }
+
+      // Previous
+      if (event.keyCode === 37) {
+        this.prevSlide()
       }
     })
   }
@@ -106,6 +113,24 @@ export default class Playlist {
         slide.style.transform = `translateX(${index * 100}%)`
       })
     })
+  }
+
+  prevSlide() {
+    if (this.state.currentSlide > 0) {
+      this.state.prevSlide = this.state.currentSlide
+      this.state.currentSlide--
+      this.state.direction = 'ltr'
+      this.animateSlide()
+    }
+  }
+
+  nextSlide() {
+    if (this.state.currentSlide < this.albums.length - 1) {
+      this.state.prevSlide = this.state.currentSlide
+      this.state.currentSlide++
+      this.state.direction = 'rtl'
+      this.animateSlide()
+    }
   }
 
   // Animations
