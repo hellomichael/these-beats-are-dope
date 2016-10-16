@@ -3,8 +3,6 @@ require('../scss/_album.scss')
 export default class Album {
   constructor(options) {
     Object.assign(this, options)
-
-    console.log
   }
 
   render() {

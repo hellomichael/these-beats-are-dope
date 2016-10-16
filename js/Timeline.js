@@ -1,28 +1,29 @@
 export default class Timeline {
   constructor(options) {
     // Props
-    Object.assign(this, options)
-    this.currentTime  = 0
     this.timeline = null
-    // this.getCurrentTime = options.getCurrentTime
+    this.currentTime = 0
+    Object.assign(this, options)
   }
 
   stopTimeline() {
     clearTimeout(this.timeline)
   }
 
-  playTimeline(callback) {
+  playTimeline() {
     this.timeline = setTimeout(() => {
-      requestAnimationFrame(this.playTimeline.bind(this, callback))
+      requestAnimationFrame(this.playTimeline.bind(this))
 
       // Set current time
-      this.getCurrentTime()
+      this.setCurrentTime()
       .then(seconds => {
         this.currentTime = seconds
       })
-
-      this.render(callback)
     }, 1000/60)
+  }
+
+  getCurrentTime() {
+    return this.currentTime
   }
 
   getSeconds(timecode) {
@@ -52,12 +53,5 @@ export default class Timeline {
     }
 
     return min + ':' + sec + ':' + milli
-  }
-
-  render(callback) {
-    if (this.currentTime) {
-      // console.log(this.getTimecode(this.currentTime))
-      callback(this.currentTime)
-    }
   }
 }

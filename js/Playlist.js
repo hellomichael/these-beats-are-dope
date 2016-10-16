@@ -1,19 +1,17 @@
-import YouTube from 'youtube-player'
+import Video from './Video.js'
 import Timeline from './Timeline.js'
 require('../scss/_playlist.scss')
 
 export default class Playlist {
   constructor(options) {
     // Props
-    Object.assign(this, options)
-    this.width = window.innerWidth
-    this.height = window.innerHeight
-
+    this.app = null
+    this.albums = null
     this.videos = []
     this.timelines = []
-    // this.app = options.app
-    // this.timelines = options.timelines
-    // this.albums = options.albums
+    this.width = window.innerWidth
+    this.height = window.innerHeight
+    Object.assign(this, options)
 
     // Dom
     this.dom = {
@@ -41,18 +39,18 @@ export default class Playlist {
     this.dom.slides = document.querySelectorAll('.playlist__slide')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
 
-    this.renderYoutube()
+    this.renderVideos()
   }
 
   // Controls
   handleClick() {
     this.app.addEventListener('click', (event) => {
       event.preventDefault()
-      this.state.prevSlide = this.state.currentSlide
 
       // Next
       if (event.target.matches('.playlist__control--next')) {
         if (this.state.currentSlide < this.albums.length - 1) {
+          this.state.prevSlide = this.state.currentSlide
           this.state.currentSlide++
           this.state.direction = 'rtl'
           this.animateSlide()
@@ -62,6 +60,7 @@ export default class Playlist {
       // Previous
       else if (event.target.matches('.playlist__control--prev')) {
         if (this.state.currentSlide > 0) {
+          this.state.prevSlide = this.state.currentSlide
           this.state.currentSlide--
           this.state.direction = 'ltr'
           this.animateSlide()
@@ -90,11 +89,18 @@ export default class Playlist {
   }
 
   // Animations
-  animateProgress(seconds) {
-    this.videos[this.state.currentSlide].getDuration()
-    .then((duration) => {
-      this.dom.indicator.style.width = `${(seconds/duration) * 100}%`
-    })
+  animateProgress() {
+    clearTimeout(this.progress)
+
+    this.progress = setTimeout(() => {
+      requestAnimationFrame(this.animateProgress.bind(this))
+
+      let duration = this.videos[this.state.currentSlide].getDuration()
+      let seconds = this.timelines[this.state.currentSlide].getCurrentTime()
+      let progress = (seconds/duration * 100).toFixed(2)
+
+      this.dom.indicator.style.width = `${progress}%`
+    }, 1000/60)
   }
 
   animateSlide() {
@@ -104,15 +110,13 @@ export default class Playlist {
     let slideDistance = (this.state.direction === 'rtl') ? this.width/1.5 : -this.width/1.5
     let slideRotation = (this.state.direction === 'rtl') ? 225 : -225
 
-    // Reset video
-    this.videos[this.state.prevSlide].pauseVideo()
-    this.videos[this.state.currentSlide].playVideo()
+    // Reset previous
+    this.videos[this.state.prevSlide].stopVideo()
+    this.timelines[this.state.prevSlide].stopTimeline()
 
     // Reset timeline
-    this.timelines[this.state.prevSlide].stopTimeline()
-    this.timelines[this.state.currentSlide].playTimeline(
-      this.animateProgress.bind(this)
-    )
+    this.videos[this.state.currentSlide].playVideo()
+    this.timelines[this.state.currentSlide].playTimeline()
 
     // Animate slide
     this.dom.slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
@@ -138,52 +142,24 @@ export default class Playlist {
     })
   }
 
-  renderYoutube() {
+  renderVideos() {
+    // Animate progress
+    this.animateProgress()
+
     this.albums.map((album, index) => {
-      let video = new YouTube(this.dom.slides[index].querySelector('.video'), {
-        width: window.innerWidth,
-        height: window.innerHeight + 600,
-        videoId: album.youtubeID,
-        playerVars: {
-          autoplay: 1,
-          controls: 0,
-          modestbranding: 1,
-          rel: 0,
-          showInfo: 0,
-          iv_load_policy: 3,
-        }
+      // Create videos
+      let video = new Video({
+        youtubeID:  album.youtubeID,
+        element:    this.dom.slides[index].querySelector('.video')
       })
 
-      // Events
-      video.on('ready', (event) => {
-        video.setPlaybackQuality('hd720')
-        video.pauseVideo()
-
-        video.getIframe()
-        .then(iframe => {
-          window.addEventListener('resize', event => {
-            iframe.setAttribute('width', window.innerWidth)
-            iframe.setAttribute('height', window.innerHeight + 600)
-          })
-        })
+      // Create timelines
+      let timeline = new Timeline({
+        setCurrentTime: video.youtube.getCurrentTime
       })
-
-      video.on('stateChange', (event) => {
-        let stateNames = {
-          '-1': 'unstarted',
-          0: 'ended',
-          1: 'playing',
-          2: 'paused',
-          3: 'buffering',
-          5: 'video cued'
-        }
-      })
-
-      this.timelines.push(new Timeline({
-        getCurrentTime: video.getCurrentTime
-      }))
 
       this.videos.push(video)
+      this.timelines.push(timeline)
     })
   }
 
