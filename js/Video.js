@@ -6,6 +6,7 @@ export default class Video {
     this.youtubeID = null
     this.element = null
     this.duration = -1
+    this.fadeInterval = null
     Object.assign(this, options)
 
     this.youtube = new YouTube(options.element, {
@@ -98,7 +99,8 @@ export default class Video {
     .then(currentVolume => {
       let volume = currentVolume
 
-      let interval = setInterval(() => {
+      clearInterval(this.fadeInterval)
+      this.fadeInterval = setInterval(() => {
         if (volume < 100) {
           volume += 2.5
 
@@ -107,13 +109,13 @@ export default class Video {
 
         else {
           this.youtube.setVolume(100)
-          clearInterval(interval)
+          clearInterval(this.fadeInterval)
 
           if (callback) {
             callback()
           }
         }
-      }, 25)
+      }, 50)
     })
   }
 
@@ -122,7 +124,8 @@ export default class Video {
     .then(currentVolume => {
       let volume = currentVolume
 
-      let interval = setInterval(() => {
+      clearInterval(this.fadeInterval)
+      this.fadeInterval = setInterval(() => {
         if (volume > 0) {
           volume -= 2.5
           this.youtube.setVolume(volume)
@@ -130,13 +133,13 @@ export default class Video {
 
         else {
           this.youtube.setVolume(0)
-          clearInterval(interval)
+          clearInterval(this.fadeInterval)
 
           if (callback) {
             callback()
           }
         }
-      }, 25)
+      }, 50)
     })
   }
 }
