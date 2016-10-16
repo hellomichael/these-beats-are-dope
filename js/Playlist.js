@@ -90,9 +90,7 @@ export default class Playlist {
 
   // Animations
   animateProgress() {
-    clearTimeout(this.progress)
-
-    this.progress = setTimeout(() => {
+    setTimeout(() => {
       requestAnimationFrame(this.animateProgress.bind(this))
 
       let duration = this.videos[this.state.currentSlide].getDuration()
@@ -155,6 +153,7 @@ export default class Playlist {
 
       // Create timelines
       let timeline = new Timeline({
+        youtubeID:      album.youtubeID,
         setCurrentTime: video.youtube.getCurrentTime
       })
 

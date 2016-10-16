@@ -53,6 +53,7 @@ export default class Video {
 
       // Stop video
       this.youtube.pauseVideo()
+      this.youtube.seekTo(0)
     })
   }
 
@@ -74,6 +75,10 @@ export default class Video {
 
   getDuration() {
     return this.duration
+  }
+
+  seekVideo(seconds) {
+    this.youtube.seekTo(seconds)
   }
 
   playVideo() {
