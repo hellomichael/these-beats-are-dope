@@ -35,11 +35,31 @@ export default class Playlist {
 
   // Mounting
   componentDidMount() {
+    // Update Dom
     this.dom.slideshow = document.querySelector('.playlist__slideshow')
     this.dom.slides = document.querySelectorAll('.playlist__slide')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
 
-    this.renderVideos()
+    // Create videos and albums
+    this.albums.map((album, index) => {
+      let video = new Video({
+        youtubeID:  album.youtubeID,
+        element:    this.dom.slides[index].querySelector('.video')
+      })
+
+      let timeline = new Timeline({
+        youtubeID:      video.youtubeID,
+        setDuration:    video.youtube.getDuration,
+        setCurrentTime: video.youtube.getCurrentTime,
+        indicator:      this.dom.indicator
+      })
+
+      this.videos.push(video)
+      this.timelines.push(timeline)
+    })
+
+    // Animate progress
+    this.animateProgress()
   }
 
   // Controls
@@ -92,12 +112,7 @@ export default class Playlist {
   animateProgress() {
     setTimeout(() => {
       requestAnimationFrame(this.animateProgress.bind(this))
-
-      let duration = this.videos[this.state.currentSlide].getDuration()
-      let seconds = this.timelines[this.state.currentSlide].getCurrentTime()
-      let progress = (seconds/duration * 100).toFixed(2)
-
-      this.dom.indicator.style.width = `${progress}%`
+      this.dom.indicator.style.width = `${this.timelines[this.state.currentSlide].getProgress()}%`
     }, 1000/60)
   }
 
@@ -137,28 +152,6 @@ export default class Playlist {
         child.classList.remove('no-transition')
         child.style.transform = `translateX(0) rotateY(-15deg)`
       }, (75 * index) + 15)
-    })
-  }
-
-  renderVideos() {
-    // Animate progress
-    this.animateProgress()
-
-    this.albums.map((album, index) => {
-      // Create videos
-      let video = new Video({
-        youtubeID:  album.youtubeID,
-        element:    this.dom.slides[index].querySelector('.video')
-      })
-
-      // Create timelines
-      let timeline = new Timeline({
-        youtubeID:      album.youtubeID,
-        setCurrentTime: video.youtube.getCurrentTime
-      })
-
-      this.videos.push(video)
-      this.timelines.push(timeline)
     })
   }
 
