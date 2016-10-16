@@ -111,7 +111,7 @@ export default class Playlist {
     let slideRotation = (this.state.direction === 'rtl') ? 225 : -225
 
     // Reset previous
-    this.videos[this.state.prevSlide].stopVideo()
+    this.videos[this.state.prevSlide].pauseVideo()
     this.timelines[this.state.prevSlide].stopTimeline()
 
     // Reset timeline
