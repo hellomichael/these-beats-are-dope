@@ -1,7 +1,7 @@
 export default class Timeline {
   constructor(options) {
     // Props
-    this.youtubeID = null
+    this.id = null
     this.timeline = null
     this.requestAnimationFrame = null
     this.currentTime = 0
@@ -34,7 +34,7 @@ export default class Timeline {
       // Play keyframes
       this.playKeyframes()
 
-      console.log(`${this.youtubeID}: ${this.getCurrentTime()}`)
+      console.log(`${this.id}: ${this.getCurrentTime()}`)
     }, 1000/60)
   }
 

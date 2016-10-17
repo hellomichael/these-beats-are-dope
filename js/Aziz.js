@@ -5,7 +5,7 @@ export default class Aziz {
     Object.assign(this, options)
   }
 
-  render () {
+  render() {
     return (`
       <div class="quote">
         <h2 class="quote__paragraph">I hear <span class="quote__highlight">"808s and Heartbreak"</span> playing which is his album and I walk in and he's just sitting there in his living room.</h2>
