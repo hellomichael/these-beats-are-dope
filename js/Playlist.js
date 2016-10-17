@@ -98,7 +98,7 @@ export default class Playlist {
 
   // Resizing
   handleResize() {
-    window.addEventListener('resize', (event) => {
+    window.addEventListener('resize', event => {
       // Update state
       this.width = window.innerWidth
       this.height = window.innerHeight
@@ -191,6 +191,7 @@ export default class Playlist {
     }).join('')
 
     this.app.innerHTML = `
+
       <!-- Playlist --!>
       <div class="playlist">
         <div class="playlist__slideshow" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
