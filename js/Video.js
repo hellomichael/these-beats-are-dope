@@ -3,7 +3,7 @@ import YouTube from 'youtube-player'
 export default class Video {
   constructor(options) {
     // Props
-    this.youtubeID = null
+    this.id = null
     this.element = null
     this.fadeInterval = null
     Object.assign(this, options)
@@ -11,7 +11,7 @@ export default class Video {
     this.youtube = new YouTube(options.element, {
       width: window.innerWidth,
       height: window.innerHeight + 600,
-      videoId: options.youtubeID,
+      videoId: options.id,
       playerVars: {
         autoplay: 1,
         controls: 0,
@@ -23,13 +23,15 @@ export default class Video {
     })
 
     // State
-    this.states = {
-      '-1': 'Unstarted',
-      0: 'Ended',
-      1: 'Playing',
-      2: 'Paused',
-      3: 'Buffering',
-      5: 'Video cued'
+    this.state = {
+      events: {
+        '-1': 'Unstarted',
+        0: 'Ended',
+        1: 'Playing',
+        2: 'Paused',
+        3: 'Buffering',
+        5: 'Video cued'
+      }
     }
 
     // Events
@@ -52,14 +54,14 @@ export default class Video {
 
   handleStateChange() {
     this.youtube.on('stateChange', event => {
-      // console.log(`${this.youtubeID}: ${this.states[event.data]}`)
+      console.log(`${this.id}: ${this.state.events[event.data]}`)
     })
   }
 
   handleResize() {
-    this.youtube.getIframe()
-    .then(iframe => {
-      window.addEventListener('resize', event => {
+    window.addEventListener('resize', event => {
+      this.youtube.getIframe()
+      .then(iframe => {
         iframe.setAttribute('width', window.innerWidth)
         iframe.setAttribute('height', window.innerHeight + 600)
       })

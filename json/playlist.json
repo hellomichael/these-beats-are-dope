@@ -1,44 +1,54 @@
 {
-	"albums": [
+	"playlist": [
 		{
 			"spotifyID": "1mCUYpR3ZtwaqvcdCjgLuT",
-			"youtubeID": "i4ju-kjw5MI"
+			"youtubeID": "i4ju-kjw5MI",
+			"imports": 	 "Aziz"
 		},
 		{
 			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
-			"youtubeID": "CDyrWWPt534"
+			"youtubeID": "CDyrWWPt534",
+			"imports": 	 "Kanye"
 		},
 		{
 			"spotifyID": "2FgkwIXC52sHCbqVL8jE41",
-			"youtubeID": "JCYAjGnvc7U"
+			"youtubeID": "JCYAjGnvc7U",
+			"imports": 	 "Kanye"
 		},
 		{
 			"spotifyID": "7rWwv1ePazmRzmJs4sARhI",
-			"youtubeID": "hCx4LfPDWSY"
+			"youtubeID": "hCx4LfPDWSY",
+			"imports": 	 "Kanye"
 		},
 		{
 			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
-			"youtubeID": "QWb6losRD38"
+			"youtubeID": "QWb6losRD38",
+			"imports": 	 "Kanye"
 		},
 		{
 			"spotifyID": "4Li2WHPkuyCdtmokzW2007",
-			"youtubeID": "gG_dA32oH44"
+			"youtubeID": "gG_dA32oH44",
+			"imports": 	 "Kanye"
 		},
 		{
 			"spotifyID": "48HUDhfl4ssbc5xuIrZ6UD",
-			"youtubeID": "0hdQmd0uug0"
+			"youtubeID": "0hdQmd0uug0",
+			"imports": 	 "Kanye"
 		},
 		{
 			"spotifyID": "1ce3DvvGQn6hY2LMGMLCr5",
-			"youtubeID": "xuhl6Ji5zHM"
+			"youtubeID": "xuhl6Ji5zHM",
+			"imports": 	 "Kanye"
 		},
 		{
 			"spotifyID": "1YD3Dg7Olipi5FGVDLHWAu",
-			"youtubeID": "_ABk7TmjnVk"
+			"youtubeID": "_ABk7TmjnVk",
+			"imports": 	 "Kanye"
 		},
 		{
 			"spotifyID": "0Wi7iEDGFY7I7NkYU6gS4n",
-			"youtubeID": "j1mYWYV9nAM"
+			"youtubeID": "j1mYWYV9nAM",
+			"imports": 	 "Kanye"
 		}
 	]
 }

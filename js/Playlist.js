@@ -1,3 +1,4 @@
+import Album from './Album.js'
 import Video from './Video.js'
 import Timeline from './Timeline.js'
 require('../scss/_playlist.scss')
@@ -6,9 +7,13 @@ export default class Playlist {
   constructor(options) {
     // Props
     this.app = null
-    this.albums = null
+    this.playlist = []
+
+    this.albums = []
     this.videos = []
     this.timelines = []
+    this.imports = []
+
     this.width = window.innerWidth
     this.height = window.innerHeight
     Object.assign(this, options)
@@ -27,11 +32,33 @@ export default class Playlist {
       direction:    'rtl'
     }
 
-    // Events
-    this.handleClick()
-    this.handleKeypress()
-    this.handleResize()
-    this.render()
+    this.getAlbums()
+    .then(albums => {
+      this.albums = albums
+
+      // Events
+      this.handleClick()
+      this.handleKeypress()
+      this.handleResize()
+      this.render()
+    })
+  }
+
+  // Fetch Spotify Data
+  getAlbums() {
+    let promises = []
+
+    this.playlist.map(album => {
+      let promise = fetch(`https://api.spotify.com/v1/tracks/${album.spotifyID}`)
+      .then(response => response.json())
+      .then(data => {
+        return new Album(data)
+      })
+
+      promises.push(promise)
+    })
+
+    return Promise.all(promises)
   }
 
   // Mounting
@@ -42,14 +69,14 @@ export default class Playlist {
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
 
     // Create videos and albums
-    this.albums.map((album, index) => {
+    this.playlist.map((slide, index) => {
       let video = new Video({
-        youtubeID:  album.youtubeID,
+        id:         slide.youtubeID,
         element:    this.dom.slides[index].querySelector('.video')
       })
 
       let timeline = new Timeline({
-        youtubeID:      video.youtubeID,
+        id:             slide.youtubeID,
         setDuration:    video.youtube.getDuration,
         setCurrentTime: video.youtube.getCurrentTime,
         indicator:      this.dom.indicator
@@ -185,7 +212,6 @@ export default class Playlist {
       return `
         <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
           <div class="video"></div>
-
           ${album.render()}
         </div>`
     }).join('')
