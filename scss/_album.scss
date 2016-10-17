@@ -6,7 +6,6 @@ $albumSize: 300px;
 
 .#{$module} {
   @extend %center;
-  position: absolute;
   width: 300px;
   transition: 1s transform $ease-out-quint;
 
