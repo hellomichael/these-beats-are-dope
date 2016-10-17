@@ -24,7 +24,7 @@ fetch(options.json)
   let promises = []
 
   // Fetch album data
-  json.albums.map((album) => {
+  json.albums.map(album => {
     let promise = fetch(`https://api.spotify.com/v1/tracks/${album.spotifyID}`)
     .then(response => response.json())
     .then(data => {

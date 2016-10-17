@@ -39,7 +39,7 @@ export default class Video {
   }
 
   handleOnReady() {
-    this.youtube.on('ready', (event) => {
+    this.youtube.on('ready', event => {
       // Set quality
       //this.youtube.setPlaybackQuality('hd720')
       this.youtube.setPlaybackQuality('small')
@@ -51,7 +51,7 @@ export default class Video {
   }
 
   handleStateChange() {
-    this.youtube.on('stateChange', (event) => {
+    this.youtube.on('stateChange', event => {
       // console.log(`${this.youtubeID}: ${this.states[event.data]}`)
     })
   }
