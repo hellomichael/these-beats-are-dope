@@ -237,29 +237,20 @@ export default class Playlist {
 
   render() {
     let playlistSlides = this.playlist.map((slide, index) => {
-      if (index) {
-        return (`
-          <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
-            <div class="video"></div>
-            ${this.albums[index].render()}
-            ${this.animations[index].render()}
-          </div>
-        `)
-      }
+      let album = index ? this.albums[index].render() : null
+      let animation = this.animations[index].render()
 
-      else {
-        return (`
-          <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
-            <div class="video"></div>
-            ${this.animations[index].render()}
-          </div>
-        `)
-      }
+      return (`
+        <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
+          <div class="video"></div>
+          ${album}
+          ${animation}
+        </div>
+      `)
 
     }).join('')
 
     this.app.innerHTML = `
-
       <!-- Playlist --!>
       <div class="playlist">
         <div class="playlist__slideshow" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
