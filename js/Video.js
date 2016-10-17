@@ -9,7 +9,7 @@ export default class Video {
     this.fadeInterval = null
     Object.assign(this, options)
 
-    this.youtube = new YouTube(options.element, {
+    this.youtube = new YouTube(this.element, {
       width: window.innerWidth,
       height: window.innerHeight + 600,
       videoId: options.id,
@@ -44,8 +44,8 @@ export default class Video {
   handleOnReady() {
     this.youtube.on('ready', event => {
       // Set quality
-      //this.youtube.setPlaybackQuality('hd720')
-      this.youtube.setPlaybackQuality('small')
+      this.youtube.setPlaybackQuality('hd720')
+      //this.youtube.setPlaybackQuality('small')
 
       // Stop video
       this.youtube.pauseVideo()
