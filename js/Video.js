@@ -1,4 +1,5 @@
 import YouTube from 'youtube-player'
+require('../scss/_video.scss')
 
 export default class Video {
   constructor(options) {
