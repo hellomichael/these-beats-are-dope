@@ -1,3 +1,5 @@
+import * as Utils from './Utils.js';
+
 export default class Timeline {
   constructor(options) {
     // Props
@@ -34,56 +36,45 @@ export default class Timeline {
       // Play keyframes
       this.playKeyframes()
 
-      console.log(`${this.id}: ${this.getCurrentTime()}`)
+      // console.log(`${this.id}: ${this.getCurrentTime(true)}`)
     }, 1000/60)
   }
 
   playKeyframes() {
     let keyframe = this.keyframesClone.length ? this.keyframesClone[0] : null
 
-    if (keyframe && this.getCurrentTime() >= this.getSeconds(keyframe.timecode)) {
+    if (keyframe && this.getCurrentTime() >= Utils.getSeconds(keyframe.timecode)) {
       this.keyframesClone.shift();
     }
   }
 
-  getCurrentTime() {
-    return this.currentTime.toFixed(2)
-  }
-
-  getDuration() {
-    return this.duration.toFixed(2)
-  }
-
-  getProgress() {
-    return (this.getCurrentTime()/this.getDuration() * 100).toFixed(2)
-  }
-
-  getSeconds(timecode) {
-    let sec = timecode.split(':')
-    let minutes = parseInt(sec[0])
-    let seconds = parseInt(sec[1])
-    let milliseconds = parseInt(sec[2])
-    return (minutes * 60) + (seconds) + milliseconds/30
-  }
-
-  getTimecode(seconds) {
-    let min = Math.floor(seconds / 60)
-    let sec =  Math.floor(seconds - min * 60)
-    let milli = Math.floor((seconds - Math.floor(seconds)) * 30)
-
-    // Prefix w/ 0s
-    if (min < 10) {
-      min = '0' + min
+  getCurrentTime(timecode) {
+    if (timecode) {
+      return Utils.getTimecode(this.currentTime.toFixed(2))
     }
 
-    if (sec < 10) {
-      sec = '0' + sec
+    else {
+      return this.currentTime.toFixed(2)
+    }
+  }
+
+  getDuration(timecode) {
+    if (timecode) {
+      return Utils.getTimecode(this.duration.toFixed(2))
     }
 
-    if (milli < 10) {
-      milli = '0' + milli
+    else {
+      return this.duration.toFixed(2)
+    }
+  }
+
+  getProgress(timecode) {
+    if (timecode) {
+      return Utils.getTimecode((this.getCurrentTime()/this.getDuration() * 100).toFixed(2))
     }
 
-    return min + ':' + sec + ':' + milli
+    else {
+      return (this.getCurrentTime()/this.getDuration() * 100).toFixed(2)
+    }
   }
 }

@@ -6,6 +6,7 @@ export default class Video {
     // Props
     this.id = null
     this.element = null
+    this.startSeconds = 0
     this.fadeInterval = null
     Object.assign(this, options)
 
@@ -44,12 +45,13 @@ export default class Video {
   handleOnReady() {
     this.youtube.on('ready', event => {
       // Set quality
-      this.youtube.setPlaybackQuality('hd720')
-      //this.youtube.setPlaybackQuality('small')
+      //this.youtube.setPlaybackQuality('hd720')
+      this.youtube.setPlaybackQuality('small')
 
       // Stop video
       this.youtube.pauseVideo()
-      this.youtube.seekTo(0)
+      this.youtube.seekTo(this.startSeconds)
+      this.youtube.setVolume(0)
     })
   }
 
