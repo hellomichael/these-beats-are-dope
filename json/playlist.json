@@ -33,6 +33,94 @@
 					"action":		"Start"
 				}
 			]
+		},
+		{
+			"spotifyID": "2FgkwIXC52sHCbqVL8jE41",
+			"youtubeID": "JCYAjGnvc7U",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:06:05",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "7rWwv1ePazmRzmJs4sARhI",
+			"youtubeID": "hCx4LfPDWSY",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:10:05",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
+			"youtubeID": "QWb6losRD38",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:22:10",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "4Li2WHPkuyCdtmokzW2007",
+			"youtubeID": "gG_dA32oH44",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:19:20",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "48HUDhfl4ssbc5xuIrZ6UD",
+			"youtubeID": "0hdQmd0uug0",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:05:00",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "1ce3DvvGQn6hY2LMGMLCr5",
+			"youtubeID": "xuhl6Ji5zHM",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:14:05",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "1YD3Dg7Olipi5FGVDLHWAu",
+			"youtubeID": "_ABk7TmjnVk",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:00:00",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "0Wi7iEDGFY7I7NkYU6gS4n",
+			"youtubeID": "j1mYWYV9nAM",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:00:00",
+					"action":		"Start"
+				}
+			]
 		}
 	]
 }
