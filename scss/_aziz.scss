@@ -16,7 +16,65 @@ $module: 'aziz';
   }
 
   &__highlight {
+    position: relative;
 
+    /* ==========================================================================
+    Elements
+    ========================================================================== */
+    &__copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    &__mask {
+      position: absolute;
+      top: auto;
+      left: 0;
+      z-index: 2;
+      color: $black;
+      mask: url(../img/aziz-highlight.png) no-repeat;
+    }
+
+    &__stroke {
+      position: absolute;
+      top: 0;
+      left: -2.5%;
+      width: 105%;
+      height: 120%;
+      z-index: 0;
+      mask: url(../img/aziz-highlight.png) no-repeat;
+    }
+
+    &__mask, &__stroke {
+      transition: 0.5s mask-position $ease-out-quint;
+    }
+
+    /* ==========================================================================
+    Modifiers
+    ========================================================================== */
+    &--heartbreak {
+      .aziz__highlight__mask, .aziz__highlight__stroke {
+        mask-position: 400% 50%
+      }
+    }
+
+    &--boom {
+      .aziz__highlight__mask, .aziz__highlight__stroke {
+        mask-position: 250% 50%;
+      }
+    }
+
+    &--bobbing {
+      .aziz__highlight__mask, .aziz__highlight__stroke {
+        mask-position: 460% 50%;
+      }
+    }
+
+    &--highlighted {
+      .aziz__highlight__mask, .aziz__highlight__stroke {
+        mask-position: 10% 50% !important;
+      }
+    }
   }
 
   /* ==========================================================================
