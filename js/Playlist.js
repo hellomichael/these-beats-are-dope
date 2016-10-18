@@ -1,3 +1,4 @@
+import * as Utils from './Utils.js';
 import Album from './Album.js'
 import Video from './Video.js'
 import Timeline from './Timeline.js'
@@ -79,7 +80,8 @@ export default class Playlist {
     this.playlist.map((slide, index) => {
       let video = new Video({
         id:             slide.youtubeID,
-        element:        this.dom.slides[index].querySelector('.video')
+        element:        this.dom.slides[index].querySelector('.video'),
+        startSeconds:   Utils.getSeconds(slide.keyframes[0].timecode)
       })
 
       this.videos.push(video)
@@ -92,7 +94,7 @@ export default class Playlist {
         id:             slide.youtubeID,
         setDuration:    this.videos[index].youtube.getDuration,
         setCurrentTime: this.videos[index].youtube.getCurrentTime,
-        indicator:      this.dom.indicator
+        keyframes:      slide.keyframes
       })
 
       this.timelines.push(timeline)
@@ -141,8 +143,13 @@ export default class Playlist {
       }
 
       // Previous
-      if (event.keyCode === 37) {
+      else if (event.keyCode === 37) {
         this.prevSlide()
+      }
+
+      // Spacebar
+      else if (event.keyCode === 32) {
+        console.log(this.timelines[this.state.currentSlide].getCurrentTime(true))
       }
     })
   }
