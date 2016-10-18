@@ -6,13 +6,13 @@ export default class Aziz {
   }
 
   renderHighlight(className, copy) {
-    return (`
-      <span class="aziz__highlight aziz__highlight--${className}">
+    return (
+      `<span class="aziz__highlight aziz__highlight--${className}">
         <span class="aziz__highlight__copy">${copy}</span>
         <span class="aziz__highlight__mask">${copy}</span>
         <img class="aziz__highlight__stroke" src="../img/aziz-highlight.png" alt=""/>
-      </span>
-    `)
+      </span>`
+    )
   }
 
   render() {
