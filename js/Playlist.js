@@ -81,6 +81,7 @@ export default class Playlist {
     this.playlist.map((slide, index) => {
       let video = new Video({
         id:             slide.youtubeID,
+        name:           this.albums[index].name,
         element:        this.dom.slides[index].querySelector('.video'),
         startSeconds:   Utils.getSeconds(slide.keyframes[0].timecode)
       })
@@ -205,7 +206,7 @@ export default class Playlist {
     let slideRotation = (this.state.direction === 'rtl') ? 225 : -225
 
     // Reset previous
-    this.videos[this.state.prevSlide].pauseVideo()
+    this.videos[this.state.prevSlide].stopVideo()
     this.timelines[this.state.prevSlide].stopTimeline()
 
     // Play timeline

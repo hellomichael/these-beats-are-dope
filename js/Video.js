@@ -5,6 +5,7 @@ export default class Video {
   constructor(options) {
     // Props
     this.id = null
+    this.name = null
     this.element = null
     this.startSeconds = 0
     this.fadeInterval = null
@@ -49,15 +50,20 @@ export default class Video {
       this.youtube.setPlaybackQuality('small')
 
       // Stop video
-      this.youtube.pauseVideo()
-      this.youtube.seekTo(this.startSeconds)
+      // this.youtube.pauseVideo()
+      // this.youtube.seekTo(this.startSeconds)
+      this.youtube.stopVideo()
       this.youtube.setVolume(0)
     })
   }
 
   handleStateChange() {
     this.youtube.on('stateChange', event => {
-      console.log(`${this.id}: ${this.state.events[event.data]}`)
+      console.log(`${this.name}: ${this.state.events[event.data]}`)
+
+      if (this.state.events[event.data] === 'Playing') {
+        this.fadeIn()
+      }
     })
   }
 
@@ -76,14 +82,15 @@ export default class Video {
   }
 
   playVideo() {
-    this.fadeIn()
+    this.youtube.seekTo(this.startSeconds)
     this.youtube.playVideo()
   }
 
   stopVideo() {
     this.fadeOut(() => {
-      this.youtube.pauseVideo()
-      this.youtube.seekTo(0)
+      this.youtube.stopVideo()
+      // this.youtube.pauseVideo()
+      // this.youtube.seekTo(0)
     })
   }
 
