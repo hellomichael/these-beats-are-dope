@@ -99,24 +99,44 @@ $module: 'playlist';
     width: 55px;
     background: url(../img/playlist-controls.png);
     background-size: cover;
-    transition: 0.25s transform $ease-out-quint;
+    opacity: 0;
+    cursor: default;
+    transition: 0.75s transform $ease-out-quint, 0.5s opacity $ease-out-quint;
 
+    /* ==========================================================================
+    Modifiers
+    ========================================================================== */
     &--prev {
       left: $gutter-xl;
-      transform: translateY(-50%) translateZ(0) scale(-1);
+      transform: translateY(-50%) translateZ(0) scale(-1.25);
 
-      &:hover {
-        transform: translateY(-50%) translateZ(0) scale(-1.1);
+      &.playlist__control--visible {
+        transition: 0.25s transform $ease-out-quint;
+        transform: translateY(-50%) translateZ(0) scale(-1);
+
+        &:hover {
+          transform: translateY(-50%) translateZ(0) scale(-1.1);
+        }
       }
     }
 
     &--next {
       right: $gutter-xl;
-      transform: translateY(-50%) translateZ(0) scale(1);
+      transform: translateY(-50%) translateZ(0) scale(1.25);
 
-      &:hover {
-        transform: translateY(-50%) translateZ(0) scale(1.1);
+      &.playlist__control--visible {
+        transition: 0.25s transform $ease-out-quint;
+        transform: translateY(-50%) translateZ(0) scale(1);
+
+        &:hover {
+          transform: translateY(-50%) translateZ(0) scale(1.1);
+        }
       }
+    }
+
+    &--visible {
+      cursor: pointer;
+      opacity: 1;
     }
   }
 

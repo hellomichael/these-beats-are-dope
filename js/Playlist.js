@@ -1,4 +1,4 @@
-import * as Utils from './Utils.js';
+import * as Utils from './Utils.js'
 import Album from './Album.js'
 import Video from './Video.js'
 import Timeline from './Timeline.js'
@@ -25,7 +25,8 @@ export default class Playlist {
     this.dom = {
       slideshow: null,
       slides: null,
-      indicator: null
+      indicator: null,
+      controls: null
     }
 
     // State
@@ -106,6 +107,8 @@ export default class Playlist {
     // Update Dom
     this.dom.slideshow = document.querySelector('.playlist__slideshow')
     this.dom.slides = document.querySelectorAll('.playlist__slide')
+    this.dom.controlNext = document.querySelector('.playlist__control--next')
+    this.dom.controlPrev = document.querySelector('.playlist__control--prev')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
 
     // Create videos and timelines
@@ -179,6 +182,7 @@ export default class Playlist {
       this.state.currentSlide--
       this.state.direction = 'ltr'
       this.animateSlide()
+      this.animateControls()
     }
   }
 
@@ -188,15 +192,8 @@ export default class Playlist {
       this.state.currentSlide++
       this.state.direction = 'rtl'
       this.animateSlide()
+      this.animateControls()
     }
-  }
-
-  // Animations
-  animateProgress() {
-    setTimeout(() => {
-      requestAnimationFrame(this.animateProgress.bind(this))
-      this.dom.indicator.style.width = `${this.timelines[this.state.currentSlide].getProgress()}%`
-    }, 1000/60)
   }
 
   animateSlide() {
@@ -211,7 +208,7 @@ export default class Playlist {
     this.videos[this.state.prevSlide].pauseVideo()
     this.timelines[this.state.prevSlide].stopTimeline()
 
-    // Reset timeline
+    // Play timeline
     this.videos[this.state.currentSlide].playVideo()
     this.timelines[this.state.currentSlide].playTimeline()
 
@@ -240,6 +237,32 @@ export default class Playlist {
         }, (75 * index) + 15)
       })
     }
+  }
+
+  animateControls() {
+    // Show/Hide controls
+    if (this.state.currentSlide > 1) {
+      this.dom.controlNext.classList.add('playlist__control--visible')
+      this.dom.controlPrev.classList.add('playlist__control--visible')
+    }
+
+    else if (this.state.currentSlide) {
+      this.dom.controlNext.classList.add('playlist__control--visible')
+      this.dom.controlPrev.classList.remove('playlist__control--visible')
+    }
+
+    else {
+      this.dom.controlNext.classList.remove('playlist__control--visible')
+      this.dom.controlPrev.classList.remove('playlist__control--visible')
+    }
+  }
+
+  // Animations
+  animateProgress() {
+    setTimeout(() => {
+      requestAnimationFrame(this.animateProgress.bind(this))
+      this.dom.indicator.style.width = `${this.timelines[this.state.currentSlide].getProgress()}%`
+    }, 1000/60)
   }
 
   render() {
