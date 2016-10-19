@@ -5,16 +5,17 @@ export default class Timeline {
     // Props
     this.id = null
     this.timeline = null
-    this.requestAnimationFrame = null
     this.currentTime = 0
     this.duration = -1
+    this.requestAnimationFrame = null
+    this.animation = null
     this.keyframes = []
-    this.keyframesClone = [...this.keyframes]
     Object.assign(this, options)
+    this.keyframesClone = [...this.keyframes]
 
     this.setDuration()
     .then((duration) => {
-      this.duration = duration
+      this.duration = Utils.getTwoDecimalPlaces(duration)
     })
   }
 
@@ -30,7 +31,7 @@ export default class Timeline {
       // Set current time
       this.setCurrentTime()
       .then(seconds => {
-        this.currentTime = seconds
+        this.currentTime = Utils.getTwoDecimalPlaces(seconds)
       })
 
       // Play keyframes
@@ -41,40 +42,49 @@ export default class Timeline {
   }
 
   playKeyframes() {
+    // Check if there are still keyframes
     let keyframe = this.keyframesClone.length ? this.keyframesClone[0] : null
 
     if (keyframe && this.getCurrentTime() >= Utils.getSeconds(keyframe.timecode)) {
+      // Play action
+      // this.animation[keyframe.action]()
+
+      if (typeof this.animation[keyframe.action] === 'function') {
+        this.animation[keyframe.action]()
+      }
+
+      // Remove the keyframe
       this.keyframesClone.shift();
     }
   }
 
   getCurrentTime(timecode) {
     if (timecode) {
-      return Utils.getTimecode(this.currentTime.toFixed(2))
+      return Utils.getTimecode(this.currentTime)
     }
 
     else {
-      return this.currentTime.toFixed(2)
+      return this.currentTime
     }
   }
 
   getDuration(timecode) {
     if (timecode) {
-      return Utils.getTimecode(this.duration.toFixed(2))
+      return Utils.getTimecode(this.duration)
     }
 
     else {
-      return this.duration.toFixed(2)
+      return this.duration
     }
   }
 
   getProgress(timecode) {
     if (timecode) {
-      return Utils.getTimecode((this.getCurrentTime()/this.getDuration() * 100).toFixed(2))
+      return Utils.getTimecode((this.getCurrentTime()/this.getDuration() * 100))
     }
 
     else {
-      return (this.getCurrentTime()/this.getDuration() * 100).toFixed(2)
+      return (this.getCurrentTime()/this.getDuration() * 100)
     }
   }
 }

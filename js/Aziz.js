@@ -5,6 +5,22 @@ export default class Aziz {
     Object.assign(this, options)
   }
 
+  scroll() {
+    
+  }
+
+  highlightHeartbreak() {
+    this.dom.highlightHeartbreak.classList.add('aziz__highlight--highlighted')
+  }
+
+  highlightBoom() {
+    this.dom.highlightBoom.classList.add('aziz__highlight--highlighted')
+  }
+
+  highlightBobbing() {
+    this.dom.highlightBobbing.classList.add('aziz__highlight--highlighted')
+  }
+
   renderHighlight(className, copy) {
     return (
       `<span class="aziz__highlight aziz__highlight--${className}">
@@ -13,6 +29,15 @@ export default class Aziz {
         <img class="aziz__highlight__stroke" src="../img/aziz-highlight.png" alt=""/>
       </span>`
     )
+  }
+
+  componentDidMount() {
+    // Update Dom
+    this.dom = {
+      highlightHeartbreak:  document.querySelector('.aziz__highlight--heartbreak'),
+      highlightBoom:        document.querySelector('.aziz__highlight--boom'),
+      highlightBobbing:     document.querySelector('.aziz__highlight--bobbing')
+    }
   }
 
   render() {
@@ -27,7 +52,7 @@ export default class Aziz {
         <h2 class="aziz__paragraph">"Hey Kanye. Are you sitting in your own house,
         ${this.renderHighlight('bobbing', 'bobbing your own head')}, to your own music".</h2>
 
-        <h2 class="aziz__paragraph">And he goes...</h2>
+        <h2 class="aziz__paragraph" style="margin: 0;">And he goes...</h2>
       </div>
     `)
   }

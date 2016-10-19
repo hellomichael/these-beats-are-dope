@@ -9,6 +9,14 @@ export default class Video {
     this.element = null
     this.startSeconds = 0
     this.fadeInterval = null
+    this.events = {
+      '-1': 'Unstarted',
+      0: 'Ended',
+      1: 'Playing',
+      2: 'Paused',
+      3: 'Buffering',
+      5: 'Video cued'
+    }
     Object.assign(this, options)
 
     this.youtube = new YouTube(this.element, {
@@ -27,31 +35,22 @@ export default class Video {
 
     // State
     this.state = {
-      events: {
-        '-1': 'Unstarted',
-        0: 'Ended',
-        1: 'Playing',
-        2: 'Paused',
-        3: 'Buffering',
-        5: 'Video cued'
-      }
+      event: -1
     }
 
     // Events
-    this.handleOnReady()
+    this.handleReady()
     this.handleStateChange()
     this.handleResize()
   }
 
-  handleOnReady() {
+  handleReady() {
     this.youtube.on('ready', event => {
       // Set quality
       //this.youtube.setPlaybackQuality('hd720')
       this.youtube.setPlaybackQuality('small')
 
       // Stop video
-      // this.youtube.pauseVideo()
-      // this.youtube.seekTo(this.startSeconds)
       this.youtube.stopVideo()
       this.youtube.setVolume(0)
     })
@@ -59,11 +58,22 @@ export default class Video {
 
   handleStateChange() {
     this.youtube.on('stateChange', event => {
-      console.log(`${this.name}: ${this.state.events[event.data]}`)
+      console.log(`${this.name}: ${this.events[event.data]}`)
+      this.state.event = event.data
 
-      if (this.state.events[event.data] === 'Playing') {
+      if (this.events[event.data] === 'Playing') {
         this.fadeIn()
       }
+    })
+  }
+
+  handleCued() {
+    return new Promise((resolve, reject) => {
+      this.youtube.on('stateChange', event => {
+        if (this.events[event.data] === 'Video cued') {
+          resolve(event)
+        }
+      })
     })
   }
 

@@ -5,6 +5,10 @@ export default class Kanye {
     Object.assign(this, options)
   }
 
+  componentDidMount() {
+
+  }
+
   render() {
     return (`
       <div class="kanye">

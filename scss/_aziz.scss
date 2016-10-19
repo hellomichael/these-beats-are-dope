@@ -5,8 +5,10 @@ $module: 'aziz';
 
 .#{$module} {
   @extend %center;
+  // top: 100%;
   width: 1000px;
   z-index: 2;
+  // transition: 25s top $ease-linear;
 
   /* ==========================================================================
   Elements
@@ -29,11 +31,11 @@ $module: 'aziz';
 
     &__mask {
       position: absolute;
-      top: auto;
+      top: 0;
       left: 0;
       z-index: 2;
       color: $black;
-      mask: url(../img/aziz-highlight.png) no-repeat;
+      mask: url(../img/aziz-mask.png) no-repeat;
     }
 
     &__stroke {
@@ -43,11 +45,11 @@ $module: 'aziz';
       width: 105%;
       height: 120%;
       z-index: 0;
-      mask: url(../img/aziz-highlight.png) no-repeat;
+      mask: url(../img/aziz-mask.png) no-repeat;
     }
 
     &__mask, &__stroke {
-      transition: 0.5s mask-position $ease-out-quint;
+      transition: 3s mask-position $ease-out-expo;
     }
 
     /* ==========================================================================
@@ -55,7 +57,13 @@ $module: 'aziz';
     ========================================================================== */
     &--heartbreak {
       .aziz__highlight__mask, .aziz__highlight__stroke {
-        mask-position: 400% 50%
+        mask-position: 400% 50%;
+      }
+
+      &.aziz__highlight--highlighted {
+        .aziz__highlight__mask, .aziz__highlight__stroke {
+          mask-position: 5% 50% !important;
+        }
       }
     }
 
@@ -63,17 +71,23 @@ $module: 'aziz';
       .aziz__highlight__mask, .aziz__highlight__stroke {
         mask-position: 250% 50%;
       }
+
+      &.aziz__highlight--highlighted {
+        .aziz__highlight__mask, .aziz__highlight__stroke {
+          mask-position: 65% 50% !important
+        }
+      }
     }
 
     &--bobbing {
       .aziz__highlight__mask, .aziz__highlight__stroke {
         mask-position: 460% 50%;
       }
-    }
 
-    &--highlighted {
-      .aziz__highlight__mask, .aziz__highlight__stroke {
-        mask-position: 10% 50% !important;
+      &.aziz__highlight--highlighted {
+        .aziz__highlight__mask, .aziz__highlight__stroke {
+          mask-position: 55% 50% !important;
+        }
       }
     }
   }
@@ -81,4 +95,7 @@ $module: 'aziz';
   /* ==========================================================================
   Modifiers
   ========================================================================== */
+  %-scrolling {
+    top: 0;
+  }
 }

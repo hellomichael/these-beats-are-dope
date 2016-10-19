@@ -40,23 +40,13 @@ export default class Playlist {
     this.setAnimations()
     this.setAlbums()
     .then(() => {
-      // Events
-      this.handleClick()
-      this.handleKeypress()
-      this.handleResize()
       this.render()
     })
   }
 
   setAnimations() {
     this.playlist.map(slide => {
-      let animation = new Aziz()
-
-      if (slide.animation === 'Kanye') {
-        animation = new Kanye()
-      }
-
-      this.animations.push(animation)
+      this.animations.push(slide.animation === 'Aziz' ? new Aziz() : new Kanye())
     })
   }
 
@@ -96,6 +86,7 @@ export default class Playlist {
         id:             slide.youtubeID,
         setDuration:    this.videos[index].youtube.getDuration,
         setCurrentTime: this.videos[index].youtube.getCurrentTime,
+        animation:      this.animations[index],
         keyframes:      slide.keyframes
       })
 
@@ -103,21 +94,20 @@ export default class Playlist {
     })
   }
 
-  // Mounting
-  componentDidMount() {
-    // Update Dom
-    this.dom.slideshow = document.querySelector('.playlist__slideshow')
-    this.dom.slides = document.querySelectorAll('.playlist__slide')
-    this.dom.controlNext = document.querySelector('.playlist__control--next')
-    this.dom.controlPrev = document.querySelector('.playlist__control--prev')
-    this.dom.indicator = document.querySelector('.playlist__progress__indicator')
+  // Ready
+  handleReady() {
+    let promises = []
 
-    // Create videos and timelines
-    this.setVideos()
-    this.setTimelines()
+    this.videos.map(video => {
+      promises.push(video.handleCued())
+    })
 
-    // Animate progress
-    this.animateProgress()
+    Promise.all(promises)
+    .then(() => {
+      // Play first video
+      this.videos[this.state.currentSlide].playVideo()
+      this.timelines[this.state.currentSlide].playTimeline()
+    })
   }
 
   // Controls
@@ -266,6 +256,29 @@ export default class Playlist {
     }, 1000/60)
   }
 
+  // Mounting
+  componentDidMount() {
+    // Update Dom
+    this.dom.slideshow = document.querySelector('.playlist__slideshow')
+    this.dom.slides = document.querySelectorAll('.playlist__slide')
+    this.dom.controlNext = document.querySelector('.playlist__control--next')
+    this.dom.controlPrev = document.querySelector('.playlist__control--prev')
+    this.dom.indicator = document.querySelector('.playlist__progress__indicator')
+
+    // Create videos and timelines
+    this.setVideos()
+    this.setTimelines()
+
+    // Events
+    this.handleClick()
+    this.handleKeypress()
+    this.handleResize()
+    this.handleReady()
+
+    // Animate progress
+    this.animateProgress()
+  }
+
   render() {
     let playlistSlides = this.playlist.map((slide, index) => {
       let album = index ? this.albums[index].render() : null
@@ -302,6 +315,10 @@ export default class Playlist {
         <div class="playlist__frame playlist__frame--left"></div>
       </div>
     `
+
+    this.animations.map((animation, index) => {
+      animation.componentDidMount()
+    })
 
     return this.componentDidMount()
   }
