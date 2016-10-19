@@ -3,7 +3,11 @@ export function getSeconds(timecode) {
   let minutes = parseInt(sec[0])
   let seconds = parseInt(sec[1])
   let milliseconds = parseInt(sec[2])
-  return (minutes * 60) + (seconds) + milliseconds/30
+  return getTwoDecimalPlaces((minutes * 60) + (seconds) + (milliseconds/30))
+}
+
+export function getTwoDecimalPlaces(value) {
+  return +(Math.round(value + "e+2")  + "e-2");
 }
 
 export function getTimecode(seconds) {

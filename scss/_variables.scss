@@ -54,5 +54,6 @@ $ease-linear:               linear;
 $ease-in-out:               ease-in-out;
 $ease-in-out-back:          cubic-bezier(0.740, -0.315, 0.525, 1.005);
 $ease-out-quint:            cubic-bezier(0.230, 1.000, 0.320, 1.000);
+$ease-out-expo:             cubic-bezier(0.050, 0.995, 0.220, 1.000); 
 $ease-in-out-quint:         cubic-bezier(0.860, 0.000, 0.070, 1.000);
 $ease-in-out-expo:          cubic-bezier(1.000, 0.000, 0.000, 1.000);
