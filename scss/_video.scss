@@ -10,6 +10,8 @@ $module: 'video';
   z-index: 0;
   transform: translateY(-300px);
   background-color: $black;
+  pointer-events: none;
+  cursor: default;
 
   /* ==========================================================================
   Elements
