@@ -2,24 +2,35 @@
   Album
   ========================================================================== */
 $module: 'album';
+$albumScale: 0.75;
 $albumSize: 300px;
 
 .#{$module} {
   @extend %center;
-  width: 300px;
+  width: $albumSize * $albumScale;
   transition: 1s transform $ease-out-quint;
+
+  @media screen and (min-width: $screen-sm-min) {
+    width: $albumSize;
+  }
 
   /* ==========================================================================
   Elements
   ========================================================================== */
   &__vinyl {
     @extend %before-after;
-    width: $albumSize;
-    height: $albumSize;
-    margin: 0 0 $gutter-lg;
+    width: $albumSize * $albumScale;
+    height: $albumSize * $albumScale;
+    margin: 0 0 $gutter-md;
     transform-style: preserve-3d;
     transform: rotateY(-15deg);
     transition: 1s transform $ease-out-quint;
+
+    @media screen and (min-width: $screen-sm-min) {
+      width: $albumSize;
+      height: $albumSize;
+      margin: 0 0 $gutter-lg;
+    }
 
     &.no-transition {
       transition: none;
@@ -40,18 +51,28 @@ $albumSize: 300px;
     &:after {
       @extend %center;
       z-index: 2;
-      width: ($albumSize * 1.5);
-      height: ($albumSize * 1.5);
+      width: $albumSize * 1.5 * $albumScale;
+      height: $albumSize * 1.5* $albumScale;
       background: url(../img/album-vinyl.png);
       background-size: cover;
       transform: translateX(-50%) translateY(-50%) translateZ(1px);
+
+      @media screen and (min-width: $screen-sm-min) {
+        width: ($albumSize * 1.5);
+        height: ($albumSize * 1.5);
+      }
     }
 
     img {
-      width: $albumSize;
-      height: $albumSize;
+      width: $albumSize * $albumScale;
+      height: $albumSize * $albumScale;
       border-radius: 3px;
       outline: 1px solid transparent;
+
+      @media screen and (min-width: $screen-sm-min) {
+        width: $albumSize;
+        height: $albumSize;
+      }
     }
 
     &__front, &__back {
@@ -61,21 +82,30 @@ $albumSize: 300px;
 
     &__back {
       display: block;
-      width: $albumSize;
-      height: $albumSize;
+      width: $albumSize * $albumScale;
+      height: $albumSize * $albumScale;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translateX(-50%) translateY(-50%) translateZ(-2px) scale(0.99);
       background: $white url(../img/album-vinyl.png) center center;
       border-radius: 3px;
+
+      @media screen and (min-width: $screen-sm-min) {
+        width: $albumSize;
+        height: $albumSize;
+      }
     }
   }
 
   &__single, &__title {
-    width: 500px;
+    width: $albumSize * $albumScale;
     transform: rotateY(-15deg);
     transition: 1s transform $ease-out-quint;
+
+    @media screen and (min-width: $screen-sm-min) {
+      width: 500px;
+    }
 
     &.no-transition {
       transition: none;

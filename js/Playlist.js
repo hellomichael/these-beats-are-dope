@@ -99,14 +99,12 @@ export default class Playlist {
     let promises = []
 
     this.videos.map(video => {
-      promises.push(video.handleCued())
+      promises.push(video.isReady())
     })
 
     Promise.all(promises)
     .then(() => {
-      // Play first video
-      this.videos[this.state.currentSlide].playVideo()
-      this.timelines[this.state.currentSlide].playTimeline()
+      this.animateSlide()
     })
   }
 
@@ -116,7 +114,7 @@ export default class Playlist {
       event.preventDefault()
 
       // Next
-      if (event.target.matches('.playlist__control--next')) {
+      if (event.target.matches('.playlist__control--next') || event.target.matches('.playlist__play')) {
         this.nextSlide()
       }
 
@@ -168,7 +166,8 @@ export default class Playlist {
   }
 
   prevSlide() {
-    if (this.state.currentSlide > 0) {
+    console.log('Previous Slide')
+    if (this.state.currentSlide > 1) {
       this.state.prevSlide = this.state.currentSlide
       this.state.currentSlide--
       this.state.direction = 'ltr'
@@ -178,6 +177,8 @@ export default class Playlist {
   }
 
   nextSlide() {
+    console.log('Next Slide')
+
     if (this.state.currentSlide < this.albums.length - 1) {
       this.state.prevSlide = this.state.currentSlide
       this.state.currentSlide++
@@ -196,8 +197,10 @@ export default class Playlist {
     let slideRotation = (this.state.direction === 'rtl') ? 225 : -225
 
     // Reset previous
-    this.videos[this.state.prevSlide].stopVideo()
-    this.timelines[this.state.prevSlide].stopTimeline()
+    if (this.state.currentSlide) {
+      this.videos[this.state.prevSlide].pauseVideo()
+      this.timelines[this.state.prevSlide].stopTimeline()
+    }
 
     // Play timeline
     this.videos[this.state.currentSlide].playVideo()
@@ -232,7 +235,11 @@ export default class Playlist {
 
   animateControls() {
     // Show/Hide controls
-    if (this.state.currentSlide > 1) {
+    if (this.state.currentSlide === this.albums.length - 1) {
+      this.dom.controlNext.classList.remove('playlist__control--visible')
+    }
+
+    else if (this.state.currentSlide > 1) {
       this.dom.controlNext.classList.add('playlist__control--visible')
       this.dom.controlPrev.classList.add('playlist__control--visible')
     }
@@ -264,6 +271,7 @@ export default class Playlist {
     this.dom.controlNext = document.querySelector('.playlist__control--next')
     this.dom.controlPrev = document.querySelector('.playlist__control--prev')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
+    this.dom.controlPlay = document.querySelector('.playlist__play')
 
     // Create videos and timelines
     this.setVideos()

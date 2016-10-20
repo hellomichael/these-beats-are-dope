@@ -10,6 +10,7 @@ export default class Video {
     this.startSeconds = 0
     this.fadeInterval = null
     this.events = {
+      '-2': 'Ready',
       '-1': 'Unstarted',
       0: 'Ended',
       1: 'Playing',
@@ -46,31 +47,58 @@ export default class Video {
 
   handleReady() {
     this.youtube.on('ready', event => {
-      // Set quality
-      //this.youtube.setPlaybackQuality('hd720')
+      // Set quality (small, medium, large, hd720, hd1080, highres)
       this.youtube.setPlaybackQuality('small')
 
-      // Stop video
-      this.youtube.stopVideo()
-      this.youtube.setVolume(0)
+      // Pause video
+      this.resetVideo()
     })
   }
 
   handleStateChange() {
     this.youtube.on('stateChange', event => {
-      console.log(`${this.name}: ${this.events[event.data]}`)
+      console.log(`${this.name} (${this.id}): ${this.events[event.data]}`)
       this.state.event = event.data
 
-      if (this.events[event.data] === 'Playing') {
-        this.fadeIn()
+      if (this.events[event.data] === 'Ended') {
+        this.resetVideo()
       }
     })
   }
 
-  handleCued() {
+  isReady() {
+    return new Promise((resolve, reject) => {
+      this.youtube.on('ready', event => {
+        console.log(`${this.name} (${this.id}): ${this.events[-2]}`)
+        resolve(event)
+      })
+    })
+  }
+
+  isPlaying() {
     return new Promise((resolve, reject) => {
       this.youtube.on('stateChange', event => {
-        if (this.events[event.data] === 'Video cued') {
+        if (this.events[event.data] === 'Playing') {
+          resolve(event)
+        }
+      })
+    })
+  }
+
+  isStopped() {
+    return new Promise((resolve, reject) => {
+      this.youtube.on('stateChange', event => {
+        if (this.events[event.data] === 'Unstarted') {
+          resolve(event)
+        }
+      })
+    })
+  }
+
+  isPaused() {
+    return new Promise((resolve, reject) => {
+      this.youtube.on('stateChange', event => {
+        if (this.events[event.data] === 'isPaused') {
           resolve(event)
         }
       })
@@ -87,24 +115,33 @@ export default class Video {
     })
   }
 
+  resetVideo() {
+    this.youtube.seekTo(this.startSeconds)
+    this.youtube.pauseVideo()
+    this.youtube.setVolume(0)
+  }
+
   seekVideo(seconds) {
     this.youtube.seekTo(seconds)
   }
 
   playVideo() {
-    this.youtube.seekTo(this.startSeconds)
+    this.isPlaying = true
     this.youtube.playVideo()
+    this.fadeIn()
   }
 
   stopVideo() {
+    this.isPlaying = false
+
     this.fadeOut(() => {
       this.youtube.stopVideo()
-      // this.youtube.pauseVideo()
-      // this.youtube.seekTo(0)
     })
   }
 
   pauseVideo() {
+    this.isPlaying = false
+
     this.fadeOut(() => {
       this.youtube.pauseVideo()
     })
@@ -127,7 +164,7 @@ export default class Video {
           this.youtube.setVolume(100)
           clearInterval(this.fadeInterval)
 
-          if (callback) {
+          if (typeof callback === 'function') {
             callback()
           }
         }
@@ -142,17 +179,23 @@ export default class Video {
 
       clearInterval(this.fadeInterval)
       this.fadeInterval = setInterval(() => {
-        if (volume > 0) {
-          volume -= 2.5
-          this.youtube.setVolume(volume)
+        if (this.isPlaying) {
+          clearInterval(this.fadeInterval)
         }
 
         else {
-          this.youtube.setVolume(0)
-          clearInterval(this.fadeInterval)
+          if (volume > 0) {
+            volume -= 2.5
+            this.youtube.setVolume(volume)
+          }
 
-          if (callback) {
-            callback()
+          else {
+            this.youtube.setVolume(0)
+            clearInterval(this.fadeInterval)
+
+            if (typeof callback === 'function') {
+              callback()
+            }
           }
         }
       }, 50)

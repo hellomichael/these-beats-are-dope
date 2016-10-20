@@ -4,15 +4,64 @@
 $module: 'aziz';
 
 .#{$module} {
-  @extend %center;
-  // top: 100%;
-  width: 1000px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   z-index: 2;
-  // transition: 25s top $ease-linear;
 
   /* ==========================================================================
   Elements
   ========================================================================== */
+  &__intro {
+    @extend %center;
+    width: calc(100% - #{$gutter-xxl});
+    text-align: center;
+  }
+
+  &__heading {
+    * {
+      display: none;
+    }
+  }
+
+  &__subheading {
+    opacity: 0;
+    transition: 0.25s opacity $ease-out-quint;
+  }
+
+  &__button {
+    @extend %center-horizontally;
+    display: inline-block;
+    width: 345px * 0.75;
+    height: 70px * 0.75;
+    margin: $gutter-xs 0 0;
+    line-height: 70px * 0.75;
+    border-radius: 999px;
+    background: url(../img/playlist-button.png) center center;
+    background-size: cover;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.25s all $ease-out-quint;
+    @include rem(font-size, $h5-size);
+
+    &:hover {
+      transform: translateX(-50%) scale(1.05);
+    }
+  }
+
+  &__quote {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 90%;
+    transform: translateX(-50%) translateY(100vh);
+    transition: 22.5s transform $ease-linear;
+
+    &--scrolling {
+      transform: translateX(-50%) translateY(-100vh);
+    }
+  }
+
   &__paragraph {
     margin: 0 0 $gutter-lg;
   }
@@ -49,7 +98,7 @@ $module: 'aziz';
     }
 
     &__mask, &__stroke {
-      transition: 3s mask-position $ease-out-expo;
+      transition: 2s mask-position $ease-out-quint;
     }
 
     /* ==========================================================================
@@ -57,7 +106,7 @@ $module: 'aziz';
     ========================================================================== */
     &--heartbreak {
       .aziz__highlight__mask, .aziz__highlight__stroke {
-        mask-position: 400% 50%;
+        mask-position: 410% 50%;
       }
 
       &.aziz__highlight--highlighted {
@@ -69,7 +118,7 @@ $module: 'aziz';
 
     &--boom {
       .aziz__highlight__mask, .aziz__highlight__stroke {
-        mask-position: 250% 50%;
+        mask-position: 260% 50%;
       }
 
       &.aziz__highlight--highlighted {
@@ -81,7 +130,7 @@ $module: 'aziz';
 
     &--bobbing {
       .aziz__highlight__mask, .aziz__highlight__stroke {
-        mask-position: 460% 50%;
+        mask-position: 470% 50%;
       }
 
       &.aziz__highlight--highlighted {
@@ -95,7 +144,4 @@ $module: 'aziz';
   /* ==========================================================================
   Modifiers
   ========================================================================== */
-  %-scrolling {
-    top: 0;
-  }
 }

@@ -49,30 +49,54 @@ a {
 /* ==========================================================================
    Type
    ========================================================================== */
-
 h1 {
-  @include rem(font-size, $h1-size);
-  @include rem(line-height, $h1-height);
+  @include rem(font-size, $h2-size);
+  @include rem(line-height, $h2-height);
+
+  @media screen and (min-width: $screen-sm-min) {
+    @include rem(font-size, $h1-size);
+    @include rem(line-height, $h1-height);
+  }
 }
 
 h2 {
-  @include rem(font-size, $h2-size);
-  @include rem(line-height, $h2-height);
+  @include rem(font-size, $h3-size);
+  @include rem(line-height, $h3-height);
+
+  @media screen and (min-width: $screen-sm-min) {
+    @include rem(font-size, $h2-size);
+    @include rem(line-height, $h2-height);
+  }
 }
 
 h3 {
-  @include rem(font-size, $h3-size);
-  @include rem(line-height, $h3-height);
+  @include rem(font-size, $h4-size);
+  @include rem(line-height, $h4-height);
+
+  @media screen and (min-width: $screen-sm-min) {
+    @include rem(font-size, $h3-size);
+    @include rem(line-height, $h3-height);
+  }
 }
 
 h4 {
-  @include rem(font-size, $h4-size);
-  @include rem(line-height, $h4-height);
+  @include rem(font-size, $h5-size);
+  @include rem(line-height, $h5-height);
+
+  @media screen and (min-width: $screen-sm-min) {
+    @include rem(font-size, $h4-size);
+    @include rem(line-height, $h4-height);
+  }
 }
 
 h5 {
-  @include rem(font-size, $h5-size);
-  @include rem(line-height, $h5-height);
+  @include rem(font-size, $h6-size);
+  @include rem(line-height, $h6-height);
+
+  @media screen and (min-width: $screen-sm-min) {
+    @include rem(font-size, $h5-size);
+    @include rem(line-height, $h5-height);
+  }
 }
 
 h6 {
@@ -86,4 +110,55 @@ h1, h2, h3, h4 {
 
 h5, h6 {
   margin: 0 0 $gutter-xxs;
+}
+
+h1, h2, h3 {
+  letter-spacing: 1px;
+}
+
+h4, h5, h6 {
+  letter-spacing: 3px;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Icons
+   ========================================================================== */
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: $icon-md;
+  height: $icon-md;
+
+  &-xs {
+    width: $icon-xs;
+    height: $icon-xs;
+  }
+
+  &-sm {
+    width: $icon-sm;
+    height: $icon-sm;
+  }
+
+  &-lg {
+    width: $icon-lg;
+    height: $icon-lg;
+  }
+
+  &-xl {
+    width: $icon-xl;
+    height: $icon-xl;
+  }
+
+  &--play {
+    background: url(../img/icon-play.png);
+    background-size: cover;
+  }
 }

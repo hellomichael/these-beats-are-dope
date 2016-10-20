@@ -24,6 +24,11 @@ $module: 'playlist';
     left: 0;
   }
 
+  &__slide {
+    // opacity: 0;
+    // transition: 1s opacity $ease-out-quint;
+  }
+
   &__slideshow {
     transition: 1s transform $ease-out-quint;
   }
@@ -40,7 +45,7 @@ $module: 'playlist';
       top: $gutter-xs;
       height: 30px;
       width: 100%;
-      background: url(../img/progress.png);
+      background: url(../img/playlist-progress.png);
     }
 
     &__track {
@@ -97,7 +102,7 @@ $module: 'playlist';
     position: fixed;
     height: 55px;
     width: 55px;
-    background: url(../img/playlist-controls.png);
+    background: url(../img/playlist-arrow.png);
     background-size: cover;
     opacity: 0;
     cursor: default;
@@ -107,8 +112,12 @@ $module: 'playlist';
     Modifiers
     ========================================================================== */
     &--prev {
-      left: $gutter-xl;
+      left: $gutter-md;
       transform: translateY(-50%) translateZ(0) scale(-1.25);
+
+      @media screen and (min-width: $screen-sm-min) {
+        left: $gutter-xl;
+      }
 
       &.playlist__control--visible {
         transition: 0.25s transform $ease-out-quint;
@@ -121,7 +130,12 @@ $module: 'playlist';
     }
 
     &--next {
-      right: $gutter-xl;
+      right: $gutter-md;
+
+      @media screen and (min-width: $screen-sm-min) {
+        right: $gutter-xl;
+      }
+
       transform: translateY(-50%) translateZ(0) scale(1.25);
 
       &.playlist__control--visible {
