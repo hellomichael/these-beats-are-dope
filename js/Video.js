@@ -60,9 +60,23 @@ export default class Video {
       console.log(`${this.name} (${this.id}): ${this.events[event.data]}`)
       this.state.event = event.data
 
+      if (this.events[event.data] === 'Playing') {
+        // this.fadeIn()
+      }
+
       if (this.events[event.data] === 'Ended') {
         this.resetVideo()
       }
+    })
+  }
+
+  handleResize() {
+    window.addEventListener('resize', event => {
+      this.youtube.getIframe()
+      .then(iframe => {
+        iframe.setAttribute('width', window.innerWidth)
+        iframe.setAttribute('height', window.innerHeight + 600)
+      })
     })
   }
 
@@ -105,30 +119,20 @@ export default class Video {
     })
   }
 
-  handleResize() {
-    window.addEventListener('resize', event => {
-      this.youtube.getIframe()
-      .then(iframe => {
-        iframe.setAttribute('width', window.innerWidth)
-        iframe.setAttribute('height', window.innerHeight + 600)
-      })
-    })
-  }
-
   resetVideo() {
     this.youtube.seekTo(this.startSeconds)
     this.youtube.pauseVideo()
     this.youtube.setVolume(0)
   }
 
-  seekVideo(seconds) {
-    this.youtube.seekTo(seconds)
-  }
-
   playVideo() {
     this.isPlaying = true
     this.youtube.playVideo()
     this.fadeIn()
+  }
+
+  seekVideo(seconds) {
+    this.youtube.seekTo(seconds)
   }
 
   stopVideo() {
