@@ -72,7 +72,7 @@ export default class Playlist {
       let video = new Video({
         id:             slide.youtubeID,
         name:           this.albums[index].name,
-        element:        this.dom.slides[index].querySelector('.video'),
+        element:        this.dom.slideshowVideos.children[index].querySelector('.video'),
         startSeconds:   Utils.getSeconds(slide.keyframes[0].timecode)
       })
 
@@ -154,13 +154,15 @@ export default class Playlist {
       this.height = window.innerHeight
 
       // Update slideshow
-      this.dom.slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
+      Array.from(this.dom.slideshows).map(slideshow => {
+        slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
 
-      // Update slide
-      Array.from(this.dom.slides).map((slide, index) => {
-        slide.style.width = `${this.width}px`
-        slide.style.height = `${this.height}px`
-        slide.style.transform = `translateX(${index * 100}%)`
+        // Update children
+        Array.from(slideshow.children).map((slide, index) => {
+          slide.style.width = `${this.width}px`
+          slide.style.height = `${this.height}px`
+          slide.style.transform = `translateX(${index * 100}%)`
+        })
       })
     })
   }
@@ -189,13 +191,6 @@ export default class Playlist {
   }
 
   animateSlide() {
-    // Set local variables
-    let slide = Array.from(this.dom.slideshow.children)[this.state.currentSlide]
-    let slideContent  = slide.querySelector('.playlist__content')
-    let slideChildren = slideContent ? slideContent.children : null
-    let slideDistance = (this.state.direction === 'rtl') ? this.width/1.5 : -this.width/1.5
-    let slideRotation = (this.state.direction === 'rtl') ? 225 : -225
-
     // Reset previous
     if (this.state.currentSlide) {
       this.videos[this.state.prevSlide].pauseVideo()
@@ -207,30 +202,17 @@ export default class Playlist {
     this.timelines[this.state.currentSlide].playTimeline()
 
     // Animate slide
-    this.dom.slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
+    Array.from(this.dom.slideshows).map(slideshow => {
+      slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
+    })
 
-    // Animate slide children
-    if (slideChildren) {
-      Array.from(slideChildren).map((child, index) => {
-        // Reset position
-        child.classList.add('no-transition')
+    // Animate albums
+    let prevAlbum = this.dom.slideshowAlbums.children[this.state.prevSlide].querySelector('.album__vinyl')
+    let nextAlbum = this.dom.slideshowAlbums.children[this.state.currentSlide].querySelector('.album__vinyl')
+    let slideRotation = (this.state.direction === 'rtl') ? -90 : 90
 
-        // 3D rotate vinyl
-        if (child.classList.contains('album__vinyl')) {
-          child.style.transform = `translateX(${slideDistance}px) rotateY(${slideRotation}deg)`
-        }
-
-        else {
-          child.style.transform = `translateX(${slideDistance}px) rotateY(${slideRotation/10}deg)`
-        }
-
-        // Stagger animation
-        setTimeout(()=>{
-          child.classList.remove('no-transition')
-          child.style.transform = `translateX(0) rotateY(-15deg)`
-        }, (75 * index) + 15)
-      })
-    }
+    prevAlbum ? prevAlbum.style.transform = `rotateY(${-slideRotation}deg)` : null
+    nextAlbum ? nextAlbum.style.transform = `rotateY(${-15}deg)` : null
   }
 
   animateControls() {
@@ -266,8 +248,10 @@ export default class Playlist {
   // Mounting
   componentDidMount() {
     // Update Dom
-    this.dom.slideshow = document.querySelector('.playlist__slideshow')
-    this.dom.slides = document.querySelectorAll('.playlist__slide')
+    this.dom.slideshows = document.querySelectorAll('.playlist__slideshow')
+    this.dom.slideshowVideos = document.querySelector('.playlist__slideshow--videos')
+    this.dom.slideshowAlbums = document.querySelector('.playlist__slideshow--albums')
+    this.dom.slideshowAnimation = document.querySelector('.playlist__slideshow--animations')
     this.dom.controlNext = document.querySelector('.playlist__control--next')
     this.dom.controlPrev = document.querySelector('.playlist__control--prev')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
@@ -288,25 +272,47 @@ export default class Playlist {
   }
 
   render() {
-    let playlistSlides = this.playlist.map((slide, index) => {
+    let videoSlides = this.playlist.map((slide, index) => {
+      return (`
+        <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
+          <div class="video"></div>
+        </div>
+      `)
+    }).join('')
+
+    let albumSlides = this.playlist.map((slide, index) => {
       let album = index ? this.albums[index].render() : null
+
+      return (`
+        <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
+          ${album}
+        </div>
+      `)
+    }).join('')
+
+    let animationSlides = this.playlist.map((slide, index) => {
       let animation = this.animations[index].render()
 
       return (`
         <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
-          <div class="video"></div>
-          ${album}
           ${animation}
         </div>
       `)
-
     }).join('')
 
     this.app.innerHTML = `
       <!-- Playlist --!>
       <div class="playlist">
-        <div class="playlist__slideshow" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
-          ${playlistSlides}
+        <div class="playlist__slideshow playlist__slideshow--videos" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
+          ${videoSlides}
+        </div>
+
+        <div class="playlist__slideshow playlist__slideshow--albums" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
+          ${albumSlides}
+        </div>
+
+        <div class="playlist__slideshow playlist__slideshow--animations" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
+          ${animationSlides}
         </div>
 
         <div class="playlist__progress">

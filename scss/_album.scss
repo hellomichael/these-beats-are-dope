@@ -18,14 +18,18 @@ $albumSize: 300px;
   /* ==========================================================================
   Elements
   ========================================================================== */
+  &__track {
+    perspective: 1000px;
+  }
+
   &__vinyl {
     @extend %before-after;
     width: $albumSize * $albumScale;
     height: $albumSize * $albumScale;
     margin: 0 0 $gutter-md;
     transform-style: preserve-3d;
-    transform: rotateY(-15deg);
-    transition: 1s transform $ease-out-quint;
+    transform: rotateY(-#{90}deg);
+    transition: 1000ms transform $ease-in-out-quint 50ms;
 
     @media screen and (min-width: $screen-sm-min) {
       width: $albumSize;
@@ -105,7 +109,7 @@ $albumSize: 300px;
     transition: 1s transform $ease-out-quint;
 
     @media screen and (min-width: $screen-sm-min) {
-      width: 500px;
+      width: 550px;
     }
 
     &.no-transition {
