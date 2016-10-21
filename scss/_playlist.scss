@@ -120,7 +120,7 @@ $module: 'playlist';
       }
 
       &.playlist__control--visible {
-        transition: 0.25s transform $ease-out-quint;
+        transition: 0.25s transform $ease-out-quint, 0.25s opacity $ease-out-quint;
         transform: translateY(-50%) translateZ(0) scale(-1);
 
         &:hover {
@@ -139,7 +139,7 @@ $module: 'playlist';
       transform: translateY(-50%) translateZ(0) scale(1.25);
 
       &.playlist__control--visible {
-        transition: 0.25s transform $ease-out-quint;
+        transition: 0.25s transform $ease-out-quint, 0.25s opacity $ease-out-quint;
         transform: translateY(-50%) translateZ(0) scale(1);
 
         &:hover {

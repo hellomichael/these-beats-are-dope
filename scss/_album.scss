@@ -8,6 +8,7 @@ $albumSize: 300px;
 .#{$module} {
   @extend %center;
   width: $albumSize * $albumScale;
+  transform: translateX(-50%) translateX($kanye-distance) translateY(-50%);
   transition: 1s transform $ease-out-quint;
 
   @media screen and (min-width: $screen-sm-min) {
