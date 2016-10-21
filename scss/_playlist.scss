@@ -14,10 +14,6 @@ $module: 'playlist';
   /* ==========================================================================
   Elements
   ========================================================================== */
-  &__content {
-    perspective: 1000px;
-  }
-
   &__slideshow, &__slide {
     position: absolute;
     top: 0;
@@ -30,7 +26,18 @@ $module: 'playlist';
   }
 
   &__slideshow {
-    transition: 1s transform $ease-out-quint;
+    &--videos {
+      transition: 750ms transform $ease-in-out-quart 100ms;
+    }
+
+    &--albums {
+      transition: 750ms transform $ease-in-out-quart 50ms;
+    }
+
+    &--animations {
+      transition: 750ms transform $ease-in-out-quart 0ms;
+      z-index: 4;
+    }
   }
 
   &__progress {
@@ -100,6 +107,7 @@ $module: 'playlist';
   &__control {
     @extend %center-vertically;
     position: fixed;
+    z-index: 9999;
     height: 55px;
     width: 55px;
     background: url(../img/playlist-arrow.png);

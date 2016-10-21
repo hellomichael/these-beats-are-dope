@@ -9,7 +9,7 @@ export default class Album {
     return `
       <!-- ${this.album.name} --!>
       <div class="album">
-        <div class="playlist__content album__track">
+        <div class="album__track">
           <div class="album__vinyl">
             <div class="album__vinyl__front"><img src="${this.album.images[1].url}" alt=""/></div>
             <div class="album__vinyl__back"></div>

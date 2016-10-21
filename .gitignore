@@ -38,4 +38,4 @@ dist
 .node_repl_history
 
 # Photoshop
-.psd
+*.psd
