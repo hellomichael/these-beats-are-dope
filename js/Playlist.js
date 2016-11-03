@@ -73,7 +73,8 @@ export default class Playlist {
         id:             slide.youtubeID,
         name:           this.albums[index].name,
         element:        this.dom.slideshowVideos.children[index].querySelector('.video'),
-        startSeconds:   Utils.getSeconds(slide.keyframes[0].timecode)
+        startSeconds:   Utils.getSeconds(slide.keyframes[0].timecode),
+        endSeconds:     Utils.getSeconds(slide.keyframes[slide.keyframes.length - 1].timecode)
       })
 
       this.videos.push(video)
@@ -84,8 +85,7 @@ export default class Playlist {
     this.playlist.map((slide, index) => {
       let timeline = new Timeline({
         id:             slide.youtubeID,
-        setDuration:    this.videos[index].youtube.getDuration,
-        setCurrentTime: this.videos[index].youtube.getCurrentTime,
+        video:          this.videos[index],
         animation:      this.animations[index],
         keyframes:      slide.keyframes
       })
@@ -241,6 +241,7 @@ export default class Playlist {
   animateProgress() {
     setTimeout(() => {
       requestAnimationFrame(this.animateProgress.bind(this))
+
       this.dom.indicator.style.width = `${this.timelines[this.state.currentSlide].getProgress()}%`
     }, 1000/60)
   }

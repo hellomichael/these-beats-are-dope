@@ -2,11 +2,11 @@
 	"playlist": [
 		{
 			"spotifyID": "1mCUYpR3ZtwaqvcdCjgLuT",
-			"youtubeID": "M5r0BZmeawA",
+			"youtubeID": "i4ju-kjw5MI",
 			"animation": "Aziz",
 			"keyframes": [
 				{
-					"timecode": "01:35:02"
+					"timecode": "01:30:27"
 				},
 				{
 					"timecode": "01:49:20",
@@ -24,12 +24,10 @@
 					"timecode": "01:50:15",
 					"action":		"showDope"
 				},
+
 				{
 					"timecode": "01:50:15",
 					"action":		"showIntro"
-				},
-				{
-					"timecode": "01:52:25"
 				}
 			]
 		},
