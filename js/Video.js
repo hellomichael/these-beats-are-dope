@@ -8,6 +8,7 @@ export default class Video {
     this.name = null
     this.element = null
     this.startSeconds = 0
+    this.endSeconds = 0
     this.fadeInterval = null
     this.events = {
       '-2': 'Ready',
@@ -26,6 +27,7 @@ export default class Video {
       videoId: options.id,
       playerVars: {
         autoplay: 1,
+        loop: 1,
         controls: 0,
         modestbranding: 1,
         rel: 0,
@@ -50,8 +52,15 @@ export default class Video {
       // Set quality (small, medium, large, hd720, hd1080, highres)
       this.youtube.setPlaybackQuality('small')
 
-      // Pause video
-      this.resetVideo()
+      // this.youtube.cueVideoById({
+      //   'videoId': this.id,
+      //   'startSeconds': this.startSeconds,
+      //   'suggestedQuality': 'small'
+      // })
+
+      this.youtube.seekTo(this.startSeconds)
+      this.youtube.pauseVideo()
+      this.youtube.setVolume(0)
     })
   }
 
@@ -61,11 +70,7 @@ export default class Video {
       this.state.event = event.data
 
       if (this.events[event.data] === 'Playing') {
-        // this.fadeIn()
-      }
-
-      if (this.events[event.data] === 'Ended') {
-        this.resetVideo()
+        this.fadeIn()
       }
     })
   }
@@ -120,15 +125,16 @@ export default class Video {
   }
 
   resetVideo() {
-    this.youtube.seekTo(this.startSeconds)
-    this.youtube.pauseVideo()
-    this.youtube.setVolume(0)
+    this.isPlaying = false
+
+    this.fadeOut(() => {
+      this.youtube.seekTo(this.startSeconds)
+    })
   }
 
   playVideo() {
     this.isPlaying = true
     this.youtube.playVideo()
-    this.fadeIn()
   }
 
   seekVideo(seconds) {
@@ -151,16 +157,16 @@ export default class Video {
     })
   }
 
-  fadeIn(callback) {
+  fadeIn(startVolume, callback) {
+    console.log('Fade In')
     this.youtube.getVolume()
     .then(currentVolume => {
-      let volume = currentVolume
+      let volume = (startVolume === 0) ? 0 : currentVolume
 
       clearInterval(this.fadeInterval)
       this.fadeInterval = setInterval(() => {
         if (volume < 100) {
           volume += 2.5
-
           this.youtube.setVolume(volume)
         }
 
@@ -172,11 +178,13 @@ export default class Video {
             callback()
           }
         }
-      }, 50)
+      }, 15)
     })
   }
 
   fadeOut(callback) {
+    console.log('Fade Out')
+
     this.youtube.getVolume()
     .then(currentVolume => {
       let volume = currentVolume
@@ -202,7 +210,7 @@ export default class Video {
             }
           }
         }
-      }, 50)
+      }, 15)
     })
   }
 }
