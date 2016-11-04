@@ -10,6 +10,10 @@ export function getTwoDecimalPlaces(value) {
   return +(Math.round(value + "e+2")  + "e-2");
 }
 
+export function getPercentage(value) {
+  return getTwoDecimalPlaces(value * 100)
+}
+
 export function getTimecode(seconds) {
   let min = Math.floor(seconds / 60)
   let sec =  Math.floor(seconds - min * 60)

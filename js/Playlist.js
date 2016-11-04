@@ -1,9 +1,9 @@
-import * as Utils from './Utils.js'
 import Album from './Album.js'
 import Video from './Video.js'
 import Timeline from './Timeline.js'
 import Aziz from './Aziz.js'
 import Kanye from './Kanye.js'
+import * as Utils from './Utils.js'
 require('../scss/_playlist.scss')
 
 export default class Playlist {
@@ -73,8 +73,8 @@ export default class Playlist {
         id:             slide.youtubeID,
         name:           this.albums[index].name,
         element:        this.dom.slideshowVideos.children[index].querySelector('.video'),
-        startSeconds:   Utils.getSeconds(slide.keyframes[0].timecode),
-        endSeconds:     Utils.getSeconds(slide.keyframes[slide.keyframes.length - 1].timecode)
+        startTime:      Utils.getSeconds(slide.keyframes[0].timecode),
+        endTime:        Utils.getSeconds(slide.keyframes[slide.keyframes.length - 1].timecode)
       })
 
       this.videos.push(video)
@@ -141,7 +141,7 @@ export default class Playlist {
 
       // Spacebar
       else if (event.keyCode === 32) {
-        console.log(this.timelines[this.state.currentSlide].getCurrentTime(true))
+        console.log(Utils.getTimecode(this.videos[this.state.currentSlide].getCurrentTime()))
       }
     })
   }
@@ -241,7 +241,6 @@ export default class Playlist {
   animateProgress() {
     setTimeout(() => {
       requestAnimationFrame(this.animateProgress.bind(this))
-
       this.dom.indicator.style.width = `${this.timelines[this.state.currentSlide].getProgress()}%`
     }, 1000/60)
   }

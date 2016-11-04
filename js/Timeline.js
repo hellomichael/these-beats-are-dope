@@ -5,8 +5,6 @@ export default class Timeline {
     // Props
     this.id = null
     this.timeline = null
-    this.currentTime = 0
-    this.duration = -1
     this.requestAnimationFrame = null
     this.video = null
     this.animation = null
@@ -25,21 +23,11 @@ export default class Timeline {
       this.requestAnimationFrame = requestAnimationFrame(this.playTimeline.bind(this))
 
       // Set current time
-      this.video.youtube.getCurrentTime()
-      .then(seconds => {
-        this.currentTime = Utils.getTwoDecimalPlaces(seconds)
-      })
-
-      // Set duration
-      this.video.youtube.getDuration()
-      .then((duration) => {
-        this.duration = Utils.getTwoDecimalPlaces(duration)
-      })
+      this.video.setCurrentTime()
+      this.video.setDuration()
 
       // Play keyframes
       this.playKeyframes()
-
-      // console.log(`${this.id}: ${this.getCurrentTime(true)}`)
     }, 1000/60)
   }
 
@@ -52,7 +40,7 @@ export default class Timeline {
     // Check if there are still keyframes
     let keyframe = this.keyframesClone.length ? this.keyframesClone[0] : null
 
-    if (keyframe && this.getCurrentTime() >= Utils.getSeconds(keyframe.timecode)) {
+    if (keyframe && this.video.getCurrentTime() >= Utils.getSeconds(keyframe.timecode)) {
       // Repeat video if last frame
       if (this.keyframesClone.length === 1) {
         this.resetTimeline()
@@ -68,33 +56,9 @@ export default class Timeline {
     }
   }
 
-  getCurrentTime(timecode) {
-    if (timecode) {
-      return Utils.getTimecode(this.currentTime)
-    }
-
-    else {
-      return this.currentTime
-    }
-  }
-
-  getDuration(timecode) {
-    if (timecode) {
-      return Utils.getTimecode(this.duration)
-    }
-
-    else {
-      return this.duration
-    }
-  }
-
-  getProgress(timecode) {
-    if (timecode) {
-      return Utils.getTimecode((this.getCurrentTime()/this.getDuration() * 100))
-    }
-
-    else {
-      return (this.getCurrentTime()/this.getDuration() * 100)
-    }
+  getProgress() {
+    let duration = this.video.getEndTime() - this.video.getStartTime()
+    let currentTime = this.video.getCurrentTime() - this.video.getStartTime()
+    return Utils.getPercentage(currentTime/duration)
   }
 }

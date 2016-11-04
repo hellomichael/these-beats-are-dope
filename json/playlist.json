@@ -39,8 +39,10 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:15:15",
-					"action":		"Start"
+					"timecode": "00:15:00"
+				},
+				{
+					"timecode": "02:48:20"
 				}
 			]
 		},
@@ -50,8 +52,10 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:06:05",
-					"action":		"Start"
+					"timecode": "00:06:05"
+				},
+				{
+					"timecode": "02:49:00"
 				}
 			]
 		},
@@ -61,8 +65,10 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:10:05",
-					"action":		"Start"
+					"timecode": "00:10:00"
+				},
+				{
+					"timecode": "05:05:25"
 				}
 			]
 		},
@@ -72,8 +78,10 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:22:10",
-					"action":		"Start"
+					"timecode": "00:22:10"
+				},
+				{
+					"timecode": "04:00:25"
 				}
 			]
 		},
@@ -83,8 +91,10 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:19:20",
-					"action":		"Start"
+					"timecode": "00:19:20"
+				},
+				{
+					"timecode": "04:09:25"
 				}
 			]
 		},
@@ -94,8 +104,10 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:05:10",
-					"action":		"Start"
+					"timecode": "00:05:10"
+				},
+				{
+					"timecode": "04:53:15"
 				}
 			]
 		},
@@ -105,8 +117,10 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:14:05",
-					"action":		"Start"
+					"timecode": "00:14:05"
+				},
+				{
+					"timecode": "03:37:05"
 				}
 			]
 		},
@@ -116,8 +130,10 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:00:00",
-					"action":		"Start"
+					"timecode": "00:00:00"
+				},
+				{
+					"timecode": "04:24:00"
 				}
 			]
 		},
@@ -127,8 +143,10 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:00:00",
-					"action":		"Start"
+					"timecode": "00:00:00"
+				},
+				{
+					"timecode": "00:00:00"
 				}
 			]
 		}
