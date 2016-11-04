@@ -1,4 +1,5 @@
 import YouTube from 'youtube-player'
+import * as Utils from './Utils.js';
 require('../scss/_video.scss')
 
 export default class Video {
@@ -7,8 +8,10 @@ export default class Video {
     this.id = null
     this.name = null
     this.element = null
-    this.startSeconds = 0
-    this.endSeconds = 0
+    this.startTime = 0
+    this.endTime = 0
+    this.currentTime = 0
+    this.duration = -1
     this.fadeInterval = null
     this.events = {
       '-2': 'Ready',
@@ -52,13 +55,7 @@ export default class Video {
       // Set quality (small, medium, large, hd720, hd1080, highres)
       this.youtube.setPlaybackQuality('small')
 
-      // this.youtube.cueVideoById({
-      //   'videoId': this.id,
-      //   'startSeconds': this.startSeconds,
-      //   'suggestedQuality': 'small'
-      // })
-
-      this.youtube.seekTo(this.startSeconds)
+      this.youtube.seekTo(this.startTime)
       this.youtube.pauseVideo()
       this.youtube.setVolume(0)
     })
@@ -128,7 +125,7 @@ export default class Video {
     this.isPlaying = false
 
     this.fadeOut(() => {
-      this.youtube.seekTo(this.startSeconds)
+      this.youtube.seekTo(this.startTime)
     })
   }
 
@@ -155,6 +152,36 @@ export default class Video {
     this.fadeOut(() => {
       this.youtube.pauseVideo()
     })
+  }
+
+  setDuration() {
+    return this.youtube.getDuration()
+    .then(seconds => {
+      this.duration = Utils.getTwoDecimalPlaces(seconds)
+    })
+  }
+
+  setCurrentTime() {
+    this.youtube.getCurrentTime()
+    .then(seconds => {
+      this.currentTime = Utils.getTwoDecimalPlaces(seconds)
+    })
+  }
+
+  getDuration() {
+    return this.duration
+  }
+
+  getCurrentTime() {
+    return this.currentTime
+  }
+
+  getStartTime() {
+    return this.startTime
+  }
+
+  getEndTime() {
+    return this.endTime
   }
 
   fadeIn(startVolume, callback) {
