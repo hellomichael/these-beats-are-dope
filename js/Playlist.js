@@ -87,7 +87,8 @@ export default class Playlist {
         id:             slide.youtubeID,
         video:          this.videos[index],
         animation:      this.animations[index],
-        keyframes:      slide.keyframes
+        keyframes:      slide.keyframes,
+        nextSlide:      this.nextSlide.bind(this)
       })
 
       this.timelines.push(timeline)

@@ -9,6 +9,7 @@ export default class Timeline {
     this.video = null
     this.animation = null
     this.keyframes = []
+    this.nextSlide = null
     Object.assign(this, options)
     this.keyframesClone = [...this.keyframes]
   }
@@ -31,9 +32,12 @@ export default class Timeline {
     }, 1000/60)
   }
 
-  resetTimeline() {
-    this.keyframesClone = [...this.keyframes]
+  resetTimeline() {    
+    this.nextSlide()
     this.video.resetVideo()
+    .then(() => {
+      this.keyframesClone = [...this.keyframes]
+    })
   }
 
   playKeyframes() {

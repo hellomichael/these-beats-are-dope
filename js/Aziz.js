@@ -5,35 +5,23 @@ export default class Aziz {
     Object.assign(this, options)
   }
 
-  // scrollQuote() {
-  //   this.dom.azizQuote.classList.add('aziz__quote--scrolling')
-  // }
-  //
-  // highlightHeartbreak() {
-  //   this.dom.azizHeartbreak.classList.add('aziz__highlight--highlighted')
-  // }
-  //
-  // highlightBoom() {
-  //   this.dom.azizBoom.classList.add('aziz__highlight--highlighted')
-  // }
-  //
-  // highlightBobbing() {
-  //   this.dom.azizBobbing.classList.add('aziz__highlight--highlighted')
-  // }
-
   showThese() {
+    console.log('These')
     this.dom.azizThese.style.display = 'inline-block'
   }
 
   showBeats() {
+    console.log('Beats')
     this.dom.azizBeats.style.display = 'inline-block'
   }
 
   showAre() {
+    console.log('Are')
     this.dom.azizAre.style.display = 'inline-block'
   }
 
   showDope() {
+    console.log('Dope')
     this.dom.azizDope.style.display = 'inline-block'
   }
 
