@@ -124,8 +124,14 @@ export default class Video {
   resetVideo() {
     this.isPlaying = false
 
-    this.fadeOut(() => {
-      this.youtube.seekTo(this.startTime)
+    return new Promise((resolve, reject) => {
+      this.fadeOut(() => {
+        resolve()
+
+        this.youtube.seekTo(this.startTime)
+        this.youtube.pauseVideo()
+        this.youtube.setVolume(0)
+      })
     })
   }
 
