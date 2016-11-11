@@ -46,7 +46,7 @@ export default class Playlist {
 
   setAnimations() {
     this.playlist.map(slide => {
-      this.animations.push(slide.animation === 'Aziz' ? new Aziz() : new Kanye())
+      this.animations.push(slide.animation === 'Aziz' ? new Aziz() : new Kanye({id: slide.youtubeID}))
     })
   }
 
@@ -196,11 +196,13 @@ export default class Playlist {
     if (this.state.currentSlide) {
       this.videos[this.state.prevSlide].pauseVideo()
       this.timelines[this.state.prevSlide].stopTimeline()
+      this.animations[this.state.currentSlide].stopAnimation()
     }
 
     // Play timeline
     this.videos[this.state.currentSlide].playVideo()
     this.timelines[this.state.currentSlide].playTimeline()
+    this.animations[this.state.currentSlide].playAnimation()
 
     // Animate slide
     Array.from(this.dom.slideshows).map(slideshow => {
