@@ -2,217 +2,25 @@
   Kanye
   ========================================================================== */
 $module: 'kanye';
-$kanye-scale: 0.20;
-$kanye-width: 1890;
-$kanye-height: 1935;
-
-@mixin kanye($kanye-scale) {
-  .#{$module} {
-    margin-left: -#{($kanye-width * $kanye-scale)/2}px;
-    width: #{$kanye-width * $kanye-scale}px;
-    height: #{$kanye-height * $kanye-scale}px;
-
-    // Head
-    &__head {
-      bottom: #{894 * $kanye-scale}px;
-      left: #{568 * $kanye-scale}px;
-      width: #{722 * $kanye-scale}px;
-      height: #{1044 * $kanye-scale}px;
-    }
-
-    &__head-shadow {
-      width: #{530 * $kanye-scale}px;
-    }
-
-    &__ears {
-      bottom: #{360 * $kanye-scale}px;
-      width: #{723 * $kanye-scale}px;
-    }
-
-    &__face-shadow {
-      bottom: #{17.6 * $kanye-scale}px;
-      left: #{82 * $kanye-scale}px;
-      width: #{546 * $kanye-scale}px;
-    }
-
-    &__face {
-      bottom: #{100 * $kanye-scale}px;
-      left: #{49.6 * $kanye-scale}px;
-      width: #{618 * $kanye-scale}px;
-    }
-
-    &__brow-left {
-      bottom: #{528 * $kanye-scale}px;
-      left: #{112 * $kanye-scale}px;
-      width: #{164 * $kanye-scale}px;
-    }
-
-    &__brow-right {
-      bottom: #{544 * $kanye-scale}px;
-      left: #{438 * $kanye-scale}px;
-      width: #{168 * $kanye-scale}px;
-    }
-
-    &__eyes {
-      bottom: #{473.6 * $kanye-scale}px;
-      left: #{160 * $kanye-scale}px;
-      width: #{397 * $kanye-scale}px;
-    }
-
-    &__eyes-closed {
-      bottom: #{473.6 * $kanye-scale}px;
-      left: #{160 * $kanye-scale}px;
-      width: #{394 * $kanye-scale}px;
-    }
-
-    &__beard {
-      left: #{65 * $kanye-scale}px;
-      width: #{591 * $kanye-scale}px;
-    }
-
-    &__mouth {
-      bottom: #{125 * $kanye-scale}px;
-      left: #{226.4 * $kanye-scale}px;
-      width: #{252 * $kanye-scale}px;
-    }
-
-    &__lips {
-      bottom: #{128 * $kanye-scale}px;
-      left: #{250 * $kanye-scale}px;
-      width: #{212 * $kanye-scale}px;
-    }
-
-    &__nose {
-      bottom: #{317.6 * $kanye-scale}px;
-      left: #{292 * $kanye-scale}px;
-      width: #{159 * $kanye-scale}px;
-    }
-
-    &__nostril-left {
-      bottom: #{316.8 * $kanye-scale}px;
-      left: #{260.8 * $kanye-scale}px;
-      width: #{38 * $kanye-scale}px;
-    }
-
-    &__nostril-right {
-      bottom: #{318 * $kanye-scale}px;
-      left: #{408 * $kanye-scale}px;
-      width: #{41 * $kanye-scale}px;
-    }
-
-    &__glasses {
-      bottom: #{360 * $kanye-scale}px;
-      left: #{49.6 * $kanye-scale}px;
-      width: #{612 * $kanye-scale}px;
-    }
-
-    &__glasses-flare {
-      bottom: #{372 * $kanye-scale}px;
-      left: #{112 * $kanye-scale}px;
-      width: #{526 * $kanye-scale}px;
-    }
-
-    &__hair {
-      left: #{28 * $kanye-scale}px;
-      bottom: #{498 * $kanye-scale}px;
-      width: #{663 * $kanye-scale}px;
-    }
-
-    &__forehead {
-      bottom: #{784 * $kanye-scale}px;
-      left: #{88 * $kanye-scale}px;
-      width: #{571 * $kanye-scale}px;
-    }
-
-    // Body
-    &__body {
-      bottom: 0;
-      width: #{1890 * $kanye-scale}px;
-      height: #{1100 * $kanye-scale}px;
-
-      * {
-        bottom: 0;
-      }
-    }
-
-    &__neck {
-      bottom: #{744 * $kanye-scale}px;
-      left: #{675.2 * $kanye-scale}px;
-      width: #{466 * $kanye-scale}px;
-    }
-
-    &__suit {
-      width: #{1890 * $kanye-scale}px;
-    }
-
-    &__heart {
-      bottom: #{240 * $kanye-scale}px;
-      left: #{1156.8 * $kanye-scale}px;
-      width: #{263 * $kanye-scale}px;
-    }
-
-    &__shirt {
-      left: #{569.6 * $kanye-scale}px;
-      width: #{687 * $kanye-scale}px;
-    }
-
-    &__lapel {
-      bottom: #{-10 * $kanye-scale}px;
-      left: #{450 * $kanye-scale}px;
-      width: #{928 * $kanye-scale}px;
-    }
-
-    &__collar {
-      bottom: #{645 * $kanye-scale}px;
-      left: #{652 * $kanye-scale}px;
-      width: #{527 * $kanye-scale}px;
-    }
-  }
-}
 
 .#{$module} {
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translate(-$kanye-distance);
+  margin-left: -471px;
+  transform: translateX(-$kanye-distance);
   z-index: 3;
+
+  canvas {
+    display: block;
+  }
 
   /* ==========================================================================
   Elements
   ========================================================================== */
-  * {
-    position: absolute;
-  }
 
-  img {
-    height: auto;
-    width: 100%;
-  }
-
-  &__head {
-    * {
-      bottom: 0;
-    }
-  }
 
   /* ==========================================================================
   Modifiers
   ========================================================================== */
-}
-
-@include kanye($kanye-scale);
-
-@media screen and (min-height: 480px) {
-  $kanye-scale: 0.3;
-  @include kanye($kanye-scale);
-}
-
-@media screen and (min-height: 768px) {
-  $kanye-scale: 0.4;
-  @include kanye($kanye-scale);
-}
-
-@media screen and (min-height: 900px) {
-  $kanye-scale: 0.45;
-  @include kanye($kanye-scale);
 }
