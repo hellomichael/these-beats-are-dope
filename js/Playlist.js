@@ -2,7 +2,7 @@ import Album from './Album.js'
 import Video from './Video.js'
 import Timeline from './Timeline.js'
 import Aziz from './Aziz.js'
-import Kanye from './Kanye.js'
+import Animation from './Animation.js'
 import * as Utils from './Utils.js'
 require('../scss/_playlist.scss')
 
@@ -46,7 +46,7 @@ export default class Playlist {
 
   setAnimations() {
     this.playlist.map(slide => {
-      this.animations.push(slide.animation === 'Aziz' ? new Aziz() : new Kanye({id: slide.youtubeID}))
+      this.animations.push(slide.animation === 'Aziz' ? new Aziz() : new Animation({id: slide.youtubeID}))
     })
   }
 
@@ -196,7 +196,7 @@ export default class Playlist {
     if (this.state.currentSlide) {
       this.videos[this.state.prevSlide].pauseVideo()
       this.timelines[this.state.prevSlide].stopTimeline()
-      this.animations[this.state.currentSlide].stopAnimation()
+      this.animations[this.state.prevSlide].stopAnimation()
     }
 
     // Play timeline
@@ -252,9 +252,11 @@ export default class Playlist {
   componentDidMount() {
     // Update Dom
     this.dom.slideshows = document.querySelectorAll('.playlist__slideshow')
+
     this.dom.slideshowVideos = document.querySelector('.playlist__slideshow--videos')
     this.dom.slideshowAlbums = document.querySelector('.playlist__slideshow--albums')
-    this.dom.slideshowAnimation = document.querySelector('.playlist__slideshow--animations')
+    this.dom.slideshowAnimations = document.querySelector('.playlist__slideshow--animations')
+
     this.dom.controlNext = document.querySelector('.playlist__control--next')
     this.dom.controlPrev = document.querySelector('.playlist__control--prev')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')

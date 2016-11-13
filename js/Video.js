@@ -12,6 +12,7 @@ export default class Video {
     this.endTime = 0
     this.currentTime = 0
     this.duration = -1
+    this.isPlaying = false
     this.fadeInterval = null
     this.events = {
       '-2': 'Ready',

@@ -1,1 +1,283 @@
-{"skeleton":{"images":"@2x/"},"bones":[{"name":"root"}],"slots":[	{"name":"suit","bone":"root","attachment":"suit"},	{"name":"neck","bone":"root","attachment":"neck"},	{"name":"shirt","bone":"root","attachment":"shirt"},	{"name":"lapel","bone":"root","attachment":"lapel"},	{"name":"heart","bone":"root","attachment":"heart"},	{"name":"collar","bone":"root","attachment":"collar"},	{"name":"ears","bone":"root","attachment":"ears"},	{"name":"face","bone":"root","attachment":"face"},	{"name":"face-shadow","bone":"root","attachment":"face-shadow"},	{"name":"nostril-left","bone":"root","attachment":"nostril-left"},	{"name":"nose","bone":"root","attachment":"nose"},	{"name":"nostril-right","bone":"root","attachment":"nostril-right"},	{"name":"lips","bone":"root","attachment":"lips"},	{"name":"beard","bone":"root","attachment":"beard"},	{"name":"eyes","bone":"root","attachment":"eyes"},	{"name":"brow-left","bone":"root","attachment":"brow-left"},	{"name":"brow-right","bone":"root","attachment":"brow-right"},	{"name":"eyes-closed","bone":"root","attachment":"eyes-closed"},	{"name":"glasses-flare","bone":"root","attachment":"glasses-flare"},	{"name":"forehead","bone":"root","attachment":"forehead"},	{"name":"hair","bone":"root","attachment":"hair"},	{"name":"glasses","bone":"root","attachment":"glasses"}],"skins":{	"default":{		"glasses":{"glasses":{"x":917,"y":1381.5,"width":614,"height":243}},		"hair":{"hair":{"x":916.5,"y":1665,"width":665,"height":548}},		"forehead":{"forehead":{"x":925.5,"y":1814.5,"width":573,"height":231}},		"glasses-flare":{"glasses-flare":{"x":935,"y":1357,"width":528,"height":186}},		"eyes-closed":{"eyes-closed":{"x":916,"y":1382,"width":396,"height":38}},		"brow-right":{"brow-right":{"x":1081,"y":1462,"width":170,"height":58}},		"brow-left":{"brow-left":{"x":760,"y":1461,"width":166,"height":78}},		"eyes":{"eyes":{"x":917.5,"y":1400.5,"width":399,"height":75}},		"beard":{"beard":{"x":919.5,"y":1045,"width":593,"height":308}},		"lips":{"lips":{"x":915,"y":1087.5,"width":214,"height":159}},		"nostril-right":{"nostril-right":{"x":990.5,"y":1247.5,"width":43,"height":79}},		"nose":{"nose":{"x":930.5,"y":1310,"width":161,"height":216}},		"nostril-left":{"nostril-left":{"x":843,"y":1245,"width":40,"height":78}},		"face-shadow":{"face-shadow":{"x":918,"y":1333,"width":548,"height":856}},		"face":{"face":{"x":918,"y":1372,"width":620,"height":762}},		"ears":{"ears":{"x":922.5,"y":1345,"width":725,"height":198}},		"collar":{"collar":{"x":913.5,"y":799,"width":529,"height":324}},		"heart":{"heart":{"x":1279.5,"y":380,"width":265,"height":280}},		"lapel":{"lapel":{"x":909,"y":473,"width":922,"height":946}},		"shirt":{"shirt":{"x":907.5,"y":439.5,"width":687,"height":879}},		"neck":{"neck":{"x":906,"y":919.5,"width":468,"height":363}},		"suit":{"suit":{"x":943,"y":429,"width":1886,"height":858}}	}},"animations":{"animation":{}}}
+{
+    "skeleton": {
+        "hash": "GinHHIIm0RYL/8FTmDBAZwlmP6U",
+        "spine": "3.4.02",
+        "width": 1886,
+        "height": 1939
+    },
+    "bones": [{
+        "name": "root"
+    }],
+    "slots": [{
+        "name": "suit",
+        "bone": "root",
+        "attachment": "suit"
+    }, {
+        "name": "neck",
+        "bone": "root",
+        "attachment": "neck"
+    }, {
+        "name": "shirt",
+        "bone": "root",
+        "attachment": "shirt"
+    }, {
+        "name": "lapel",
+        "bone": "root",
+        "attachment": "lapel"
+    }, {
+        "name": "heart",
+        "bone": "root",
+        "attachment": "heart"
+    }, {
+        "name": "collar",
+        "bone": "root",
+        "attachment": "collar"
+    }, {
+        "name": "ears",
+        "bone": "root",
+        "attachment": "ears"
+    }, {
+        "name": "face",
+        "bone": "root",
+        "attachment": "face"
+    }, {
+        "name": "face-shadow",
+        "bone": "root",
+        "attachment": "face-shadow"
+    }, {
+        "name": "nostril-left",
+        "bone": "root",
+        "attachment": "nostril-left"
+    }, {
+        "name": "nose",
+        "bone": "root",
+        "attachment": "nose"
+    }, {
+        "name": "nostril-right",
+        "bone": "root",
+        "attachment": "nostril-right"
+    }, {
+        "name": "lips",
+        "bone": "root",
+        "attachment": "lips"
+    }, {
+        "name": "beard",
+        "bone": "root",
+        "attachment": "beard"
+    }, {
+        "name": "eyes",
+        "bone": "root",
+        "attachment": "eyes"
+    }, {
+        "name": "brow-left",
+        "bone": "root",
+        "attachment": "brow-left"
+    }, {
+        "name": "brow-right",
+        "bone": "root",
+        "attachment": "brow-right"
+    }, {
+        "name": "eyes-closed",
+        "bone": "root",
+        "attachment": "eyes-closed"
+    }, {
+        "name": "glasses-flare",
+        "bone": "root",
+        "attachment": "glasses-flare"
+    }, {
+        "name": "forehead",
+        "bone": "root",
+        "attachment": "forehead"
+    }, {
+        "name": "hair",
+        "bone": "root",
+        "attachment": "hair"
+    }, {
+        "name": "glasses",
+        "bone": "root",
+        "attachment": "glasses"
+    }],
+    "skins": {
+        "default": {
+            "beard": {
+                "beard": {
+                    "x": 919.5,
+                    "y": 1045,
+                    "width": 593,
+                    "height": 308
+                }
+            },
+            "brow-left": {
+                "brow-left": {
+                    "x": 760,
+                    "y": 1461,
+                    "width": 166,
+                    "height": 78
+                }
+            },
+            "brow-right": {
+                "brow-right": {
+                    "x": 1081,
+                    "y": 1462,
+                    "width": 170,
+                    "height": 58
+                }
+            },
+            "collar": {
+                "collar": {
+                    "x": 913.5,
+                    "y": 799,
+                    "width": 529,
+                    "height": 324
+                }
+            },
+            "ears": {
+                "ears": {
+                    "x": 922.5,
+                    "y": 1345,
+                    "width": 725,
+                    "height": 198
+                }
+            },
+            "eyes": {
+                "eyes": {
+                    "x": 917.5,
+                    "y": 1400.5,
+                    "width": 399,
+                    "height": 75
+                }
+            },
+            "eyes-closed": {
+                "eyes-closed": {
+                    "x": 916,
+                    "y": 1382,
+                    "width": 396,
+                    "height": 38
+                }
+            },
+            "face": {
+                "face": {
+                    "x": 918,
+                    "y": 1372,
+                    "width": 620,
+                    "height": 762
+                }
+            },
+            "face-shadow": {
+                "face-shadow": {
+                    "x": 918,
+                    "y": 1333,
+                    "width": 548,
+                    "height": 856
+                }
+            },
+            "forehead": {
+                "forehead": {
+                    "x": 925.5,
+                    "y": 1814.5,
+                    "width": 573,
+                    "height": 231
+                }
+            },
+            "glasses": {
+                "glasses": {
+                    "x": 917,
+                    "y": 1381.5,
+                    "width": 614,
+                    "height": 243
+                }
+            },
+            "glasses-flare": {
+                "glasses-flare": {
+                    "x": 935,
+                    "y": 1357,
+                    "width": 528,
+                    "height": 186
+                }
+            },
+            "hair": {
+                "hair": {
+                    "x": 916.5,
+                    "y": 1665,
+                    "width": 665,
+                    "height": 548
+                }
+            },
+            "heart": {
+                "heart": {
+                    "x": 1279.5,
+                    "y": 380,
+                    "width": 265,
+                    "height": 280
+                }
+            },
+            "lapel": {
+                "lapel": {
+                    "x": 909,
+                    "y": 473,
+                    "width": 922,
+                    "height": 946
+                }
+            },
+            "lips": {
+                "lips": {
+                    "x": 915,
+                    "y": 1087.5,
+                    "width": 214,
+                    "height": 159
+                }
+            },
+            "neck": {
+                "neck": {
+                    "x": 906,
+                    "y": 919.5,
+                    "width": 468,
+                    "height": 363
+                }
+            },
+            "nose": {
+                "nose": {
+                    "x": 930.5,
+                    "y": 1310,
+                    "width": 161,
+                    "height": 216
+                }
+            },
+            "nostril-left": {
+                "nostril-left": {
+                    "x": 843,
+                    "y": 1245,
+                    "width": 40,
+                    "height": 78
+                }
+            },
+            "nostril-right": {
+                "nostril-right": {
+                    "x": 990.5,
+                    "y": 1247.5,
+                    "width": 43,
+                    "height": 79
+                }
+            },
+            "shirt": {
+                "shirt": {
+                    "x": 907.5,
+                    "y": 439.5,
+                    "width": 687,
+                    "height": 879
+                }
+            },
+            "suit": {
+                "suit": {
+                    "x": 943,
+                    "y": 429,
+                    "width": 1886,
+                    "height": 858
+                }
+            }
+        }
+    },
+    "animations": {
+        "animation": {}
+    }
+}
