@@ -21,22 +21,22 @@ export default class Animation {
 
     // Add assets
     PIXI.loader
-      .add(`animation-${this.id}`, 'img/spineboy.json')
+      .add(`animation-${this.id}`, 'img/kanye.json')
       .load((loader, res) => {
         this.spineBoy = new PIXI.spine.Spine(res[`animation-${this.id}`].spineData)
 
         // set the position
-        this.spineBoy.position.x = this.renderer.width / 2;
+        this.spineBoy.position.x = this.renderer.width/2;
         this.spineBoy.position.y = this.renderer.height;
 
-        this.spineBoy.scale.set(1.5);
+        this.spineBoy.scale.set(0.5);
 
         // set up the mixes!
-        this.spineBoy.stateData.setMixByName('walk', 'jump', 0.2);
-        this.spineBoy.stateData.setMixByName('jump', 'walk', 0.4);
+        // this.spineBoy.stateData.setMix('walk', 'jump', 0.2);
+        // this.spineBoy.stateData.setMix('jump', 'walk', 0.4);
 
         // play animation
-        this.spineBoy.state.setAnimationByName(0, 'walk', true);
+        this.spineBoy.state.setAnimationByName(0, 'bop', true);
 
         this.stage.addChild(this.spineBoy);
       })

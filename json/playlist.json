@@ -2,11 +2,11 @@
 	"playlist": [
 		{
 			"spotifyID": "1mCUYpR3ZtwaqvcdCjgLuT",
-			"youtubeID": "M5r0BZmeawA",
+			"youtubeID": "i4ju-kjw5MI",
 			"animation": "Aziz",
 			"keyframes": [
 				{
-					"timecode": "01:35:02"
+					"timecode": "01:30:27"
 				},
 				{
 					"timecode": "01:49:20",
@@ -24,12 +24,10 @@
 					"timecode": "01:50:15",
 					"action":		"showDope"
 				},
+
 				{
 					"timecode": "01:50:15",
 					"action":		"showIntro"
-				},
-				{
-					"timecode": "01:52:25"
 				}
 			]
 		},
@@ -39,10 +37,8 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:15:00"
-				},
-				{
-					"timecode": "02:48:20"
+					"timecode": "00:15:15",
+					"action":		"Start"
 				}
 			]
 		},
@@ -52,10 +48,8 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:06:05"
-				},
-				{
-					"timecode": "02:49:00"
+					"timecode": "00:06:05",
+					"action":		"Start"
 				}
 			]
 		},
@@ -65,10 +59,74 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:10:00"
-				},
+					"timecode": "00:10:05",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
+			"youtubeID": "QWb6losRD38",
+			"animation": "Kanye",
+			"keyframes": [
 				{
-					"timecode": "05:05:25"
+					"timecode": "00:22:10",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "4Li2WHPkuyCdtmokzW2007",
+			"youtubeID": "gG_dA32oH44",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:19:20",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "48HUDhfl4ssbc5xuIrZ6UD",
+			"youtubeID": "0hdQmd0uug0",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:05:10",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "1ce3DvvGQn6hY2LMGMLCr5",
+			"youtubeID": "xuhl6Ji5zHM",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:14:05",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "1YD3Dg7Olipi5FGVDLHWAu",
+			"youtubeID": "_ABk7TmjnVk",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:00:00",
+					"action":		"Start"
+				}
+			]
+		},
+		{
+			"spotifyID": "0Wi7iEDGFY7I7NkYU6gS4n",
+			"youtubeID": "j1mYWYV9nAM",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:00:00",
+					"action":		"Start"
 				}
 			]
 		}
