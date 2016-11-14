@@ -6,161 +6,161 @@ filter: Linear,Linear
 repeat: none
 brow-left
   rotate: true
-  xy: 1890, 1830
+  xy: 1967, 1878
   size: 166, 78
   orig: 166, 78
   offset: 0, 0
   index: -1
 brow-right
   rotate: true
-  xy: 1890, 1616
+  xy: 1967, 1706
   size: 170, 58
   orig: 170, 58
   offset: 0, 0
   index: -1
 collar
-  rotate: true
-  xy: 1628, 182
+  rotate: false
+  xy: 1501, 2
   size: 529, 324
   orig: 529, 324
   offset: 0, 0
   index: -1
 ears
   rotate: false
-  xy: 901, 35
+  xy: 2, 38
   size: 725, 198
   orig: 725, 198
   offset: 0, 0
   index: -1
 eyes
   rotate: true
-  xy: 1971, 1642
+  xy: 1890, 1645
   size: 399, 75
   orig: 399, 75
   offset: 0, 0
   index: -1
 eyes-closed
   rotate: true
-  xy: 1950, 1244
+  xy: 1890, 1247
   size: 396, 38
   orig: 396, 38
   offset: 0, 0
   index: -1
+face-shadow
+  rotate: false
+  xy: 1492, 328
+  size: 548, 856
+  orig: 548, 856
+  offset: 0, 0
+  index: -1
 forehead
   rotate: false
-  xy: 2, 2
+  xy: 926, 72
   size: 573, 231
   orig: 573, 231
   offset: 0, 0
   index: -1
 lapel
   rotate: false
-  xy: 2, 235
+  xy: 2, 238
   size: 922, 946
   orig: 922, 946
   offset: 0, 0
   index: -1
-lips
-  rotate: true
-  xy: 740, 19
-  size: 214, 159
-  orig: 214, 159
-  offset: 0, 0
-  index: -1
-neck
-  rotate: true
-  xy: 1628, 713
-  size: 468, 363
-  orig: 468, 363
-  offset: 0, 0
-  index: -1
 nose
   rotate: false
-  xy: 577, 17
+  xy: 729, 20
   size: 161, 216
   orig: 161, 216
   offset: 0, 0
   index: -1
 nostril-left
-  rotate: true
-  xy: 1890, 1788
+  rotate: false
+  xy: 1930, 1565
   size: 40, 78
   orig: 40, 78
   offset: 0, 0
   index: -1
 nostril-right
   rotate: true
-  xy: 1890, 1998
+  xy: 1967, 1661
   size: 43, 79
   orig: 43, 79
   offset: 0, 0
   index: -1
 shirt
   rotate: false
-  xy: 926, 302
-  size: 687, 879
-  orig: 687, 879
+  xy: 926, 305
+  size: 564, 879
+  orig: 564, 879
   offset: 0, 0
   index: -1
 suit
   rotate: false
-  xy: 2, 1183
+  xy: 2, 1186
   size: 1886, 858
   orig: 1886, 858
   offset: 0, 0
   index: -1
 
 kanye2.png
-size: 2048,2048
+size: 2048,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 beard
   rotate: false
-  xy: 552, 641
+  xy: 1291, 701
   size: 593, 308
   orig: 593, 308
   offset: 0, 0
   index: -1
 face
   rotate: false
-  xy: 552, 951
+  xy: 2, 247
   size: 620, 762
   orig: 620, 762
   offset: 0, 0
   index: -1
-face-shadow
-  rotate: false
-  xy: 2, 857
-  size: 548, 856
-  orig: 548, 856
-  offset: 0, 0
-  index: -1
 glasses
   rotate: false
-  xy: 1174, 1470
+  xy: 2, 2
   size: 614, 243
   orig: 614, 243
   offset: 0, 0
   index: -1
 glasses-flare
   rotate: false
-  xy: 2, 2
+  xy: 624, 273
   size: 528, 186
   orig: 528, 186
   offset: 0, 0
   index: -1
 hair
-  rotate: true
-  xy: 2, 190
+  rotate: false
+  xy: 624, 461
   size: 665, 548
   orig: 665, 548
   offset: 0, 0
   index: -1
 heart
   rotate: false
-  xy: 552, 359
+  xy: 1761, 419
   size: 265, 280
   orig: 265, 280
+  offset: 0, 0
+  index: -1
+lips
+  rotate: true
+  xy: 1886, 795
+  size: 214, 159
+  orig: 214, 159
+  offset: 0, 0
+  index: -1
+neck
+  rotate: false
+  xy: 1291, 336
+  size: 468, 363
+  orig: 468, 363
   offset: 0, 0
   index: -1
