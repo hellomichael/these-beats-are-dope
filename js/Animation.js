@@ -36,7 +36,7 @@ export default class Animation {
         // this.spineBoy.stateData.setMix('jump', 'walk', 0.4);
 
         // play animation
-        this.spineBoy.state.setAnimationByName(0, 'bop', true);
+        // this.spineBoy.state.setAnimationByName(0, 'bop', true);
 
         this.stage.addChild(this.spineBoy);
       })
