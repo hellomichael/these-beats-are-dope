@@ -33,8 +33,8 @@ $h2-height:                 64px;
 $h3-size: 	                42px;
 $h3-height:                 64px;
 
-$h4-size: 	                24px;
-$h4-height:                 30px;
+$h4-size: 	                28px;
+$h4-height:                 36px;
 
 $h5-size: 	                18px;
 $h5-height:                 30px;
@@ -78,4 +78,5 @@ $screen-sm-max:              ($screen-md-min - 1);
 $screen-md-max:              ($screen-lg-min - 1);
 
 // Kanye Distance
-$kanye-distance:             275px;
+$kanye-distance-md:          22.5vw;
+$kanye-distance-lg:          18vw;

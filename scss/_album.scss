@@ -8,11 +8,19 @@ $albumSize: 300px;
 .#{$module} {
   @extend %center;
   width: $albumSize * $albumScale;
-  transform: translateX(-50%) translateX($kanye-distance) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
   transition: 1s transform $ease-out-quint;
 
-  @media screen and (min-width: $screen-sm-min) {
+  @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
     width: $albumSize;
+  }
+
+  @media screen and (min-width: $screen-md-min) {
+    transform: translateX(-50%) translateX($kanye-distance-md) translateY(-50%);
+  }
+
+  @media screen and (min-width: $screen-lg-min) {
+    transform: translateX(-50%) translateX($kanye-distance-lg) translateY(-50%);
   }
 
   /* ==========================================================================
@@ -31,7 +39,7 @@ $albumSize: 300px;
     transform: rotateY(-#{90}deg);
     transition: 1000ms transform $ease-in-out-quint 50ms;
 
-    @media screen and (min-width: $screen-sm-min) {
+    @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
       width: $albumSize;
       height: $albumSize;
       margin: 0 0 $gutter-lg;
@@ -62,7 +70,7 @@ $albumSize: 300px;
       background-size: cover;
       transform: translateX(-50%) translateY(-50%) translateZ(1px);
 
-      @media screen and (min-width: $screen-sm-min) {
+      @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
         width: ($albumSize * 1.5);
         height: ($albumSize * 1.5);
       }
@@ -74,7 +82,7 @@ $albumSize: 300px;
       border-radius: 3px;
       outline: 1px solid transparent;
 
-      @media screen and (min-width: $screen-sm-min) {
+      @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
         width: $albumSize;
         height: $albumSize;
       }
@@ -96,7 +104,7 @@ $albumSize: 300px;
       background: $white url(../img/album-vinyl.png) center center;
       border-radius: 3px;
 
-      @media screen and (min-width: $screen-sm-min) {
+      @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
         width: $albumSize;
         height: $albumSize;
       }
@@ -104,12 +112,12 @@ $albumSize: 300px;
   }
 
   &__single, &__title {
-    width: $albumSize * $albumScale;
+    width: $albumSize;
     transform: rotateY(-15deg);
     transition: 1s transform $ease-out-quint;
 
-    @media screen and (min-width: $screen-sm-min) {
-      width: 550px;
+    @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
+      width: 450px;
     }
 
     &.no-transition {
@@ -119,6 +127,11 @@ $albumSize: 300px;
 
   &__title {
     margin: 0;
+
+    @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
+      @include rem(font-size, $h3-size);
+      @include rem(line-height, $h3-height);
+    }
   }
 
   /* ==========================================================================

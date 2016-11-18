@@ -17,11 +17,11 @@ export default class Album {
 
           <h5 class="album__single">
             ${this.name}
-          </h4>
+          </h5>
 
-          <h3 class="album__title">
+          <h4 class="album__title">
             ${this.album.name.replace(/ *\([^)]*\) */g, '')}
-          </h2>
+          </h4>
         </div>
       </div>
     `
