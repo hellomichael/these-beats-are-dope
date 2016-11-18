@@ -196,13 +196,19 @@ export default class Playlist {
     if (this.state.currentSlide) {
       this.videos[this.state.prevSlide].pauseVideo()
       this.timelines[this.state.prevSlide].stopTimeline()
-      this.animations[this.state.prevSlide].stopAnimation()
+
+      if (typeof this.animations[this.state.prevSlide].stopAnimation === "function") {
+        this.animations[this.state.prevSlide].stopAnimation()
+      }
     }
 
     // Play timeline
     this.videos[this.state.currentSlide].playVideo()
     this.timelines[this.state.currentSlide].playTimeline()
-    this.animations[this.state.currentSlide].playAnimation()
+    
+    if (typeof this.animations[this.state.currentSlide].playAnimation === "function") {
+      this.animations[this.state.currentSlide].playAnimation()
+    }
 
     // Animate slide
     Array.from(this.dom.slideshows).map(slideshow => {
