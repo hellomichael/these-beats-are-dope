@@ -9,9 +9,11 @@ export default class Timeline {
     this.video = null
     this.animation = null
     this.keyframes = []
+    this.keyframesClone = []
     this.nextSlide = null
     Object.assign(this, options)
-    this.keyframesClone = [...this.keyframes]
+
+    this.generateKeyframes()
   }
 
   stopTimeline() {
@@ -32,11 +34,54 @@ export default class Timeline {
     }, 1000/60)
   }
 
-  resetTimeline() {    
+  resetTimeline() {
+    this.stopTimeline()
     this.nextSlide()
     this.video.resetVideo()
     .then(() => {
-      this.keyframesClone = [...this.keyframes]
+      this.generateKeyframes()
+    })
+  }
+
+  generateKeyframes() {
+    // Clone Keyframes
+    // this.keyframesClone = [...this.keyframes]
+
+    // Generated Keyframes
+    this.keyframes.map((keyframe, index) => {
+      let bpm = 60/keyframe.bpm
+      let threshold = 0.25
+      let currentTime = Utils.getSeconds(this.keyframes[index].timecode)
+      let action = this.keyframes[index].action ? this.keyframes[index].action : null
+
+      // Generate automatic keyframes if bpm provided
+      if (isFinite(bpm)) {
+        let nextTime = Utils.getSeconds(this.keyframes[index + 1].timecode)
+
+        // Loop between current and next times
+        if (isFinite(bpm)) {
+          for (var i=currentTime; i <= (nextTime - threshold); i += bpm) {
+            if (i < nextTime) {
+              console.log('Automatic Timecode', Utils.getTimecode(i))
+
+              this.keyframesClone.push({
+                timecode: Utils.getTimecode(i),
+                action
+              })
+            }
+          }
+        }
+      }
+
+      // Manual keyframes
+      else {
+        console.log('Manual Timecode',  Utils.getTimecode(currentTime))
+
+        this.keyframesClone.push({
+          timecode: Utils.getTimecode(currentTime),
+          action
+        })
+      }
     })
   }
 

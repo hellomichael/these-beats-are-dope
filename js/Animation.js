@@ -45,13 +45,10 @@ export default class Animation {
         this.kanye = new PIXI.spine.Spine(res[`animation-${this.id}`].spineData)
 
         // set the position
-        this.kanye.position.x = this.renderer.width/2;
-        this.kanye.position.y = this.renderer.height;
+        this.kanye.position.x = this.renderer.width/2
+        this.kanye.position.y = this.renderer.height
 
-        // play animation
-        this.kanye.state.setAnimationByName(0, 'bop', true);
-
-        this.stage.addChild(this.kanye);
+        this.stage.addChild(this.kanye)
       })
   }
 
@@ -67,6 +64,11 @@ export default class Animation {
       this.requestAnimationFrame = requestAnimationFrame(this.playAnimation.bind(this))
       this.renderer.render(this.stage)
     }, 1000/60)
+  }
+
+  bop() {
+    console.log('Bop')
+    this.kanye.state.setAnimationByName(0, 'bop', false)
   }
 
   render() {
