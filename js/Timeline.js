@@ -86,6 +86,20 @@ export default class Timeline {
   }
 
   playKeyframes() {
+    // Check to see if current time is ahead of first keyframe
+    let skippedKeyframes = 0;
+
+    this.keyframesClone.map((keyframe) => {
+      if (this.video.getCurrentTime() > Utils.getSeconds(keyframe.timecode)) {
+        skippedKeyframes++
+      }
+    })
+
+    // Remove the skipped frames from the array
+    if (skippedKeyframes) {
+      this.keyframesClone.splice(0, (skippedKeyframes - 1))
+    }
+
     // Check if there are still keyframes
     let keyframe = this.keyframesClone.length ? this.keyframesClone[0] : null
 
