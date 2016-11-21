@@ -42,33 +42,12 @@
 					"timecode": "00:15:00"
 				},
 				{
+					"timecode": "00:18:00",
+					"bpm": "81.7",
+					"action": "bop"
+				},
+				{
 					"timecode": "02:48:20"
-				}
-			]
-		},
-		{
-			"spotifyID": "2FgkwIXC52sHCbqVL8jE41",
-			"youtubeID": "JCYAjGnvc7U",
-			"animation": "Kanye",
-			"keyframes": [
-				{
-					"timecode": "00:06:05"
-				},
-				{
-					"timecode": "02:49:00"
-				}
-			]
-		},
-		{
-			"spotifyID": "7rWwv1ePazmRzmJs4sARhI",
-			"youtubeID": "hCx4LfPDWSY",
-			"animation": "Kanye",
-			"keyframes": [
-				{
-					"timecode": "00:10:00"
-				},
-				{
-					"timecode": "05:05:25"
 				}
 			]
 		}

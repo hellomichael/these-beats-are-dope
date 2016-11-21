@@ -1,13 +1,13 @@
 export function getSeconds(timecode) {
-  let sec = timecode.split(':')
-  let minutes = parseInt(sec[0])
-  let seconds = parseInt(sec[1])
-  let milliseconds = parseInt(sec[2])
+  let separator = timecode.split(':')
+  let minutes = parseInt(separator[0])
+  let seconds = parseInt(separator[1])
+  let milliseconds = parseInt(separator[2])
   return getTwoDecimalPlaces((minutes * 60) + (seconds) + (milliseconds/30))
 }
 
 export function getTwoDecimalPlaces(value) {
-  return +(Math.round(value + "e+2")  + "e-2");
+  return +(Math.round(value + "e+2")  + "e-2")
 }
 
 export function getPercentage(value) {
