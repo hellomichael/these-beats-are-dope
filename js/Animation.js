@@ -9,6 +9,7 @@ export default class Animation {
     this.width = 1884
     this.height = 1937
     this.scale = 1
+    this.bopCount = 0
     this.requestAnimationFrame = null
     Object.assign(this, options)
 
@@ -66,9 +67,32 @@ export default class Animation {
     }, 1000/60)
   }
 
+  breathing() {
+    console.log('Breathing')
+    this.kanye.state.setAnimation(0, 'breathing', true)
+  }
+
   bop() {
     console.log('Bop')
-    this.kanye.state.setAnimationByName(0, 'bop', false)
+    this.kanye.state.setAnimation(0, 'bop', false)
+    this.bopCount++
+
+    if (this.bopCount%8 === 1) {
+      this.blink()
+    }
+  }
+
+  blink() {
+    console.log('Blink')
+    this.kanye.state.setAnimation(1, 'blink', false)
+  }
+
+  closeEyes() {
+    console.log('Close Eyes')
+  }
+
+  openEyes() {
+    console.log('Open Eyes')
   }
 
   render() {
