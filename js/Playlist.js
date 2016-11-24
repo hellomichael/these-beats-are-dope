@@ -55,7 +55,6 @@ export default class Playlist {
     let promises = []
 
     this.playlist.map(slide => {
-      console.log(slide)
       let promise = fetch(`https://api.spotify.com/v1/tracks/${slide.spotifyID}`)
       .then(response => response.json())
       .then(data => {
@@ -89,7 +88,8 @@ export default class Playlist {
         video:          this.videos[index],
         animation:      this.animations[index],
         keyframes:      slide.keyframes,
-        nextSlide:      this.nextSlide.bind(this)
+        nextSlide:      this.nextSlide.bind(this),
+        isLoop:         (!(index)) ? true : false
       })
 
       this.timelines.push(timeline)
