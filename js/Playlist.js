@@ -169,8 +169,8 @@ export default class Playlist {
   }
 
   prevSlide() {
-    console.log('Previous Slide')
     if (this.state.currentSlide > 1) {
+      console.log('Previous Slide')
       this.state.prevSlide = this.state.currentSlide
       this.state.currentSlide--
       this.state.direction = 'ltr'
@@ -180,9 +180,8 @@ export default class Playlist {
   }
 
   nextSlide() {
-    console.log('Next Slide')
-
     if (this.state.currentSlide < this.albums.length - 1) {
+      console.log('Next Slide')
       this.state.prevSlide = this.state.currentSlide
       this.state.currentSlide++
       this.state.direction = 'rtl'
@@ -205,7 +204,7 @@ export default class Playlist {
     // Play timeline
     this.videos[this.state.currentSlide].playVideo()
     this.timelines[this.state.currentSlide].playTimeline()
-    
+
     if (typeof this.animations[this.state.currentSlide].playAnimation === "function") {
       this.animations[this.state.currentSlide].playAnimation()
     }

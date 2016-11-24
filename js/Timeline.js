@@ -35,8 +35,6 @@ export default class Timeline {
   }
 
   resetTimeline() {
-    this.stopTimeline()
-    this.nextSlide()
     this.video.resetVideo()
     .then(() => {
       this.generateKeyframes()
@@ -62,7 +60,7 @@ export default class Timeline {
         if (isFinite(bpm)) {
           for (var i=currentTime; i <= (nextTime - threshold); i += bpm) {
             if (i < nextTime) {
-              console.log('Automatic Timecode', Utils.getTimecode(i))
+              console.log('Automatic Timecode', action, Utils.getTimecode(i))
 
               this.keyframesClone.push({
                 timecode: Utils.getTimecode(i),
@@ -75,7 +73,7 @@ export default class Timeline {
 
       // Manual keyframes
       else {
-        console.log('Manual Timecode',  Utils.getTimecode(currentTime))
+        console.log('Manual Timecode', action, Utils.getTimecode(currentTime))
 
         this.keyframesClone.push({
           timecode: Utils.getTimecode(currentTime),
@@ -104,14 +102,14 @@ export default class Timeline {
     let keyframe = this.keyframesClone.length ? this.keyframesClone[0] : null
 
     if (keyframe && this.video.getCurrentTime() >= Utils.getSeconds(keyframe.timecode)) {
-      // Repeat video if last frame
-      if (this.keyframesClone.length === 1) {
-        this.resetTimeline()
+      // Play the action if is a function
+      if (typeof this.animation[keyframe.action] === 'function') {
+        this.animation[keyframe.action]()
       }
 
-      // Play the action if is a function
-      else if (typeof this.animation[keyframe.action] === 'function') {
-        this.animation[keyframe.action]()
+      // Next slide for last frame
+      if (this.keyframesClone.length === 1) {
+        this.nextSlide()
       }
 
       // Remove the keyframe
