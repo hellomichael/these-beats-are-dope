@@ -1,5 +1,5 @@
 import YouTube from 'youtube-player'
-import * as Utils from './Utils.js';
+import * as Utils from './Utils.js'
 require('../scss/_video.scss')
 
 export default class Video {
@@ -123,15 +123,14 @@ export default class Video {
   }
 
   resetVideo() {
+    console.log('Reset Video')
     this.isPlaying = false
 
     return new Promise((resolve, reject) => {
       this.fadeOut(() => {
-        resolve()
-
         this.youtube.seekTo(this.startTime)
-        this.youtube.pauseVideo()
         this.youtube.setVolume(0)
+        resolve()
       })
     })
   }

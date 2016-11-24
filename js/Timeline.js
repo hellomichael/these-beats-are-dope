@@ -1,4 +1,4 @@
-import * as Utils from './Utils.js';
+import * as Utils from './Utils.js'
 
 export default class Timeline {
   constructor(options) {
@@ -10,6 +10,7 @@ export default class Timeline {
     this.animation = null
     this.keyframes = []
     this.keyframesClone = []
+    this.isLoop = false
     this.nextSlide = null
     Object.assign(this, options)
 
@@ -35,6 +36,7 @@ export default class Timeline {
   }
 
   resetTimeline() {
+    console.log('Reset Timeline')
     this.video.resetVideo()
     .then(() => {
       this.generateKeyframes()
@@ -81,7 +83,7 @@ export default class Timeline {
 
   playKeyframes() {
     // Remove skipped keyframes
-    let skippedKeyframes = 0;
+    let skippedKeyframes = 0
 
     this.keyframesClone.map((keyframe) => {
       if (this.video.getCurrentTime() > Utils.getSeconds(keyframe.timecode)) {
@@ -109,7 +111,13 @@ export default class Timeline {
 
       // Next slide for last frame
       if (this.keyframesClone.length === 1) {
-        this.nextSlide()
+        if (this.isLoop) {
+          this.resetTimeline()
+        }
+
+        else {
+          this.nextSlide()
+        }
       }
 
       // Remove the keyframe
