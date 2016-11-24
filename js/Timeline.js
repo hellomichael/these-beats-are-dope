@@ -42,10 +42,6 @@ export default class Timeline {
   }
 
   generateKeyframes() {
-    // Clone Keyframes
-    // this.keyframesClone = [...this.keyframes]
-
-    // Generated Keyframes
     this.keyframes.map((keyframe, index) => {
       let bpm = 60/keyframe.bpm
       let threshold = 0.25
@@ -71,7 +67,7 @@ export default class Timeline {
         }
       }
 
-      // Manual keyframes
+      // Generate manual keyframes
       else {
         console.log('Manual Timecode', actions, Utils.getTimecode(currentTime))
 
