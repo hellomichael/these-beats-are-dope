@@ -80,8 +80,13 @@ export default class Aziz {
             <span class="aziz__heading__dope">Dope</span>
           </h1>
 
-          <h4 class="aziz__subheading">A Curated Playlist For Kanye West</h4>
-          <a class="playlist__play aziz__button" href="#">Begin Playlist <i class="icon icon--play"></i></a>
+          <h4 class="aziz__subheading">A Curated Mixtape For Kanye West</h4>
+          <a class="playlist__play aziz__button" href="#">
+            <span>
+              Play Tracks
+              <i class="icon icon--play"></i>
+            </span>
+          </a>
         </div>
       </div>
     `)

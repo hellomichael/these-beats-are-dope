@@ -8,7 +8,7 @@ module.exports = {
   output: {
     filename: 'App.js',
     path: path.join(__dirname, 'dist'),
-    publicPath: '/dist/'
+    publicPath: process.env.NODE_ENV === 'production' ? '../dist/' : '/dist'
   },
   module: {
     loaders: [
