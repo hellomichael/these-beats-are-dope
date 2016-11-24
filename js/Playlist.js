@@ -39,7 +39,8 @@ export default class Playlist {
     // Set data
     this.setAnimations()
     this.setAlbums()
-    .then(() => {
+    .then(albums => {
+      this.albums = albums
       this.render()
     })
   }
@@ -53,12 +54,11 @@ export default class Playlist {
   setAlbums() {
     let promises = []
 
-    this.playlist.map(album => {
-      let promise = fetch(`https://api.spotify.com/v1/tracks/${album.spotifyID}`)
+    this.playlist.map(slide => {
+      let promise = fetch(`https://api.spotify.com/v1/tracks/${slide.spotifyID}`)
       .then(response => response.json())
       .then(data => {
-        let album = new Album(data)
-        this.albums.push(album)
+        return new Album(Object.assign({id: slide.youtubeID}, data))
       })
 
       promises.push(promise)
@@ -285,7 +285,7 @@ export default class Playlist {
     let videoSlides = this.playlist.map((slide, index) => {
       return (`
         <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
-          <div class="video"></div>
+          <div class="video video-${slide.youtubeID}"></div>
         </div>
       `)
     }).join('')
