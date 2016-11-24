@@ -55,10 +55,11 @@ export default class Playlist {
     let promises = []
 
     this.playlist.map(slide => {
+      console.log(slide)
       let promise = fetch(`https://api.spotify.com/v1/tracks/${slide.spotifyID}`)
       .then(response => response.json())
       .then(data => {
-        return new Album(Object.assign({id: slide.youtubeID}, data))
+        return new Album(Object.assign({id:slide.youtubeID, year:slide.year}, data))
       })
 
       promises.push(promise)
