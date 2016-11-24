@@ -8,7 +8,7 @@ export default class Album {
   render() {
     return `
       <!-- ${this.album.name} --!>
-      <div class="album album-${this.album.id}">
+      <div class="album album-${this.id}">
         <div class="album__track">
           <div class="album__vinyl">
             <div class="album__vinyl__front"><img src="${this.album.images[1].url}" alt=""/></div>
@@ -16,7 +16,7 @@ export default class Album {
           </div>
 
           <h5 class="album__single">
-            ${this.name}
+            ${this.name} (${this.year})
           </h5>
 
           <h4 class="album__title">

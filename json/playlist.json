@@ -3,6 +3,7 @@
 		{
 			"spotifyID": "1mCUYpR3ZtwaqvcdCjgLuT",
 			"youtubeID": "M5r0BZmeawA",
+			"year": "2010",
 			"animation": "Aziz",
 			"keyframes": [
 				{
@@ -30,23 +31,9 @@
 			]
 		},
 		{
-			"spotifyID": "7rWwv1ePazmRzmJs4sARhI",
-			"youtubeID": "hCx4LfPDWSY",
-			"animation": "Kanye",
-			"keyframes": [
-				{
-					"timecode": "00:10:00",
-					"actions":	["breathing"]
-				},
-				{
-					"timecode": "05:05:25",
-					"actions":	["breathing"]
-				}
-			]
-		},
-		{
 			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
 			"youtubeID": "CDyrWWPt534",
+			"year": "2004",
 			"animation": "Kanye",
 			"keyframes": [
 				{
@@ -67,6 +54,7 @@
 		{
 			"spotifyID": "2FgkwIXC52sHCbqVL8jE41",
 			"youtubeID": "JCYAjGnvc7U",
+			"year": "2005",
 			"animation": "Kanye",
 			"keyframes": [
 				{
@@ -75,6 +63,22 @@
 				},
 				{
 					"timecode": "02:49:00",
+					"actions":	["breathing"]
+				}
+			]
+		},
+		{
+			"spotifyID": "7rWwv1ePazmRzmJs4sARhI",
+			"youtubeID": "hCx4LfPDWSY",
+			"year": "2007",
+			"animation": "Kanye",
+			"keyframes": [
+				{
+					"timecode": "00:10:00",
+					"actions":	["breathing"]
+				},
+				{
+					"timecode": "05:05:25",
 					"actions":	["breathing"]
 				}
 			]
