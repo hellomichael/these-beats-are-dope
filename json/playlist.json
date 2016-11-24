@@ -39,7 +39,7 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "02:40:10",
+					"timecode": "00:10:10",
 					"action":		"breathing"
 				},
 				{
@@ -48,8 +48,7 @@
 					"action": "bop"
 				},
 				{
-					"timecode": "02:48:20",
-					"action":		"breathing"
+					"timecode": "02:48:20"
 				}
 			]
 		}

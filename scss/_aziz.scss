@@ -35,7 +35,6 @@ $module: 'aziz';
     width: 345px * 0.75;
     height: 70px * 0.75;
     margin: $gutter-xs 0 0;
-    line-height: 70px * 0.75;
     border-radius: 999px;
     background: url(../img/playlist-button.png) center center;
     background-size: cover;
@@ -46,6 +45,12 @@ $module: 'aziz';
 
     &:hover {
       transform: translateX(-50%) scale(1.05);
+    }
+
+    > span {
+      @extend %center;
+      width: 100%;
+      display: inline-block;
     }
   }
 
