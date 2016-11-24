@@ -10,23 +10,19 @@
 				},
 				{
 					"timecode": "01:49:20",
-					"action":		"showThese"
+					"actions": ["showThese"]
 				},
 				{
 					"timecode": "1:49:28",
-					"action":		"showBeats"
+					"actions":	["showBeats"]
 				},
 				{
 					"timecode": "01:50:07",
-					"action":		"showAre"
+					"actions":	["showAre"]
 				},
 				{
 					"timecode": "01:50:15",
-					"action":		"showDope"
-				},
-				{
-					"timecode": "01:50:15",
-					"action":		"showIntro"
+					"actions":	["showDope", "showIntro"]
 				},
 				{
 					"timecode": "01:52:25"
@@ -40,15 +36,16 @@
 			"keyframes": [
 				{
 					"timecode": "00:10:10",
-					"action":		"breathing"
+					"actions":	["breathing"]
 				},
 				{
 					"timecode": "00:18:00",
 					"bpm": "81.7",
-					"action": "bop"
+					"actions": ["bop"]
 				},
 				{
-					"timecode": "02:48:20"
+					"timecode": "02:48:20",
+					"actions":	["breathing"]
 				}
 			]
 		}

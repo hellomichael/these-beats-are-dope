@@ -50,7 +50,7 @@ export default class Timeline {
       let bpm = 60/keyframe.bpm
       let threshold = 0.25
       let currentTime = Utils.getSeconds(this.keyframes[index].timecode)
-      let action = this.keyframes[index].action ? this.keyframes[index].action : null
+      let actions = this.keyframes[index].actions ? this.keyframes[index].actions : null
 
       // Generate automatic keyframes if bpm provided
       if (isFinite(bpm)) {
@@ -60,11 +60,11 @@ export default class Timeline {
         if (isFinite(bpm)) {
           for (var i=currentTime; i <= (nextTime - threshold); i += bpm) {
             if (i < nextTime) {
-              console.log('Automatic Timecode', action, Utils.getTimecode(i))
+              console.log('Automatic Timecode', actions, Utils.getTimecode(i))
 
               this.keyframesClone.push({
                 timecode: Utils.getTimecode(i),
-                action
+                actions
               })
             }
           }
@@ -73,18 +73,18 @@ export default class Timeline {
 
       // Manual keyframes
       else {
-        console.log('Manual Timecode', action, Utils.getTimecode(currentTime))
+        console.log('Manual Timecode', actions, Utils.getTimecode(currentTime))
 
         this.keyframesClone.push({
           timecode: Utils.getTimecode(currentTime),
-          action
+          actions
         })
       }
     })
   }
 
   playKeyframes() {
-    // Check to see if current time is ahead of first keyframe
+    // Remove skipped keyframes
     let skippedKeyframes = 0;
 
     this.keyframesClone.map((keyframe) => {
@@ -93,18 +93,22 @@ export default class Timeline {
       }
     })
 
-    // Remove the skipped frames from the array
     if (skippedKeyframes) {
       this.keyframesClone.splice(0, (skippedKeyframes - 1))
     }
 
-    // Check if there are still keyframes
+    // Check if there are still keyframes left
     let keyframe = this.keyframesClone.length ? this.keyframesClone[0] : null
 
     if (keyframe && this.video.getCurrentTime() >= Utils.getSeconds(keyframe.timecode)) {
-      // Play the action if is a function
-      if (typeof this.animation[keyframe.action] === 'function') {
-        this.animation[keyframe.action]()
+      // Play the actions
+      if (keyframe.actions) {
+        keyframe.actions.map(action => {
+          // Check if function exists in Animation class
+          if (typeof this.animation[action] === 'function') {
+            this.animation[action]()
+          }
+        })
       }
 
       // Next slide for last frame
