@@ -116,6 +116,12 @@ export default class Playlist {
     })
   }
 
+  setTracks() {
+    Array.from(this.dom.tracks).map(track => {
+      track.style.width = `${this.width - 10}px`
+    })
+  }
+
   // Ready
   handleReady() {
     let promises = []
@@ -127,6 +133,7 @@ export default class Playlist {
     Promise.all(promises)
     .then(() => {
       this.animateSlide()
+      this.setTracks()
     })
   }
 
@@ -136,12 +143,13 @@ export default class Playlist {
       event.preventDefault()
 
       // Next
-      if (event.target.matches('.playlist__control--next, .playlist__play, .playlist__play *')) {
+      if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__play, .playlist__play *')) {
+        console.log('Match')
         this.nextSlide()
       }
 
       // Previous
-      else if (event.target.matches('.playlist__control--prev')) {
+      else if (event.target.matches('.playlist__control--prev, .playlist__control--prev *')) {
         this.prevSlide()
       }
     })
@@ -174,6 +182,9 @@ export default class Playlist {
       // Update state
       this.width = window.innerWidth
       this.height = window.innerHeight
+
+      // Update track
+      this.setTracks()
 
       // Update slideshow
       Array.from(this.dom.slideshows).map(slideshow => {
@@ -282,7 +293,17 @@ export default class Playlist {
   animateProgress() {
     setTimeout(() => {
       requestAnimationFrame(this.animateProgress.bind(this))
-      this.dom.indicator.style.width = `${this.timelines[this.state.currentSlide].getProgress()}%`
+      let progress = this.timelines[this.state.currentSlide].getProgress()
+
+      if (progress > 2.5) {
+        this.dom.indicator.classList.remove('playlist__progress__indicator--reset')
+      }
+
+      else {
+        this.dom.indicator.classList.add('playlist__progress__indicator--reset')
+      }
+
+      this.dom.indicator.style.width = `${progress}%`
     }, 1000/60)
   }
 
@@ -297,6 +318,8 @@ export default class Playlist {
 
     this.dom.controlNext = document.querySelector('.playlist__control--next')
     this.dom.controlPrev = document.querySelector('.playlist__control--prev')
+
+    this.dom.tracks = document.querySelectorAll('.playlist__progress__track')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
     this.dom.controlPlay = document.querySelector('.playlist__play')
 
@@ -324,7 +347,7 @@ export default class Playlist {
     }).join('')
 
     let albumSlides = this.playlist.map((slide, index) => {
-      let album = index ? this.albums[index].render() : null
+      let album = index ? this.albums[index].render() : ''
 
       return (`
         <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
@@ -360,11 +383,14 @@ export default class Playlist {
 
         <div class="playlist__progress">
           <div class="playlist__progress__track"></div>
-          <div class="playlist__progress__indicator"></div>
+
+          <div class="playlist__progress__indicator">
+            <div class="playlist__progress__track"></div>
+          </div>
         </div>
 
-        <a href="#" class="playlist__control playlist__control--prev"></a>
-        <a href="#" class="playlist__control playlist__control--next"></a>
+        <a href="#" class="playlist__control playlist__control--prev"><i class="icon icon--lg icon--arrow"></i></a>
+        <a href="#" class="playlist__control playlist__control--next"><i class="icon icon--lg icon--arrow"></i></a>
 
         <div class="playlist__frame playlist__frame--top"></div>
         <div class="playlist__frame playlist__frame--right"></div>

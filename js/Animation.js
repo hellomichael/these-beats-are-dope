@@ -32,7 +32,7 @@ export default class Animation {
     this.element = document.querySelector(`.animation-${this.id}`)
 
     // Create renderer
-    this.renderer = PIXI.autoDetectRenderer(this.width, this.height, {transparent: true})
+    this.renderer = PIXI.autoDetectRenderer(this.width + 10, this.height, {transparent: true})
     this.element.appendChild(this.renderer.view)
     this.stage = new PIXI.Container()
 
