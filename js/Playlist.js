@@ -19,6 +19,8 @@ export default class Playlist {
 
     this.width = window.innerWidth
     this.height = window.innerHeight
+    this.isTransitioning = false
+
     Object.assign(this, options)
 
     // Dom
@@ -170,7 +172,7 @@ export default class Playlist {
   }
 
   prevSlide() {
-    if (this.state.currentSlide > 1) {
+    if (this.state.currentSlide > 1 && !this.isTransitioning) {
       console.log('Previous Slide')
       this.state.prevSlide = this.state.currentSlide
       this.state.currentSlide--
@@ -181,7 +183,7 @@ export default class Playlist {
   }
 
   nextSlide() {
-    if (this.state.currentSlide < this.albums.length - 1) {
+    if (this.state.currentSlide < this.albums.length - 1 && !this.isTransitioning) {
       console.log('Next Slide')
       this.state.prevSlide = this.state.currentSlide
       this.state.currentSlide++
@@ -192,24 +194,33 @@ export default class Playlist {
   }
 
   animateSlide() {
+    console.log('Animate Slide')
+    this.isTransitioning = true
+
     // Reset previous
     if (this.state.currentSlide) {
       this.videos[this.state.prevSlide].pauseVideo()
       .then(() => {
         this.timelines[this.state.prevSlide].resetTimeline()
         this.timelines[this.state.prevSlide].stopTimeline()
+        this.isTransitioning = false
       })
 
-      if (typeof this.animations[this.state.prevSlide].stopAnimation === "function") {
+      if (typeof this.animations[this.state.prevSlide].stopAnimation === 'function') {
         this.animations[this.state.prevSlide].stopAnimation()
       }
+    }
+
+    else {
+      this.isTransitioning = false
     }
 
     // Play timeline
     this.videos[this.state.currentSlide].playVideo()
     this.timelines[this.state.currentSlide].playTimeline()
 
-    if (typeof this.animations[this.state.currentSlide].playAnimation === "function") {
+    // Check for Animation class
+    if (typeof this.animations[this.state.currentSlide].playAnimation === 'function') {
       this.animations[this.state.currentSlide].playAnimation()
     }
 
