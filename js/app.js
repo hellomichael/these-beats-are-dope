@@ -1,8 +1,9 @@
 /***********************************
 Imports
 ***********************************/
+import 'whatwg-fetch'
 import Playlist from './Playlist.js'
-import Album from './Album.js';
+import Album from './Album.js'
 require('../scss/app.scss')
 
 /***********************************

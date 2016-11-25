@@ -105,7 +105,6 @@ export default class Timeline {
     })
 
     if (skippedKeyframes) {
-      console.log('Remove Keyframes:', skippedKeyframes)
       this.keyframesClone.splice(0, (skippedKeyframes - 1))
     }
   }
