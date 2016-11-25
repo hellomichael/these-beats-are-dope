@@ -10,6 +10,7 @@ export default class Timeline {
     this.animation = null
     this.keyframes = []
     this.keyframesClone = []
+    this.isResetting = false
     this.isLoop = false
     this.nextSlide = null
     Object.assign(this, options)
@@ -28,22 +29,35 @@ export default class Timeline {
 
       // Set current time
       this.video.setCurrentTime()
-      this.video.setDuration()
+      .then(() => {
+        // Play keyframes
+        this.playKeyframes()
+      })
 
-      // Play keyframes
-      this.playKeyframes()
     }, 1000/60)
+  }
+
+  loopTimeline() {
+    console.log('Loop Timeline')
+    this.isResetting = true
+
+    this.video.loopVideo()
+    .then(() => {
+      this.generateKeyframes()
+      this.isResetting = false
+    })
   }
 
   resetTimeline() {
     console.log('Reset Timeline')
+    this.generateKeyframes()
     this.video.resetVideo()
-    .then(() => {
-      this.generateKeyframes()
-    })
   }
 
   generateKeyframes() {
+    console.log('Generate Keyframes');
+    this.keyframesClone = []
+
     this.keyframes.map((keyframe, index) => {
       let bpm = 60/keyframe.bpm
       let threshold = 0.25
@@ -58,7 +72,7 @@ export default class Timeline {
         if (isFinite(bpm)) {
           for (var i=currentTime; i <= (nextTime - threshold); i += bpm) {
             if (i < nextTime) {
-              console.log('Automatic Timecode', actions, Utils.getTimecode(i))
+              // console.log('Automatic Timecode', actions, Utils.getTimecode(i))
 
               this.keyframesClone.push({
                 timecode: Utils.getTimecode(i),
@@ -71,7 +85,7 @@ export default class Timeline {
 
       // Generate manual keyframes
       else {
-        console.log('Manual Timecode', actions, Utils.getTimecode(currentTime))
+        // console.log('Manual Timecode', actions, Utils.getTimecode(currentTime))
 
         this.keyframesClone.push({
           timecode: Utils.getTimecode(currentTime),
@@ -81,8 +95,7 @@ export default class Timeline {
     })
   }
 
-  playKeyframes() {
-    // Remove skipped keyframes
+  removeKeyframes() {
     let skippedKeyframes = 0
 
     this.keyframesClone.map((keyframe) => {
@@ -92,8 +105,14 @@ export default class Timeline {
     })
 
     if (skippedKeyframes) {
+      console.log('Remove Keyframes:', skippedKeyframes)
       this.keyframesClone.splice(0, (skippedKeyframes - 1))
     }
+  }
+
+  playKeyframes() {
+    // Remove skipped keyframes
+    this.removeKeyframes()
 
     // Check if there are still keyframes left
     let keyframe = this.keyframesClone.length ? this.keyframesClone[0] : null
@@ -109,10 +128,10 @@ export default class Timeline {
         })
       }
 
-      // Next slide for last frame
-      if (this.keyframesClone.length === 1) {
+      // Loop or next slide
+      if (this.keyframesClone.length <= 1 && !this.isResetting) {
         if (this.isLoop) {
-          this.resetTimeline()
+          this.loopTimeline()
         }
 
         else {

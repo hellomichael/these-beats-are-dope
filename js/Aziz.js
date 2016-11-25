@@ -26,8 +26,8 @@ export default class Aziz {
   }
 
   showIntro() {
-    this.dom.azizSubheading.style.opacity = 1
-    this.dom.azizButton.style.opacity = 1
+    this.dom.azizSubheading.style.display = 'block'
+    this.dom.azizButton.style.display = 'inline-block'
   }
 
   componentDidMount() {

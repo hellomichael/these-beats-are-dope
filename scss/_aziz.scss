@@ -25,13 +25,13 @@ $module: 'aziz';
   }
 
   &__subheading {
-    opacity: 0;
-    transition: 0.25s opacity $ease-out-quint;
+    display: none;
+    // transition: 0.25s opacity $ease-out-quint;
   }
 
   &__button {
     @extend %center-horizontally;
-    display: inline-block;
+    display: none;
     width: 345px * 0.75;
     height: 70px * 0.75;
     margin: $gutter-xs 0 0;
@@ -39,7 +39,6 @@ $module: 'aziz';
     background: url(../img/playlist-button.png) center center;
     background-size: cover;
     cursor: pointer;
-    opacity: 0;
     transition: 0.25s all $ease-out-quint;
     @include rem(font-size, $h5-size);
 

@@ -116,7 +116,7 @@ export default class Playlist {
       event.preventDefault()
 
       // Next
-      if (event.target.matches('.playlist__control--next') || event.target.matches('.playlist__play')) {
+      if (event.target.matches('.playlist__control--next, .playlist__play, .playlist__play *')) {
         this.nextSlide()
       }
 
@@ -195,7 +195,10 @@ export default class Playlist {
     // Reset previous
     if (this.state.currentSlide) {
       this.videos[this.state.prevSlide].pauseVideo()
-      this.timelines[this.state.prevSlide].stopTimeline()
+      .then(() => {
+        this.timelines[this.state.prevSlide].resetTimeline()
+        this.timelines[this.state.prevSlide].stopTimeline()
+      })
 
       if (typeof this.animations[this.state.prevSlide].stopAnimation === "function") {
         this.animations[this.state.prevSlide].stopAnimation()
