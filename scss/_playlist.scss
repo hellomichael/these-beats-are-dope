@@ -58,6 +58,7 @@ $module: 'playlist';
 
     &__track {
       filter: grayscale(100%);
+      opacity: 0.5;
       z-index: 0;
     }
 

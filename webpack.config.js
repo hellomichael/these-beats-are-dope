@@ -3,12 +3,13 @@ let extractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
+    'babel-polyfill',
     './js/App.js'
   ],
   output: {
     filename: 'App.js',
     path: path.join(__dirname, 'dist'),
-    publicPath: process.env.NODE_ENV === 'production' ? '../dist/' : '/dist'
+    publicPath: process.env.NODE_ENV === 'production' ? '../dist/' : '/dist/'
   },
   module: {
     loaders: [

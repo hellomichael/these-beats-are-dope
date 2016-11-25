@@ -1,3 +1,4 @@
+import 'whatwg-fetch'
 import Album from './Album.js'
 import Video from './Video.js'
 import Timeline from './Timeline.js'
@@ -9,6 +10,7 @@ require('../scss/_playlist.scss')
 export default class Playlist {
   constructor(options) {
     // Props
+    this.matchesPolyfill()
     this.app = null
     this.playlist = []
 
@@ -45,6 +47,22 @@ export default class Playlist {
       this.albums = albums
       this.render()
     })
+  }
+
+  matchesPolyfill() {
+    if (!Element.prototype.matches) {
+
+    let ep = Element.prototype;
+
+    if (ep.webkitMatchesSelector) // Chrome <34, SF<7.1, iOS<8
+      ep.matches = ep.webkitMatchesSelector;
+
+    if (ep.msMatchesSelector) // IE9/10/11 & Edge
+      ep.matches = ep.msMatchesSelector;
+
+    if (ep.mozMatchesSelector) // FF<34
+      ep.matches = ep.mozMatchesSelector;
+    }
   }
 
   setAnimations() {
