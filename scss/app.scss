@@ -136,29 +136,36 @@ a {
   vertical-align: middle;
   width: $icon-md;
   height: $icon-md;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 
-  &-xs {
+  &--xs {
     width: $icon-xs;
     height: $icon-xs;
   }
 
-  &-sm {
+  &--sm {
     width: $icon-sm;
     height: $icon-sm;
   }
 
-  &-lg {
+  &--lg {
     width: $icon-lg;
     height: $icon-lg;
   }
 
-  &-xl {
+  &--xl {
     width: $icon-xl;
     height: $icon-xl;
   }
 
   &--play {
     background: url(../img/icon-play.png);
+    background-size: cover;
+  }
+
+  &--arrow {
+    background: url(../img/icon-arrow.png);
     background-size: cover;
   }
 }

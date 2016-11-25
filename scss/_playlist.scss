@@ -20,12 +20,6 @@ $module: 'playlist';
     top: 0;
     left: 0;
   }
-
-  &__slide {
-    // opacity: 0;
-    // transition: 1s opacity $ease-out-quint;
-  }
-
   &__slideshow {
     &--videos {
       transition: 750ms transform $ease-in-out-quart 100ms;
@@ -44,28 +38,41 @@ $module: 'playlist';
   &__progress {
     position: fixed;
     z-index: 0;
+    top: 25px;
     height: 30px;
-    width: calc(100% - #{($gutter-sm * 2)});
+    left: $gutter-xs;
+    width: calc(100% - #{($gutter-xs * 2)});
 
     &__track, &__indicator {
       position: absolute;
-      left: $gutter-sm;
-      top: $gutter-xs;
+      left: 0;
+      top: 0;
       height: 30px;
       width: 100%;
-      background: url(../img/playlist-progress.png);
     }
 
     &__track {
       filter: grayscale(100%);
       opacity: 0.5;
       z-index: 0;
+      background: url(../img/playlist-progress.png) left top repeat-x;
+      background-size: 50% 50%;
     }
 
     &__indicator {
       z-index: 1;
       width: 0;
-      transition: 0.25s width $ease-linear;
+      overflow: hidden;
+      transition: none;
+
+      .#{$module}__progress__track {
+        opacity: 1;
+        filter: none;
+      }
+
+      &--reset {
+        transition: 0.5s width $ease-out-quint;
+      }
     }
   }
 
@@ -79,7 +86,8 @@ $module: 'playlist';
     &--top, &--bottom {
       height: 30px;
       width: 100%;
-      background: url(../img/playlist-frame-top-bottom.png);
+      background: url(../img/playlist-frame-top-bottom.png) center bottom repeat-x;
+      background-size: 100% 100%;
     }
 
     &--top {
@@ -93,7 +101,8 @@ $module: 'playlist';
     &--left, &--right {
       height: 100%;
       width: 30px;
-      background: url(../img/playlist-frame-left-right.png);
+      background: url(../img/playlist-frame-left-right.png) center left repeat-y;
+      background-size: 100% 100%;
     }
 
     &--left {
@@ -110,12 +119,10 @@ $module: 'playlist';
     @extend %center-vertically;
     position: fixed;
     z-index: 9999;
-    height: 55px;
-    width: 55px;
-    background: url(../img/playlist-arrow.png);
-    background-size: cover;
     opacity: 0;
     cursor: default;
+    filter: blur(0);
+    backface-visibility: hidden;
     transition: 0.75s transform $ease-out-quint, 0.5s opacity $ease-out-quint;
 
     /* ==========================================================================
@@ -141,12 +148,11 @@ $module: 'playlist';
 
     &--next {
       right: $gutter-md;
+      transform: translateY(-50%) translateZ(0) scale(1.25);
 
       @media screen and (min-width: $screen-sm-min) {
         right: $gutter-xl;
       }
-
-      transform: translateY(-50%) translateZ(0) scale(1.25);
 
       &.playlist__control--visible {
         transition: 0.25s transform $ease-out-quint, 0.25s opacity $ease-out-quint;
