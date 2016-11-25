@@ -37,6 +37,7 @@ $albumSize: 300px;
     margin: 0 0 $gutter-md;
     transform-style: preserve-3d;
     transform: rotateY(-#{90}deg);
+    backface-visibility: hidden;
     transition: 1000ms transform $ease-in-out-quint 50ms;
 
     @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
@@ -100,6 +101,7 @@ $albumSize: 300px;
       position: absolute;
       top: 50%;
       left: 50%;
+      z-index: 0;
       transform: translateX(-50%) translateY(-50%) translateZ(-2px) scale(0.99);
       background: $white url(../img/album-vinyl.png) center center;
       border-radius: 3px;
