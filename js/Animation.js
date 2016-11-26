@@ -57,6 +57,7 @@ export default class Animation {
     setTimeout(() => {
       cancelAnimationFrame(this.requestAnimationFrame)
       clearTimeout(this.animation)
+      this.resetBopCount()
     }, 250)
   }
 
@@ -67,6 +68,10 @@ export default class Animation {
     }, 1000/60)
   }
 
+  resetBopCount() {
+    this.bopCount = 0
+  }
+
   breathing() {
     console.log('Breathing')
     this.kanye.state.setAnimation(0, 'breathing', true)
@@ -75,11 +80,38 @@ export default class Animation {
   bop() {
     console.log('Bop')
     this.kanye.state.setAnimation(0, 'bop', false)
-    this.bopCount++
 
-    if (this.bopCount%8 === 1) {
+    if (this.bopCount%12 === 0) {
       this.blink()
     }
+
+    this.bopCount++
+  }
+
+  bopAngled() {
+    if (this.bopCount%12 === 0) {
+      this.blink()
+    }
+
+    if (this.bopCount%2 === 0) {
+      this.kanye.state.setAnimation(0, 'bopLeft', false)
+    }
+
+    else {
+      this.kanye.state.setAnimation(0, 'bopRight', false)
+    }
+
+    this.bopCount++
+  }
+
+  bopLeft() {
+    console.log('Bop Left')
+    this.kanye.state.setAnimation(0, 'bopLeft', false)
+  }
+
+  bopRight() {
+    console.log('Bop Right')
+    this.kanye.state.setAnimation(0, 'bopRight', false)
   }
 
   blink() {
@@ -89,10 +121,17 @@ export default class Animation {
 
   closeEyes() {
     console.log('Close Eyes')
+    this.kanye.state.setAnimation(1, 'closeEyes', false)
   }
 
   openEyes() {
     console.log('Open Eyes')
+    this.kanye.state.setAnimation(1, 'openEyes', false)
+  }
+
+  shiver() {
+    console.log('Shiver')
+    this.kanye.state.setAnimation(1, 'shiver', false)
   }
 
   render() {
