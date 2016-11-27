@@ -81,6 +81,7 @@ $module: 'playlist';
 
     &--top, &--right, &--bottom, &--left {
       position: fixed;
+      transition: 0.5s transform $ease-out-quint;
     }
 
     &--top, &--bottom {
@@ -91,11 +92,20 @@ $module: 'playlist';
     }
 
     &--top {
-      transform: scale(-1);
+      transform: scaleY(-1) translateY(100%);
+
+      &.#{$module}__frame--visible {
+        transform: scaleY(-1);
+      }
     }
 
     &--bottom {
       bottom: 0;
+      transform: translateY(100%);
+
+      &.#{$module}__frame--visible {
+        transform: none;
+      }
     }
 
     &--left, &--right {
@@ -107,11 +117,20 @@ $module: 'playlist';
 
     &--left {
       left: 0;
+      transform: translateX(-100%);
+
+      &.#{$module}__frame--visible {
+        transform: none;
+      }
     }
 
     &--right {
       right: 0;
-      transform: scale(-1);
+      transform: scaleX(-1) translateX(-100%);
+
+      &.#{$module}__frame--visible {
+        transform: scaleX(-1);
+      }
     }
   }
 

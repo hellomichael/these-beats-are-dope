@@ -88,7 +88,8 @@ export default class Animation {
     this.bopCount++
   }
 
-  bopAngled() {
+  bopAngle() {
+    console.log('Bop Angle')
     if (this.bopCount%12 === 0) {
       this.blink()
     }
