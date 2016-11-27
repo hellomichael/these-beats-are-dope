@@ -20,6 +20,7 @@ $module: 'playlist';
     top: 0;
     left: 0;
   }
+
   &__slideshow {
     &--videos {
       transition: 750ms transform $ease-in-out-quart 100ms;
@@ -40,8 +41,10 @@ $module: 'playlist';
     z-index: 0;
     top: 25px;
     height: 30px;
-    left: $gutter-xs;
-    width: calc(100% - #{($gutter-xs * 2)});
+    left: $gutter-sm;
+    width: calc(100% - #{($gutter-sm * 2)});
+    transform: translateY(-100%) translateY(-30px);
+    transition: 0.5s transform $ease-out-quint 1.15s;
 
     &__track, &__indicator {
       position: absolute;
@@ -71,8 +74,13 @@ $module: 'playlist';
       }
 
       &--reset {
-        transition: 0.5s width $ease-out-quint;
+        transition: 0.25s width $ease-out-expo;
+        width: 0 !important;
       }
+    }
+
+    &--visible {
+      transform: none;
     }
   }
 
@@ -81,7 +89,7 @@ $module: 'playlist';
 
     &--top, &--right, &--bottom, &--left {
       position: fixed;
-      transition: 0.5s transform $ease-out-quint;
+      transition: 0.5s transform $ease-out-quint 1s;
     }
 
     &--top, &--bottom {
