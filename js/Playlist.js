@@ -116,15 +116,15 @@ export default class Playlist {
     })
   }
 
-  setTracks() {
+  setProgress() {
+    this.dom.progress.classList.add('playlist__progress--visible')
+
     Array.from(this.dom.tracks).map(track => {
-      track.style.width = `${this.width - 10}px`
+      track.style.width = `${this.width}px`
     })
   }
 
   setFrames() {
-    console.log(this.dom.frames)
-
     Array.from(this.dom.frames).map(frame => {
       frame.classList.add('playlist__frame--visible')
     })
@@ -132,17 +132,33 @@ export default class Playlist {
 
   // Ready
   handleReady() {
-    let promises = []
+    let promisesVideos = []
+    let promisesAnimations = []
 
+    // Preload videos
     this.videos.map(video => {
-      promises.push(video.isReady())
+      promisesVideos.push(video.isReady())
     })
 
-    Promise.all(promises)
+    // Preload Animations
+    this.animations.map((animation, index) => {
+      if (index) {
+        promisesAnimations.push(animation.isReady())
+      }
+    })
+
+    Promise.all(promisesVideos)
     .then(() => {
-      this.animateSlide()
-      this.setTracks()
-      this.setFrames()
+      console.log('Videos loaded')
+
+      Promise.all(promisesVideos)
+      .then(() => {
+        console.log('Animations loaded')
+
+        this.animateSlide()
+        this.setFrames()
+        this.setProgress()
+      })
     })
   }
 
@@ -193,7 +209,7 @@ export default class Playlist {
       this.height = window.innerHeight
 
       // Update track
-      this.setTracks()
+      this.setProgress()
 
       // Update slideshow
       Array.from(this.dom.slideshows).map(slideshow => {
@@ -304,7 +320,7 @@ export default class Playlist {
       requestAnimationFrame(this.animateProgress.bind(this))
       let progress = this.timelines[this.state.currentSlide].getProgress()
 
-      if (progress > 2.5) {
+      if (progress > 0.5) {
         this.dom.indicator.classList.remove('playlist__progress__indicator--reset')
       }
 
@@ -329,6 +345,7 @@ export default class Playlist {
     this.dom.controlPrev = document.querySelector('.playlist__control--prev')
 
     this.dom.frames = document.querySelectorAll('.playlist__frame')
+    this.dom.progress = document.querySelector('.playlist__progress')
     this.dom.tracks = document.querySelectorAll('.playlist__progress__track')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
     this.dom.controlPlay = document.querySelector('.playlist__play')

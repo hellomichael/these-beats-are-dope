@@ -11,6 +11,7 @@ export default class Animation {
     this.scale = 1
     this.bopCount = 0
     this.requestAnimationFrame = null
+    this.loader = null
     Object.assign(this, options)
 
     // Events
@@ -40,17 +41,22 @@ export default class Animation {
     this.scaleRenderer()
 
     // Add assets
-    PIXI.loader
+    this.loader = PIXI.loader
       .add(`animation-${this.id}`, 'img/kanye.json')
       .load((loader, res) => {
         this.kanye = new PIXI.spine.Spine(res[`animation-${this.id}`].spineData)
-
-        // set the position
         this.kanye.position.x = this.renderer.width/2
         this.kanye.position.y = this.renderer.height
-
         this.stage.addChild(this.kanye)
       })
+  }
+
+  isReady() {
+    return new Promise((resolve, reject) => {
+      this.loader.once('complete', event => {
+        resolve(event)
+      })
+    })
   }
 
   stopAnimation() {

@@ -1,2 +1,2 @@
 # these-beats-are-dope
-A Mixtape for Kanye West
+A Curated Mixtape for Kanye West
