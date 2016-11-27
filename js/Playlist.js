@@ -122,6 +122,14 @@ export default class Playlist {
     })
   }
 
+  setFrames() {
+    console.log(this.dom.frames)
+
+    Array.from(this.dom.frames).map(frame => {
+      frame.classList.add('playlist__frame--visible')
+    })
+  }
+
   // Ready
   handleReady() {
     let promises = []
@@ -134,6 +142,7 @@ export default class Playlist {
     .then(() => {
       this.animateSlide()
       this.setTracks()
+      this.setFrames()
     })
   }
 
@@ -319,6 +328,7 @@ export default class Playlist {
     this.dom.controlNext = document.querySelector('.playlist__control--next')
     this.dom.controlPrev = document.querySelector('.playlist__control--prev')
 
+    this.dom.frames = document.querySelectorAll('.playlist__frame')
     this.dom.tracks = document.querySelectorAll('.playlist__progress__track')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
     this.dom.controlPlay = document.querySelector('.playlist__play')
