@@ -3,7 +3,7 @@ import Album from './Album.js'
 import Video from './Video.js'
 import Timeline from './Timeline.js'
 import Aziz from './Aziz.js'
-import Animation from './Animation.js'
+import Kanye from './Kanye.js'
 import * as Utils from './Utils.js'
 require('../scss/_playlist.scss')
 
@@ -67,7 +67,7 @@ export default class Playlist {
 
   setAnimations() {
     this.playlist.map(slide => {
-      this.animations.push(slide.animation === 'Aziz' ? new Aziz() : new Animation({id: slide.youtubeID}))
+      this.animations.push(slide.animation === 'Aziz' ? new Aziz({id: slide.youtubeID}) : new Kanye({id: slide.youtubeID}))
     })
   }
 
@@ -142,9 +142,7 @@ export default class Playlist {
 
     // Preload Animations
     this.animations.map((animation, index) => {
-      if (index) {
-        promisesAnimations.push(animation.isReady())
-      }
+      promisesAnimations.push(animation.isReady())
     })
 
     Promise.all(promisesVideos)
@@ -154,10 +152,9 @@ export default class Playlist {
       Promise.all(promisesVideos)
       .then(() => {
         console.log('Animations loaded')
-
-        this.animateSlide()
         this.setFrames()
         this.setProgress()
+        this.animateSlide()
       })
     })
   }
@@ -253,16 +250,13 @@ export default class Playlist {
 
     // Reset previous
     if (this.state.currentSlide) {
+      this.animations[this.state.prevSlide].stopAnimation()
       this.videos[this.state.prevSlide].pauseVideo()
       .then(() => {
         this.timelines[this.state.prevSlide].resetTimeline()
         this.timelines[this.state.prevSlide].stopTimeline()
         this.isTransitioning = false
       })
-
-      if (typeof this.animations[this.state.prevSlide].stopAnimation === 'function') {
-        this.animations[this.state.prevSlide].stopAnimation()
-      }
     }
 
     else {
@@ -272,11 +266,7 @@ export default class Playlist {
     // Play timeline
     this.videos[this.state.currentSlide].playVideo()
     this.timelines[this.state.currentSlide].playTimeline()
-
-    // Check for Animation class
-    if (typeof this.animations[this.state.currentSlide].playAnimation === 'function') {
-      this.animations[this.state.currentSlide].playAnimation()
-    }
+    this.animations[this.state.currentSlide].playAnimation()
 
     // Animate slide
     Array.from(this.dom.slideshows).map(slideshow => {
@@ -423,6 +413,10 @@ export default class Playlist {
         <div class="playlist__frame playlist__frame--right"></div>
         <div class="playlist__frame playlist__frame--bottom"></div>
         <div class="playlist__frame playlist__frame--left"></div>
+
+        <!-- <div class="playlist__preloader playlist__preloader--visible">
+          <h2 className="playlist__preloader__percentage">${this.preloaded}%</h2>
+        </div> -->
       </div>
     `
 

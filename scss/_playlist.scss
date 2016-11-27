@@ -89,7 +89,7 @@ $module: 'playlist';
 
     &--top, &--right, &--bottom, &--left {
       position: fixed;
-      transition: 0.5s transform $ease-out-quint 1s;
+      transition: 1s transform $ease-out-quint 1s;
     }
 
     &--top, &--bottom {
@@ -139,6 +139,24 @@ $module: 'playlist';
       &.#{$module}__frame--visible {
         transform: scaleX(-1);
       }
+    }
+  }
+
+  &__preloader {
+    @extend %center;
+    text-align: center;
+
+    &__percentage {
+      @extend %center;
+      margin: 0;
+    }
+
+    @keyframes beating {
+      0% {transform: scale(1)}
+      25% {transform: scale(1)}
+      50% {transform: scale(0.9)}
+      75% {transform: scale(1)}
+      100% {transform: scale(1)}
     }
   }
 
