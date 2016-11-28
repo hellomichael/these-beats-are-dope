@@ -20,6 +20,14 @@ export default class Aziz extends Animation {
       azizSubheading:       document.querySelector('.aziz__subheading'),
       azizButton:           document.querySelector('.aziz__button'),
     }
+
+    if (window.innerWidth < 768) {
+      this.showThese()
+      this.showBeats()
+      this.showAre()
+      this.showDope()
+      this.showIntro()
+    }
   }
 
   showThese() {
@@ -44,7 +52,7 @@ export default class Aziz extends Animation {
 
   showIntro() {
     this.dom.azizSubheading.style.display = 'block'
-    this.dom.azizButton.style.display = 'inline-block'
+    this.dom.azizButton.style.display = 'block'
   }
 
   render() {

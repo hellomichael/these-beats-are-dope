@@ -31,6 +31,7 @@ $module: 'aziz';
 
   &__button {
     @extend %center-horizontally;
+    position: relative;
     display: none;
     width: 250px;
     height: 50px;

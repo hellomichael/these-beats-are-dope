@@ -4,6 +4,7 @@
 $module: 'video';
 
 .#{$module} {
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -12,6 +13,10 @@ $module: 'video';
   background-color: $black;
   pointer-events: none;
   cursor: default;
+
+  @media screen and (min-width: $screen-sm-min) {
+    display: block;
+  }
 
   /* ==========================================================================
   Elements

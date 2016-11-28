@@ -55,9 +55,9 @@ export default class Kanye extends Animation {
 
     // Add assets
     this.pixiLoader = PIXI.loader
-      .add(`animation-${this.id}`, 'img/kanye.json')
+      .add(`kanye-${this.id}`, 'img/kanye.json')
       .load((loader, res) => {
-        this.kanye = new PIXI.spine.Spine(res[`animation-${this.id}`].spineData)
+        this.kanye = new PIXI.spine.Spine(res[`kanye-${this.id}`].spineData)
         this.kanye.position.x = this.kanyeWidth/2
         this.kanye.position.y = this.kanyeHeight
         this.pixiStage.addChild(this.kanye)
