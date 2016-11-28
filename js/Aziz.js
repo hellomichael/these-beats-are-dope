@@ -9,10 +9,7 @@ export default class Aziz extends Animation {
 
   componentDidMount() {
     this.dom = {
-      azizQuote:            document.querySelector('.aziz__quote'),
-      azizHeartbreak:       document.querySelector('.aziz__highlight--heartbreak'),
-      azizBoom:             document.querySelector('.aziz__highlight--boom'),
-      azizBobbing:          document.querySelector('.aziz__highlight--bobbing'),
+      azizIntro:            document.querySelector('.aziz__intro'),
       azizThese:            document.querySelector('.aziz__heading__these'),
       azizBeats:            document.querySelector('.aziz__heading__beats'),
       azizAre:              document.querySelector('.aziz__heading__are'),
@@ -50,9 +47,20 @@ export default class Aziz extends Animation {
     this.dom.azizDope.style.display = 'inline-block'
   }
 
-  showIntro() {
-    this.dom.azizSubheading.style.display = 'block'
-    this.dom.azizButton.style.display = 'block'
+  showSubheading() {
+    this.dom.azizSubheading.classList.add('aziz__subheading--visible')
+  }
+
+  showButton() {
+    this.dom.azizButton.classList.add('aziz__button--visible')
+  }
+
+  scrollIntro1() {
+    this.dom.azizIntro.classList.add('aziz__intro--scroll-1')
+  }
+
+  scrollIntro2() {
+    this.dom.azizIntro.classList.add('aziz__intro--scroll-2')
   }
 
   render() {
@@ -67,7 +75,8 @@ export default class Aziz extends Animation {
           </h1>
 
           <h4 class="aziz__subheading">A Curated Mixtape For Kanye West</h4>
-          <a class="playlist__play aziz__button" href="#">
+
+          <a class="aziz__button playlist__play" href="#">
             <span>
               Play Tracks
               <i class="icon icon--play"></i>

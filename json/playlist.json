@@ -23,10 +23,18 @@
 				},
 				{
 					"timecode": "01:50:15",
-					"actions":	["showDope", "showIntro"]
+					"actions":	["showDope"]
 				},
 				{
-					"timecode": "01:52:25"
+					"timecode": "01:51:10",
+					"actions":	["showSubheading", "scrollIntro1"]
+				},
+				{
+					"timecode": "01:52:00",
+					"actions":	["showButton", "scrollIntro2"]
+				},
+				{
+					"timecode": "01:53:15"
 				}
 			]
 		},

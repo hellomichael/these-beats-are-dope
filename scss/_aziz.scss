@@ -16,6 +16,16 @@ $module: 'aziz';
     @extend %center;
     width: calc(100% - #{$gutter-xxl});
     text-align: center;
+    transform: translateX(-50%) translateY(-50%) translateY(75px);
+    transition: 1250ms transform $ease-out-quint;
+
+    &--scroll-1 {
+      transform: translateX(-50%) translateY(-50%) translateY(35px);
+    }
+
+    &--scroll-2 {
+      transform: translateX(-50%) translateY(-50%);
+    }
   }
 
   &__heading {
@@ -25,28 +35,34 @@ $module: 'aziz';
   }
 
   &__subheading {
-    display: none;
-    // transition: 0.25s opacity $ease-out-quint;
+    opacity: 0;
+    transition: 1000ms opacity $ease-out-quint;
+
+    &--visible {
+      opacity: 1;
+    }
   }
 
   &__button {
     @extend %center-horizontally;
+    display: block;
     position: relative;
-    display: none;
     width: 250px;
     height: 50px;
-    margin: $gutter-xs 0 0;
+    margin: 30px 0 0;
     border-radius: 999px;
     background: url(../img/playlist-button.png) center center;
     background-size: cover;
+    opacity: 0;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     cursor: pointer;
-    transition: 0.25s all $ease-out-quint;
+    transform: translateX(-50%) scale(1.05);
+    transition: 1000ms opacity $ease-out-quint, 500ms transform $ease-out-quint;
     @include rem(font-size, $h5-size);
 
     &:hover {
-      transform: translateX(-50%) scale(1.05);
+      transform: translateX(-50%) scale(1.1);
     }
 
     > span {
@@ -55,23 +71,10 @@ $module: 'aziz';
       display: inline-block;
       cursor: pointer;
     }
-  }
 
-  &__quote {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 90%;
-    transform: translateX(-50%) translateY(100vh);
-    transition: 22.5s transform $ease-linear;
-
-    &--scrolling {
-      transform: translateX(-50%) translateY(-100vh);
+    &--visible {
+      opacity: 1;
     }
-  }
-
-  &__paragraph {
-    margin: 0 0 $gutter-lg;
   }
 
   /* ==========================================================================
