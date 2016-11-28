@@ -174,7 +174,7 @@ $module: 'playlist';
     Modifiers
     ========================================================================== */
     &--prev {
-      left: $gutter-md;
+      left: 40px;
       transform: translateY(-50%) translateZ(0) scale(-1.25);
 
       @media screen and (min-width: $screen-sm-min) {
@@ -192,7 +192,7 @@ $module: 'playlist';
     }
 
     &--next {
-      right: $gutter-md;
+      right: 40px;
       transform: translateY(-50%) translateZ(0) scale(1.25);
 
       @media screen and (min-width: $screen-sm-min) {

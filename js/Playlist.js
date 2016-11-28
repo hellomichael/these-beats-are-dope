@@ -166,7 +166,6 @@ export default class Playlist {
 
       // Next
       if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__play, .playlist__play *')) {
-        console.log('Match')
         this.nextSlide()
       }
 

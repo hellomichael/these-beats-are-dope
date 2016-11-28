@@ -6,16 +6,19 @@ $albumScale: 0.75;
 $albumSize: 300px;
 
 .#{$module} {
+  display: none;
   @extend %center;
   width: $albumSize * $albumScale;
   transform: translateX(-50%) translateY(-50%);
   transition: 1s transform $ease-out-quint;
 
   @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
+    display: block;
     width: $albumSize;
   }
 
   @media screen and (min-width: $screen-md-min) {
+    display: block;
     transform: translateX(-50%) translateX($kanye-distance-md) translateY(-50%);
   }
 
