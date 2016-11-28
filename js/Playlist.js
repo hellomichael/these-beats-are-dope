@@ -149,7 +149,7 @@ export default class Playlist {
     .then(() => {
       console.log('Videos loaded')
 
-      Promise.all(promisesVideos)
+      Promise.all(promisesAnimations)
       .then(() => {
         console.log('Animations loaded')
 
