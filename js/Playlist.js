@@ -152,6 +152,7 @@ export default class Playlist {
       Promise.all(promisesVideos)
       .then(() => {
         console.log('Animations loaded')
+
         this.setFrames()
         this.setProgress()
         this.animateSlide()
