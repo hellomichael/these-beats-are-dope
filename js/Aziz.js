@@ -23,7 +23,10 @@ export default class Aziz extends Animation {
       this.showBeats()
       this.showAre()
       this.showDope()
-      this.showIntro()
+      this.showSubheading()
+      this.showButton()
+      this.scrollIntro1()
+      this.scrollIntro2()
     }
   }
 
