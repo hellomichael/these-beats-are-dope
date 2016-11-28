@@ -19,6 +19,7 @@ export default class Timeline {
   }
 
   stopTimeline() {
+    console.log('Stop Timeline')
     cancelAnimationFrame(this.requestAnimationFrame)
     clearTimeout(this.timeline)
   }

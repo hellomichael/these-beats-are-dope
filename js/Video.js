@@ -13,6 +13,7 @@ export default class Video {
     this.currentTime = 0
     this.duration = -1
     this.isPlaying = false
+    this.isPaused = false
     this.fadeInterval = null
     this.events = {
       '-2': 'Ready',
@@ -123,8 +124,6 @@ export default class Video {
   }
 
   resetVideo() {
-    console.log('Reset Video')
-
     this.youtube.seekTo(this.startTime)
     this.youtube.setVolume(0)
     this.youtube.pauseVideo()
@@ -132,17 +131,26 @@ export default class Video {
 
   loopVideo () {
     console.log('Loop Video')
+    
+    if (this.isPaused) {
+      return Promise.resolve()
+    }
+
     this.isPlaying = false
 
     return this.fadeOut()
     .then(() => {
+      this.isPlaying = true
+      this.isPaused = false
       this.youtube.seekTo(this.startTime)
       this.youtube.setVolume(0)
+      this.fadeIn()
     })
   }
 
   playVideo() {
     this.isPlaying = true
+    this.isPaused = false
     this.youtube.playVideo()
   }
 
@@ -161,6 +169,7 @@ export default class Video {
 
   pauseVideo() {
     this.isPlaying = false
+    this.isPaused = true
 
     return this.fadeOut()
     .then(() => {
