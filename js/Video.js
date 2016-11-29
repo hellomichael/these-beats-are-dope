@@ -26,18 +26,19 @@ export default class Video {
     }
     Object.assign(this, options)
 
+    // Youtube
     this.youtube = new YouTube(this.element, {
       width: window.innerWidth,
       height: window.innerHeight + 600,
       videoId: options.id,
       playerVars: {
         autoplay: 1,
-        loop: 1,
+        loop: 0,
         controls: 0,
         modestbranding: 1,
         rel: 0,
         showInfo: 0,
-        iv_load_policy: 3,
+        iv_load_policy: 3
       }
     })
 
@@ -70,6 +71,7 @@ export default class Video {
 
       if (this.events[event.data] === 'Playing') {
         this.fadeIn()
+        this.fadeVideoIn()
       }
     })
   }
@@ -123,6 +125,10 @@ export default class Video {
     })
   }
 
+  loadVideo() {
+
+  }
+
   resetVideo() {
     this.youtube.seekTo(this.startTime)
     this.youtube.setVolume(0)
@@ -131,7 +137,7 @@ export default class Video {
 
   loopVideo () {
     console.log('Loop Video')
-    
+
     if (this.isPaused) {
       return Promise.resolve()
     }
@@ -158,14 +164,15 @@ export default class Video {
     this.youtube.seekTo(seconds)
   }
 
-  stopVideo() {
-    this.isPlaying = false
-
-    this.fadeOut()
-    .then(() => {
-      this.youtube.stopVideo()
-    })
-  }
+  // stopVideo() {
+  //   this.isPlaying = false
+  //   this.isPaused = true
+  //
+  //   this.fadeOut()
+  //   .then(() => {
+  //     this.youtube.stopVideo()
+  //   })
+  // }
 
   pauseVideo() {
     this.isPlaying = false
@@ -205,6 +212,13 @@ export default class Video {
 
   getEndTime() {
     return this.endTime
+  }
+
+  fadeVideoIn() {
+    this.youtube.getIframe()
+    .then(iframe => {
+      iframe.classList.add('video--visible')
+    })
   }
 
   fadeIn(startVolume, callback) {

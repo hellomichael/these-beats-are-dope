@@ -4,9 +4,6 @@ export default class Animation {
     this.element = null
   }
 
-  componentDidMount() {
-  }
-
   isReady() {
     return new Promise((resolve, reject) => {
       resolve(true)
@@ -25,7 +22,5 @@ export default class Animation {
     return (`
       <div class="animation animation-${this.id}"></div>
     `)
-
-    return this.componentDidMount()
   }
 }

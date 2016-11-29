@@ -20,7 +20,7 @@ App Initialize
 fetch(options.json)
 .then(response => response.json())
 .then(json => {
-  let playlist = new Playlist({
+  new Playlist({
     app: options.app,
     playlist: json.playlist
   })
