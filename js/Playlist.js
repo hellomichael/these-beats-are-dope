@@ -22,6 +22,7 @@ export default class Playlist {
     this.width = window.innerWidth
     this.height = window.innerHeight
     this.isTransitioning = false
+    this.preloaded = 0
 
     Object.assign(this, options)
 
@@ -51,17 +52,16 @@ export default class Playlist {
 
   matchesPolyfill() {
     if (!Element.prototype.matches) {
-
-    let ep = Element.prototype;
+    let ep = Element.prototype
 
     if (ep.webkitMatchesSelector) // Chrome <34, SF<7.1, iOS<8
-      ep.matches = ep.webkitMatchesSelector;
+      ep.matches = ep.webkitMatchesSelector
 
     if (ep.msMatchesSelector) // IE9/10/11 & Edge
-      ep.matches = ep.msMatchesSelector;
+      ep.matches = ep.msMatchesSelector
 
     if (ep.mozMatchesSelector) // FF<34
-      ep.matches = ep.mozMatchesSelector;
+      ep.matches = ep.mozMatchesSelector
     }
   }
 
@@ -130,33 +130,51 @@ export default class Playlist {
     })
   }
 
+  // Preloader
+  preloader(progress) {
+    this.dom.preloader.classList.add('playlist__preloader--visible')
+
+    let counter = setInterval(() => {
+      this.preloaded++
+      this.dom.preloader.innerText = `${Utils.getWordNumber(this.preloaded)}`
+
+      if (this.preloaded >= progress) {
+        if (this.preloaded === 100) {
+          this.dom.preloader.classList.remove('playlist__preloader--visible')
+        }
+
+        clearInterval(counter)
+      }
+    }, 50)
+  }
+
   // Ready
   handleReady() {
-    let promisesVideos = []
-    let promisesAnimations = []
-
-    // Preload videos
-    this.videos.map(video => {
-      promisesVideos.push(video.isReady())
-    })
+    let promises = []
+    let preloadStep = 100/(this.animations.length + 1)
 
     // Preload Animations
     this.animations.map((animation, index) => {
-      promisesAnimations.push(animation.isReady())
+      promises.push(animation.isReady())
+
+      animation.isReady()
+      .then(() => {
+        this.preloader(preloadStep * (index + 1))
+      })
     })
 
-    Promise.all(promisesVideos)
+    // Preload First video
+    promises.push(this.videos[0].isReady())
+
+    // Preload all videos
+    // this.videos.map(video => {
+    //   promisesVideos.push(video.isReady())
+    // })
+
+    Promise.all(promises)
     .then(() => {
-      console.log('Videos loaded')
-
-      Promise.all(promisesAnimations)
-      .then(() => {
-        console.log('Animations loaded')
-
-        this.setFrames()
-        this.setProgress()
-        this.animateSlide()
-      })
+      this.preloader(100)
+      this.animateSlide()
     })
   }
 
@@ -335,10 +353,16 @@ export default class Playlist {
     this.dom.controlPrev = document.querySelector('.playlist__control--prev')
 
     this.dom.frames = document.querySelectorAll('.playlist__frame')
+    this.dom.preloader = document.querySelector('.playlist__preloader')
     this.dom.progress = document.querySelector('.playlist__progress')
     this.dom.tracks = document.querySelectorAll('.playlist__progress__track')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
     this.dom.controlPlay = document.querySelector('.playlist__play')
+
+    setTimeout(() => {
+      this.setFrames()
+      this.setProgress()
+    }, 0)
 
     // Create videos and timelines
     this.setVideos()
@@ -414,9 +438,7 @@ export default class Playlist {
         <div class="playlist__frame playlist__frame--bottom"></div>
         <div class="playlist__frame playlist__frame--left"></div>
 
-        <!-- <div class="playlist__preloader playlist__preloader--visible">
-          <h2 className="playlist__preloader__percentage">${this.preloaded}%</h2>
-        </div> -->
+        <h1 class="playlist__preloader"></h1>
       </div>
     `
 
@@ -424,6 +446,6 @@ export default class Playlist {
       animation.componentDidMount()
     })
 
-    return this.componentDidMount()
+    this.componentDidMount()
   }
 }

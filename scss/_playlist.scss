@@ -44,7 +44,7 @@ $module: 'playlist';
     left: $gutter-sm;
     width: calc(100% - #{($gutter-sm * 2)});
     transform: translateY(-100%) translateY(-30px);
-    transition: 0.5s transform $ease-out-quint 1.15s;
+    transition: 1s transform $ease-out-quint 0.1s;
 
     &__track, &__indicator {
       position: absolute;
@@ -89,7 +89,7 @@ $module: 'playlist';
 
     &--top, &--right, &--bottom, &--left {
       position: fixed;
-      transition: 1s transform $ease-out-quint 1s;
+      transition: 1s transform $ease-out-quint;
     }
 
     &--top, &--bottom {
@@ -144,19 +144,14 @@ $module: 'playlist';
 
   &__preloader {
     @extend %center;
+    margin: 0;
     text-align: center;
-
-    &__percentage {
-      @extend %center;
-      margin: 0;
-    }
-
-    @keyframes beating {
-      0% {transform: scale(1)}
-      25% {transform: scale(1)}
-      50% {transform: scale(0.9)}
-      75% {transform: scale(1)}
-      100% {transform: scale(1)}
+    opacity: 0;
+    transition: 0.75s opacity $ease-out-quint 0.25s;
+    
+    &--visible {
+      opacity: 1;
+      transition: 0.75s opacity $ease-out-quint;
     }
   }
 

@@ -146,7 +146,5 @@ export default class Kanye extends Animation {
     return (`
       <div class="kanye kanye-${this.id}"></div>
     `)
-
-    return this.componentDidMount()
   }
 }
