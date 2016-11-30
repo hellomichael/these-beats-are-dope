@@ -144,14 +144,45 @@ $module: 'playlist';
 
   &__preloader {
     @extend %center;
-    margin: 0;
+    display: none;
+    word-wrap: break-word;
+    width: 100%;
     text-align: center;
-    opacity: 0;
-    transition: 0.75s opacity $ease-out-quint 0.25s;
-    
+
+    @media screen and (min-width: $screen-sm-min) {
+      display: block;
+    }
+
+    &__icon {
+      @extend %center;
+      z-index: 0;
+      width: 270px !important;
+      height: 280px !important;
+      background: url(/img/kanye2.png) -1760px -420px no-repeat;
+      transform-origin: left top;
+      transform: scale(0.5) translate(-50%, -50%);
+      opacity: 0;
+      transition: 0.75s opacity $ease-out-quint 0.25s;
+    }
+
+    &__percentage {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      opacity: 0;
+      transition: 0.75s opacity $ease-out-quint 0.3s;
+    }
+
     &--visible {
-      opacity: 1;
-      transition: 0.75s opacity $ease-out-quint;
+      .playlist__preloader__icon {
+        opacity: 1;
+        transition: 0.75s opacity $ease-out-quint 0.3s;
+      }
+
+      .playlist__preloader__percentage {
+        opacity: 1;
+        transition: 0.75s opacity $ease-out-quint 0.25s;
+      }
     }
   }
 

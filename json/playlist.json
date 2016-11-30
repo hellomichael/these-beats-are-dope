@@ -30,7 +30,7 @@
 					"actions":	["showSubheading", "scrollIntro1"]
 				},
 				{
-					"timecode": "01:51:11",
+					"timecode": "01:51:13",
 					"actions":	["showButton", "scrollIntro2"]
 				},
 				{
