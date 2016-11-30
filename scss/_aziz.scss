@@ -54,11 +54,12 @@ $module: 'aziz';
     background: url(../img/playlist-button.png) center center;
     background-size: cover;
     opacity: 0;
+    visibility: hidden;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     cursor: pointer;
     transform: translateX(-50%) scale(1.05);
-    transition: 1000ms opacity $ease-out-quint, 500ms transform $ease-out-quint;
+    transition: 1000ms opacity $ease-out-quint, 1000ms visibility $ease-out-quint, 500ms transform $ease-out-quint;
     @include rem(font-size, $h5-size);
 
     &:hover {
@@ -74,6 +75,7 @@ $module: 'aziz';
 
     &--visible {
       opacity: 1;
+      visibility: visible;
     }
   }
 

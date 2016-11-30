@@ -130,20 +130,25 @@ export default class Playlist {
     })
   }
 
-  // Preloader
-  preloader(progress) {
+  setPreloader() {
     this.dom.preloader.classList.add('playlist__preloader--visible')
+  }
 
+  // Preloader
+  preload(progress, count) {
     let counter = setInterval(() => {
-      this.preloaded++
-      this.dom.preloader.innerText = `${Utils.getWordNumber(this.preloaded)}`
-
       if (this.preloaded >= progress) {
-        if (this.preloaded === 100) {
+        if (this.preloaded >= 100) {
+          this.dom.preloaderPercentage.innerText = `One hundred`
           this.dom.preloader.classList.remove('playlist__preloader--visible')
         }
 
         clearInterval(counter)
+      }
+
+      else {
+        this.dom.preloaderPercentage.innerText = `${Utils.getWordNumber(this.preloaded)}`
+        this.preloaded += count
       }
     }, 50)
   }
@@ -152,15 +157,11 @@ export default class Playlist {
   handleReady() {
     let promises = []
     let preloadStep = 100/(this.animations.length + 1)
+    this.preload(99, 1)
 
     // Preload Animations
     this.animations.map((animation, index) => {
       promises.push(animation.isReady())
-
-      animation.isReady()
-      .then(() => {
-        this.preloader(preloadStep * (index + 1))
-      })
     })
 
     // Preload First video
@@ -168,12 +169,12 @@ export default class Playlist {
 
     // Preload all videos
     // this.videos.map(video => {
-    //   promisesVideos.push(video.isReady())
+    //   promises.push(video.isReady())
     // })
 
     Promise.all(promises)
     .then(() => {
-      this.preloader(100)
+      this.preload(100, 2)
       this.animateSlide()
     })
   }
@@ -354,6 +355,7 @@ export default class Playlist {
 
     this.dom.frames = document.querySelectorAll('.playlist__frame')
     this.dom.preloader = document.querySelector('.playlist__preloader')
+    this.dom.preloaderPercentage = document.querySelector('.playlist__preloader__percentage')
     this.dom.progress = document.querySelector('.playlist__progress')
     this.dom.tracks = document.querySelectorAll('.playlist__progress__track')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
@@ -362,6 +364,7 @@ export default class Playlist {
     setTimeout(() => {
       this.setFrames()
       this.setProgress()
+      this.setPreloader()
     }, 0)
 
     // Create videos and timelines
@@ -438,7 +441,10 @@ export default class Playlist {
         <div class="playlist__frame playlist__frame--bottom"></div>
         <div class="playlist__frame playlist__frame--left"></div>
 
-        <h1 class="playlist__preloader"></h1>
+        <div class="playlist__preloader">
+          <h2 class="playlist__preloader__percentage"></h2>
+          <i class="playlist__preloader__icon icon"></i>
+        </div>
       </div>
     `
 
