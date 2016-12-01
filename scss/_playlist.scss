@@ -155,13 +155,13 @@ $module: 'playlist';
 
     &__icon {
       @extend %center;
-      z-index: 0;
-      width: 270px !important;
+      width: 265px !important;
       height: 280px !important;
-      background: url(/img/kanye2.png) -1760px -420px no-repeat;
+      opacity: 0;
+      z-index: 0;
       transform-origin: left top;
       transform: scale(0.5) translate(-50%, -50%);
-      opacity: 0;
+      background: url('../img/playlist-preloader.png');
       transition: 0.75s opacity $ease-out-quint 0.25s;
     }
 

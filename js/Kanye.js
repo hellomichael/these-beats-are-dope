@@ -10,11 +10,11 @@ export default class Kanye extends Animation {
     this.pixiLoader = null
     this.pixiRenderer = null
     this.pixiScale = 1
+    this.pixiResolution = Utils.isHighDensity() ? 1 : 1.5
     this.pixiAnimation = null
     this.requestAnimationFrame = null
-
-    this.kanyeWidth = 1884
-    this.kanyeHeight = 1937
+    this.kanyeWidth = Utils.isHighDensity() ? 1884 : 1884/this.pixiResolution
+    this.kanyeHeight = Utils.isHighDensity() ? 1937 : 1937/this.pixiResolution
     this.kanyeBopCount = 0
 
     Object.assign(this, options)
@@ -58,6 +58,12 @@ export default class Kanye extends Animation {
       .add(`kanye-${this.id}`, 'img/kanye.json')
       .load((loader, res) => {
         this.kanye = new PIXI.spine.Spine(res[`kanye-${this.id}`].spineData)
+
+        if (!Utils.isHighDensity()) {
+          this.kanye.scale.x = 1/this.pixiResolution
+          this.kanye.scale.y = 1/this.pixiResolution
+        }
+
         this.kanye.position.x = this.kanyeWidth/2
         this.kanye.position.y = this.kanyeHeight
         this.pixiStage.addChild(this.kanye)

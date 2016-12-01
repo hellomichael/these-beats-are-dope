@@ -1,4 +1,5 @@
 import Animation from './Animation'
+import * as Utils from './Utils.js'
 require('../scss/_aziz.scss')
 
 export default class Aziz extends Animation {
@@ -18,7 +19,7 @@ export default class Aziz extends Animation {
       azizButton:           document.querySelector('.aziz__button'),
     }
 
-    if (window.innerWidth < 768) {
+    if (!Utils.isTabletOrDesktop()) {
       this.showThese()
       this.showBeats()
       this.showAre()

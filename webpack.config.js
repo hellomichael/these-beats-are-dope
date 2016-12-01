@@ -1,5 +1,6 @@
-let path = require('path');
-let extractTextPlugin = require('extract-text-webpack-plugin');
+let path = require('path')
+let webpack = require('webpack')
+let extractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: [
@@ -9,7 +10,7 @@ module.exports = {
   output: {
     filename: 'App.js',
     path: path.join(__dirname, 'dist'),
-    publicPath: process.env.NODE_ENV === 'production' ? '../dist/' : '/dist/'
+    publicPath: true ? '../dist/' : '/dist/'
   },
   module: {
     loaders: [
@@ -39,7 +40,7 @@ module.exports = {
   postcss: function () {
     return [
       require('autoprefixer')
-    ];
+    ]
   },
   plugins: [
     new extractTextPlugin('App.css', {

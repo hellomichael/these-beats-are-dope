@@ -135,20 +135,24 @@ export default class Playlist {
   }
 
   // Preloader
-  preload(progress, count) {
-    let counter = setInterval(() => {
-      if (this.preloaded >= progress) {
-        if (this.preloaded >= 100) {
-          this.dom.preloaderPercentage.innerText = `One hundred`
-          this.dom.preloader.classList.remove('playlist__preloader--visible')
-        }
+  preload(progress) {
+    let speed = (progress === 100) ? Math.round((100 - this.preloaded)/15) : 1
 
+    let counter = setInterval(() => {
+      if (this.preloaded >= 100 && progress === 100) {
+        this.dom.preloaderPercentage.innerText = `One hundred`
+        this.dom.preloader.classList.remove('playlist__preloader--visible')
+        clearInterval(counter)
+      }
+
+      else if (this.preloaded >= progress) {
+        this.preloaded += speed
         clearInterval(counter)
       }
 
       else {
+        this.preloaded += speed
         this.dom.preloaderPercentage.innerText = `${Utils.getWordNumber(this.preloaded)}`
-        this.preloaded += count
       }
     }, 50)
   }
@@ -157,7 +161,7 @@ export default class Playlist {
   handleReady() {
     let promises = []
     let preloadStep = 100/(this.animations.length + 1)
-    this.preload(99, 1)
+    this.preload(88)
 
     // Preload Animations
     this.animations.map((animation, index) => {
@@ -174,7 +178,8 @@ export default class Playlist {
 
     Promise.all(promises)
     .then(() => {
-      this.preload(100, 2)
+      console.log('All Assets Loaded')
+      this.preload(100)
       this.animateSlide()
     })
   }
@@ -442,14 +447,18 @@ export default class Playlist {
         <div class="playlist__frame playlist__frame--left"></div>
 
         <div class="playlist__preloader">
-          <h2 class="playlist__preloader__percentage"></h2>
-          <i class="playlist__preloader__icon icon"></i>
+          <h3 class="playlist__preloader__percentage"></h3>
+          <i class="playlist__preloader__icon icon" alt=""/>
         </div>
       </div>
     `
 
     this.animations.map((animation, index) => {
       animation.componentDidMount()
+    })
+
+    this.albums.map((album, index) => {
+      album.componentDidMount()
     })
 
     this.componentDidMount()
