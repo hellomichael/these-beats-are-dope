@@ -13,20 +13,48 @@ export default class Kanye extends Animation {
     this.pixiResolution = Utils.isHighDensity() ? 1 : 1.5
     this.pixiAnimation = null
     this.requestAnimationFrame = null
+
     this.kanyeWidth = Utils.isHighDensity() ? 1884 : 1884/this.pixiResolution
     this.kanyeHeight = Utils.isHighDensity() ? 1937 : 1937/this.pixiResolution
+    this.kanyeDirection = null
     this.kanyeBopCount = 0
 
     Object.assign(this, options)
+  }
 
-    // Events
-    this.handleResize()
+  handleMouseMove() {
+    window.addEventListener('mousemove', event => {
+      if (this.isPlaying) {
+        this.setDirection(event.clientX)
+      }
+    })
   }
 
   handleResize() {
     window.addEventListener('resize', event => {
       this.resizeRenderer()
     })
+  }
+
+  setDirection(mousePosition) {
+    let bounds = this.element.querySelector('canvas').getBoundingClientRect()
+    let center = (bounds.left) + (bounds.width)/2
+    let threshold = bounds.width/25
+    let offset = -(bounds.width/60)
+
+    console.log(threshold)
+
+    if (mousePosition > (center + threshold + offset)) {
+      this.kanyeDirection = 'left'
+    }
+
+    else if (mousePosition < center - threshold + offset) {
+      this.kanyeDirection = 'right'
+    }
+
+    else {
+      this.kanyeDirection = null
+    }
   }
 
   resizeRenderer() {
@@ -68,10 +96,15 @@ export default class Kanye extends Animation {
         this.kanye.position.y = this.kanyeHeight
         this.pixiStage.addChild(this.kanye)
       })
+
+    // Events
+    this.handleResize()
+    this.handleMouseMove()
   }
 
   stopAnimation() {
     setTimeout(() => {
+      this.isPlaying = false
       this.kanyeBopCount = 0
       cancelAnimationFrame(this.requestAnimationFrame)
       clearTimeout(this.pixiAnimation)
@@ -79,6 +112,7 @@ export default class Kanye extends Animation {
   }
 
   playAnimation() {
+    this.isPlaying = true
     this.pixiAnimation = setTimeout(() => {
       this.requestAnimationFrame = requestAnimationFrame(this.playAnimation.bind(this))
       this.pixiRenderer.render(this.pixiStage)
@@ -92,31 +126,42 @@ export default class Kanye extends Animation {
 
   bop() {
     console.log('Bop')
-    this.kanye.state.setAnimation(0, 'bop', false)
 
-    if (this.kanyeBopCount%12 === 0) {
-      this.blink()
+    if (this.kanyeDirection === 'left') {
+      this.bopLeft()
     }
 
-    this.kanyeBopCount++
-  }
-
-  bopAngle() {
-    console.log('Bop Angle')
-    if (this.kanyeBopCount%12 === 0) {
-      this.blink()
-    }
-
-    if (this.kanyeBopCount%2 === 0) {
-      this.kanye.state.setAnimation(0, 'bopLeft', false)
+    else if (this.kanyeDirection === 'right') {
+      this.bopRight()
     }
 
     else {
-      this.kanye.state.setAnimation(0, 'bopRight', false)
+      this.kanye.state.setAnimation(0, 'bop', false)
+    }
+
+    if (this.kanyeBopCount%12 === 0) {
+      this.blink()
     }
 
     this.kanyeBopCount++
   }
+
+  // bopAngle() {
+  //   console.log('Bop Angle')
+  //   if (this.kanyeBopCount%12 === 0) {
+  //     this.blink()
+  //   }
+  //
+  //   if (this.kanyeBopCount%2 === 0) {
+  //     this.kanye.state.setAnimation(0, 'bopLeft', false)
+  //   }
+  //
+  //   else {
+  //     this.kanye.state.setAnimation(0, 'bopRight', false)
+  //   }
+  //
+  //   this.kanyeBopCount++
+  // }
 
   bopLeft() {
     console.log('Bop Left')

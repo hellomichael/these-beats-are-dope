@@ -2,6 +2,7 @@ export default class Animation {
   constructor(options) {
     this.id = null
     this.element = null
+    this.isPlaying = false
   }
 
   isReady() {
