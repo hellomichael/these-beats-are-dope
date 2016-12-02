@@ -159,28 +159,35 @@ export default class Playlist {
 
   // Ready
   handleReady() {
-    let promises = []
+    let animationPromises = []
+    let videoPromises = []
     let preloadStep = 100/(this.animations.length + 1)
     this.preload(88)
 
     // Preload Animations
-    this.animations.map((animation, index) => {
-      promises.push(animation.isReady())
-    })
-
-    // Preload First video
-    promises.push(this.videos[0].isReady())
+    // this.animations.map((animation, index) => {
+    //   animationPromises.push(animation.isReady())
+    // })
 
     // Preload all videos
     // this.videos.map(video => {
     //   promises.push(video.isReady())
     // })
 
-    Promise.all(promises)
+    animationPromises.push(this.animations[1].isReady())
+    videoPromises.push(this.videos[0].isReady())
+
+    Promise.all(videoPromises)
     .then(() => {
-      console.log('All Assets Loaded')
-      this.preload(100)
-      this.animateSlide()
+      console.log('Videos Loaded')
+
+      Promise.all(animationPromises)
+      .then(() => {
+        console.log('Animations Loaded')
+
+        this.preload(100)
+        this.animateSlide()
+      })
     })
   }
 

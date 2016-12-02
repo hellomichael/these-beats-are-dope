@@ -10,7 +10,7 @@ module.exports = {
   output: {
     filename: 'App.js',
     path: path.join(__dirname, 'dist'),
-    publicPath: true ? '../dist/' : '/dist/'
+    publicPath: false ? '../dist/' : '/dist/'
   },
   module: {
     loaders: [
