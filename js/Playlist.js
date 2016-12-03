@@ -194,15 +194,16 @@ export default class Playlist {
   // Controls
   handleClick() {
     this.app.addEventListener('click', event => {
-      event.preventDefault()
 
       // Next
       if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__play, .playlist__play *')) {
+        event.preventDefault()
         this.nextSlide()
       }
 
       // Previous
       else if (event.target.matches('.playlist__control--prev, .playlist__control--prev *')) {
+        event.preventDefault()
         this.prevSlide()
       }
     })
@@ -455,7 +456,14 @@ export default class Playlist {
 
         <div class="playlist__preloader">
           <h3 class="playlist__preloader__percentage"></h3>
-          <i class="playlist__preloader__icon icon" alt=""/>
+          <i class="playlist__preloader__icon icon" alt=""></i>
+        </div>
+
+        <div class="playlist__social">
+          <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=these.beatsaredope.com" class="playlist__social__icon--facebook playlist__social__icon icon" alt=""></a>
+          <a target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%23silversurfer%20%23wavy%20%40kanyewest%20%40azizansari" class="playlist__social__icon--twitter playlist__social__icon icon" alt=""></a>
+          <h6 class="playlist__social__hashtag"><a target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%23silversurfer%20%23wavy%20%40kanyewest%20%40azizansari">#thesebeatsaredope</a></h6>
+          <small class="playlist__social__credits"><a target="_blank" href="http://anumation.ca/">Anu Chouhan</a> x <a target="_blank" href="https://hellomichael.com">Michael Ngo</a></small>
         </div>
       </div>
     `

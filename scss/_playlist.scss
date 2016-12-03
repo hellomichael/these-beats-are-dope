@@ -142,6 +142,61 @@ $module: 'playlist';
     }
   }
 
+  &__social {
+    display: none;
+    position: absolute;
+    right: $gutter-xl + $gutter-xxs;
+    bottom: $gutter-lg;
+    z-index: 999;
+    text-align: right;
+
+    @media screen and (min-width: $screen-md-min) {
+      display: block;
+    }
+
+    &__icon {
+      transition: 0.5s transform $ease-out-quint;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      &--facebook {
+        background: url('../img/icon-facebook.png') no-repeat;
+        background-size: cover;
+      }
+
+      &--twitter {
+        background: url('../img/icon-twitter.png') no-repeat;
+        background-size: cover;
+      }
+    }
+
+    &__hashtag {
+      margin: $gutter-xxs/2 0;
+      letter-spacing: -1px;
+    }
+
+    &__credits {
+      display: block;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: normal;
+      margin: 0;
+      letter-spacing: 1px;
+
+      a {
+        display: inline-block;
+        padding: 0 0 $gutter-xxs/2;
+        border-bottom: 1px solid transparent;
+        transition: 0.5s border $ease-out-quint;
+
+        &:hover {
+          border-bottom: 1px solid $white;
+        }
+      }
+    }
+  }
+
   &__preloader {
     @extend %center;
     display: none;
@@ -203,7 +258,7 @@ $module: 'playlist';
       left: 40px;
       transform: translateY(-50%) translateZ(0) scale(-1.25);
 
-      @media screen and (min-width: $screen-sm-min) {
+      @media screen and (min-width: $screen-md-min) {
         left: $gutter-xl;
       }
 
@@ -221,7 +276,7 @@ $module: 'playlist';
       right: 40px;
       transform: translateY(-50%) translateZ(0) scale(1.25);
 
-      @media screen and (min-width: $screen-sm-min) {
+      @media screen and (min-width: $screen-md-min) {
         right: $gutter-xl;
       }
 

@@ -39,10 +39,8 @@ export default class Kanye extends Animation {
   setDirection(mousePosition) {
     let bounds = this.element.querySelector('canvas').getBoundingClientRect()
     let center = (bounds.left) + (bounds.width)/2
-    let threshold = bounds.width/25
+    let threshold = (bounds.width/15)
     let offset = -(bounds.width/60)
-
-    console.log(threshold)
 
     if (mousePosition > (center + threshold + offset)) {
       this.kanyeDirection = 'left'
