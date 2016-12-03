@@ -9,8 +9,12 @@ $module: 'playlist';
   height: 100%;
   top: 0;
   left: 0;
-  // transform: scale(0.25);
   overflow: hidden;
+
+  @if $debug {
+    transform: scale(0.15);
+    overflow: visible;
+  }
 
   /* ==========================================================================
   Elements
@@ -24,6 +28,14 @@ $module: 'playlist';
   &__slideshow {
     &--videos {
       transition: 750ms transform $ease-in-out-quart 100ms;
+
+      .#{$module}__slide {
+        &:first-child {
+          .video {
+            opacity: 0;
+          }
+        }
+      }
     }
 
     &--albums {
@@ -74,8 +86,7 @@ $module: 'playlist';
       }
 
       &--reset {
-        transition: 0.25s width $ease-out-expo;
-        width: 0 !important;
+        transition: 0.35s width $ease-out-quint;
       }
     }
 

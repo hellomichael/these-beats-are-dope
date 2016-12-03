@@ -69,7 +69,7 @@ export default class Kanye extends Animation {
   }
 
   componentDidMount() {
-    this.element = document.querySelector(`.kanye-${this.id}`)
+    this.element = document.querySelector(`.kanye--${this.id}`)
 
     // Create renderer
     this.pixiStage = new PIXI.Container()
@@ -81,9 +81,9 @@ export default class Kanye extends Animation {
 
     // Add assets
     this.pixiLoader = PIXI.loader
-      .add(`kanye-${this.id}`, 'img/kanye.json')
+      .add(`kanye--${this.id}`, 'img/kanye.json')
       .load((loader, res) => {
-        this.kanye = new PIXI.spine.Spine(res[`kanye-${this.id}`].spineData)
+        this.kanye = new PIXI.spine.Spine(res[`kanye--${this.id}`].spineData)
 
         if (!Utils.isHighDensity()) {
           this.kanye.scale.x = 1/this.pixiResolution
@@ -193,7 +193,7 @@ export default class Kanye extends Animation {
 
   render() {
     return (`
-      <div class="kanye kanye-${this.id}"></div>
+      <div class="kanye kanye--${this.id}"></div>
     `)
   }
 }

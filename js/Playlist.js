@@ -36,9 +36,9 @@ export default class Playlist {
 
     // State
     this.state = {
-      currentSlide: 0,
-      prevSlide:    0,
-      direction:    'rtl'
+      currentSlide:     0,
+      prevSlide:        0,
+      direction:        'rtl'
     }
 
     // Set data
@@ -164,7 +164,7 @@ export default class Playlist {
     let preloadStep = 100/(this.animations.length + 1)
     this.preload(88)
 
-    // Preload Animations
+    // Preload all animations
     // this.animations.map((animation, index) => {
     //   animationPromises.push(animation.isReady())
     // })
@@ -179,14 +179,11 @@ export default class Playlist {
 
     Promise.all(videoPromises)
     .then(() => {
-      console.log('Videos Loaded')
-
       Promise.all(animationPromises)
       .then(() => {
-        console.log('Animations Loaded')
-
         this.preload(100)
         this.animateSlide()
+        this.animateProgress()
       })
     })
   }
@@ -277,10 +274,9 @@ export default class Playlist {
   }
 
   animateSlide() {
-    console.log('Animate Slide')
     this.isTransitioning = true
 
-    // Reset previous
+    // Reset previous video, timeline, and animations
     if (this.state.currentSlide) {
       this.animations[this.state.prevSlide].stopAnimation()
       this.videos[this.state.prevSlide].pauseVideo()
@@ -295,7 +291,20 @@ export default class Playlist {
       this.isTransitioning = false
     }
 
-    // Play timeline
+    // Prefetch previous/next/first videos
+    this.videos.map((video, index) => {
+      if (index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1) || this.state.currentSlide === 0) {
+        if (index != this.state.prevSlide || this.state.currentSlide === 0) {
+          video.prefetchVideo()
+        }
+      }
+
+      // else {
+      //   video.stopVideo()
+      // }
+    })
+
+    // Play video, timeline, and animations
     this.videos[this.state.currentSlide].playVideo()
     this.timelines[this.state.currentSlide].playTimeline()
     this.animations[this.state.currentSlide].playAnimation()
@@ -342,12 +351,12 @@ export default class Playlist {
       requestAnimationFrame(this.animateProgress.bind(this))
       let progress = this.timelines[this.state.currentSlide].getProgress()
 
-      if (progress > 0.5) {
-        this.dom.indicator.classList.remove('playlist__progress__indicator--reset')
+      if (this.isTransitioning) {
+        this.dom.indicator.classList.add('playlist__progress__indicator--reset')
       }
 
       else {
-        this.dom.indicator.classList.add('playlist__progress__indicator--reset')
+        this.dom.indicator.classList.remove('playlist__progress__indicator--reset')
       }
 
       this.dom.indicator.style.width = `${progress}%`
@@ -374,6 +383,7 @@ export default class Playlist {
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
     this.dom.controlPlay = document.querySelector('.playlist__play')
 
+    // Show preloader
     setTimeout(() => {
       this.setFrames()
       this.setProgress()
@@ -389,16 +399,13 @@ export default class Playlist {
     this.handleKeypress()
     this.handleResize()
     this.handleReady()
-
-    // Animate progress
-    this.animateProgress()
   }
 
   render() {
     let videoSlides = this.playlist.map((slide, index) => {
       return (`
         <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
-          <div class="video video-${slide.youtubeID}"></div>
+          <div class="video video--${slide.youtubeID}"></div>
         </div>
       `)
     }).join('')

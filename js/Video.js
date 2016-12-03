@@ -10,6 +10,7 @@ export default class Video {
     this.element = null
     this.startTime = 0
     this.endTime = 0
+    this.pauseTime = 0
     this.currentTime = 0
     this.duration = -1
     this.isPlaying = false
@@ -32,7 +33,7 @@ export default class Video {
       height: window.innerHeight + 600,
       videoId: options.id,
       playerVars: {
-        autoplay: 1,
+        autoplay: 0,
         loop: 0,
         controls: 0,
         modestbranding: 1,
@@ -55,12 +56,10 @@ export default class Video {
 
   handleReady() {
     this.youtube.on('ready', event => {
+      console.log(`${this.name} (${this.id}): Ready`)
       // Set quality (small, medium, large, hd720, hd1080, highres)
       this.youtube.setPlaybackQuality('small')
       this.setDuration()
-
-      this.setDuration()
-      this.resetVideo()
     })
   }
 
@@ -125,19 +124,22 @@ export default class Video {
     })
   }
 
-  loadVideo() {
+  prefetchVideo() {
+    console.log(`${this.name} (${this.id}): Prefetch Video`)
+    if (this.pauseTime) {
+      this.youtube.seekTo(this.pauseTime)
+    }
 
-  }
+    else {
+      this.youtube.seekTo(this.startTime)
+    }
 
-  resetVideo() {
-    this.youtube.seekTo(this.startTime)
     this.youtube.setVolume(0)
     this.youtube.pauseVideo()
   }
 
   loopVideo () {
     console.log('Loop Video')
-
     if (this.isPaused) {
       return Promise.resolve()
     }
@@ -164,22 +166,29 @@ export default class Video {
     this.youtube.seekTo(seconds)
   }
 
-  // stopVideo() {
-  //   this.isPlaying = false
-  //   this.isPaused = true
-  //
-  //   this.fadeOut()
-  //   .then(() => {
-  //     this.youtube.stopVideo()
-  //   })
-  // }
+  stopVideo() {
+    this.isPlaying = false
+    this.isPaused = true
+
+    this.fadeOut()
+    .then(() => {
+      this.youtube.stopVideo()
+    })
+  }
 
   pauseVideo() {
     this.isPlaying = false
     this.isPaused = true
+    this.pauseTime = this.getCurrentTime()
 
     return this.fadeOut()
     .then(() => {
+      if (this.pauseTime >= (this.endTime - 5)) {
+        this.pauseTime = 0
+        this.youtube.seekTo(this.startTime)
+      }
+
+      this.youtube.setVolume(0)
       this.youtube.pauseVideo()
     })
   }
