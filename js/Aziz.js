@@ -69,7 +69,7 @@ export default class Aziz extends Animation {
 
   render() {
     return (`
-      <div class="aziz aziz-${this.id}">
+      <div class="aziz aziz--${this.id}">
         <div class="aziz__intro">
           <h1 class="aziz__heading">
             <span class="aziz__heading__these">These</span>

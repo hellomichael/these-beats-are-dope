@@ -9,12 +9,15 @@ $module: 'video';
   top: 0;
   left: 0;
   z-index: 0;
-  opacity: 0;
   transform: translateY(-300px);
   background-color: $black;
   pointer-events: none;
   cursor: default;
   transition: 1s opacity $ease-out-quint;
+
+  @if $debug {
+    opacity: 1;
+  }
 
   @media screen and (min-width: $screen-sm-min) {
     display: block;
@@ -22,7 +25,7 @@ $module: 'video';
 
   &--visible {
     @media screen and (min-width: $screen-sm-min) {
-      opacity: 1;
+      opacity: 1 !important;
     }
   }
 

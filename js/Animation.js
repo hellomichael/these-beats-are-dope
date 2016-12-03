@@ -12,11 +12,11 @@ export default class Animation {
   }
 
   stopAnimation() {
-    console.log('Stop Animation')
+    // console.log('Stop Animation')
   }
 
   playAnimation() {
-    console.log('Play Animation')
+    // console.log('Play Animation')
   }
 
   render() {

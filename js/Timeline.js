@@ -14,12 +14,10 @@ export default class Timeline {
     this.isLoop = false
     this.nextSlide = null
     Object.assign(this, options)
-
     this.generateKeyframes()
   }
 
   stopTimeline() {
-    console.log('Stop Timeline')
     cancelAnimationFrame(this.requestAnimationFrame)
     clearTimeout(this.timeline)
   }
@@ -39,7 +37,6 @@ export default class Timeline {
   }
 
   loopTimeline() {
-    console.log('Loop Timeline')
     this.isResetting = true
 
     this.video.loopVideo()
@@ -50,13 +47,10 @@ export default class Timeline {
   }
 
   resetTimeline() {
-    console.log('Reset Timeline')
     this.generateKeyframes()
-    this.video.resetVideo()
   }
 
   generateKeyframes() {
-    console.log('Generate Keyframes');
     this.keyframesClone = []
 
     this.keyframes.map((keyframe, index) => {
