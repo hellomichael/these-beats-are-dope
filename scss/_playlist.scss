@@ -159,7 +159,9 @@ $module: 'playlist';
     right: $gutter-xl + $gutter-xxs;
     bottom: $gutter-lg;
     z-index: 999;
+    opacity: 0;
     text-align: right;
+    transition: 0.75s opacity $ease-out-quint;
 
     @media screen and (min-width: $screen-md-min) {
       display: block;
@@ -206,6 +208,10 @@ $module: 'playlist';
         }
       }
     }
+
+    &--visible {
+      opacity: 1;
+    }
   }
 
   &__preloader {
@@ -226,9 +232,18 @@ $module: 'playlist';
       opacity: 0;
       z-index: 0;
       transform-origin: left top;
-      transform: scale(0.5) translate(-50%, -50%);
+      transform: scale(0.4) translate(-50%, -50%);
       background: url('../img/playlist-preloader.png');
-      transition: 0.75s opacity $ease-out-quint 0.25s;
+      transition: 0.75s opacity $ease-out-quint 0.2s;
+      animation: beating 2s infinite;
+
+      @keyframes beating {
+        0%   { transform: scale(0.5) translate(-50%, -50%);}
+        35%   { transform: scale(0.45) translate(-50%, -50%);}
+        50% { transform: scale(0.45) translate(-50%, -50%);}
+        65% { transform: scale(0.45) translate(-50%, -50%);}
+        100% { transform: scale(0.5) translate(-50%, -50%);}
+      }
     }
 
     &__percentage {
@@ -236,18 +251,21 @@ $module: 'playlist';
       z-index: 1;
       margin: 0;
       opacity: 0;
-      transition: 0.75s opacity $ease-out-quint 0.3s;
+      transform: scale(0.9);
+      transition: 0.75s opacity $ease-out-quint 0.3s, 0.75s transform $ease-out-quint 0.2s;
     }
 
     &--visible {
       .playlist__preloader__icon {
         opacity: 1;
+        transform: scale(0.5) translate(-50%, -50%);
         transition: 0.75s opacity $ease-out-quint 0.3s;
       }
 
       .playlist__preloader__percentage {
         opacity: 1;
-        transition: 0.75s opacity $ease-out-quint 0.25s;
+        transform: scale(1);
+        transition: 0.75s opacity $ease-out-quint 0.2s, 0.75s transform $ease-out-quint 0.25s;
       }
     }
   }
