@@ -178,12 +178,12 @@ export default class Kanye extends Animation {
 
   closeEyes() {
     console.log('Close Eyes')
-    this.kanye.state.setAnimation(1, 'closeEyes', false)
+    this.kanye.state.setAnimation(1, 'closeEyes', true)
   }
 
   openEyes() {
     console.log('Open Eyes')
-    this.kanye.state.setAnimation(1, 'openEyes', false)
+    this.kanye.state.setAnimation(1, 'openEyes', true)
   }
 
   shiver() {

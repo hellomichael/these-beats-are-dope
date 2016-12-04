@@ -232,6 +232,11 @@ export default class Playlist {
       else if (event.keyCode === 32) {
         console.log(Utils.getTimecode(this.videos[this.state.currentSlide].getCurrentTime()))
       }
+
+      // Mute
+      else if (event.keyCode === 77) {
+        this.videos[this.state.currentSlide].muteVideo()
+      }
     })
   }
 
