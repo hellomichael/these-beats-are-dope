@@ -6,100 +6,100 @@ filter: Linear,Linear
 repeat: none
 brow-left
   rotate: true
-  xy: 1967, 1878
+  xy: 1965, 1880
   size: 166, 78
   orig: 166, 78
   offset: 0, 0
   index: -1
 brow-right
   rotate: true
-  xy: 1967, 1706
+  xy: 1888, 1475
   size: 170, 58
   orig: 170, 58
   offset: 0, 0
   index: -1
 collar
   rotate: false
-  xy: 1501, 2
+  xy: 1501, 6
   size: 529, 324
   orig: 529, 324
   offset: 0, 0
   index: -1
 ears
   rotate: false
-  xy: 2, 38
+  xy: 2, 42
   size: 725, 198
   orig: 725, 198
   offset: 0, 0
   index: -1
 eyes
   rotate: true
-  xy: 1890, 1645
+  xy: 1888, 1647
   size: 399, 75
   orig: 399, 75
   offset: 0, 0
   index: -1
 eyes-closed
-  rotate: true
-  xy: 1890, 1247
+  rotate: false
+  xy: 2, 2
   size: 396, 38
   orig: 396, 38
   offset: 0, 0
   index: -1
 face-shadow
   rotate: false
-  xy: 1492, 328
+  xy: 1492, 332
   size: 548, 856
   orig: 548, 856
   offset: 0, 0
   index: -1
 forehead
   rotate: false
-  xy: 926, 72
+  xy: 926, 76
   size: 573, 231
   orig: 573, 231
   offset: 0, 0
   index: -1
 lapel
   rotate: false
-  xy: 2, 238
+  xy: 2, 242
   size: 922, 946
   orig: 922, 946
   offset: 0, 0
   index: -1
 nose
   rotate: false
-  xy: 729, 20
+  xy: 729, 24
   size: 161, 216
   orig: 161, 216
   offset: 0, 0
   index: -1
 nostril-left
   rotate: false
-  xy: 1930, 1565
+  xy: 1888, 1395
   size: 40, 78
   orig: 40, 78
   offset: 0, 0
   index: -1
 nostril-right
-  rotate: true
-  xy: 1967, 1661
+  rotate: false
+  xy: 1965, 1799
   size: 43, 79
   orig: 43, 79
   offset: 0, 0
   index: -1
 shirt
   rotate: false
-  xy: 926, 305
+  xy: 926, 309
   size: 564, 879
   orig: 564, 879
   offset: 0, 0
   index: -1
 suit
   rotate: false
-  xy: 2, 1186
-  size: 1886, 858
-  orig: 1886, 858
+  xy: 2, 1190
+  size: 1884, 856
+  orig: 1884, 856
   offset: 0, 0
   index: -1
 

@@ -55,7 +55,7 @@ export default class Timeline {
 
     this.keyframes.map((keyframe, index) => {
       let bpm = 60/keyframe.bpm
-      let threshold = 0.25
+      let threshold = 0.35
       let currentTime = Utils.getSeconds(this.keyframes[index].timecode)
       let actions = this.keyframes[index].actions ? this.keyframes[index].actions : null
 
