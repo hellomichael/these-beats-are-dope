@@ -18,8 +18,10 @@ export default class Aziz extends Animation {
       azizSubheading:       document.querySelector('.aziz__subheading'),
       azizButton:           document.querySelector('.aziz__button'),
     }
+  }
 
-    if (!Utils.isTabletOrDesktop()) {
+  showIntro() {
+    setTimeout(() => {
       this.showThese()
       this.showBeats()
       this.showAre()
@@ -28,7 +30,7 @@ export default class Aziz extends Animation {
       this.showButton()
       this.scrollIntro1()
       this.scrollIntro2()
-    }
+    }, 1500)
   }
 
   showThese() {

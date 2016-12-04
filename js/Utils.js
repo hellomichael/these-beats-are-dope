@@ -35,12 +35,16 @@ export function getPercentage(value) {
   return getTwoDecimalPlaces(value * 100)
 }
 
+export function isDesktop() {
+  return window.innerWidth >= 992
+}
+
 export function isTabletOrDesktop() {
   return window.innerWidth >= 768
 }
 
-export function isDesktop() {
-  return window.innerWidth >= 992
+export function isMobile() {
+  return !isTabletOrDesktop()
 }
 
 export function isHighDensity() {
