@@ -120,7 +120,7 @@ export default class Playlist {
     this.dom.progress.classList.add('playlist__progress--visible')
 
     Array.from(this.dom.tracks).map(track => {
-      track.style.width = `${this.width}px`
+      track.style.width = `${this.width - 60}px`
     })
   }
 
@@ -144,6 +144,12 @@ export default class Playlist {
       if (this.preloaded >= 100 && progress === 100) {
         this.dom.preloaderPercentage.innerText = `One hundred`
         this.dom.preloader.classList.remove('playlist__preloader--visible')
+
+        // Show intro for mobile
+        if (Utils.isMobile()) {
+          this.animations[0].showIntro()
+        }
+
         clearInterval(counter)
       }
 
@@ -153,8 +159,8 @@ export default class Playlist {
       }
 
       else {
-        this.preloaded += speed
         this.dom.preloaderPercentage.innerText = `${Utils.getWordNumber(this.preloaded)}`
+        this.preloaded += speed
       }
     }, 50)
   }
@@ -436,16 +442,16 @@ export default class Playlist {
     this.app.innerHTML = `
       <!-- Playlist --!>
       <div class="playlist">
-        <div class="playlist__slideshow playlist__slideshow--videos" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
-          ${videoSlides}
+        <div class="playlist__slideshow playlist__slideshow--animations" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
+          ${animationSlides}
         </div>
 
         <div class="playlist__slideshow playlist__slideshow--albums" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
           ${albumSlides}
         </div>
 
-        <div class="playlist__slideshow playlist__slideshow--animations" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
-          ${animationSlides}
+        <div class="playlist__slideshow playlist__slideshow--videos" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
+          ${videoSlides}
         </div>
 
         <div class="playlist__progress">

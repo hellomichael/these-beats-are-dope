@@ -140,7 +140,7 @@ export default class Video {
 
   loopVideo () {
     console.log(`${this.name} (${this.id}): Loop Video`)
-    
+
     if (this.isPaused) {
       return Promise.resolve()
     }
@@ -233,53 +233,47 @@ export default class Video {
 
   fadeIn(startVolume, callback) {
     return new Promise((resolve, reject) => {
-      this.youtube.getVolume()
-      .then(currentVolume => {
-        let volume = (startVolume === 0) ? 0 : currentVolume
+      let volume = 0
 
-        clearInterval(this.fadeInterval)
-        this.fadeInterval = setInterval(() => {
-          if (volume < 100) {
-            volume += 2.5
-            this.youtube.setVolume(volume)
-          }
+      clearInterval(this.fadeInterval)
+      this.fadeInterval = setInterval(() => {
+        if (volume < 100) {
+          volume += 2.5
+          this.youtube.setVolume(volume)
+        }
 
-          else {
-            this.youtube.setVolume(100)
-            clearInterval(this.fadeInterval)
-            resolve()
-          }
-        }, 15)
-      })
+        else {
+          this.youtube.setVolume(100)
+          clearInterval(this.fadeInterval)
+          resolve()
+        }
+      }, 15)
     })
   }
 
   fadeOut() {
     return new Promise((resolve, reject) => {
-      this.youtube.getVolume()
-      .then(currentVolume => {
-        let volume = currentVolume
+      let volume = 100
 
-        clearInterval(this.fadeInterval)
-        this.fadeInterval = setInterval(() => {
-          if (this.isPlaying) {
-            clearInterval(this.fadeInterval)
+      clearInterval(this.fadeInterval)
+      this.fadeInterval = setInterval(() => {
+        if (this.isPlaying) {
+          clearInterval(this.fadeInterval)
+        }
+
+        else {
+          if (volume > 0) {
+            volume -= 2.5
+            this.youtube.setVolume(volume)
           }
 
           else {
-            if (volume > 0) {
-              volume -= 2.5
-              this.youtube.setVolume(volume)
-            }
-
-            else {
-              this.youtube.setVolume(0)
-              clearInterval(this.fadeInterval)
-              resolve()
-            }
+            this.youtube.setVolume(0)
+            clearInterval(this.fadeInterval)
+            resolve()
           }
-        }, 15)
-      })
+        }
+      }, 15)
     })
   }
 }
