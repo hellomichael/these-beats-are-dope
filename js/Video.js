@@ -15,6 +15,7 @@ export default class Video {
     this.duration = -1
     this.isPlaying = false
     this.isPaused = false
+    this.isMute = false
     this.fadeInterval = null
     this.events = {
       '-2': 'Ready',
@@ -122,6 +123,18 @@ export default class Video {
         }
       })
     })
+  }
+
+  muteVideo() {
+    this.isMute = !this.isMute
+
+    if (this.isMute ) {
+      this.youtube.setVolume(0)
+    }
+
+    else {
+      this.youtube.setVolume(1000)
+    }
   }
 
   prefetchVideo() {
