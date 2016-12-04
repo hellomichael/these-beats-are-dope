@@ -39,76 +39,179 @@
 			]
 		},
 		{
-			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
-			"youtubeID": "CDyrWWPt534",
-			"year": "2004",
-			"animation": "Kanye",
-			"keyframes": [
-				{
-					"timecode": "00:10:10",
-					"actions":	["breathing"]
-				},
-				{
-					"timecode": "00:18:00",
-					"bpm": "81.7",
-					"actions": ["bop"]
-				},
-				{
-					"timecode": "02:48:20",
-					"actions":	["breathing"]
-				}
-			]
-		},
-		{
-			"spotifyID": "2FgkwIXC52sHCbqVL8jE41",
-			"youtubeID": "JCYAjGnvc7U",
-			"year": "2005",
-			"animation": "Kanye",
-			"keyframes": [
-				{
-					"timecode": "00:06:05",
-					"actions":	["breathing"]
-				},
-				{
-					"timecode": "02:49:00",
-					"actions":	["breathing"]
-				}
-			]
-		},
-		{
-			"spotifyID": "7rWwv1ePazmRzmJs4sARhI",
-			"youtubeID": "hCx4LfPDWSY",
-			"year": "2007",
-			"animation": "Kanye",
-			"keyframes": [
-				{
-					"timecode": "00:10:00",
-					"actions":	["breathing"]
-				},
-				{
-					"timecode": "05:05:25",
-					"actions":	["breathing"]
-				}
-			]
-		},
-		{
 			"spotifyID": "1YD3Dg7Olipi5FGVDLHWAu",
 			"youtubeID": "_ABk7TmjnVk",
 			"year": "2015",
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "00:10:10",
+					"timecode": "02:16:15",
 					"actions":	["breathing"]
 				},
 				{
-					"timecode": "00:18:00",
-					"bpm": "81.7",
+					"timecode": "00:15:25",
+					"bpm": "61.52",
+					"actions": ["bop"]
+				},
+
+
+
+		    {
+		      "timecode": "00:43:21",
+					"actions": ["bopFast"]
+		    },
+		    {
+		      "timecode": "00:44:03",
+					"actions": ["bopFast"]
+		    },
+		    {
+		      "timecode": "00:44:18",
+					"actions": ["bopFast"]
+		    },
+		    {
+		      "timecode": "00:45:02",
+					"actions": ["bopFast"]
+		    },
+
+
+		    {
+		      "timecode": "00:47:01",
+					"bpm": "61.52",
+					"actions": ["bop"]
+				},
+		    {
+		      "timecode": "01:06:21",
+					"actions": ["bop"]
+		    },
+		    {
+		      "timecode": "01:08:11",
+					"bpm": "61.52",
 					"actions": ["bop"]
 				},
 				{
-					"timecode": "02:48:20",
-					"actions":	["breathing"]
+		      "timecode": "01:18:06",
+					"bpm": "30.7",
+					"actions": ["bop"]
+				},
+				{
+		      "timecode": "01:33:29",
+					"actions": ["breathing"]
+				},
+				{
+		      "timecode": "01:41:22",
+					"bpm": "61.52",
+					"actions": ["bop"]
+				},
+
+
+
+				{
+			    "timecode": "02:24:16",
+			    "actions": ["bopFast"]
+				},
+				{
+			    "timecode": "02:25:04",
+			    "actions": ["bopFast"]
+				}, {
+			    "timecode": "02:25:18",
+			    "actions": ["bopFast"]
+				}, {
+			    "timecode": "02:26:02",
+			    "actions": ["bopFast"]
+				}, {
+			    "timecode": "02:26:17",
+			    "actions": ["bopFast"]
+				},
+
+
+
+				{
+			    "timecode": "02:28:16",
+			    "actions": ["bopFast"]
+				}, {
+			    "timecode": "02:29:00",
+			    "actions": ["bopFast"]
+				}, {
+			    "timecode": "02:32:11",
+			    "actions": ["bopFast"]
+				}, {
+			    "timecode": "02:32:24",
+			    "actions": ["bopFast"]
+				}, {
+			    "timecode": "02:36:09",
+			    "actions": ["bopFast"]
+				}, {
+			    "timecode": "02:36:22",
+			    "actions": ["bopFast"]
+				},
+
+
+
+				{
+			    "timecode": "02:40:03",
+			    "actions": ["bop"]
+				},
+
+				{
+		      "timecode": "02:44:06",
+					"bpm": "61.52",
+  				"actions": ["bop"]
+		    },
+
+
+				{
+		      "timecode": "03:15:14",
+  				"actions": ["breathing"]
+		    },
+
+
+				{
+					"timecode": "03:31:00",
+					"actions": ["bopFast"]
+				},
+				{
+					"timecode": "03:31:12",
+					"actions": ["bopFast"]
+				},
+				{
+					"timecode": "03:34:24",
+					"actions": ["bopFast"]
+				},
+				{
+					"timecode": "03:35:07",
+					"actions": ["bopFast"]
+				},
+				{
+					"timecode": "03:38:22",
+					"actions": ["bopFast"]
+				},
+				{
+					"timecode": "03:39:06",
+					"actions": ["bopFast"]
+				},
+				{
+					"timecode": "03:42:19",
+					"actions": ["bopFast"]
+				},
+				{
+					"timecode": "03:43:02",
+					"actions": ["bopFast"]
+				},
+
+
+				{
+		      "timecode": "03:46:16",
+					"bpm": "61.52",
+  				"actions": ["bop"]
+		    },
+
+				{
+		      "timecode": "04:14:14",
+					"actions": ["breathing"]
+	    	},
+
+				{
+					"timecode": "04:25:00"
 				}
 			]
 		}
