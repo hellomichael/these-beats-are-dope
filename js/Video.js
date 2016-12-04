@@ -139,7 +139,8 @@ export default class Video {
   }
 
   loopVideo () {
-    console.log('Loop Video')
+    console.log(`${this.name} (${this.id}): Loop Video`)
+    
     if (this.isPaused) {
       return Promise.resolve()
     }
@@ -231,8 +232,6 @@ export default class Video {
   }
 
   fadeIn(startVolume, callback) {
-    console.log('Fade In')
-
     return new Promise((resolve, reject) => {
       this.youtube.getVolume()
       .then(currentVolume => {
@@ -256,8 +255,6 @@ export default class Video {
   }
 
   fadeOut() {
-    console.log('Fade Out')
-
     return new Promise((resolve, reject) => {
       this.youtube.getVolume()
       .then(currentVolume => {

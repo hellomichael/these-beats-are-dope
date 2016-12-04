@@ -128,6 +128,8 @@ export default class Playlist {
     Array.from(this.dom.frames).map(frame => {
       frame.classList.add('playlist__frame--visible')
     })
+
+    this.dom.social.classList.add('playlist__social--visible')
   }
 
   setPreloader() {
@@ -293,8 +295,8 @@ export default class Playlist {
 
     // Prefetch previous/next/first videos
     this.videos.map((video, index) => {
-      if (index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1) || this.state.currentSlide === 0) {
-        if (index != this.state.prevSlide || this.state.currentSlide === 0) {
+      if (index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1) || (this.state.currentSlide === 0 && index === 0)) {
+        if (index != this.state.prevSlide || (this.state.currentSlide === 0 && index === 0)) {
           video.prefetchVideo()
         }
       }
@@ -378,6 +380,7 @@ export default class Playlist {
     this.dom.frames = document.querySelectorAll('.playlist__frame')
     this.dom.preloader = document.querySelector('.playlist__preloader')
     this.dom.preloaderPercentage = document.querySelector('.playlist__preloader__percentage')
+    this.dom.social = document.querySelector('.playlist__social')
     this.dom.progress = document.querySelector('.playlist__progress')
     this.dom.tracks = document.querySelectorAll('.playlist__progress__track')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
