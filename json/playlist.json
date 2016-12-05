@@ -45,39 +45,37 @@
 			"animation": "Kanye",
 			"keyframes": [
 				{
-					"timecode": "02:16:15",
+					"timecode": "00:00:15",
 					"actions":	["breathing"]
 				},
 				{
 					"timecode": "00:15:25",
 					"bpm": "61.52",
-					"actions": ["bop"]
+					"actions": ["bop", "openEyes"]
 				},
-
-
 
 		    {
 		      "timecode": "00:43:21",
-					"actions": ["bopFast"]
+					"actions": ["bopAngle"]
 		    },
 		    {
 		      "timecode": "00:44:03",
-					"actions": ["bopFast"]
+					"actions": ["bopAngle"]
 		    },
 		    {
 		      "timecode": "00:44:18",
-					"actions": ["bopFast"]
+					"actions": ["bopAngle"]
 		    },
 		    {
 		      "timecode": "00:45:02",
-					"actions": ["bopFast"]
+					"actions": ["bopAngle"]
 		    },
 
 
 		    {
 		      "timecode": "00:47:01",
 					"bpm": "61.52",
-					"actions": ["bop"]
+					"actions": ["bop", "openEyes"]
 				},
 		    {
 		      "timecode": "01:06:21",
@@ -86,7 +84,7 @@
 		    {
 		      "timecode": "01:08:11",
 					"bpm": "61.52",
-					"actions": ["bop"]
+					"actions": ["bop", "closeEyes"]
 				},
 				{
 		      "timecode": "01:18:06",
@@ -100,49 +98,49 @@
 				{
 		      "timecode": "01:41:22",
 					"bpm": "61.52",
-					"actions": ["bop"]
+					"actions": ["bop", "openEyes"]
 				},
 
 
 
 				{
 			    "timecode": "02:24:16",
-			    "actions": ["bopFast"]
+			    "actions": ["bopAngle"]
 				},
 				{
 			    "timecode": "02:25:04",
-			    "actions": ["bopFast"]
+			    "actions": ["bopAngle"]
 				}, {
 			    "timecode": "02:25:18",
-			    "actions": ["bopFast"]
+			    "actions": ["bopAngle"]
 				}, {
 			    "timecode": "02:26:02",
-			    "actions": ["bopFast"]
+			    "actions": ["bopAngle"]
 				}, {
 			    "timecode": "02:26:17",
-			    "actions": ["bopFast"]
+			    "actions": ["bopAngle"]
 				},
 
 
 
 				{
 			    "timecode": "02:28:16",
-			    "actions": ["bopFast"]
+			    "actions": ["bopAngle"]
 				}, {
 			    "timecode": "02:29:00",
-			    "actions": ["bopFast"]
+			    "actions": ["bopAngle"]
 				}, {
 			    "timecode": "02:32:11",
-			    "actions": ["bopFast"]
+			    "actions": ["bopAngle"]
 				}, {
 			    "timecode": "02:32:24",
-			    "actions": ["bopFast"]
+			    "actions": ["bopAngle"]
 				}, {
 			    "timecode": "02:36:09",
-			    "actions": ["bopFast"]
+			    "actions": ["bopAngle"]
 				}, {
 			    "timecode": "02:36:22",
-			    "actions": ["bopFast"]
+			    "actions": ["bopAngle"]
 				},
 
 
@@ -155,7 +153,7 @@
 				{
 		      "timecode": "02:44:06",
 					"bpm": "61.52",
-  				"actions": ["bop"]
+  				"actions": ["bop", "openEyes"]
 		    },
 
 
@@ -167,42 +165,42 @@
 
 				{
 					"timecode": "03:31:00",
-					"actions": ["bopFast"]
+					"actions": ["bopAngle", "openEyes"]
 				},
 				{
 					"timecode": "03:31:12",
-					"actions": ["bopFast"]
+					"actions": ["bopAngle"]
 				},
 				{
 					"timecode": "03:34:24",
-					"actions": ["bopFast"]
+					"actions": ["bopAngle"]
 				},
 				{
 					"timecode": "03:35:07",
-					"actions": ["bopFast"]
+					"actions": ["bopAngle"]
 				},
 				{
 					"timecode": "03:38:22",
-					"actions": ["bopFast"]
+					"actions": ["bopAngle"]
 				},
 				{
 					"timecode": "03:39:06",
-					"actions": ["bopFast"]
+					"actions": ["bopAngle"]
 				},
 				{
 					"timecode": "03:42:19",
-					"actions": ["bopFast"]
+					"actions": ["bopAngle"]
 				},
 				{
 					"timecode": "03:43:02",
-					"actions": ["bopFast"]
+					"actions": ["bopAngle"]
 				},
 
 
 				{
 		      "timecode": "03:46:16",
 					"bpm": "61.52",
-  				"actions": ["bop"]
+  				"actions": ["bop", "closeEyes"]
 		    },
 
 				{
