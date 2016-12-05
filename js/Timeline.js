@@ -110,6 +110,8 @@ export default class Timeline {
 
     // Check if there are still keyframes left
     let keyframe = this.keyframesClone.length ? this.keyframesClone[0] : null
+    let nextKeyframe = this.keyframesClone.length > 2 ? this.keyframesClone[1] : null
+    let keyframeDuration = nextKeyframe ? Utils.getSeconds(nextKeyframe.timecode) - Utils.getSeconds(keyframe.timecode) : 0
 
     if (keyframe && this.video.getCurrentTime() >= Utils.getSeconds(keyframe.timecode)) {
       // Play the actions
@@ -118,6 +120,13 @@ export default class Timeline {
           // Check if function exists in Animation class
           if (typeof this.animation[action] === 'function') {
             this.animation[action]()
+
+            // Extended lengths of time
+            if (keyframeDuration > 1.5 && this.animation[action].name != 'breathing') {
+              setTimeout(() => {
+                this.animation['breathing']()
+              }, 750)
+            }
           }
         })
       }

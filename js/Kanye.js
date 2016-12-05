@@ -16,16 +16,26 @@ export default class Kanye extends Animation {
 
     this.kanyeWidth = Utils.isHighDensity() ? 1884 : 1884/this.pixiResolution
     this.kanyeHeight = Utils.isHighDensity() ? 1937 : 1937/this.pixiResolution
-    this.kanyeDirection = null
+
+    this.kanyeEyesOpen = false
+    this.kanyeDirection = 'left'
     this.kanyeBopCount = 0
+    this.kanyeIdle = false
+
+    this.mouseDirection = null
+    this.mouseTimeout = null
 
     Object.assign(this, options)
+
+    this.setIdle()
   }
 
   handleMouseMove() {
     window.addEventListener('mousemove', event => {
       if (this.isPlaying) {
+        this.kanyeIdle = false
         this.setDirection(event.clientX)
+        this.setIdle()
       }
     })
   }
@@ -36,22 +46,29 @@ export default class Kanye extends Animation {
     })
   }
 
+  setIdle() {
+    clearTimeout(this.mouseTimeout)
+    this.mouseTimeout = setTimeout(() => {this.kanyeIdle = true}, 3000)
+  }
+
   setDirection(mousePosition) {
-    let bounds = this.element.querySelector('canvas').getBoundingClientRect()
-    let center = (bounds.left) + (bounds.width)/2
-    let threshold = (bounds.width/15)
-    let offset = -(bounds.width/60)
+    if (!this.kanyeIdle) {
+      let bounds = this.element.querySelector('canvas').getBoundingClientRect()
+      let center = (bounds.left) + (bounds.width)/2
+      let threshold = (bounds.width/10)
+      let offset = -(bounds.width/60)
 
-    if (mousePosition > (center + threshold + offset)) {
-      this.kanyeDirection = 'left'
-    }
+      if (mousePosition > (center + threshold + offset)) {
+        this.mouseDirection = 'left'
+      }
 
-    else if (mousePosition < center - threshold + offset) {
-      this.kanyeDirection = 'right'
-    }
+      else if (mousePosition < center - threshold + offset) {
+        this.mouseDirection = 'right'
+      }
 
-    else {
-      this.kanyeDirection = null
+      else {
+        this.mouseDirection = null
+      }
     }
   }
 
@@ -84,6 +101,7 @@ export default class Kanye extends Animation {
       .add(`kanye--${this.id}`, 'img/kanye.json')
       .load((loader, res) => {
         this.kanye = new PIXI.spine.Spine(res[`kanye--${this.id}`].spineData)
+        this.setAnimationMixes(['breathing', 'shiver', 'bop', 'bopLeft', 'bopRight'], 0.35)
 
         if (!Utils.isHighDensity()) {
           this.kanye.scale.x = 1/this.pixiResolution
@@ -93,42 +111,20 @@ export default class Kanye extends Animation {
         this.kanye.position.x = this.kanyeWidth/2
         this.kanye.position.y = this.kanyeHeight
 
-        // Mixes
-        this.kanye.stateData.setMixByName('breathing', 'bop', 0.40);
-        this.kanye.stateData.setMixByName('breathing', 'bopLeft', 0.40);
-        this.kanye.stateData.setMixByName('breathing', 'bopRight', 0.40);
-        this.kanye.stateData.setMixByName('breathing', 'bopFast', 0.40);
-        this.kanye.stateData.setMixByName('breathing', 'bopFastLeft', 0.40);
-        this.kanye.stateData.setMixByName('breathing', 'bopFastRight', 0.40);
-
-
-        this.kanye.stateData.setMixByName('bop', 'bop', 0.40);
-        this.kanye.stateData.setMixByName('bop', 'bopLeft', 0.40);
-        this.kanye.stateData.setMixByName('bop', 'bopRight', 0.40);
-        this.kanye.stateData.setMixByName('bopLeft', 'bop', 0.40);
-        this.kanye.stateData.setMixByName('bopLeft', 'bopLeft', 0.40);
-        this.kanye.stateData.setMixByName('bopLeft', 'bopRight', 0.40);
-        this.kanye.stateData.setMixByName('bopRight', 'bop', 0.40);
-        this.kanye.stateData.setMixByName('bopRight', 'bopLeft', 0.40);
-        this.kanye.stateData.setMixByName('bopRight', 'bopRight', 0.40);
-
-
-        this.kanye.stateData.setMixByName('bopFast', 'bopFast', 0.40);
-        this.kanye.stateData.setMixByName('bopFast', 'bopFastLeft', 0.40);
-        this.kanye.stateData.setMixByName('bopFast', 'bopFastRight', 0.40);
-        this.kanye.stateData.setMixByName('bopFastLeft', 'bopFast', 0.40);
-        this.kanye.stateData.setMixByName('bopFastLeft', 'bopFastLeft', 0.40);
-        this.kanye.stateData.setMixByName('bopFastLeft', 'bopFastRight', 0.40);
-        this.kanye.stateData.setMixByName('bopFastRight', 'bopFast', 0.40);
-        this.kanye.stateData.setMixByName('bopFastRight', 'bopFastLeft', 0.40);
-        this.kanye.stateData.setMixByName('bopFastRight', 'bopFastRight', 0.40);
-
         this.pixiStage.addChild(this.kanye)
       })
 
     // Events
     this.handleResize()
     this.handleMouseMove()
+  }
+
+  setAnimationMixes(animations, duration) {
+    animations.map(first => {
+      animations.map(second => {
+        this.kanye.stateData.setMix(first, second, duration)
+      })
+    })
   }
 
   stopAnimation() {
@@ -156,85 +152,82 @@ export default class Kanye extends Animation {
   bop() {
     console.log('Bop')
 
-    if (this.kanyeDirection === 'left') {
-      this.bopLeft()
-    }
-
-    else if (this.kanyeDirection === 'right') {
-      this.bopRight()
+    if (this.kanyeIdle) {
+      this.bopAngle()
     }
 
     else {
-      this.kanye.state.setAnimation(0, 'bop', false)
+      if (this.mouseDirection === 'left') {
+        this.bopLeft()
+      }
+
+      else if (this.mouseDirection === 'right') {
+        this.bopRight()
+      }
+
+      else {
+        this.kanye.state.setAnimation(0, 'bop', false)
+      }
     }
 
-    if (this.kanyeBopCount%12 === 0) {
-      this.blink()
-    }
-
-    this.kanyeBopCount++
-  }
-
-  bopFast() {
-    console.log('Bop Fast')
-
-    if (this.kanyeDirection === 'left') {
-      this.bopFastLeft()
-    }
-
-    else if (this.kanyeDirection === 'right') {
-      this.bopFastRight()
-    }
-
-    else {
-      this.kanye.state.setAnimation(0, 'bopFast', false)
-    }
-
-    if (this.kanyeBopCount%12 === 0) {
-      this.blink()
-    }
-
+    this.blinkRandom()
     this.kanyeBopCount++
   }
 
   bopLeft() {
     console.log('Bop Left')
     this.kanye.state.setAnimation(0, 'bopLeft', false)
+    this.kanyeDirection = 'left'
   }
 
   bopRight() {
     console.log('Bop Right')
     this.kanye.state.setAnimation(0, 'bopRight', false)
+    this.kanyeDirection = 'right'
   }
 
-  bopFastLeft() {
-    console.log('Bop Fast Left')
-    this.kanye.state.setAnimation(0, 'bopFastLeft', false)
-  }
+  bopAngle() {
+    if (this.kanyeDirection === 'left') {
+      this.bopRight()
+    }
 
-  bopFastRight() {
-    console.log('Bop Fast Right')
-    this.kanye.state.setAnimation(0, 'bopFastRight', false)
-  }
-
-  blink() {
-    console.log('Blink')
-    this.kanye.state.setAnimation(1, 'blink', false)
-  }
-
-  closeEyes() {
-    console.log('Close Eyes')
-    this.kanye.state.setAnimation(1, 'closeEyes', true)
+    else if (this.kanyeDirection === 'right') {
+      this.bopLeft()
+    }
   }
 
   openEyes() {
-    console.log('Open Eyes')
-    this.kanye.state.setAnimation(1, 'openEyes', true)
+    if (!this.kanyeEyesOpen) {
+      console.log('Open Eyes')
+      this.kanye.state.setAnimation(1, 'openEyes', true)
+      this.kanyeEyesOpen = true
+    }
+  }
+
+  closeEyes() {
+    if (this.kanyeEyesOpen) {
+      console.log('Close Eyes')
+      this.kanye.state.setAnimation(1, 'closeEyes', true)
+      this.kanyeEyesOpen = false
+    }
+  }
+
+  blink() {
+    if (this.kanyeEyesOpen) {
+      console.log('Blink')
+      this.kanye.state.setAnimation(1, 'blink', false)
+    }
+  }
+
+  blinkRandom() {
+    if (this.kanyeBopCount%(~~(Math.random() * 10) + 1) === 1) {
+      this.blink()
+    }
   }
 
   shiver() {
     console.log('Shiver')
-    this.kanye.state.setAnimation(1, 'shiver', false)
+    this.kanye.state.setAnimation(0, 'shiver', true)
   }
 
   render() {

@@ -120,7 +120,7 @@ export default class Playlist {
     this.dom.progress.classList.add('playlist__progress--visible')
 
     Array.from(this.dom.tracks).map(track => {
-      track.style.width = `${this.width - 60}px`
+      track.style.width = `${this.width - 50}px`
     })
   }
 
