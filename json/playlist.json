@@ -39,10 +39,33 @@
 			]
 		},
 		{
+			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
+			"youtubeID": "CDyrWWPt534",
+			"year": "2004",
+			"animation": "Kanye",
+			"animationMix": 0.1,
+			"keyframes": [
+				{
+					"timecode": "00:10:10",
+					"actions":	["breathing"]
+				},
+				{
+					"timecode": "00:18:00",
+					"bpm": "81.7",
+					"actions": ["bop", "openEyes"]
+				},
+				{
+					"timecode": "02:49:00",
+					"actions":	["breathing", "openEyes"]
+				}
+			]
+		},
+		{
 			"spotifyID": "1YD3Dg7Olipi5FGVDLHWAu",
 			"youtubeID": "_ABk7TmjnVk",
 			"year": "2015",
 			"animation": "Kanye",
+			"animationMix": 0.35,
 			"keyframes": [
 				{
 					"timecode": "00:00:15",

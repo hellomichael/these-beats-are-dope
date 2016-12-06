@@ -1,5 +1,4 @@
 import Animation from './Animation'
-import * as Utils from './Utils.js'
 require('../scss/_aziz.scss')
 
 export default class Aziz extends Animation {
