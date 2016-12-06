@@ -12,6 +12,7 @@ export default class Kanye extends Animation {
     this.pixiScale = 1
     this.pixiResolution = Utils.isHighDensity() ? 1 : 1.5
     this.pixiAnimation = null
+    this.pixiAnimationMix = 0
     this.requestAnimationFrame = null
 
     this.kanyeWidth = Utils.isHighDensity() ? 1884 : 1884/this.pixiResolution
@@ -21,7 +22,6 @@ export default class Kanye extends Animation {
     this.kanyeDirection = 'left'
     this.kanyeBopCount = 0
     this.kanyeIdle = false
-
     this.mouseDirection = null
     this.mouseTimeout = null
 
@@ -101,7 +101,7 @@ export default class Kanye extends Animation {
       .add(`kanye--${this.id}`, 'img/kanye.json')
       .load((loader, res) => {
         this.kanye = new PIXI.spine.Spine(res[`kanye--${this.id}`].spineData)
-        this.setAnimationMixes(['breathing', 'shiver', 'bop', 'bopLeft', 'bopRight'], 0.35)
+        this.setAnimationMixes(['breathing', 'shiver', 'bop', 'bopLeft', 'bopRight'])
 
         if (!Utils.isHighDensity()) {
           this.kanye.scale.x = 1/this.pixiResolution
@@ -112,17 +112,17 @@ export default class Kanye extends Animation {
         this.kanye.position.y = this.kanyeHeight
 
         this.pixiStage.addChild(this.kanye)
-      })
 
-    // Events
-    this.handleResize()
-    this.handleMouseMove()
+        // Events
+        this.handleResize()
+        this.handleMouseMove()
+      })
   }
 
-  setAnimationMixes(animations, duration) {
+  setAnimationMixes(animations) {
     animations.map(first => {
       animations.map(second => {
-        this.kanye.stateData.setMix(first, second, duration)
+        this.kanye.stateData.setMix(first, second, this.pixiAnimationMix)
       })
     })
   }

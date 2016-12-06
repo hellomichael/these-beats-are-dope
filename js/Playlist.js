@@ -26,6 +26,9 @@ export default class Playlist {
 
     Object.assign(this, options)
 
+    // Only load first frame
+    this.playlist = this.playlist.slice(0,3)
+
     // Dom
     this.dom = {
       slideshow: null,
@@ -67,7 +70,7 @@ export default class Playlist {
 
   setAnimations() {
     this.playlist.map(slide => {
-      this.animations.push(slide.animation === 'Aziz' ? new Aziz({id: slide.youtubeID}) : new Kanye({id: slide.youtubeID}))
+      this.animations.push(slide.animation === 'Aziz' ? new Aziz({id: slide.youtubeID}) : new Kanye({id: slide.youtubeID, pixiAnimationMix: slide.animationMix}))
     })
   }
 
@@ -169,7 +172,6 @@ export default class Playlist {
   handleReady() {
     let animationPromises = []
     let videoPromises = []
-    let preloadStep = 100/(this.animations.length + 1)
     this.preload(88)
 
     // Preload all animations
