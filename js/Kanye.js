@@ -174,6 +174,31 @@ export default class Kanye extends Animation {
     this.kanyeBopCount++
   }
 
+  bopFast() {
+    console.log('Bop')
+
+    if (this.kanyeIdle) {
+      this.bopAngleFast()
+    }
+
+    else {
+      if (this.mouseDirection === 'left') {
+        this.bopLeftFast()
+      }
+
+      else if (this.mouseDirection === 'right') {
+        this.bopRightFast()
+      }
+
+      else {
+        this.kanye.state.setAnimation(0, 'bopFast', false)
+      }
+    }
+
+    this.blinkRandom()
+    this.kanyeBopCount++
+  }
+
   bopLeft() {
     console.log('Bop Left')
     this.kanye.state.setAnimation(0, 'bopLeft', false)
@@ -195,6 +220,29 @@ export default class Kanye extends Animation {
       this.bopLeft()
     }
   }
+
+  bopLeftFast() {
+    console.log('Bop Left')
+    this.kanye.state.setAnimation(0, 'bopLeftFast', false)
+    this.kanyeDirection = 'left'
+  }
+
+  bopRightFast() {
+    console.log('Bop Right')
+    this.kanye.state.setAnimation(0, 'bopRightFast', false)
+    this.kanyeDirection = 'right'
+  }
+
+  bopAngleFast() {
+    if (this.kanyeDirection === 'left') {
+      this.bopRightFast()
+    }
+
+    else if (this.kanyeDirection === 'right') {
+      this.bopLeftFast()
+    }
+  }
+
 
   openEyes() {
     if (!this.kanyeEyesOpen) {
