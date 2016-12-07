@@ -111,6 +111,7 @@ export default class Playlist {
         video:          this.videos[index],
         animation:      this.animations[index],
         keyframes:      slide.keyframes,
+        threshold:      slide.animationThreshold,
         nextSlide:      this.nextSlide.bind(this),
         isLoop:         (!(index)) ? true : false
       })

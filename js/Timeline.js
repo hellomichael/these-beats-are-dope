@@ -13,6 +13,8 @@ export default class Timeline {
     this.isResetting = false
     this.isLoop = false
     this.nextSlide = null
+    this.threshold = 0
+
     Object.assign(this, options)
     this.generateKeyframes()
   }
@@ -55,7 +57,6 @@ export default class Timeline {
 
     this.keyframes.map((keyframe, index) => {
       let bpm = 60/keyframe.bpm
-      let threshold = 0.35
       let currentTime = Utils.getSeconds(this.keyframes[index].timecode)
       let actions = this.keyframes[index].actions ? this.keyframes[index].actions : null
 
@@ -65,7 +66,7 @@ export default class Timeline {
 
         // Loop between current and next times
         if (isFinite(bpm)) {
-          for (var i=currentTime; i <= (nextTime - threshold); i += bpm) {
+          for (var i=currentTime; i <= (nextTime - this.threshold); i += bpm) {
             if (i < nextTime) {
               // console.log('Automatic Timecode', actions, Utils.getTimecode(i))
 
@@ -87,6 +88,8 @@ export default class Timeline {
           actions
         })
       }
+
+      // console.log(this.keyframesClone)
     })
   }
 
