@@ -195,7 +195,24 @@
 				{"timecode": "03:34:15", 								"actions": ["breathing"]},
 				{"timecode": "03:43:00", 	"bpm": "0"}
 			]
-		}
+		},
 
+
+		{
+			"spotifyID": "7rWwv1ePazmRzmJs4sARhI",
+			"youtubeID": "hCx4LfPDWSY",
+			"single": "The Good Life",
+			"year": "2007",
+			"animation": "Kanye",
+			"animationMix": 0.3,
+			"animationThreshold": 0.3,
+			"keyframes": [
+				{"timecode": "00:18:12", 									"actions":	["breathing"]},
+
+				{"timecode": "00:42:03", 	"bpm": "86.38", "actions": 	["bop", "openEyes"]},
+
+				{"timecode": "04:01:10", 									"actions":	["breathing", "openEyes"]}
+			]
+		}
 	]
 }
