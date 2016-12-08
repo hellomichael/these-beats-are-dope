@@ -16,10 +16,11 @@ module.exports = {
     loaders: [
       {
         test: /\.(jpg|png)$/,
-        loaders: [
-          'file?limit=8192&name=images/[name].[ext]',
-          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
-        ]
+        loader: 'url-loader',
+        query: {
+            limit: 51200,
+            name: 'images/[name].[ext]'
+        }
       },
       {
         test:     /\.js$/,
