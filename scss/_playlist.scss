@@ -9,7 +9,8 @@ $module: 'playlist';
   height: 100%;
   top: 0;
   left: 0;
-  overflow: hidden;
+  overflow: visible;
+  transition: 750ms transform $ease-in-out-quart;
 
   @if $debug {
     transform: scale(0.15);
@@ -26,9 +27,11 @@ $module: 'playlist';
   }
 
   &__slideshow {
+    overflow-y: hidden;
+    
     &--animations {
       z-index: 3;
-      transition: 750ms transform $ease-in-out-quart 0ms;
+      transition: 750ms transform $ease-in-out-quart;
 
       .#{$module}__slide {
         &:first-child {
@@ -330,4 +333,7 @@ $module: 'playlist';
   /* ==========================================================================
   Modifiers
   ========================================================================== */
+  &--zoom-in {
+    transform: scale(0.35);
+  }
 }
