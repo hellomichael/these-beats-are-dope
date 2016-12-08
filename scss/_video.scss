@@ -13,7 +13,7 @@ $module: 'video';
   background-color: $black;
   pointer-events: none;
   cursor: default;
-  transition: 1s opacity $ease-out-quint;
+  transition: 1s opacity $ease-out-quint, 750ms transform $ease-in-out-quart;
 
   @if $debug {
     opacity: 1;
@@ -36,4 +36,7 @@ $module: 'video';
   /* ==========================================================================
   Modifiers
   ========================================================================== */
+  &--zoom-in {
+    // transform: scale(0.8) translateY(-150px);
+  }
 }

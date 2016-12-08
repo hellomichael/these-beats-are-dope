@@ -196,16 +196,24 @@ export default class Kanye extends Animation {
     this.kanyeBopCount++
   }
 
-  bopLeft() {
-    console.log('Bop Left')
-    this.kanye.state.setAnimation(0, 'bopLeft', false)
-    this.kanyeDirection = 'left'
+  bopAngle() {
+    if (this.kanyeDirection === 'left') {
+      this.bopRight()
+    }
+
+    else if (this.kanyeDirection === 'right') {
+      this.bopLeft()
+    }
   }
 
-  bopRight() {
-    console.log('Bop Right')
-    this.kanye.state.setAnimation(0, 'bopRight', false)
-    this.kanyeDirection = 'right'
+  bopAngleFast() {
+    if (this.kanyeDirection === 'left') {
+      this.bopRightFast()
+    }
+
+    else if (this.kanyeDirection === 'right') {
+      this.bopLeftFast()
+    }
   }
 
   bopRandom() {
@@ -223,18 +231,6 @@ export default class Kanye extends Animation {
     }
   }
 
-  bopLeftFast() {
-    console.log('Bop Left')
-    this.kanye.state.setAnimation(0, 'bopLeftFast', false)
-    this.kanyeDirection = 'left'
-  }
-
-  bopRightFast() {
-    console.log('Bop Right')
-    this.kanye.state.setAnimation(0, 'bopRightFast', false)
-    this.kanyeDirection = 'right'
-  }
-
   bopRandomFast() {
     if (this.kanyeBopCount%(~~(Math.random() * 10) + 1) === 1) {
       console.log('Bop Fast')
@@ -250,6 +246,30 @@ export default class Kanye extends Animation {
     }
   }
 
+  bopLeft() {
+    console.log('Bop Left')
+    this.kanye.state.setAnimation(0, 'bopLeft', false)
+    this.kanyeDirection = 'left'
+  }
+
+  bopRight() {
+    console.log('Bop Right')
+    this.kanye.state.setAnimation(0, 'bopRight', false)
+    this.kanyeDirection = 'right'
+  }
+
+
+  bopLeftFast() {
+    console.log('Bop Left')
+    this.kanye.state.setAnimation(0, 'bopLeftFast', false)
+    this.kanyeDirection = 'left'
+  }
+
+  bopRightFast() {
+    console.log('Bop Right')
+    this.kanye.state.setAnimation(0, 'bopRightFast', false)
+    this.kanyeDirection = 'right'
+  }
 
   openEyes() {
     if (!this.kanyeEyesOpen) {

@@ -19,43 +19,59 @@
 
 
 		{
-			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
-			"youtubeID": "QWb6losRD38",
-			"single": "Love Lockdown",
-			"year": "2008",
-			"animation": "Kanye",
-			"animationMix": 0.3,
-			"animationThreshold": 0.45,
-			"keyframes": [
-				{"timecode": "00:18:12", 									"actions":	["breathing"]},
-				{"timecode": "00:21:21", 	"bpm": "59.91", "actions": 	["bop"]},
-				{"timecode": "00:28:15", 	"bpm": "59.91", "actions": 	["bop", "openEyes"]},
-				{"timecode": "00:44:20", 	"bpm": "59.91", "actions": 	["bop", "closeEyes"]},
-				{"timecode": "01:16:19", 	"bpm": "119.8", "actions": 	["bopFast", "openEyes"]},
-				{"timecode": "01:32:23", 	"bpm": "59.91", "actions": 	["bop", "closeEyes"]},
-				{"timecode": "02:20:26", 	"bpm": "119.8", "actions": 	["bopFast", "openEyes"]},
-				{"timecode": "02:36:29", 	"bpm": "59.91", "actions": 	["bop", "closeEyes"]},
-				{"timecode": "03:25:00", 	"bpm": "119.8", "actions": 	["bopFast", "openEyes"]},
-				{"timecode": "03:57:06", 									"actions":	["breathing", "closeEyes"]},
-				{"timecode": "04:01:15", 									"actions":	["breathing", "openEyes"]}
-			]
-		},
+		  "spotifyID": "1YD3Dg7Olipi5FGVDLHWAu",
+		  "youtubeID": "_ABk7TmjnVk",
+		  "single": "All Day",
+		  "year": "2015",
+		  "animation": "Kanye",
+		  "animationMix": 0.4,
+		  "animationThreshold": 0.5,
+		  "keyframes": [
+				{"timecode": "00:00:15", 									"actions": ["breathing"]},
+		    {"timecode": "00:15:25",	"bpm": "61.52", "actions": ["bop", "openEyes"]},
 
+		    {"timecode": "00:43:21", 									"actions": ["bopAngleFast", "closeEyes"]},
+		    {"timecode": "00:44:03", 									"actions": ["bopAngleFast"]},
+		    {"timecode": "00:44:18", 									"actions": ["bopFast"]},
+		    {"timecode": "00:45:02", 									"actions": ["bopAngleFast"]},
 
-		{
-			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
-			"youtubeID": "CDyrWWPt534",
-			"single": "Never Let Me Down",
-			"year": "2004",
-			"animation": "Kanye",
-			"animationMix": 0.25,
-			"animationThreshold": 0.25,
-			"keyframes": [
-				{"timecode": "00:10:10", 									"actions":	["breathing"]},
-				{"timecode": "00:18:00", 	"bpm": "81.7", 	"actions": 	["bop", "openEyes"]},
-				{"timecode": "01:28:15", 	"bpm": "81.7", 	"actions": 	["bop", "closeEyes"]},
-				{"timecode": "02:49:00", 									"actions":	["breathing", "openEyes"]}
-			]
+		    {"timecode": "00:47:01", 	"bpm": "61.52",	"actions": ["bop", "openEyes"]},
+		    {"timecode": "01:06:21", 									"actions": ["bop", "closeEyes"]},
+		    {"timecode": "01:08:11", 	"bpm": "61.52", "actions": ["bop", "openEyes"]},
+		    {"timecode": "01:18:06", 	"bpm": "30.7", 	"actions": ["bop", "closeEyes"]},
+		    {"timecode": "01:33:29", 									"actions": ["breathing"]},
+		    {"timecode": "01:41:22", 	"bpm": "61.52", "actions": ["bop", "openEyes"]},
+
+		    {"timecode": "02:24:16",									"actions": ["bopAngle"]},
+		    {"timecode": "02:25:04",									"actions": ["bopAngleFast", "closeEyes"]},
+		    {"timecode": "02:25:18",									"actions": ["bopFast"]},
+		    {"timecode": "02:26:02",									"actions": ["bopAngleFast"]},
+		    {"timecode": "02:26:17",									"actions": ["bop"]},
+
+		    {"timecode": "02:28:16", 									"actions": ["bop", "openEyes"]},
+		    {"timecode": "02:29:00", 									"actions": ["bopAngleFast"]},
+		    {"timecode": "02:32:11", 									"actions": ["bopFast", "closeEyes"]},
+		    {"timecode": "02:32:24", 									"actions": ["bopAngleFast"]},
+		    {"timecode": "02:36:09", 									"actions": ["bopAngleFast"]},
+		    {"timecode": "02:36:22", 									"actions": ["bopFast"]},
+
+		    {"timecode": "02:40:03", 									"actions": ["bop"]},
+		    {"timecode": "02:44:06", 	"bpm": "61.52", "actions": ["bop", "openEyes"]},
+		    {"timecode": "03:15:14", 									"actions": ["breathing"]},
+
+		    {"timecode": "03:31:00", 									"actions": ["bopFast", "openEyes"]},
+		    {"timecode": "03:31:12", 									"actions": ["bopAngleFast"]},
+		    {"timecode": "03:34:24", 									"actions": ["bopAngleFast", "closeEyes"]},
+		    {"timecode": "03:35:07", 									"actions": ["bopAngleFast"]},
+		    {"timecode": "03:38:22", 									"actions": ["bopFast", "openEyes"]},
+		    {"timecode": "03:39:06", 									"actions": ["bopAngleFast"]},
+		    {"timecode": "03:42:19", 									"actions": ["bopAngleFast"]},
+		    {"timecode": "03:43:02", 									"actions": ["bopFast", "closeEyes"]},
+
+		    {"timecode": "03:46:16", 	"bpm": "61.52", "actions": ["bop", "openEyes"]},
+		    {"timecode": "04:14:14", 									"actions": ["breathing", "closeEyes"]},
+		    {"timecode": "04:25:00", 									"actions": ["breathing"]}
+		  ]
 		},
 
 
@@ -63,10 +79,10 @@
 			"spotifyID": "4Li2WHPkuyCdtmokzW2007",
 			"youtubeID": "gG_dA32oH44",
 			"single": "Ni**as In Paris",
-			"year": "2004",
+			"year": "2011",
 			"animation": "Kanye",
 			"animationMix": 0.3,
-			"animationThreshold": 0.25,
+			"animationThreshold": 0.35,
 			"keyframes": [
 				{"timecode": "00:19:00", 									"actions": ["breathing"]},
 				{"timecode": "00:20:00",	"bpm": "69.9", 	"actions": ["bop"]},
@@ -110,6 +126,48 @@
 
 
 		{
+			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
+			"youtubeID": "QWb6losRD38",
+			"single": "Love Lockdown",
+			"year": "2008",
+			"animation": "Kanye",
+			"animationMix": 0.3,
+			"animationThreshold": 0.45,
+			"keyframes": [
+				{"timecode": "00:18:12", 									"actions":	["breathing"]},
+				{"timecode": "00:21:21", 	"bpm": "59.91", "actions": 	["bop"]},
+				{"timecode": "00:28:15", 	"bpm": "59.91", "actions": 	["bop", "openEyes"]},
+				{"timecode": "00:44:20", 	"bpm": "59.91", "actions": 	["bop", "closeEyes"]},
+				{"timecode": "01:16:19", 	"bpm": "119.8", "actions": 	["bopFast", "openEyes"]},
+				{"timecode": "01:32:23", 	"bpm": "59.91", "actions": 	["bop", "closeEyes"]},
+				{"timecode": "02:20:26", 	"bpm": "119.8", "actions": 	["bopFast", "openEyes"]},
+				{"timecode": "02:36:29", 	"bpm": "59.91", "actions": 	["bop", "closeEyes"]},
+				{"timecode": "03:25:00", 	"bpm": "119.8", "actions": 	["bopFast", "openEyes"]},
+				{"timecode": "03:57:06", 									"actions":	["breathing", "closeEyes"]},
+				{"timecode": "04:01:10", 									"actions":	["breathing", "openEyes"]}
+			]
+		},
+
+
+		{
+			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
+			"youtubeID": "CDyrWWPt534",
+			"single": "Never Let Me Down",
+			"year": "2004",
+			"animation": "Kanye",
+			"animationMix": 0.25,
+			"animationThreshold": 0.4,
+			"keyframes": [
+				{"timecode": "00:10:10", 									"actions":	["breathing"]},
+				{"timecode": "00:18:00", 	"bpm": "81.7", 	"actions": 	["bop", "openEyes"]},
+				{"timecode": "00:36:10", 	"bpm": "81.7", 	"actions": 	["bop", "closeEyes"]},
+				{"timecode": "01:28:15", 	"bpm": "81.7", 	"actions": 	["bop", "openEyes"]},
+				{"timecode": "02:49:00", 									"actions":	["breathing", "closeEyes"]}
+			]
+		},
+
+
+		{
 			"spotifyID": "1ce3DvvGQn6hY2LMGMLCr5",
 			"youtubeID": "xuhl6Ji5zHM",
 			"single": "Black Skinhead",
@@ -137,186 +195,7 @@
 				{"timecode": "03:34:15", 								"actions": ["breathing"]},
 				{"timecode": "03:43:00", 	"bpm": "0"}
 			]
-		},
-
-
-		{
-			"spotifyID": "1YD3Dg7Olipi5FGVDLHWAu",
-			"youtubeID": "_ABk7TmjnVk",
-			"single": "All Day",
-			"year": "2015",
-			"animation": "Kanye",
-			"animationMix": 0.35,
-			"animationThreshold": 0.25,
-			"keyframes": [
-				{
-					"timecode": "00:00:15",
-					"actions":	["breathing"]
-				},
-				{
-					"timecode": "00:15:25",
-					"bpm": "61.52",
-					"actions": ["bop", "openEyes"]
-				},
-
-		    {
-		      "timecode": "00:43:21",
-					"actions": ["bopAngle"]
-		    },
-		    {
-		      "timecode": "00:44:03",
-					"actions": ["bopAngle"]
-		    },
-		    {
-		      "timecode": "00:44:18",
-					"actions": ["bopAngle"]
-		    },
-		    {
-		      "timecode": "00:45:02",
-					"actions": ["bopAngle"]
-		    },
-
-
-		    {
-		      "timecode": "00:47:01",
-					"bpm": "61.52",
-					"actions": ["bop", "openEyes"]
-				},
-		    {
-		      "timecode": "01:06:21",
-					"actions": ["bop"]
-		    },
-		    {
-		      "timecode": "01:08:11",
-					"bpm": "61.52",
-					"actions": ["bop", "closeEyes"]
-				},
-				{
-		      "timecode": "01:18:06",
-					"bpm": "30.7",
-					"actions": ["bop"]
-				},
-				{
-		      "timecode": "01:33:29",
-					"actions": ["breathing"]
-				},
-				{
-		      "timecode": "01:41:22",
-					"bpm": "61.52",
-					"actions": ["bop", "openEyes"]
-				},
-
-
-
-				{
-			    "timecode": "02:24:16",
-			    "actions": ["bopAngle"]
-				},
-				{
-			    "timecode": "02:25:04",
-			    "actions": ["bopAngle"]
-				}, {
-			    "timecode": "02:25:18",
-			    "actions": ["bopAngle"]
-				}, {
-			    "timecode": "02:26:02",
-			    "actions": ["bopAngle"]
-				}, {
-			    "timecode": "02:26:17",
-			    "actions": ["bopAngle"]
-				},
-
-
-
-				{
-			    "timecode": "02:28:16",
-			    "actions": ["bopAngle"]
-				}, {
-			    "timecode": "02:29:00",
-			    "actions": ["bopAngle"]
-				}, {
-			    "timecode": "02:32:11",
-			    "actions": ["bopAngle"]
-				}, {
-			    "timecode": "02:32:24",
-			    "actions": ["bopAngle"]
-				}, {
-			    "timecode": "02:36:09",
-			    "actions": ["bopAngle"]
-				}, {
-			    "timecode": "02:36:22",
-			    "actions": ["bopAngle"]
-				},
-
-
-
-				{
-			    "timecode": "02:40:03",
-			    "actions": ["bop"]
-				},
-
-				{
-		      "timecode": "02:44:06",
-					"bpm": "61.52",
-  				"actions": ["bop", "openEyes"]
-		    },
-
-
-				{
-		      "timecode": "03:15:14",
-  				"actions": ["breathing"]
-		    },
-
-
-				{
-					"timecode": "03:31:00",
-					"actions": ["bopAngle", "openEyes"]
-				},
-				{
-					"timecode": "03:31:12",
-					"actions": ["bopAngle"]
-				},
-				{
-					"timecode": "03:34:24",
-					"actions": ["bopAngle"]
-				},
-				{
-					"timecode": "03:35:07",
-					"actions": ["bopAngle"]
-				},
-				{
-					"timecode": "03:38:22",
-					"actions": ["bopAngle"]
-				},
-				{
-					"timecode": "03:39:06",
-					"actions": ["bopAngle"]
-				},
-				{
-					"timecode": "03:42:19",
-					"actions": ["bopAngle"]
-				},
-				{
-					"timecode": "03:43:02",
-					"actions": ["bopAngle"]
-				},
-
-
-				{
-		      "timecode": "03:46:16",
-					"bpm": "61.52",
-  				"actions": ["bop", "closeEyes"]
-		    },
-
-				{
-		      "timecode": "04:14:14",
-					"actions": ["breathing"]
-	    	},
-
-				{
-					"timecode": "04:25:00"
-				}
-			]
 		}
+
 	]
 }

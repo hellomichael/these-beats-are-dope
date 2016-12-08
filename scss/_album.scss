@@ -9,8 +9,9 @@ $albumSize: 300px;
   display: none;
   @extend %center;
   width: $albumSize * $albumScale;
+  transform-origin: left top;
   transform: translateX(-50%) translateY(-50%);
-  transition: 1s transform $ease-out-quint;
+  transition: 750ms transform $ease-out-quint;
 
   @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
     display: block;
@@ -39,7 +40,7 @@ $albumSize: 300px;
     height: $albumSize * $albumScale;
     margin: 0 0 $gutter-md;
     transform-style: preserve-3d;
-    transform: rotateY(-#{90}deg);
+    transform: rotateY(-#{75}deg);
     backface-visibility: hidden;
     transition: 1000ms transform $ease-in-out-quint 50ms;
 
@@ -142,4 +143,16 @@ $albumSize: 300px;
   /* ==========================================================================
   Modifiers
   ========================================================================== */
+  &--zoom-in {
+    // transform: scale(0.5) translateX(-50%) translateY(-50%);
+    // transition: 750ms transform $ease-in-out-quart;
+    //
+    // @media screen and (min-width: $screen-md-min) {
+    //   transform: scale(0.5) translateX(-50%) translateX($kanye-distance-md) translateY(-50%);
+    // }
+    //
+    // @media screen and (min-width: $screen-lg-min) {
+    //   transform: scale(0.5) translateX(-50%) translateX($kanye-distance-lg) translateY(-50%);
+    // }
+  }
 }

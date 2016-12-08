@@ -240,6 +240,15 @@ export default class Playlist {
       else if (event.keyCode === 77) {
         this.videos[this.state.currentSlide].muteVideo()
       }
+
+      // Zoom
+      else if (event.keyCode === 40) {
+        this.zoomIn()
+      }
+
+      else if (event.keyCode === 38) {
+        this.zoomOut()
+      }
     })
   }
 
@@ -265,6 +274,34 @@ export default class Playlist {
         })
       })
     })
+  }
+
+  zoomIn() {
+    console.log('Zoom in')
+    this.dom.playlist.classList.add('playlist--zoom-in')
+
+    this.videos[this.state.currentSlide].youtube.getIframe()
+    .then(iframe => {
+      iframe.classList.add('video--zoom-in')
+    })
+
+    if (this.state.currentSlide) {
+      this.albums[this.state.currentSlide].element.classList.add('album--zoom-in')
+    }
+  }
+
+  zoomOut() {
+    console.log('Zoom out')
+    this.dom.playlist.classList.remove('playlist--zoom-in')
+
+    this.videos[this.state.currentSlide].youtube.getIframe()
+    .then(iframe => {
+      iframe.classList.remove('video--zoom-in')
+    })
+
+    if (this.state.currentSlide) {
+      this.albums[this.state.currentSlide].element.classList.remove('album--zoom-in');
+    }
   }
 
   prevSlide() {
@@ -333,7 +370,7 @@ export default class Playlist {
     // Animate albums
     let prevAlbum = this.dom.slideshowAlbums.children[this.state.prevSlide].querySelector('.album__vinyl')
     let nextAlbum = this.dom.slideshowAlbums.children[this.state.currentSlide].querySelector('.album__vinyl')
-    let slideRotation = (this.state.direction === 'rtl') ? -90 : 90
+    let slideRotation = (this.state.direction === 'rtl') ? -75 : 75
 
     prevAlbum ? prevAlbum.style.transform = `rotateY(${-slideRotation}deg)` : null
     nextAlbum ? nextAlbum.style.transform = `rotateY(${-15}deg)` : null
@@ -382,6 +419,7 @@ export default class Playlist {
   // Mounting
   componentDidMount() {
     // Update Dom
+    this.dom.playlist = document.querySelector('.playlist')
     this.dom.slideshows = document.querySelectorAll('.playlist__slideshow')
 
     this.dom.slideshowVideos = document.querySelector('.playlist__slideshow--videos')

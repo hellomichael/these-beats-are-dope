@@ -8,6 +8,8 @@ export default class Album {
   }
 
   componentDidMount() {
+    this.element = document.querySelector(`.album-${this.id}`)
+
     this.dom = {
       albumFront: document.querySelector(`.album-${this.id} .album__vinyl__front`)
     }
