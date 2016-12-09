@@ -39,12 +39,14 @@ export default class Timeline {
   }
 
   loopTimeline() {
+    this.stopTimeline()
     this.isResetting = true
 
     this.video.loopVideo()
     .then(() => {
       this.generateKeyframes()
       this.isResetting = false
+      this.playTimeline()
     })
   }
 
