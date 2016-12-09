@@ -27,7 +27,7 @@ export default class Playlist {
     Object.assign(this, options)
 
     // Only load first frame
-    this.playlist = this.playlist.slice(0,2)
+    // this.playlist = this.playlist.slice(0,2)
 
     // Dom
     this.dom = {
@@ -305,7 +305,7 @@ export default class Playlist {
   }
 
   prevSlide() {
-    if (this.state.currentSlide > 1 && !this.isTransitioning) {
+    if (this.state.currentSlide > 0 && !this.isTransitioning) {
       console.log('Previous Slide')
       this.state.prevSlide = this.state.currentSlide
       this.state.currentSlide--
@@ -327,10 +327,12 @@ export default class Playlist {
   }
 
   animateSlide() {
-    this.isTransitioning = true
+    console.log('Animate Slide')
 
     // Reset previous video, timeline, and animations
-    if (this.state.currentSlide) {
+    if (this.state.currentSlide || this.state.prevSlide) {
+      this.isTransitioning = true
+
       this.animations[this.state.prevSlide].stopAnimation()
       this.videos[this.state.prevSlide].pauseVideo()
       .then(() => {
@@ -338,10 +340,6 @@ export default class Playlist {
         this.timelines[this.state.prevSlide].stopTimeline()
         this.isTransitioning = false
       })
-    }
-
-    else {
-      this.isTransitioning = false
     }
 
     // Prefetch previous/next/first videos
