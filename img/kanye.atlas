@@ -6,21 +6,21 @@ filter: Linear,Linear
 repeat: none
 brow-left
   rotate: true
-  xy: 1965, 1880
+  xy: 1965, 1876
   size: 166, 78
   orig: 166, 78
   offset: 0, 0
   index: -1
 brow-right
   rotate: true
-  xy: 1888, 1475
+  xy: 1888, 1471
   size: 170, 58
   orig: 170, 58
   offset: 0, 0
   index: -1
 collar
   rotate: false
-  xy: 1501, 6
+  xy: 1501, 2
   size: 529, 324
   orig: 529, 324
   offset: 0, 0
@@ -28,13 +28,13 @@ collar
 ears
   rotate: false
   xy: 2, 42
-  size: 725, 198
-  orig: 725, 198
+  size: 723, 194
+  orig: 723, 194
   offset: 0, 0
   index: -1
 eyes
   rotate: true
-  xy: 1888, 1647
+  xy: 1888, 1643
   size: 399, 75
   orig: 399, 75
   offset: 0, 0
@@ -48,56 +48,56 @@ eyes-closed
   index: -1
 face-shadow
   rotate: false
-  xy: 1492, 332
+  xy: 1492, 328
   size: 548, 856
   orig: 548, 856
   offset: 0, 0
   index: -1
 forehead
   rotate: false
-  xy: 926, 76
+  xy: 926, 72
   size: 573, 231
   orig: 573, 231
   offset: 0, 0
   index: -1
 lapel
   rotate: false
-  xy: 2, 242
+  xy: 2, 238
   size: 922, 946
   orig: 922, 946
   offset: 0, 0
   index: -1
 nose
   rotate: false
-  xy: 729, 24
+  xy: 727, 20
   size: 161, 216
   orig: 161, 216
   offset: 0, 0
   index: -1
 nostril-left
   rotate: false
-  xy: 1888, 1395
+  xy: 1888, 1391
   size: 40, 78
   orig: 40, 78
   offset: 0, 0
   index: -1
 nostril-right
   rotate: false
-  xy: 1965, 1799
+  xy: 1965, 1795
   size: 43, 79
   orig: 43, 79
   offset: 0, 0
   index: -1
 shirt
   rotate: false
-  xy: 926, 309
+  xy: 926, 305
   size: 564, 879
   orig: 564, 879
   offset: 0, 0
   index: -1
 suit
   rotate: false
-  xy: 2, 1190
+  xy: 2, 1186
   size: 1884, 856
   orig: 1884, 856
   offset: 0, 0
@@ -110,16 +110,16 @@ filter: Linear,Linear
 repeat: none
 beard
   rotate: false
-  xy: 1291, 701
-  size: 593, 308
-  orig: 593, 308
+  xy: 1289, 701
+  size: 591, 306
+  orig: 591, 306
   offset: 0, 0
   index: -1
 face
   rotate: false
   xy: 2, 247
-  size: 620, 762
-  orig: 620, 762
+  size: 618, 760
+  orig: 618, 760
   offset: 0, 0
   index: -1
 glasses
@@ -131,35 +131,35 @@ glasses
   index: -1
 glasses-flare
   rotate: false
-  xy: 624, 273
+  xy: 622, 271
   size: 528, 186
   orig: 528, 186
   offset: 0, 0
   index: -1
 hair
   rotate: false
-  xy: 624, 461
+  xy: 622, 459
   size: 665, 548
   orig: 665, 548
   offset: 0, 0
   index: -1
 heart
   rotate: false
-  xy: 1761, 419
+  xy: 1759, 419
   size: 265, 280
   orig: 265, 280
   offset: 0, 0
   index: -1
 lips
   rotate: true
-  xy: 1886, 795
+  xy: 1882, 793
   size: 214, 159
   orig: 214, 159
   offset: 0, 0
   index: -1
 neck
   rotate: false
-  xy: 1291, 336
+  xy: 1289, 336
   size: 468, 363
   orig: 468, 363
   offset: 0, 0
