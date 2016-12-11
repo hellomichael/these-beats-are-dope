@@ -27,10 +27,9 @@ $module: 'playlist';
   }
 
   &__slideshow {
-    overflow-y: hidden;
-    
     &--animations {
       z-index: 3;
+      overflow-y: hidden;
       transition: 750ms transform $ease-in-out-quart;
 
       .#{$module}__slide {
@@ -46,6 +45,7 @@ $module: 'playlist';
     }
 
     &--videos {
+      overflow-y: hidden;
       z-index: 1;
       transition: 750ms transform $ease-in-out-quart 100ms;
       .#{$module}__slide {

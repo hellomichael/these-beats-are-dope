@@ -28,174 +28,53 @@
 		  "animationThreshold": 0.5,
 		  "keyframes": [
 				{"timecode": "00:00:15", 									"actions": ["breathing"]},
-		    {"timecode": "00:15:25",	"bpm": "61.52", "actions": ["bop", "openEyes"]},
 
-		    {"timecode": "00:43:21", 									"actions": ["bopAngleFast", "closeEyes"]},
-		    {"timecode": "00:44:03", 									"actions": ["bopAngleFast"]},
-		    {"timecode": "00:44:18", 									"actions": ["bopFast"]},
-		    {"timecode": "00:45:02", 									"actions": ["bopAngleFast"]},
+		    {"timecode": "00:15:25",	"bpm": "61.52", "actions": ["bopper"]},
 
-		    {"timecode": "00:47:01", 	"bpm": "61.52",	"actions": ["bop", "openEyes"]},
-		    {"timecode": "01:06:21", 									"actions": ["bop", "closeEyes"]},
-		    {"timecode": "01:08:11", 	"bpm": "61.52", "actions": ["bop", "openEyes"]},
-		    {"timecode": "01:18:06", 	"bpm": "30.7", 	"actions": ["bop", "closeEyes"]},
-		    {"timecode": "01:33:29", 									"actions": ["breathing"]},
-		    {"timecode": "01:41:22", 	"bpm": "61.52", "actions": ["bop", "openEyes"]},
+		    {"timecode": "00:43:21", 									"actions": ["bopper", "openCloseEyes"]},
+		    {"timecode": "00:44:03", 									"actions": ["bopper"]},
+		    {"timecode": "00:44:18", 									"actions": ["bopper"]},
+		    {"timecode": "00:45:02", 									"actions": ["bopper"]},
 
-		    {"timecode": "02:24:16",									"actions": ["bopAngle"]},
-		    {"timecode": "02:25:04",									"actions": ["bopAngleFast", "closeEyes"]},
-		    {"timecode": "02:25:18",									"actions": ["bopFast"]},
-		    {"timecode": "02:26:02",									"actions": ["bopAngleFast"]},
-		    {"timecode": "02:26:17",									"actions": ["bop"]},
+		    {"timecode": "00:47:01", 	"bpm": "61.52",	"actions": ["bopper"]},
 
-		    {"timecode": "02:28:16", 									"actions": ["bop", "openEyes"]},
-		    {"timecode": "02:29:00", 									"actions": ["bopAngleFast"]},
-		    {"timecode": "02:32:11", 									"actions": ["bopFast", "closeEyes"]},
-		    {"timecode": "02:32:24", 									"actions": ["bopAngleFast"]},
-		    {"timecode": "02:36:09", 									"actions": ["bopAngleFast"]},
-		    {"timecode": "02:36:22", 									"actions": ["bopFast"]},
+		    {"timecode": "01:06:21", 									"actions": ["bopper"]},
+		    {"timecode": "01:08:11", 	"bpm": "61.52", "actions": ["bopper"]},
 
-		    {"timecode": "02:40:03", 									"actions": ["bop"]},
-		    {"timecode": "02:44:06", 	"bpm": "61.52", "actions": ["bop", "openEyes"]},
-		    {"timecode": "03:15:14", 									"actions": ["breathing"]},
+		    {"timecode": "01:18:06", 	"bpm": "30.7", 	"actions": ["bopper"]},
+		    {"timecode": "01:33:15", 									"actions": ["breathing", "openCloseEyes"]},
+		    {"timecode": "01:41:22", 	"bpm": "61.52", "actions": ["bopper"]},
 
-		    {"timecode": "03:31:00", 									"actions": ["bopFast", "openEyes"]},
-		    {"timecode": "03:31:12", 									"actions": ["bopAngleFast"]},
-		    {"timecode": "03:34:24", 									"actions": ["bopAngleFast", "closeEyes"]},
-		    {"timecode": "03:35:07", 									"actions": ["bopAngleFast"]},
-		    {"timecode": "03:38:22", 									"actions": ["bopFast", "openEyes"]},
-		    {"timecode": "03:39:06", 									"actions": ["bopAngleFast"]},
-		    {"timecode": "03:42:19", 									"actions": ["bopAngleFast"]},
-		    {"timecode": "03:43:02", 									"actions": ["bopFast", "closeEyes"]},
+		    {"timecode": "02:24:16",									"actions": ["bopper"]},
+		    {"timecode": "02:25:04",									"actions": ["bopper", "openCloseEyes"]},
+		    {"timecode": "02:25:18",									"actions": ["bopper"]},
+		    {"timecode": "02:26:02",									"actions": ["bopper"]},
+		    {"timecode": "02:26:17",									"actions": ["bopper"]},
 
-		    {"timecode": "03:46:16", 	"bpm": "61.52", "actions": ["bop", "openEyes"]},
-		    {"timecode": "04:14:14", 									"actions": ["breathing", "closeEyes"]},
-		    {"timecode": "04:25:00", 									"actions": ["breathing"]}
+		    {"timecode": "02:28:16", 									"actions": ["bopper", "openCloseEyes"]},
+		    {"timecode": "02:29:00", 									"actions": ["bopper"]},
+		    {"timecode": "02:32:11", 									"actions": ["bopper"]},
+		    {"timecode": "02:32:24", 									"actions": ["bopper"]},
+		    {"timecode": "02:36:09", 									"actions": ["bopper"]},
+		    {"timecode": "02:36:22", 									"actions": ["bopper"]},
+
+		    {"timecode": "02:40:03", 									"actions": ["bopper"]},
+		    {"timecode": "02:44:06", 	"bpm": "61.52", "actions": ["bopper"]},
+		    {"timecode": "03:15:14", 									"actions": ["breathing", "openCloseEyes"]},
+
+		    {"timecode": "03:31:00", 									"actions": ["bopper", "openCloseEyes"]},
+		    {"timecode": "03:31:12", 									"actions": ["bopper"]},
+		    {"timecode": "03:34:24", 									"actions": ["bopper"]},
+		    {"timecode": "03:35:07", 									"actions": ["bopper"]},
+		    {"timecode": "03:38:22", 									"actions": ["bopper"]},
+		    {"timecode": "03:39:06", 									"actions": ["bopper"]},
+		    {"timecode": "03:42:19", 									"actions": ["bopper"]},
+		    {"timecode": "03:43:02", 									"actions": ["bopper"]},
+
+		    {"timecode": "03:46:16", 	"bpm": "61.52", "actions": ["bopper"]},
+		    {"timecode": "04:14:20", 									"actions": ["breathing"]},
+		    {"timecode": "04:20:00", 									"actions": ["breathing"]}
 		  ]
-		},
-
-
-		{
-			"spotifyID": "4Li2WHPkuyCdtmokzW2007",
-			"youtubeID": "gG_dA32oH44",
-			"single": "Ni**as In Paris",
-			"year": "2011",
-			"animation": "Kanye",
-			"animationMix": 0.3,
-			"animationThreshold": 0.35,
-			"keyframes": [
-				{"timecode": "00:19:00", 									"actions": ["breathing"]},
-				{"timecode": "00:20:00",	"bpm": "69.9", 	"actions": ["bop"]},
-				{"timecode": "00:23:11",	"bpm": "140",		"actions": ["bopFast", "openEyes"]},
-				{"timecode": "00:50:25",	"bpm": "70.15",	"actions": ["bop", "closeEyes"]},
-
-				{"timecode": "01:03:21",									"actions": ["breathing", "openEyes"]},
-				{"timecode": "01:04:21",	"bpm": "70.15",	"actions": ["bop", "closeEyes"]},
-
-				{"timecode": "01:18:11",	"bpm": "140",		"actions": ["bopFast", "openEyes"]},
-				{"timecode": "01:32:02",	"bpm": "70.15",	"actions": ["bop", "closeEyes"]},
-
-				{"timecode": "01:44:25",									"actions": ["breathing"]},
-				{"timecode": "01:45:25",	"bpm": "70.15",	"actions": ["bop", "closeEyes"]},
-				{"timecode": "01:48:07",									"actions": ["breathing"]},
-				{"timecode": "01:49:04",	"bpm": "70.15",	"actions": ["bop", "openEyes"]},
-				{"timecode": "01:51:17",									"actions": ["breathing"]},
-				{"timecode": "01:52:15",	"bpm": "70.15",	"actions": ["bop", "closeEyes"]},
-				{"timecode": "01:55:02",									"actions": ["breathing"]},
-				{"timecode": "01:55:28",	"bpm": "70.15",	"actions": ["bop", "closeEyes"]},
-				{"timecode": "01:58:17",									"actions": ["breathing", "openEyes"]},
-
-				{"timecode": "01:59:10",	"bpm": "140",		"actions": ["bopFast", "openEyes"]},
-				{"timecode": "02:13:05",	"bpm": "70.15",	"actions": ["bop"]},
-
-				{"timecode": "02:25:02",									"actions": ["breathing", "closeEyes"]},
-				{"timecode": "02:26:27",	"bpm": "70.15",	"actions": ["bop"]},
-
-				{"timecode": "02:40:19",									"actions": ["breathing", "closeEyes"]},
-				{"timecode": "02:47:13",	"bpm": "140",		"actions": ["bopFast", "openEyes"]},
-
-				{"timecode": "02:40:02",									"actions": ["breathing", "closeEyes"]},
-				{"timecode": "02:47:13",	"bpm": "140",		"actions": ["bopFast", "openEyes"]},
-
-				{"timecode": "03:01:03",									"actions": ["breathing", "closeEyes"]},
-				{"timecode": "03:14:27",	"bpm": "70.15",	"actions": ["bop", "openEyes"]},
-				{"timecode": "03:55:02",									"actions": ["breathing", "closeEyes"]},
-				{"timecode": "04:09:15",									"actions": ["breathing", "openEyes"]}
-			]
-		},
-
-
-		{
-			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
-			"youtubeID": "QWb6losRD38",
-			"single": "Love Lockdown",
-			"year": "2008",
-			"animation": "Kanye",
-			"animationMix": 0.3,
-			"animationThreshold": 0.45,
-			"keyframes": [
-				{"timecode": "00:18:12", 									"actions":	["breathing"]},
-				{"timecode": "00:21:21", 	"bpm": "59.91", "actions": 	["bop"]},
-				{"timecode": "00:28:15", 	"bpm": "59.91", "actions": 	["bop", "openEyes"]},
-				{"timecode": "00:44:20", 	"bpm": "59.91", "actions": 	["bop", "closeEyes"]},
-				{"timecode": "01:16:19", 	"bpm": "119.8", "actions": 	["bopFast", "openEyes"]},
-				{"timecode": "01:32:23", 	"bpm": "59.91", "actions": 	["bop", "closeEyes"]},
-				{"timecode": "02:20:26", 	"bpm": "119.8", "actions": 	["bopFast", "openEyes"]},
-				{"timecode": "02:36:29", 	"bpm": "59.91", "actions": 	["bop", "closeEyes"]},
-				{"timecode": "03:25:00", 	"bpm": "119.8", "actions": 	["bopFast", "openEyes"]},
-				{"timecode": "03:57:06", 									"actions":	["breathing", "closeEyes"]},
-				{"timecode": "04:01:10", 									"actions":	["breathing", "openEyes"]}
-			]
-		},
-
-
-		{
-			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
-			"youtubeID": "CDyrWWPt534",
-			"single": "Never Let Me Down",
-			"year": "2004",
-			"animation": "Kanye",
-			"animationMix": 0.25,
-			"animationThreshold": 0.4,
-			"keyframes": [
-				{"timecode": "00:10:10", 									"actions":	["breathing"]},
-				{"timecode": "00:18:00", 	"bpm": "81.7", 	"actions": 	["bop", "openEyes"]},
-				{"timecode": "00:36:10", 	"bpm": "81.7", 	"actions": 	["bop", "closeEyes"]},
-				{"timecode": "01:28:15", 	"bpm": "81.7", 	"actions": 	["bop", "openEyes"]},
-				{"timecode": "02:49:00", 									"actions":	["breathing", "closeEyes"]}
-			]
-		},
-
-
-		{
-			"spotifyID": "1ce3DvvGQn6hY2LMGMLCr5",
-			"youtubeID": "xuhl6Ji5zHM",
-			"single": "Black Skinhead",
-			"year": "2013",
-			"animation": "Kanye",
-			"animationMix": 0.3,
-			"animationThreshold": 0.25,
-			"keyframes": [
-				{"timecode": "00:12:00", 								"actions": ["breathing"]},
-				{"timecode": "00:16:20", 	"bpm": "130", "actions": ["bopFast", "eyesOpen"]},
-
-				{"timecode": "00:22:08", 								"actions": ["shiver"]},
-				{"timecode": "00:24:03", 								"actions": ["shiver"]},
-				{"timecode": "00:25:27", 								"actions": ["shiver"]},
-				{"timecode": "00:26:27", 								"actions": ["shiver"]},
-				{"timecode": "00:27:24", 								"actions": ["shiver"]},
-
-				{"timecode": "00:29:20", 	"bpm": "130", "actions": ["bopFast", "eyesOpen"]},
-				{"timecode": "01:14:00", 								"actions": ["shiver"]},
-				{"timecode": "01:28:20", 	"bpm": "130", "actions": ["bopFast", "eyesOpen"]},
-				{"timecode": "01:49:25", 								"actions": ["shiver"]},
-				{"timecode": "02:05:10", 	"bpm": "130", "actions": ["bopFast", "eyesOpen"]},
-				{"timecode": "02:35:00", 								"actions": ["shiver"]},
-				{"timecode": "02:49:25", 	"bpm": "130", "actions": ["bopFast", "eyesOpen"]},
-				{"timecode": "03:34:15", 								"actions": ["breathing"]},
-				{"timecode": "03:43:00", 	"bpm": "0"}
-			]
 		}
-
 	]
 }

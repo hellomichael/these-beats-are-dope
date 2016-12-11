@@ -60,39 +60,39 @@ export default class Timeline {
     this.keyframes.map((keyframe, index) => {
       let bpm = 60/keyframe.bpm
       let currentTime = Utils.getSeconds(this.keyframes[index].timecode)
+      let nextTime = isFinite(bpm) ? Utils.getSeconds(this.keyframes[index + 1].timecode) : 0
+      let duration = nextTime - currentTime
+      let repetitions = isFinite(bpm) ? Math.round(duration/bpm) : 0
       let actions = this.keyframes[index].actions ? this.keyframes[index].actions : null
 
       // Generate automatic keyframes if bpm provided
       if (isFinite(bpm)) {
-        let nextTime = Utils.getSeconds(this.keyframes[index + 1].timecode)
+        let bpmCount = 0;
 
         // Loop between current and next times
-        if (isFinite(bpm)) {
-          for (var i=currentTime; i <= (nextTime - this.threshold); i += bpm) {
-            if (i < nextTime) {
-              // console.log('Automatic Timecode', actions, Utils.getTimecode(i))
+        for (var i=currentTime; i <= (nextTime - this.threshold); i += bpm) {
+          if (i < nextTime) {
+            this.keyframesClone.push({
+              timecode: Utils.getTimecode(i),
+              bpm: Utils.getTwoDecimalPlaces(bpm),
+              actions: ((repetitions > 15) && (bpmCount === Math.round(repetitions/2)) || !bpmCount) ? actions.concat(['openCloseEyes']): actions
+            })
 
-              this.keyframesClone.push({
-                timecode: Utils.getTimecode(i),
-                actions
-              })
-            }
+            bpmCount++
           }
         }
       }
 
       // Generate manual keyframes
       else {
-        // console.log('Manual Timecode', actions, Utils.getTimecode(currentTime))
-
         this.keyframesClone.push({
           timecode: Utils.getTimecode(currentTime),
           actions
         })
       }
-
-      // console.log(this.keyframesClone)
     })
+
+    // console.log(this.keyframesClone)
   }
 
   removeKeyframes() {
@@ -116,7 +116,9 @@ export default class Timeline {
     // Check if there are still keyframes left
     let keyframe = this.keyframesClone.length ? this.keyframesClone[0] : null
     let nextKeyframe = this.keyframesClone.length > 2 ? this.keyframesClone[1] : null
-    let keyframeDuration = nextKeyframe ? Utils.getSeconds(nextKeyframe.timecode) - Utils.getSeconds(keyframe.timecode) : 0
+    let keyframeBpm = keyframe ? keyframe.bpm : 0
+    let nextKeyframeBpm = nextKeyframe ? nextKeyframe.bpm : 0
+    let keyframeDuration = nextKeyframe ? Utils.getTwoDecimalPlaces(Utils.getSeconds(nextKeyframe.timecode) - Utils.getSeconds(keyframe.timecode)) : 0
 
     if (keyframe && this.video.getCurrentTime() >= Utils.getSeconds(keyframe.timecode)) {
       // Play the actions
@@ -124,13 +126,49 @@ export default class Timeline {
         keyframe.actions.map(action => {
           // Check if function exists in Animation class
           if (typeof this.animation[action] === 'function') {
-            this.animation[action]()
+            // Bopping generator
+            if (action === 'bopper') {
+              // Automated bops with bopCycle
+              if (keyframeBpm && keyframeDuration <= 0.75) {
+                this.animation['bopper']('fast', 'cycle')
+              }
 
-            // Extended lengths of time
-            if (keyframeDuration > 1.5 && this.animation[action].name != 'breathing') {
-              setTimeout(() => {
-                this.animation['breathing']()
-              }, 750)
+              else if (keyframeBpm && keyframeDuration > 0.75) {
+                this.animation['bopper'](false, 'cycle')
+              }
+
+              // Manual bops with bopAngle
+              else if (keyframeDuration <= 0.75) {
+                this.animation['bopper']('fast', 'angle')
+              }
+
+              else if (keyframeDuration > 0.75) {
+                this.animation['bopper'](false, 'angle')
+              }
+
+              else {
+                this.animation['bopper']()
+              }
+            }
+
+            else {
+              this.animation[action]()
+            }
+
+            // Automatic breathing
+            if (action === 'bopper' || action === 'bopCycle' || action === 'bopCycleFast' || action === 'bopAngle' || action === 'bopAngleFast') {
+              // Single manual action (no bpm)
+              if (keyframeDuration > 1.5) {
+                setTimeout(() => {
+                  this.animation['breathing']()
+
+                  if (keyframeDuration > 10) {
+                    this.animation['openCloseEyes']()
+                  }
+                }, 500)
+
+                this.animation['closeEyes']()
+              }
             }
           }
         })
