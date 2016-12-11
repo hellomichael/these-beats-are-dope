@@ -22,6 +22,7 @@ export default class Playlist {
     this.width = window.innerWidth
     this.height = window.innerHeight
     this.isTransitioning = false
+    this.isZoom = true
     this.preloaded = 0
 
     Object.assign(this, options)
@@ -241,13 +242,14 @@ export default class Playlist {
         this.videos[this.state.currentSlide].muteVideo()
       }
 
-      // Zoom
+      // Zoom Out (Down)
       else if (event.keyCode === 40) {
-        this.zoomIn()
+        this.zoomOut()
       }
 
+      // Zoom In (Up)
       else if (event.keyCode === 38) {
-        this.zoomOut()
+        this.zoomIn()
       }
     })
   }
@@ -276,34 +278,46 @@ export default class Playlist {
           slide.style.transform = `translateX(${index * 100}%)`
         })
       })
+
+      if (!Utils.isDesktop()) {
+        this.zoomIn()
+      }
     })
-  }
-
-  zoomIn() {
-    console.log('Zoom in')
-    this.dom.playlist.classList.add('playlist--zoom-in')
-
-    this.videos[this.state.currentSlide].youtube.getIframe()
-    .then(iframe => {
-      iframe.classList.add('video--zoom-in')
-    })
-
-    if (this.state.currentSlide) {
-      this.albums[this.state.currentSlide].element.classList.add('album--zoom-in')
-    }
   }
 
   zoomOut() {
-    console.log('Zoom out')
-    this.dom.playlist.classList.remove('playlist--zoom-in')
+    if (this.isZoom && Utils.isDesktop()) {
+      console.log('Zoom out')
+      this.dom.playlist.classList.add('playlist--zoom-out')
 
-    this.videos[this.state.currentSlide].youtube.getIframe()
-    .then(iframe => {
-      iframe.classList.remove('video--zoom-in')
-    })
+      this.videos[this.state.currentSlide].youtube.getIframe()
+      .then(iframe => {
+        iframe.classList.add('video--zoom-out')
+      })
 
-    if (this.state.currentSlide) {
-      this.albums[this.state.currentSlide].element.classList.remove('album--zoom-in');
+      if (this.state.currentSlide) {
+        this.albums[this.state.currentSlide].element.classList.add('album--zoom-out')
+      }
+
+      this.isZoom = false
+    }
+  }
+
+  zoomIn() {
+    if (!this.isZoom) {
+      console.log('Zoom in')
+      this.dom.playlist.classList.remove('playlist--zoom-out')
+
+      this.videos[this.state.currentSlide].youtube.getIframe()
+      .then(iframe => {
+        iframe.classList.remove('video--zoom-out')
+      })
+
+      if (this.state.currentSlide) {
+        this.albums[this.state.currentSlide].element.classList.remove('album--zoom-out');
+      }
+
+      this.isZoom = true
     }
   }
 
