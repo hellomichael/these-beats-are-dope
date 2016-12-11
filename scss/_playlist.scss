@@ -28,14 +28,34 @@ $module: 'playlist';
 
   &__slideshow {
     &--animations {
+      @extend %before-after;
+
       z-index: 3;
-      overflow-y: hidden;
       transition: 750ms transform $ease-in-out-quart;
 
       .#{$module}__slide {
         &:first-child {
           z-index: 1;
         }
+      }
+
+      // Hide video overlap
+      &:before, &:after {
+        position: absolute;
+        left: 50%;
+        height: 300px;
+        width: 150%;
+        background-color: $black;
+      }
+
+      &:before {
+        top: 0;
+        transform: translateX(-50%) translateY(-100%);
+      }
+
+      &:after {
+        bottom: 0;
+        transform: translateX(-50%) translateY(100%);
       }
     }
 
@@ -45,7 +65,6 @@ $module: 'playlist';
     }
 
     &--videos {
-      overflow-y: hidden;
       z-index: 1;
       transition: 750ms transform $ease-in-out-quart 100ms;
       .#{$module}__slide {
