@@ -262,11 +262,14 @@ export default class Playlist {
       // Update track
       this.setProgress()
 
-      // Update slideshow
+      // Update slides
       Array.from(this.dom.slideshows).map(slideshow => {
+        // Update animation, albums, video
         slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
+        slideshow.style.width = `${this.width * (this.albums.length)}px`
+        slideshow.style.height = `${this.height}px`
 
-        // Update children
+        // Update slides
         Array.from(slideshow.children).map((slide, index) => {
           slide.style.width = `${this.width}px`
           slide.style.height = `${this.height}px`
