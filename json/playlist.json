@@ -19,6 +19,30 @@
 
 
 		{
+			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
+			"youtubeID": "QWb6losRD38",
+			"single": "Love Lockdown",
+			"year": "2008",
+			"animation": "Kanye",
+			"animationMix": 0.3,
+			"animationThreshold": 0.45,
+			"keyframes": [
+				{"timecode": "00:18:11", 									"actions":	["breathing"]},
+				{"timecode": "00:21:21", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "00:28:15", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "00:44:20", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "01:16:19", 	"bpm": "119.8", "actions": 	["bopper"]},
+				{"timecode": "01:32:23", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "02:20:26", 	"bpm": "119.8", "actions": 	["bopper"]},
+				{"timecode": "02:36:29", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "03:25:00", 	"bpm": "119.8", "actions": 	["bopper"]},
+				{"timecode": "03:57:06", 									"actions":	["breathing"]},
+				{"timecode": "04:01:10", 									"actions":	["breathing"]}
+			]
+		},
+
+
+		{
 			"spotifyID": "4Li2WHPkuyCdtmokzW2007",
 			"youtubeID": "gG_dA32oH44",
 			"single": "Ni**as In Paris",
@@ -76,7 +100,7 @@
 		  "single": "All Day",
 		  "year": "2015",
 		  "animation": "Kanye",
-		  "animationMix": 0.4,
+		  "animationMix": 0.3,
 		  "animationThreshold": 0.5,
 		  "keyframes": [
 				{"timecode": "00:00:15", 									"actions": ["breathing"]},
