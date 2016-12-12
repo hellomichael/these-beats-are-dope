@@ -74,8 +74,14 @@ export default class Timeline {
           if (i < nextTime) {
             let actionsClone = [...actions]
 
-            // Open/close eyes if halfway through long bopping
-            if ((repetitions > 15) && (bpmCount === Math.round(repetitions/2)) || !bpmCount) {
+            // Open/close eyes through long bopping
+            if ((repetitions > 30 && bpmCount%15 === 1) || !bpmCount) {
+              console.log(Utils.getTimecode(i), bpmCount)
+
+              actionsClone.push('openCloseEyes')
+            }
+
+            else if ((repetitions > 15) && (bpmCount === Math.round(repetitions/2)) || !bpmCount) {
               actionsClone.push('openCloseEyes')
             }
 
@@ -147,11 +153,11 @@ export default class Timeline {
                 this.animation['bopper']('fast', 'angle')
               }
 
-              else if (keyframeBpm && keyframeDuration <= 0.75) {
+              else if (keyframeBpm && keyframeDuration <= 0.7) {
                 this.animation['bopper']('fast', 'cycle')
               }
 
-              else if (keyframeBpm && keyframeDuration > 0.75) {
+              else if (keyframeBpm && keyframeDuration > 0.7) {
                 this.animation['bopper'](false, 'cycle')
               }
 

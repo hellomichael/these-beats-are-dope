@@ -19,6 +19,23 @@
 
 
 		{
+			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
+			"youtubeID": "CDyrWWPt534",
+			"single": "Never Let Me Down",
+			"year": "2004",
+			"animation": "Kanye",
+			"animationMix": 0.3,
+			"animationThreshold": 0.4,
+			"keyframes": [
+				{"timecode": "00:10:10", 									"actions":	["breathing"]},
+				{"timecode": "00:18:00", 	"bpm": "81.7", 	"actions": 	["bopper"]},
+				{"timecode": "02:49:00", 									"actions":	["breathing"]}
+			]
+		},
+
+
+
+		{
 			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
 			"youtubeID": "QWb6losRD38",
 			"single": "Love Lockdown",
