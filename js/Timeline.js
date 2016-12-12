@@ -60,10 +60,10 @@ export default class Timeline {
     this.keyframes.map((keyframe, index) => {
       let bpm = 60/keyframe.bpm
       let currentTime = Utils.getSeconds(this.keyframes[index].timecode)
-      let nextTime = isFinite(bpm) ? Utils.getSeconds(this.keyframes[index + 1].timecode) : 0
+      let nextTime = ((index + 1) < this.keyframes.length) ? Utils.getSeconds(this.keyframes[index + 1].timecode): 0
       let duration = nextTime - currentTime
       let repetitions = isFinite(bpm) ? Math.round(duration/bpm) : 0
-      let actions = this.keyframes[index].actions ? this.keyframes[index].actions : null
+      let actions = this.keyframes[index].actions ? this.keyframes[index].actions : []
 
       // Generate automatic keyframes if bpm provided
       if (isFinite(bpm)) {
@@ -72,10 +72,17 @@ export default class Timeline {
         // Loop between current and next times
         for (var i=currentTime; i <= (nextTime - this.threshold); i += bpm) {
           if (i < nextTime) {
+            let actionsClone = [...actions]
+
+            // Open/close eyes if halfway through long bopping
+            if ((repetitions > 15) && (bpmCount === Math.round(repetitions/2)) || !bpmCount) {
+              actionsClone.push('openCloseEyes')
+            }
+
             this.keyframesClone.push({
               timecode: Utils.getTimecode(i),
               bpm: Utils.getTwoDecimalPlaces(bpm),
-              actions: ((repetitions > 15) && (bpmCount === Math.round(repetitions/2)) || !bpmCount) ? actions.concat(['openCloseEyes']): actions
+              actions: actionsClone
             })
 
             bpmCount++
@@ -85,6 +92,13 @@ export default class Timeline {
 
       // Generate manual keyframes
       else {
+        let actionsClone = actions ? [...actions] : []
+
+        // Open/close eyes if breathing with long duration
+        if (actionsClone.includes('breathing') && !actionsClone.includes('openCloseEyes') && duration > 5) {
+          actionsClone.push('openCloseEyes')
+        }
+
         this.keyframesClone.push({
           timecode: Utils.getTimecode(currentTime),
           actions
@@ -129,7 +143,11 @@ export default class Timeline {
             // Bopping generator
             if (action === 'bopper') {
               // Automated bops with bopCycle
-              if (keyframeBpm && keyframeDuration <= 0.75) {
+              if (keyframeBpm && keyframeDuration <= 0.45) {
+                this.animation['bopper']('fast', 'angle')
+              }
+
+              else if (keyframeBpm && keyframeDuration <= 0.75) {
                 this.animation['bopper']('fast', 'cycle')
               }
 
@@ -165,7 +183,7 @@ export default class Timeline {
                   if (keyframeDuration > 10) {
                     this.animation['openCloseEyes']()
                   }
-                }, 500)
+                }, (keyframeDuration > 10) ? 750 : 500)
 
                 this.animation['closeEyes']()
               }

@@ -157,12 +157,6 @@ export default class Kanye extends Animation {
     }, 1000/60)
   }
 
-  breathing() {
-    console.log('Breathing')
-    this.kanye.state.setAnimation(0, 'breathing', true)
-    this.switchBopDirection()
-  }
-
   bopper(speed, direction) {
     if (this.kanyeIdle) {
       if (direction === 'cycle' && speed === 'fast') {
@@ -264,16 +258,6 @@ export default class Kanye extends Animation {
     }
   }
 
-  switchBopDirection() {
-    if (this.kanyeDirection === 'left') {
-      this.kanyeDirection = 'right'
-    }
-
-    else if (this.kanyeDirection === 'right') {
-      this.kanyeDirection = 'left'
-    }
-  }
-
   bop () {
     console.log('Bop')
     this.kanye.state.setAnimation(0, 'bop', false)
@@ -306,6 +290,22 @@ export default class Kanye extends Animation {
     console.log('Bop Right Fast')
     this.kanye.state.setAnimation(0, 'bopRightFast', false)
     this.kanyeDirection = 'right'
+  }
+
+  switchBopDirection() {
+    if (this.kanyeDirection === 'left') {
+      this.kanyeDirection = 'right'
+    }
+
+    else if (this.kanyeDirection === 'right') {
+      this.kanyeDirection = 'left'
+    }
+  }
+
+  breathing() {
+    console.log('Breathing')
+    this.kanye.state.setAnimation(0, 'breathing', true)
+    this.switchBopDirection()
   }
 
   openCloseEyes() {
