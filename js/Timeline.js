@@ -143,7 +143,7 @@ export default class Timeline {
             // Bopping generator
             if (action === 'bopper') {
               // Automated bops with bopCycle
-              if (keyframeBpm && keyframeDuration <= 0.45) {
+              if (keyframeBpm && keyframeDuration <= 0.5) {
                 this.animation['bopper']('fast', 'angle')
               }
 
