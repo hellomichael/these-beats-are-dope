@@ -35,6 +35,8 @@ export default class Video {
       videoId: options.id,
       playerVars: {
         autoplay: 0,
+        fs: 0,
+        playsinline: 1,
         loop: 0,
         controls: 0,
         modestbranding: 1,
