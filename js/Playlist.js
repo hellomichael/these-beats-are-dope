@@ -28,7 +28,7 @@ export default class Playlist {
     Object.assign(this, options)
 
     // Only load first frame
-    this.playlist = this.playlist.slice(0,2)
+    this.playlist = this.playlist.slice(0,3)
 
     // Dom
     this.dom = {
