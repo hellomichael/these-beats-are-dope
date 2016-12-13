@@ -125,7 +125,7 @@ export default class Kanye extends Animation {
     animations.map(firstAnimation => {
       animations.map(secondAnimation => {
         if (firstAnimation.includes('bopFast') || firstAnimation.includes('bopLeftFast') || firstAnimation.includes('bopRightFast') || secondAnimation.includes('bopFast') || secondAnimation.includes('bopLeftFast') || secondAnimation.includes('bopRightFast')) {
-          this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.25)
+          this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.3)
         }
 
         else if (firstAnimation.includes('breathing') && secondAnimation.includes('breathing')) {
