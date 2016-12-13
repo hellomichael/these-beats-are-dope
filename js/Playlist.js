@@ -1,4 +1,5 @@
 import 'whatwg-fetch'
+import Hammer from 'hammerjs'
 import Album from './Album.js'
 import Video from './Video.js'
 import Timeline from './Timeline.js'
@@ -203,7 +204,6 @@ export default class Playlist {
   // Controls
   handleClick() {
     this.app.addEventListener('click', event => {
-
       // Next
       if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__play, .playlist__play *')) {
         event.preventDefault()
@@ -215,6 +215,26 @@ export default class Playlist {
         event.preventDefault()
         this.prevSlide()
       }
+    })
+  }
+
+  handleSwipe() {
+    let manager = new Hammer.Manager(this.dom.playlist);
+    let swipe = new Hammer.Swipe({
+      direction: Hammer.DIRECTION_HORIZONTAL
+    })
+
+    this.dom.playlist.style['touch-action'] = 'manipulation'
+    this.dom.playlist.style['cursor'] = 'pointer'
+    
+    manager.add(swipe)
+
+    manager.on('swipeleft', event => {
+      this.nextSlide()
+    })
+
+    manager.on('swiperight', event => {
+      this.prevSlide()
     })
   }
 
@@ -466,6 +486,7 @@ export default class Playlist {
 
     // Events
     this.handleClick()
+    this.handleSwipe()
     this.handleKeypress()
     this.handleResize()
     this.handleReady()
