@@ -76,8 +76,6 @@ export default class Timeline {
 
             // Open/close eyes through long bopping
             if ((repetitions > 30 && bpmCount%15 === 1) || !bpmCount) {
-              console.log(Utils.getTimecode(i), bpmCount)
-
               actionsClone.push('openCloseEyes')
             }
 
