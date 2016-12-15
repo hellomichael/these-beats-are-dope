@@ -239,6 +239,11 @@ export default class Playlist {
           video.muteVideo()
         })
       }
+
+      else if (event.target.matches('.playlist__close')) {
+        event.preventDefault()
+        this.zoomIn()
+      }
     })
   }
 
@@ -290,7 +295,7 @@ export default class Playlist {
       }
 
       // Zoom In (Up)
-      else if (event.keyCode === 38) {
+      else if (event.keyCode === 38 || event.keyCode === 27) {
         this.zoomIn()
       }
     })
@@ -328,18 +333,12 @@ export default class Playlist {
   }
 
   zoomOut() {
-    if (this.isZoom && Utils.isDesktop()) {
+    if (this.isZoom) {
       console.log('Zoom out')
       this.dom.playlist.classList.add('playlist--zoom-out')
-
-      this.videos[this.state.currentSlide].youtube.getIframe()
-      .then(iframe => {
-        iframe.classList.add('video--zoom-out')
-      })
-
-      if (this.state.currentSlide) {
-        this.albums[this.state.currentSlide].element.classList.add('album--zoom-out')
-      }
+      this.dom.overlay.classList.add('playlist__overlay--visible')
+      this.dom.about.classList.add('playlist__about--visible')
+      this.dom.close.classList.add('playlist__close--visible')
 
       this.isZoom = false
     }
@@ -349,15 +348,9 @@ export default class Playlist {
     if (!this.isZoom) {
       console.log('Zoom in')
       this.dom.playlist.classList.remove('playlist--zoom-out')
-
-      this.videos[this.state.currentSlide].youtube.getIframe()
-      .then(iframe => {
-        iframe.classList.remove('video--zoom-out')
-      })
-
-      if (this.state.currentSlide) {
-        this.albums[this.state.currentSlide].element.classList.remove('album--zoom-out')
-      }
+      this.dom.overlay.classList.remove('playlist__overlay--visible')
+      this.dom.about.classList.remove('playlist__about--visible')
+      this.dom.close.classList.remove('playlist__close--visible')
 
       this.isZoom = true
     }
@@ -382,6 +375,10 @@ export default class Playlist {
       this.state.direction = 'rtl'
       this.animateSlide()
       this.animateControls()
+    }
+
+    else if (!this.isTransitioning) {
+      this.zoomOut()
     }
   }
 
@@ -435,11 +432,11 @@ export default class Playlist {
 
   animateControls() {
     // Show/Hide controls
-    if (this.state.currentSlide === this.albums.length - 1) {
-      this.dom.controlNext.classList.remove('playlist__control--visible')
-    }
+    // if (this.state.currentSlide === this.albums.length - 1) {
+    //   this.dom.controlNext.classList.remove('playlist__control--visible')
+    // }
 
-    else if (this.state.currentSlide) {
+    if (this.state.currentSlide) {
       this.dom.controlNext.classList.add('playlist__control--visible')
       this.dom.controlPrev.classList.add('playlist__control--visible')
     }
@@ -489,6 +486,10 @@ export default class Playlist {
     this.dom.tracks = document.querySelectorAll('.playlist__progress__track')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
     this.dom.controlPlay = document.querySelector('.playlist__play')
+
+    this.dom.overlay = document.querySelector('.playlist__overlay')
+    this.dom.about = document.querySelector('.playlist__about')
+    this.dom.close = document.querySelector('.playlist__close')
 
     // Show preloader
     setTimeout(() => {
@@ -580,6 +581,14 @@ export default class Playlist {
           <small class="playlist__social__credits"><a target="_blank" href="http://anumation.ca/">Anu Chouhan</a> x <a target="_blank" href="https://hellomichael.com">Michael Ngo</a></small>
         </div>
       </div>
+
+      <div class="playlist__about">
+        <h4>People always say that you can't please everybody. I think that's a cop-out. <br/> Why not attempt it? 'Cause think of all the people you will please if you try.</h4>
+        <h5>- Kanye West</h5>
+      </div>
+
+      <div class="playlist__overlay"></div>
+      <a href="#" class="playlist__close icon icon--lg"></a>
     `
 
     this.animations.map((animation, index) => {
