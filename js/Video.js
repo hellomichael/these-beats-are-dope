@@ -15,6 +15,7 @@ export default class Video {
     this.duration = -1
     this.isPlaying = false
     this.isPaused = false
+    this.volume = 100
     this.isMute = false
     this.fadeInterval = null
     this.events = {
@@ -135,7 +136,7 @@ export default class Video {
     }
 
     else {
-      this.youtube.setVolume(1000)
+      this.youtube.setVolume(this.volume)
     }
   }
 
@@ -252,13 +253,13 @@ export default class Video {
 
       clearInterval(this.fadeInterval)
       this.fadeInterval = setInterval(() => {
-        if (volume < 100) {
+        if (volume < this.volume) {
           volume += 2.5
           this.youtube.setVolume(volume)
         }
 
         else {
-          this.youtube.setVolume(100)
+          this.youtube.setVolume(this.volume)
           clearInterval(this.fadeInterval)
           resolve()
         }
@@ -268,7 +269,7 @@ export default class Video {
 
   fadeOut() {
     return new Promise((resolve, reject) => {
-      let volume = 100
+      let volume = this.volume
 
       clearInterval(this.fadeInterval)
       this.fadeInterval = setInterval(() => {

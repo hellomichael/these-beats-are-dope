@@ -99,7 +99,8 @@ export default class Playlist {
         name:           this.albums[index].name,
         element:        this.dom.slideshowVideos.children[index].querySelector('.video'),
         startTime:      Utils.getSeconds(slide.keyframes[0].timecode),
-        endTime:        Utils.getSeconds(slide.keyframes[slide.keyframes.length - 1].timecode)
+        endTime:        Utils.getSeconds(slide.keyframes[slide.keyframes.length - 1].timecode),
+        volume:         slide.volume
       })
 
       this.videos.push(video)
