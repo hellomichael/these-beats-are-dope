@@ -13,6 +13,7 @@ export default class Video {
     this.pauseTime = 0
     this.currentTime = 0
     this.duration = -1
+    this.isBuffering = false
     this.isPlaying = false
     this.isPaused = false
     this.volume = 100
@@ -73,8 +74,13 @@ export default class Video {
       this.state.event = event.data
 
       if (this.events[event.data] === 'Playing') {
+        this.isBuffering = false
         this.fadeIn()
         this.fadeVideoIn()
+      }
+
+      else if (this.events[event.data] === 'Buffering') {
+        this.isBuffering = true
       }
     })
   }
@@ -108,15 +114,15 @@ export default class Video {
     })
   }
 
-  isStopped() {
-    return new Promise((resolve, reject) => {
-      this.youtube.on('stateChange', event => {
-        if (this.events[event.data] === 'Unstarted') {
-          resolve(event)
-        }
-      })
-    })
-  }
+  // isStopped() {
+  //   return new Promise((resolve, reject) => {
+  //     this.youtube.on('stateChange', event => {
+  //       if (this.events[event.data] === 'Unstarted') {
+  //         resolve(event)
+  //       }
+  //     })
+  //   })
+  // }
 
   isPaused() {
     return new Promise((resolve, reject) => {
@@ -183,15 +189,15 @@ export default class Video {
     this.youtube.seekTo(seconds)
   }
 
-  stopVideo() {
-    this.isPlaying = false
-    this.isPaused = true
-
-    this.fadeOut()
-    .then(() => {
-      this.youtube.stopVideo()
-    })
-  }
+  // stopVideo() {
+  //   this.isPlaying = false
+  //   this.isPaused = true
+  //
+  //   this.fadeOut()
+  //   .then(() => {
+  //     this.youtube.stopVideo()
+  //   })
+  // }
 
   pauseVideo() {
     this.isPlaying = false
@@ -269,27 +275,35 @@ export default class Video {
 
   fadeOut() {
     return new Promise((resolve, reject) => {
-      let volume = this.volume
+      if (this.isBuffering) {
+        this.youtube.setVolume(0)
+        clearInterval(this.fadeInterval)
+        resolve()
+      }
 
-      clearInterval(this.fadeInterval)
-      this.fadeInterval = setInterval(() => {
-        if (this.isPlaying) {
-          clearInterval(this.fadeInterval)
-        }
+      else {
+        let volume = this.volume
 
-        else {
-          if (volume > 0) {
-            volume -= 2.5
-            this.youtube.setVolume(volume)
+        clearInterval(this.fadeInterval)
+        this.fadeInterval = setInterval(() => {
+          if (this.isPlaying) {
+            clearInterval(this.fadeInterval)
           }
 
           else {
-            this.youtube.setVolume(0)
-            clearInterval(this.fadeInterval)
-            resolve()
+            if (volume > 0) {
+              volume -= 2.5
+              this.youtube.setVolume(volume)
+            }
+
+            else {
+              this.youtube.setVolume(0)
+              clearInterval(this.fadeInterval)
+              resolve()
+            }
           }
-        }
-      }, 15)
+        }, 15)
+      }
     })
   }
 }

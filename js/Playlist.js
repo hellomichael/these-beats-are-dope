@@ -157,14 +157,14 @@ export default class Playlist {
 
           // Wait until intro ready
           setTimeout(() => {
-            resolve(true)
+            resolve()
           }, 2000)
         }
 
         else if (this.preloaded >= progress) {
           this.preloaded += speed
           clearInterval(counter)
-          resolve(true)
+          resolve()
         }
 
         else {
@@ -212,7 +212,6 @@ export default class Playlist {
           this.handleClick()
           this.handleSwipe()
           this.handleKeypress()
-          this.handleResize()
         })
       })
     })
@@ -375,7 +374,7 @@ export default class Playlist {
   }
 
   nextSlide() {
-    if (this.state.currentSlide < this.albums.length - 1 && !this.isTransitioning) {
+    if ((this.state.currentSlide < this.albums.length - 1) && !this.isTransitioning) {
       console.log('Next Slide')
       this.state.prevSlide = this.state.currentSlide
       this.state.currentSlide++
@@ -507,6 +506,7 @@ export default class Playlist {
     this.setTimelines()
 
     // Events
+    this.handleResize()
     this.handleReady()
   }
 
