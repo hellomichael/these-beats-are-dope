@@ -9,10 +9,11 @@ $module: 'kanye';
   left: 10px;
   width: 100%;
   height: 100%;
-  overflow-y: hidden;
   z-index: 3;
 
   @media screen and (min-width: $screen-md-min) {
+    overflow-y: hidden;
+
     transform: translateX(-(#{$kanye-distance-md}));
   }
 
@@ -35,7 +36,4 @@ $module: 'kanye';
   /* ==========================================================================
   Modifiers
   ========================================================================== */
-  &--zoom-out {
-    // transform: scale(0.8) translateY(-150px);
-  }
 }

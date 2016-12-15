@@ -10,7 +10,7 @@ $module: 'playlist';
   top: 0;
   left: 0;
   overflow: visible;
-  transition: 0.75s transform $ease-in-out-quart;
+  transition: 0.75s transform $ease-in-out-quart 0.15s;
 
   @if $debug {
     transform: scale(0.15);
@@ -47,7 +47,7 @@ $module: 'playlist';
       //   width: 150%;
       //   background-color: $black;
       // }
-      // 
+      //
       // &:before {
       //   top: 0;
       //   transform: translateX(-50%) translateY(-100%);
@@ -302,6 +302,82 @@ $module: 'playlist';
     }
   }
 
+  &__overlay {
+    position: fixed;
+    z-index: 998;
+    background-color: $black;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.75s opacity $ease-in-out-quart, 0.75s visibility $ease-in-out-quart;
+
+    &--visible {
+      opacity: 0.9;
+      visibility: visible;
+    }
+  }
+
+  &__close {
+    position: fixed;
+    top: $gutter-md;
+    right: $gutter-md;
+    transform: scale(1.25);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    background: url('../img/icon-close.png') no-repeat;
+    background-size: cover;
+    transition: 0.75s transform $ease-in-out-quart 0.15s, 0.75s opacity $ease-in-out-quart 0.15s, 0.75s visibility $ease-in-out-quart 0.15s;
+    @include rem(font-size, $h3-size);
+
+    @media screen and (min-width: $screen-md-min) {
+      top: $gutter-xl;
+      right: $gutter-xl;
+    }
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+      transition: 0.5s transform $ease-in-out-quart 0.5s, 0.75s opacity $ease-in-out-quart 0.5s, 0.75s visibility $ease-in-out-quart 0.5s;
+
+      &:hover {
+        transition: 0.5s transform $ease-in-out-quart;
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__about {
+    @extend %center;
+    position: fixed;
+    z-index: 999;
+    width: 80%;
+    height: auto;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-50%) scale(1.25);
+    transition: 0.5s transform $ease-in-out-quart, 0.5s opacity $ease-in-out-quart, 0.5s visibility $ease-in-out-quart;
+
+    @media screen and (min-width: $screen-md-min) {
+      width: 800px;
+    }
+
+    br {
+      display: none;
+
+      @media screen and (min-width: $screen-md-min) {
+        display: block;
+      }
+    }
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(-50%) scale(1);
+      transition: 0.75s transform $ease-in-out-quart 0.15s, 0.75s opacity $ease-in-out-quart 0.15s, 0.75s visibility $ease-in-out-quart 0.15s;
+    }
+  }
+
   &__control {
     @extend %center-vertically;
     position: fixed;
@@ -362,5 +438,6 @@ $module: 'playlist';
   ========================================================================== */
   &--zoom-out {
     transform: scale(0.35);
+    transition: 0.75s transform $ease-in-out-quart;
   }
 }
