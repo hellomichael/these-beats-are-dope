@@ -144,31 +144,34 @@ export default class Playlist {
 
   // Preloader
   preload(progress) {
-    let speed = (progress === 100) ? Math.round((100 - this.preloaded)/15) : 1
+    return new Promise((resolve, reject) => {
+      let speed = (progress === 100) ? Math.round((100 - this.preloaded)/15) : 1
 
-    let counter = setInterval(() => {
-      if (this.preloaded >= 100 && progress === 100) {
-        this.dom.preloaderPercentage.innerText = `One hundred`
-        this.dom.preloader.classList.remove('playlist__preloader--visible')
+      let counter = setInterval(() => {
+        if (this.preloaded >= 100 && progress === 100) {
+          this.dom.preloaderPercentage.innerText = `One hundred`
+          this.dom.preloader.classList.remove('playlist__preloader--visible')
 
-        // Show intro for mobile
-        if (Utils.isMobile()) {
-          this.animations[0].showIntro()
+          clearInterval(counter)
+
+          // Wait until intro ready
+          setTimeout(() => {
+            resolve(true)
+          }, 2000)
         }
 
-        clearInterval(counter)
-      }
+        else if (this.preloaded >= progress) {
+          this.preloaded += speed
+          clearInterval(counter)
+          resolve(true)
+        }
 
-      else if (this.preloaded >= progress) {
-        this.preloaded += speed
-        clearInterval(counter)
-      }
-
-      else {
-        this.dom.preloaderPercentage.innerText = `${Utils.getWordNumber(this.preloaded)}`
-        this.preloaded += speed
-      }
-    }, 50)
+        else {
+          this.dom.preloaderPercentage.innerText = `${Utils.getWordNumber(this.preloaded)}`
+          this.preloaded += speed
+        }
+      }, 50)
+    })
   }
 
   // Ready
@@ -194,9 +197,22 @@ export default class Playlist {
     .then(() => {
       Promise.all(animationPromises)
       .then(() => {
-        this.preload(100)
         this.animateSlide()
         this.animateProgress()
+
+        this.preload(100)
+        .then(() => {
+          // Show intro immediately for mobile
+          if (Utils.isMobile()) {
+            this.animations[0].showIntro()
+          }
+
+          // Add events
+          this.handleClick()
+          this.handleSwipe()
+          this.handleKeypress()
+          this.handleResize()
+        })
       })
     })
   }
@@ -219,14 +235,17 @@ export default class Playlist {
   }
 
   handleSwipe() {
-    let manager = new Hammer.Manager(this.dom.playlist);
+    let manager = new Hammer.Manager(this.dom.playlist)
     let swipe = new Hammer.Swipe({
       direction: Hammer.DIRECTION_HORIZONTAL
     })
 
     this.dom.playlist.style['touch-action'] = 'manipulation'
-    this.dom.playlist.style['cursor'] = 'pointer'
-    
+
+    if (Utils.isMobile()) {
+      this.dom.playlist.style['cursor'] = 'pointer'
+    }
+
     manager.add(swipe)
 
     manager.on('swipeleft', event => {
@@ -334,7 +353,7 @@ export default class Playlist {
       })
 
       if (this.state.currentSlide) {
-        this.albums[this.state.currentSlide].element.classList.remove('album--zoom-out');
+        this.albums[this.state.currentSlide].element.classList.remove('album--zoom-out')
       }
 
       this.isZoom = true
@@ -485,10 +504,6 @@ export default class Playlist {
     this.setTimelines()
 
     // Events
-    this.handleClick()
-    this.handleSwipe()
-    this.handleKeypress()
-    this.handleResize()
     this.handleReady()
   }
 
