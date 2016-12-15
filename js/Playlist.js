@@ -232,6 +232,13 @@ export default class Playlist {
         event.preventDefault()
         this.prevSlide()
       }
+
+      // Mute
+      else if (event.target.matches('.playlist__social__icon--mute')) {
+        this.videos.map(video => {
+          video.muteVideo()
+        })
+      }
     })
   }
 
@@ -275,11 +282,6 @@ export default class Playlist {
       // Spacebar
       else if (event.keyCode === 32) {
         console.log(Utils.getTimecode(this.videos[this.state.currentSlide].getCurrentTime()))
-      }
-
-      // Mute
-      else if (event.keyCode === 77) {
-        this.videos[this.state.currentSlide].muteVideo()
       }
 
       // Zoom Out (Down)
@@ -576,6 +578,8 @@ export default class Playlist {
         <div class="playlist__social">
           <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=these.beatsaredope.com" class="playlist__social__icon--facebook playlist__social__icon icon" alt=""></a>
           <a target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%23silversurfer%20%23wavy%20%40kanyewest%20%40azizansari" class="playlist__social__icon--twitter playlist__social__icon icon" alt=""></a>
+          <a href="#" class="playlist__social__icon--mute playlist__social__icon icon" alt=""></a>
+
           <h6 class="playlist__social__hashtag"><a target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%23silversurfer%20%23wavy%20%40kanyewest%20%40azizansari">#thesebeatsaredope</a></h6>
           <small class="playlist__social__credits"><a target="_blank" href="http://anumation.ca/">Anu Chouhan</a> x <a target="_blank" href="https://hellomichael.com">Michael Ngo</a></small>
         </div>

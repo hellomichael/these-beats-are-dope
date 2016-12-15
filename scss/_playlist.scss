@@ -203,6 +203,11 @@ $module: 'playlist';
         transform: scale(1.1);
       }
 
+      &--mute {
+        background: url('../img/icon-mute.png') no-repeat;
+        background-size: cover;
+      }
+
       &--facebook {
         background: url('../img/icon-facebook.png') no-repeat;
         background-size: cover;
