@@ -13,7 +13,7 @@ $module: 'video';
   background-color: $black;
   pointer-events: none;
   cursor: default;
-  transition: 1s opacity $ease-out-quint, 750ms transform $ease-in-out-quart;
+  transition: 1s opacity $ease-out-quint, 0.75s transform $ease-in-out-quart;
 
   @if $debug {
     opacity: 1;

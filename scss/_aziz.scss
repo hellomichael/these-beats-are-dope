@@ -17,7 +17,7 @@ $module: 'aziz';
     width: calc(100% - #{$gutter-xxl});
     text-align: center;
     transform: translateX(-50%) translateY(-50%) translateY(75px);
-    transition: 1250ms transform $ease-out-quint;
+    transition: 1.25s transform $ease-out-quint;
 
     &--scroll-1 {
       transform: translateX(-50%) translateY(-50%) translateY(35px);
@@ -36,7 +36,7 @@ $module: 'aziz';
 
   &__subheading {
     opacity: 0;
-    transition: 1000ms opacity $ease-out-quint;
+    transition: 1s opacity $ease-out-quint;
 
     &--visible {
       opacity: 1;
@@ -59,7 +59,7 @@ $module: 'aziz';
     image-rendering: crisp-edges;
     cursor: pointer;
     transform: translateX(-50%) scale(1.05);
-    transition: 1000ms opacity $ease-out-quint, 1000ms visibility $ease-out-quint, 500ms transform $ease-out-quint;
+    transition: 1s opacity $ease-out-quint, 1s visibility $ease-out-quint, 0.5s transform $ease-out-quint;
     @include rem(font-size, $h5-size);
 
     &:hover {
