@@ -112,8 +112,9 @@ export default class Kanye extends Animation {
 
         this.kanye.position.x = this.kanyeWidth/2
         this.kanye.position.y = this.kanyeHeight
-
         this.pixiStage.addChild(this.kanye)
+
+        this.pixiRenderer.render(this.pixiStage)
 
         // Events
         this.handleResize()
@@ -137,13 +138,13 @@ export default class Kanye extends Animation {
         }
       })
     })
-
   }
 
   stopAnimation() {
     setTimeout(() => {
       this.isPlaying = false
       this.kanyeBopCount = 0
+      this.kanye.skeleton.setToSetupPose()
       cancelAnimationFrame(this.requestAnimationFrame)
       clearTimeout(this.pixiAnimation)
     }, 250)
