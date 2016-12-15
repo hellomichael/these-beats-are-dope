@@ -235,6 +235,7 @@ export default class Playlist {
       // Mute
       else if (event.target.matches('.playlist__social__icon--mute')) {
         this.videos.map(video => {
+          event.preventDefault()
           video.muteVideo()
         })
       }
@@ -438,14 +439,9 @@ export default class Playlist {
       this.dom.controlNext.classList.remove('playlist__control--visible')
     }
 
-    else if (this.state.currentSlide > 1) {
-      this.dom.controlNext.classList.add('playlist__control--visible')
-      this.dom.controlPrev.classList.add('playlist__control--visible')
-    }
-
     else if (this.state.currentSlide) {
       this.dom.controlNext.classList.add('playlist__control--visible')
-      this.dom.controlPrev.classList.remove('playlist__control--visible')
+      this.dom.controlPrev.classList.add('playlist__control--visible')
     }
 
     else {

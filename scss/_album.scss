@@ -11,7 +11,7 @@ $albumSize: 300px;
   width: $albumSize * $albumScale;
   transform-origin: left top;
   transform: translateX(-50%) translateY(-50%);
-  transition: 750ms transform $ease-out-quint;
+  transition: 0.75s transform $ease-out-quint;
 
   @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
     display: block;
@@ -42,7 +42,7 @@ $albumSize: 300px;
     transform-style: preserve-3d;
     transform: rotateY(-#{75}deg);
     backface-visibility: hidden;
-    transition: 1000ms transform $ease-in-out-quint 50ms;
+    transition: 1s transform $ease-in-out-quint 0.05s;
 
     @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
       width: $albumSize;
@@ -145,7 +145,7 @@ $albumSize: 300px;
   ========================================================================== */
   &--zoom-out {
     // transform: scale(0.5) translateX(-50%) translateY(-50%);
-    // transition: 750ms transform $ease-in-out-quart;
+    // transition: 0.75s transform $ease-in-out-quart;
     //
     // @media screen and (min-width: $screen-md-min) {
     //   transform: scale(0.5) translateX(-50%) translateX($kanye-distance-md) translateY(-50%);
