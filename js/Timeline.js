@@ -67,7 +67,7 @@ export default class Timeline {
 
       // Generate automatic keyframes if bpm provided
       if (isFinite(bpm)) {
-        let bpmCount = 0;
+        let bpmCount = 0
 
         // Loop between current and next times
         for (var i=currentTime; i <= (nextTime - this.threshold); i += bpm) {
@@ -135,7 +135,6 @@ export default class Timeline {
     let keyframe = this.keyframesClone.length ? this.keyframesClone[0] : null
     let nextKeyframe = this.keyframesClone.length > 2 ? this.keyframesClone[1] : null
     let keyframeBpm = keyframe ? keyframe.bpm : 0
-    let nextKeyframeBpm = nextKeyframe ? nextKeyframe.bpm : 0
     let keyframeDuration = nextKeyframe ? Utils.getTwoDecimalPlaces(Utils.getSeconds(nextKeyframe.timecode) - Utils.getSeconds(keyframe.timecode)) : 0
 
     if (keyframe && this.video.getCurrentTime() >= Utils.getSeconds(keyframe.timecode)) {

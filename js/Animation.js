@@ -6,9 +6,7 @@ export default class Animation {
   }
 
   isReady() {
-    return new Promise((resolve, reject) => {
-      resolve(true)
-    })
+    return Promise.resolve()
   }
 
   stopAnimation() {
