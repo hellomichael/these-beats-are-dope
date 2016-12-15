@@ -137,12 +137,12 @@ export default class Video {
   muteVideo() {
     this.isMute = !this.isMute
 
-    if (this.isMute ) {
-      this.youtube.setVolume(0)
+    if (this.isMute){
+      this.youtube.mute()
     }
 
     else {
-      this.youtube.setVolume(this.volume)
+      this.youtube.unMute()
     }
   }
 
