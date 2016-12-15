@@ -40,23 +40,23 @@ $module: 'playlist';
       }
 
       // Hide video overlap
-      &:before, &:after {
-        position: absolute;
-        left: 50%;
-        height: 300px;
-        width: 150%;
-        background-color: $black;
-      }
-
-      &:before {
-        top: 0;
-        transform: translateX(-50%) translateY(-100%);
-      }
-
-      &:after {
-        bottom: 0;
-        transform: translateX(-50%) translateY(100%);
-      }
+      // &:before, &:after {
+      //   position: absolute;
+      //   left: 50%;
+      //   height: 300px;
+      //   width: 150%;
+      //   background-color: $black;
+      // }
+      // 
+      // &:before {
+      //   top: 0;
+      //   transform: translateX(-50%) translateY(-100%);
+      // }
+      //
+      // &:after {
+      //   bottom: 0;
+      //   transform: translateX(-50%) translateY(100%);
+      // }
     }
 
     &--albums {
@@ -67,7 +67,10 @@ $module: 'playlist';
     &--videos {
       z-index: 1;
       transition: 0.75s transform $ease-in-out-quart 0.1s;
+
       .#{$module}__slide {
+        overflow: hidden;
+
         &:first-child {
           .video {
             opacity: 0;

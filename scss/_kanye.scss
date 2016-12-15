@@ -9,6 +9,7 @@ $module: 'kanye';
   left: 10px;
   width: 100%;
   height: 100%;
+  overflow-y: hidden;
   z-index: 3;
 
   @media screen and (min-width: $screen-md-min) {
