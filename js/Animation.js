@@ -9,6 +9,10 @@ export default class Animation {
     return Promise.resolve()
   }
 
+  resetAnimation() {
+    // console.log('Reset Animation')
+  }
+
   stopAnimation() {
     // console.log('Stop Animation')
   }

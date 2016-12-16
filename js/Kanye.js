@@ -114,12 +114,14 @@ export default class Kanye extends Animation {
         this.kanye.position.y = this.kanyeHeight
         this.pixiStage.addChild(this.kanye)
 
-        this.pixiRenderer.render(this.pixiStage)
-
         // Events
         this.handleResize()
         this.handleMouseMove()
       })
+  }
+
+  resetAnimation() {
+    this.pixiRenderer.render(this.pixiStage)
   }
 
   setAnimationMixes(animations) {
