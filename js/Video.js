@@ -104,16 +104,16 @@ export default class Video {
     })
   }
 
-  isPlaying() {
-    return new Promise((resolve, reject) => {
-      this.youtube.on('stateChange', event => {
-        if (this.events[event.data] === 'Playing') {
-          resolve(event)
-        }
-      })
-    })
-  }
-
+  // isPlaying() {
+  //   return new Promise((resolve, reject) => {
+  //     this.youtube.on('stateChange', event => {
+  //       if (this.events[event.data] === 'Playing') {
+  //         resolve(event)
+  //       }
+  //     })
+  //   })
+  // }
+  //
   // isStopped() {
   //   return new Promise((resolve, reject) => {
   //     this.youtube.on('stateChange', event => {
@@ -123,16 +123,16 @@ export default class Video {
   //     })
   //   })
   // }
-
-  isPaused() {
-    return new Promise((resolve, reject) => {
-      this.youtube.on('stateChange', event => {
-        if (this.events[event.data] === 'isPaused') {
-          resolve(event)
-        }
-      })
-    })
-  }
+  //
+  // isPaused() {
+  //   return new Promise((resolve, reject) => {
+  //     this.youtube.on('stateChange', event => {
+  //       if (this.events[event.data] === 'isPaused') {
+  //         resolve(event)
+  //       }
+  //     })
+  //   })
+  // }
 
   muteVideo() {
     this.isMute = !this.isMute
@@ -147,7 +147,8 @@ export default class Video {
   }
 
   prefetchVideo() {
-    console.log(`${this.name} (${this.id}): Prefetch Video`)
+    console.log(`*** ${this.name} (${this.id}): Prefetch Video`)
+
     if (this.pauseTime) {
       this.youtube.seekTo(this.pauseTime)
     }
@@ -193,8 +194,10 @@ export default class Video {
   //   this.isPlaying = false
   //   this.isPaused = true
   //
-  //   this.fadeOut()
+  //   return this.fadeOut()
   //   .then(() => {
+  //     this.pauseTime = 0
+  //     this.youtube.setVolume(0)
   //     this.youtube.stopVideo()
   //   })
   // }
