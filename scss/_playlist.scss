@@ -13,7 +13,7 @@ $module: 'playlist';
   transition: 0.75s transform $ease-in-out-quart 0.15s;
 
   @if $debug {
-    transform: scale(0.15);
+    transform: scale(0.2);
     overflow: visible;
   }
 
