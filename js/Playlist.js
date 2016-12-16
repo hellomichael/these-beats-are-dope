@@ -208,6 +208,11 @@ export default class Playlist {
             this.animations[0].showIntro()
           }
 
+          // Reset animations
+          this.animations.map(animation => {
+            animation.resetAnimation()
+          })
+
           // Add events
           this.handleClick()
           this.handleSwipe()
