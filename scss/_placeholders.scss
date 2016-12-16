@@ -50,15 +50,12 @@
   transform: translateY(-50%);
 }
 
-// Table Layouts
-%table-layout {
-  display: table;
-  table-layout: fixed;
-  border-collapse: separate;
-
-  > * {
-    float: none;
-    display: table-cell;
-    vertical-align: middle;
-  }
-}
+// %hidden {
+//   opacity: 0;
+//   visibility: hidden;
+// }
+//
+// %visible {
+//   opacity: 1;
+//   visibility: visible;
+// }

@@ -81,11 +81,11 @@ $module: 'playlist';
   }
 
   &__progress {
-    position: fixed;
-    z-index: 2;
+    position: absolute;
     top: 25px;
-    height: 30px;
     left: 25px;
+    z-index: 2;
+    height: 30px;
     width: calc(100% - #{($gutter-sm * 2)});
     transform: translateY(-100%) translateY(-30px);
     transition: 1s transform $ease-out-quint 0.1s;
@@ -131,7 +131,8 @@ $module: 'playlist';
     z-index: 2;
 
     &--top, &--right, &--bottom, &--left {
-      position: fixed;
+      position: absolute;
+      top: 0;
       transition: 1s transform $ease-out-quint;
     }
 
@@ -151,6 +152,7 @@ $module: 'playlist';
     }
 
     &--bottom {
+      top: auto;
       bottom: 0;
       transform: translateY(100%);
 

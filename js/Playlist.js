@@ -400,15 +400,15 @@ export default class Playlist {
 
     // Prefetch previous/next/first videos
     this.videos.map((video, index) => {
+      // if (index != (this.state.currentSlide))  {
+      //   video.prefetchVideo()
+      // }
+
       if (index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1) || (this.state.currentSlide === 0 && index === 0)) {
         if (index != this.state.prevSlide || (this.state.currentSlide === 0 && index === 0)) {
           video.prefetchVideo()
         }
       }
-
-      // else {
-      //   video.stopVideo()
-      // }
     })
 
     // Play video, timeline, and animations
