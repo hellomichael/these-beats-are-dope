@@ -395,7 +395,7 @@ export default class Playlist {
       this.isTransitioning = true
 
       this.animations[this.state.prevSlide].stopAnimation()
-      this.videos[this.state.prevSlide].pauseVideo()
+      this.videos[this.state.prevSlide].stopVideo()
       .then(() => {
         this.timelines[this.state.prevSlide].resetTimeline()
         this.timelines[this.state.prevSlide].stopTimeline()
@@ -404,17 +404,19 @@ export default class Playlist {
     }
 
     // Prefetch previous/next/first videos
-    this.videos.map((video, index) => {
-      // if (index != (this.state.currentSlide))  {
-      //   video.prefetchVideo()
-      // }
+    this.videos[this.state.currentSlide].prefetchVideo()
 
-      if (index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1) || (this.state.currentSlide === 0 && index === 0)) {
-        if (index != this.state.prevSlide || (this.state.currentSlide === 0 && index === 0)) {
-          video.prefetchVideo()
-        }
-      }
-    })
+    // this.videos.map((video, index) => {
+    //   // if (index != (this.state.currentSlide))  {
+    //   //   video.prefetchVideo()
+    //   // }
+    //
+    //   if (index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1) || (this.state.currentSlide === 0 && index === 0)) {
+    //     if (index != this.state.prevSlide || (this.state.currentSlide === 0 && index === 0)) {
+    //       video.prefetchVideo()
+    //     }
+    //   }
+    // })
 
     // Play video, timeline, and animations
     this.videos[this.state.currentSlide].playVideo()

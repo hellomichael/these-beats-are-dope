@@ -147,7 +147,7 @@ export default class Video {
   }
 
   prefetchVideo() {
-    console.log(`*** ${this.name} (${this.id}): Prefetch Video`)
+    console.log(`${this.name} (${this.id}): Prefetch Video`)
 
     if (this.pauseTime) {
       this.youtube.seekTo(this.pauseTime)
@@ -190,17 +190,17 @@ export default class Video {
     this.youtube.seekTo(seconds)
   }
 
-  // stopVideo() {
-  //   this.isPlaying = false
-  //   this.isPaused = true
-  //
-  //   return this.fadeOut()
-  //   .then(() => {
-  //     this.pauseTime = 0
-  //     this.youtube.setVolume(0)
-  //     this.youtube.stopVideo()
-  //   })
-  // }
+  stopVideo() {
+    this.isPlaying = false
+    this.isPaused = true
+
+    return this.fadeOut()
+    .then(() => {
+      this.pauseTime = 0
+      this.youtube.setVolume(0)
+      this.youtube.stopVideo()
+    })
+  }
 
   pauseVideo() {
     this.isPlaying = false
