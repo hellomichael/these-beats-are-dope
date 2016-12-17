@@ -41,7 +41,7 @@ export default class Kanye extends Animation {
   }
 
   handleResize() {
-    window.addEventListener('resize', event => {
+    window.addEventListener('resize', () => {
       this.resizeRenderer()
     })
   }
@@ -78,7 +78,7 @@ export default class Kanye extends Animation {
   }
 
   isReady() {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       this.pixiLoader.once('complete', event => {
         resolve(event)
       })

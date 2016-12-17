@@ -396,6 +396,7 @@ $module: 'playlist';
 
   &__control {
     @extend %center-vertically;
+    display: none;
     position: fixed;
     z-index: 5;
     opacity: 0;
@@ -403,6 +404,10 @@ $module: 'playlist';
     filter: blur(0);
     backface-visibility: hidden;
     transition: 0.75s transform $ease-out-quint, 0.5s opacity $ease-out-quint;
+
+    @media screen and (min-width: $screen-md-min) {
+      display: block;
+    }
 
     /* ==========================================================================
     Modifiers

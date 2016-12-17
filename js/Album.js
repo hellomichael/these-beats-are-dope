@@ -16,7 +16,7 @@ export default class Album {
   }
 
   handleResize() {
-    window.addEventListener('resize', event => {
+    window.addEventListener('resize', () => {
       if (this.dom.albumFront) {
         this.dom.albumFront.innerHTML = this.resizeAlbum()
       }

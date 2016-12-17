@@ -28,7 +28,7 @@ export function getTimecode(value) {
 }
 
 export function getTwoDecimalPlaces(value) {
-  return +(Math.round(value + "e+2")  + "e-2")
+  return +(Math.round(value + 'e+2') + 'e-2')
 }
 
 export function getPercentage(value) {

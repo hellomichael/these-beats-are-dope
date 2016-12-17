@@ -60,7 +60,7 @@ export default class Video {
   }
 
   handleReady() {
-    this.youtube.on('ready', event => {
+    this.youtube.on('ready', () => {
       console.log(`${this.name} (${this.id}): Ready`)
 
       // Set quality (small, medium, large, hd720, hd1080, highres)
@@ -92,7 +92,7 @@ export default class Video {
   }
 
   handleResize() {
-    window.addEventListener('resize', event => {
+    window.addEventListener('resize', () => {
       this.youtube.getIframe()
       .then(iframe => {
         iframe.setAttribute('width', window.innerWidth)
@@ -102,10 +102,9 @@ export default class Video {
   }
 
   isReady() {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       this.youtube.on('ready', event => {
         console.log(`${this.name} (${this.id}): ${this.events[-2]}`)
-
         resolve(event)
       })
     })
@@ -161,6 +160,14 @@ export default class Video {
     this.isPlaying = true
     this.isPaused = false
     this.youtube.playVideo()
+
+    return new Promise(resolve => {
+      this.youtube.on('stateChange', event => {
+        if (this.events[event.data] === 'Playing') {
+          resolve(event)
+        }
+      })
+    })
   }
 
   seekVideo(seconds) {
@@ -227,8 +234,8 @@ export default class Video {
     })
   }
 
-  fadeIn(startVolume, callback) {
-    return new Promise((resolve, reject) => {
+  fadeIn() {
+    return new Promise((resolve) => {
       let volume = 0
 
       clearInterval(this.fadeInterval)
@@ -248,7 +255,7 @@ export default class Video {
   }
 
   fadeOut() {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       if (this.isBuffering) {
         this.youtube.setVolume(0)
         clearInterval(this.fadeInterval)
@@ -273,7 +280,10 @@ export default class Video {
             else {
               this.youtube.setVolume(0)
               clearInterval(this.fadeInterval)
-              resolve()
+
+              setTimeout(() => {
+                resolve()
+              }, 250)
             }
           }
         }, 15)
