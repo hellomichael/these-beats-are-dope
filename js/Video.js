@@ -235,7 +235,6 @@ export default class Video {
     else {
       this.youtube.setVolume(0)
       this.youtube.stopVideo()
-
       return Promise.resolve()
     }
   }
