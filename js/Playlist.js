@@ -57,16 +57,22 @@ export default class Playlist {
 
   matchesPolyfill() {
     if (!Element.prototype.matches) {
-    let ep = Element.prototype
+      let ep = Element.prototype
 
-    if (ep.webkitMatchesSelector) // Chrome <34, SF<7.1, iOS<8
-      ep.matches = ep.webkitMatchesSelector
+      // Chrome <34, SF<7.1, iOS<8
+      if (ep.webkitMatchesSelector) {
+        ep.matches = ep.webkitMatchesSelector
+      }
 
-    if (ep.msMatchesSelector) // IE9/10/11 & Edge
-      ep.matches = ep.msMatchesSelector
+      // IE9/10/11 & Edge
+      if (ep.msMatchesSelector) {
+        ep.matches = ep.msMatchesSelector
+      }
 
-    if (ep.mozMatchesSelector) // FF<34
-      ep.matches = ep.mozMatchesSelector
+      // FF<34
+      if (ep.mozMatchesSelector) {
+        ep.matches = ep.mozMatchesSelector
+      }
     }
   }
 
@@ -204,7 +210,7 @@ export default class Playlist {
         this.preload(100)
         .then(() => {
           // Show intro immediately for mobile
-          if (Utils.isMobile()) {
+          if (!Utils.isDesktop()) {
             this.animations[0].showIntro()
           }
 
@@ -266,11 +272,11 @@ export default class Playlist {
 
     manager.add(swipe)
 
-    manager.on('swipeleft', event => {
+    manager.on('swipeleft', () => {
       this.nextSlide()
     })
 
-    manager.on('swiperight', event => {
+    manager.on('swiperight', () => {
       this.prevSlide()
     })
   }
@@ -308,7 +314,7 @@ export default class Playlist {
 
   // Resizing
   handleResize() {
-    window.addEventListener('resize', event => {
+    window.addEventListener('resize', () => {
       // Update state
       this.width = window.innerWidth
       this.height = window.innerHeight
@@ -615,11 +621,11 @@ export default class Playlist {
       <a href="#" class="playlist__close icon icon--lg"></a>
     `
 
-    this.animations.map((animation, index) => {
+    this.animations.map(animation => {
       animation.componentDidMount()
     })
 
-    this.albums.map((album, index) => {
+    this.albums.map(album => {
       album.componentDidMount()
     })
 

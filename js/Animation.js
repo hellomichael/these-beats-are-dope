@@ -1,5 +1,5 @@
 export default class Animation {
-  constructor(options) {
+  constructor() {
     this.id = null
     this.element = null
     this.isPlaying = false

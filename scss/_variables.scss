@@ -66,7 +66,9 @@ $ease-in-out-quint:         cubic-bezier(0.860, 0.000, 0.070, 1.000);
 $ease-in-out-expo:          cubic-bezier(1.000, 0.000, 0.000, 1.000);
 
 // Media Queries
-$screen-xs:                  480px;
+$screen-xxs:                 320px;
+$screen-xxs-min:             $screen-xxs;
+$screen-xs:                  360px;
 $screen-xs-min:              $screen-xs;
 $screen-phone:               $screen-xs-min;
 $screen-sm:                  768px;
