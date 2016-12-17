@@ -177,13 +177,12 @@ export default class Video {
   pauseVideo() {
     this.isPlaying = false
     this.isPaused = true
-    this.pauseTime = (this.pauseTime >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
+    this.pauseTime = (this.getCurrentTime() >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
+
 
     return this.fadeOut()
     .then(() => {
-      if (this.pauseTime === this.startTime) {
-        this.youtube.seekTo(this.startTime)
-      }
+      this.youtube.seekTo(this.pauseTime)
 
       if (Utils.isDesktop()) {
         this.youtube.pauseVideo()
