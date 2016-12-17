@@ -273,11 +273,13 @@ export default class Playlist {
     manager.add(swipe)
 
     manager.on('swipeleft', () => {
-      this.nextSlide()
+      // this.nextSlide()
+      this.dom.controlNext.click()
     })
 
     manager.on('swiperight', () => {
-      this.prevSlide()
+      // this.prevSlide()
+      this.dom.controlPrev.click()
     })
   }
 
