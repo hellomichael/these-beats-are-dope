@@ -27,6 +27,18 @@ $module: 'playlist';
   }
 
   &__slideshow {
+    .#{$module}__slide {
+      display: none;
+
+      &:first-child {
+        z-index: 1;
+      }
+
+      &:nth-child(2) {
+        display: block;
+      }
+    }
+
     &--animations {
       @extend %before-after;
 
@@ -355,6 +367,7 @@ $module: 'playlist';
     z-index: 999;
     width: 80%;
     height: auto;
+    margin-left: $gutter-md;
     opacity: 0;
     visibility: hidden;
     transform: translateX(-50%) translateY(-50%) scale(1.25);

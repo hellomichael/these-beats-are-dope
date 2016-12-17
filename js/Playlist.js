@@ -418,10 +418,8 @@ export default class Playlist {
             }
           })
         })
-
       })
     }
-
 
     // Play video, timeline, and animations
     this.videos[this.state.currentSlide].playVideo()
