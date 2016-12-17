@@ -36,7 +36,7 @@ export default class Video {
       height: window.innerHeight + 600,
       videoId: options.id,
       playerVars: {
-        autoplay: 0,
+        autoplay: Utils.isDesktop() ? 1 : 0,
         fs: 0,
         playsinline: 1,
         loop: 0,
@@ -65,6 +65,10 @@ export default class Video {
       // Set quality (small, medium, large, hd720, hd1080, highres)
       this.youtube.setPlaybackQuality('small')
       this.setDuration()
+
+      if (Utils.isDesktop()) {
+        this.prefetchVideo()
+      }
     })
   }
 
@@ -148,7 +152,6 @@ export default class Video {
 
   prefetchVideo() {
     console.log(`${this.name} (${this.id}): Prefetch Video`)
-
     if (this.pauseTime) {
       this.youtube.seekTo(this.pauseTime)
     }
@@ -194,29 +197,47 @@ export default class Video {
     this.isPlaying = false
     this.isPaused = true
 
-    return this.fadeOut()
-    .then(() => {
-      this.pauseTime = 0
-      this.youtube.setVolume(0)
-      this.youtube.stopVideo()
-    })
+    this.youtube.setVolume(0)
+    this.youtube.stopVideo()
   }
+
+  // stopVideo() {
+  //   this.isPlaying = false
+  //   this.isPaused = true
+  //
+  //   return this.fadeOut()
+  //   .then(() => {
+  //     this.pauseTime = 0
+  //     this.youtube.setVolume(0)
+  //     this.youtube.stopVideo()
+  //   })
+  // }
 
   pauseVideo() {
     this.isPlaying = false
     this.isPaused = true
-    this.pauseTime = this.getCurrentTime()
 
-    return this.fadeOut()
-    .then(() => {
-      if (this.pauseTime >= (this.endTime - 5)) {
-        this.pauseTime = 0
-        this.youtube.seekTo(this.startTime)
-      }
+    if (Utils.isDesktop()) {
+      this.pauseTime = this.getCurrentTime()
 
+      return this.fadeOut()
+      .then(() => {
+        if (this.pauseTime >= (this.endTime - 5)) {
+          this.pauseTime = this.startTime
+          this.youtube.seekTo(this.startTime)
+        }
+
+        this.youtube.setVolume(0)
+        this.youtube.pauseVideo()
+      })
+    }
+
+    else {
       this.youtube.setVolume(0)
-      this.youtube.pauseVideo()
-    })
+      this.youtube.stopVideo()
+
+      return Promise.resolve()
+    }
   }
 
   setDuration() {
@@ -282,6 +303,8 @@ export default class Video {
         this.youtube.setVolume(0)
         clearInterval(this.fadeInterval)
         resolve()
+
+        console.log('***buffering***')
       }
 
       else {

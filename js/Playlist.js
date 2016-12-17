@@ -340,24 +340,23 @@ export default class Playlist {
   zoomOut() {
     if (this.isZoom) {
       console.log('Zoom out')
+      this.isZoom = !this.isZoom
       this.dom.playlist.classList.add('playlist--zoom-out')
       this.dom.overlay.classList.add('playlist__overlay--visible')
       this.dom.about.classList.add('playlist__about--visible')
       this.dom.close.classList.add('playlist__close--visible')
-
-      this.isZoom = false
     }
   }
 
   zoomIn() {
     if (!this.isZoom) {
       console.log('Zoom in')
+
+      this.isZoom = !this.isZoom
       this.dom.playlist.classList.remove('playlist--zoom-out')
       this.dom.overlay.classList.remove('playlist__overlay--visible')
       this.dom.about.classList.remove('playlist__about--visible')
       this.dom.close.classList.remove('playlist__close--visible')
-
-      this.isZoom = true
     }
   }
 
@@ -395,28 +394,34 @@ export default class Playlist {
       this.isTransitioning = true
 
       this.animations[this.state.prevSlide].stopAnimation()
-      this.videos[this.state.prevSlide].stopVideo()
+      this.videos[this.state.prevSlide].pauseVideo()
       .then(() => {
         this.timelines[this.state.prevSlide].resetTimeline()
         this.timelines[this.state.prevSlide].stopTimeline()
         this.isTransitioning = false
+
+        // Optimize # of DOM elements on the screen
+        Array.from(this.dom.slideshows).map(slideshow => {
+          Array.from(slideshow.querySelectorAll('.playlist__slide')).map((slide, index) => {
+            if (!this.isZoom) {
+              slide.style.display = 'block'
+            }
+
+            else {
+              if (index != this.state.currentSlide && index != (this.state.currentSlide + 1) && index != (this.state.currentSlide - 1)) {
+                slide.style.display = 'none'
+              }
+
+              else {
+                slide.style.display = 'block'
+              }
+            }
+          })
+        })
+
       })
     }
 
-    // Prefetch previous/next/first videos
-    this.videos[this.state.currentSlide].prefetchVideo()
-
-    // this.videos.map((video, index) => {
-    //   // if (index != (this.state.currentSlide))  {
-    //   //   video.prefetchVideo()
-    //   // }
-    //
-    //   if (index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1) || (this.state.currentSlide === 0 && index === 0)) {
-    //     if (index != this.state.prevSlide || (this.state.currentSlide === 0 && index === 0)) {
-    //       video.prefetchVideo()
-    //     }
-    //   }
-    // })
 
     // Play video, timeline, and animations
     this.videos[this.state.currentSlide].playVideo()

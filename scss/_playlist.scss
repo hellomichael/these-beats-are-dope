@@ -13,7 +13,7 @@ $module: 'playlist';
   transition: 0.75s transform $ease-in-out-quart 0.15s;
 
   @if $debug {
-    transform: scale(0.2);
+    transform: scale(0.15);
     overflow: visible;
   }
 
@@ -439,7 +439,7 @@ $module: 'playlist';
   Modifiers
   ========================================================================== */
   &--zoom-out {
-    transform: scale(0.35);
+    transform: scale(0.33);
     transition: 0.75s transform $ease-in-out-quart;
   }
 }
