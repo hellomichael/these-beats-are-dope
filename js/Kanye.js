@@ -27,7 +27,6 @@ export default class Kanye extends Animation {
     this.mouseTimeout = null
 
     Object.assign(this, options)
-
     this.setIdle()
   }
 
