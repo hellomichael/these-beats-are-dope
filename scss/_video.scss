@@ -11,8 +11,8 @@ $module: 'video';
   z-index: 0;
   transform: translateY(-300px);
   background-color: $black;
-  pointer-events: none;
-  cursor: default;
+  // pointer-events: none;
+  // cursor: default;
   transition: 1s opacity $ease-out-quint, 0.75s transform $ease-in-out-quart;
 
   @if $debug {
