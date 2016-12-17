@@ -31,6 +31,7 @@ $module: 'playlist';
       display: none;
 
       &:first-child {
+        display: block;
         z-index: 1;
       }
 
@@ -106,7 +107,7 @@ $module: 'playlist';
       position: absolute;
       left: 0;
       top: 0;
-      height: 30px;
+      height: 100%;
       width: 100%;
     }
 
@@ -367,7 +368,6 @@ $module: 'playlist';
     z-index: 999;
     width: 80%;
     height: auto;
-    margin-left: $gutter-md;
     opacity: 0;
     visibility: hidden;
     transform: translateX(-50%) translateY(-50%) scale(1.25);
@@ -375,6 +375,7 @@ $module: 'playlist';
 
     @media screen and (min-width: $screen-md-min) {
       width: 800px;
+      margin-left: $gutter-md;
     }
 
     br {

@@ -109,8 +109,6 @@ export default class Timeline {
         })
       }
     })
-
-    // console.log(this.keyframesClone)
   }
 
   removeKeyframes() {

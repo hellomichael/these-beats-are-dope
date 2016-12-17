@@ -62,6 +62,7 @@ export default class Video {
   handleReady() {
     this.youtube.on('ready', event => {
       console.log(`${this.name} (${this.id}): Ready`)
+
       // Set quality (small, medium, large, hd720, hd1080, highres)
       this.youtube.setPlaybackQuality('small')
       this.setDuration()
@@ -75,6 +76,7 @@ export default class Video {
   handleStateChange() {
     this.youtube.on('stateChange', event => {
       console.log(`${this.name} (${this.id}): ${this.events[event.data]}`)
+
       this.state.event = event.data
 
       if (this.events[event.data] === 'Playing') {
@@ -103,40 +105,11 @@ export default class Video {
     return new Promise((resolve, reject) => {
       this.youtube.on('ready', event => {
         console.log(`${this.name} (${this.id}): ${this.events[-2]}`)
+
         resolve(event)
       })
     })
   }
-
-  // isPlaying() {
-  //   return new Promise((resolve, reject) => {
-  //     this.youtube.on('stateChange', event => {
-  //       if (this.events[event.data] === 'Playing') {
-  //         resolve(event)
-  //       }
-  //     })
-  //   })
-  // }
-  //
-  // isStopped() {
-  //   return new Promise((resolve, reject) => {
-  //     this.youtube.on('stateChange', event => {
-  //       if (this.events[event.data] === 'Unstarted') {
-  //         resolve(event)
-  //       }
-  //     })
-  //   })
-  // }
-  //
-  // isPaused() {
-  //   return new Promise((resolve, reject) => {
-  //     this.youtube.on('stateChange', event => {
-  //       if (this.events[event.data] === 'isPaused') {
-  //         resolve(event)
-  //       }
-  //     })
-  //   })
-  // }
 
   muteVideo() {
     this.isMute = !this.isMute
@@ -152,6 +125,7 @@ export default class Video {
 
   prefetchVideo() {
     console.log(`${this.name} (${this.id}): Prefetch Video`)
+
     if (this.pauseTime) {
       this.youtube.seekTo(this.pauseTime)
     }
@@ -193,50 +167,27 @@ export default class Video {
     this.youtube.seekTo(seconds)
   }
 
-  stopVideo() {
-    this.isPlaying = false
-    this.isPaused = true
-
-    this.youtube.setVolume(0)
-    this.youtube.stopVideo()
-  }
-
-  // stopVideo() {
-  //   this.isPlaying = false
-  //   this.isPaused = true
-  //
-  //   return this.fadeOut()
-  //   .then(() => {
-  //     this.pauseTime = 0
-  //     this.youtube.setVolume(0)
-  //     this.youtube.stopVideo()
-  //   })
-  // }
-
   pauseVideo() {
     this.isPlaying = false
     this.isPaused = true
+    this.pauseTime = (this.pauseTime >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
 
-    if (Utils.isDesktop()) {
-      this.pauseTime = this.getCurrentTime()
+    return this.fadeOut()
+    .then(() => {
+      if (this.pauseTime === this.startTime) {
+        this.youtube.seekTo(this.startTime)
+      }
 
-      return this.fadeOut()
-      .then(() => {
-        if (this.pauseTime >= (this.endTime - 5)) {
-          this.pauseTime = this.startTime
-          this.youtube.seekTo(this.startTime)
-        }
-
-        this.youtube.setVolume(0)
+      if (Utils.isDesktop()) {
         this.youtube.pauseVideo()
-      })
-    }
+      }
 
-    else {
+      else {
+        this.youtube.stopVideo()
+      }
+
       this.youtube.setVolume(0)
-      this.youtube.stopVideo()
-      return Promise.resolve()
-    }
+    })
   }
 
   setDuration() {
@@ -246,15 +197,15 @@ export default class Video {
     })
   }
 
-  getDuration() {
-    return this.duration
-  }
-
   setCurrentTime() {
     return this.youtube.getCurrentTime()
     .then(seconds => {
       this.currentTime = Utils.getTwoDecimalPlaces(seconds)
     })
+  }
+
+  getDuration() {
+    return this.duration
   }
 
   getCurrentTime() {
@@ -302,8 +253,6 @@ export default class Video {
         this.youtube.setVolume(0)
         clearInterval(this.fadeInterval)
         resolve()
-
-        console.log('***buffering***')
       }
 
       else {

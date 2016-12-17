@@ -260,7 +260,7 @@ export default class Playlist {
 
     this.dom.playlist.style['touch-action'] = 'manipulation'
 
-    if (Utils.isMobile()) {
+    if (!Utils.isDesktop()) {
       this.dom.playlist.style['cursor'] = 'pointer'
     }
 
@@ -340,6 +340,7 @@ export default class Playlist {
   zoomOut() {
     if (this.isZoom) {
       console.log('Zoom out')
+
       this.isZoom = !this.isZoom
       this.dom.playlist.classList.add('playlist--zoom-out')
       this.dom.overlay.classList.add('playlist__overlay--visible')
@@ -363,6 +364,7 @@ export default class Playlist {
   prevSlide() {
     if (this.state.currentSlide > 0 && !this.isTransitioning) {
       console.log('Previous Slide')
+
       this.state.prevSlide = this.state.currentSlide
       this.state.currentSlide--
       this.state.direction = 'ltr'
@@ -374,6 +376,7 @@ export default class Playlist {
   nextSlide() {
     if ((this.state.currentSlide < this.albums.length - 1) && !this.isTransitioning) {
       console.log('Next Slide')
+
       this.state.prevSlide = this.state.currentSlide
       this.state.currentSlide++
       this.state.direction = 'rtl'
@@ -418,13 +421,24 @@ export default class Playlist {
             }
           })
         })
+
+        // Prefetch video after video
+        if (!Utils.isDesktop()) {
+          this.videos[this.state.currentSlide].prefetchVideo()
+          this.videos[this.state.currentSlide].playVideo()
+          this.timelines[this.state.currentSlide].playTimeline()
+          this.animations[this.state.currentSlide].playAnimation()
+        }
       })
     }
 
     // Play video, timeline, and animations
-    this.videos[this.state.currentSlide].playVideo()
-    this.timelines[this.state.currentSlide].playTimeline()
-    this.animations[this.state.currentSlide].playAnimation()
+    if (Utils.isDesktop()) {
+      this.videos[this.state.currentSlide].prefetchVideo()
+      this.videos[this.state.currentSlide].playVideo()
+      this.timelines[this.state.currentSlide].playTimeline()
+      this.animations[this.state.currentSlide].playAnimation()
+    }
 
     // Animate slide
     Array.from(this.dom.slideshows).map(slideshow => {
