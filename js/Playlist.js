@@ -12,9 +12,10 @@ require('../scss/_playlist.scss')
 export default class Playlist {
   constructor(options) {
     // Props
-    this.isMobile = false ? true : new MobileDetect(window.navigator.userAgent).is('mobile')
-    this.isPhone  = false ? true : new MobileDetect(window.navigator.userAgent).is('phone')
-    this.isTablet = false ? true : new MobileDetect(window.navigator.userAgent).is('tablet')
+    this.device = new MobileDetect(window.navigator.userAgent)
+    this.isMobile = false ? true : this.device.mobile()
+    this.isPhone  = false ? true : this.device.phone()
+    this.isTablet = false ? true : this.device.tablet()
 
     this.matchesPolyfill()
 
