@@ -36,7 +36,7 @@ export default class Video {
       height: window.innerHeight + 600,
       videoId: options.id,
       playerVars: {
-        autoplay: Utils.isDesktop() ? 1 : 0,
+        autoplay: Utils.isTabletOrDesktop() ? 1 : 0,
         fs: 0,
         playsinline: 1,
         loop: 0,
@@ -67,7 +67,7 @@ export default class Video {
       this.youtube.setPlaybackQuality('small')
       this.setDuration()
 
-      if (Utils.isDesktop()) {
+      if (Utils.isTabletOrDesktop()) {
         this.prefetchVideo()
       }
     })
@@ -184,7 +184,7 @@ export default class Video {
     .then(() => {
       this.youtube.seekTo(this.pauseTime)
 
-      if (Utils.isDesktop()) {
+      if (Utils.isTabletOrDesktop()) {
         this.youtube.pauseVideo()
       }
 
