@@ -1,40 +1,22 @@
 /* ==========================================================================
-  Kanye
+  Disclaimer
   ========================================================================== */
-$module: 'kanye';
+$module: 'disclaimer';
 
 .#{$module} {
-  position: absolute;
-  top: 0;
-  left: $gutter-xs;
   width: 100%;
   height: 100%;
-  z-index: 3;
-
-  @media screen and (min-width: $screen-sm-min) {
-    left: 15px;
-  }
-
-  @media screen and (min-width: $screen-md-min) {
-    transform: translateX(-(#{$kanye-distance-md}));
-  }
-
-  @media screen and (min-width: $screen-lg-min) {
-    overflow-y: hidden;
-    transform: translateX(-(#{$kanye-distance-lg}));
-  }
-
-  canvas {
-    @extend %center-horizontally;
-    display: block;
-    bottom: -$gutter-sm;
-    transform-origin: left bottom;
-  }
+  margin: 0;
+  background: url(../img/disclaimer.jpg) center center;
+  background-size: cover;
 
   /* ==========================================================================
   Elements
   ========================================================================== */
-
+  &__content {
+    @extend %center;
+    width: calc(100% - #{$gutter-lg});
+  }
 
   /* ==========================================================================
   Modifiers

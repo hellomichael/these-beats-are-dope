@@ -4,28 +4,22 @@
 $module: 'video';
 
 .#{$module} {
-  display: none;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 0;
   transform: translateY(-300px);
   background-color: $black;
-  // pointer-events: none;
-  // cursor: default;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  cursor: default;
   transition: 1s opacity $ease-out-quint, 0.75s transform $ease-in-out-quart;
 
-  @if $debug {
-    opacity: 1;
-  }
-
-  @media screen and (min-width: $screen-sm-min) {
-    display: block;
-  }
-
   &--visible {
-    @media screen and (min-width: $screen-sm-min) {
+    @media screen and (min-width: $screen-md-min) {
       opacity: 1 !important;
+      visibility: visible !important;
     }
   }
 
