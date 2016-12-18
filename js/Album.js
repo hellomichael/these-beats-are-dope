@@ -11,26 +11,26 @@ export default class Album {
     this.element = document.querySelector(`.album-${this.id}`)
 
     this.dom = {
-      albumFront: document.querySelector(`.album-${this.id} .album__vinyl__front`)
+      albumCover: document.querySelector(`.album-${this.id} .album__vinyl__front img`)
     }
   }
 
   handleResize() {
     window.addEventListener('resize', () => {
-      if (this.dom.albumFront) {
-        this.dom.albumFront.innerHTML = this.resizeAlbum()
+      if (this.dom.albumCover) {
+        this.dom.albumCover.src = this.resizeAlbum()
       }
     })
   }
 
   resizeAlbum() {
-    let album = Utils.isDesktop() ? `<img src="${this.album.images[1].url}" alt=""/>` : ''
+    let albumCover = this.isPhone ? '' : this.album.images[1].url
 
-    if (Utils.isDesktop() && Utils.isHighDensity()) {
-      album = `<img src="${this.album.images[0].url}" alt=""/>`
+    if (!this.isPhone && Utils.isHighDensity()) {
+      albumCover = this.album.images[0].url
     }
 
-    return album
+    return albumCover
   }
 
   render() {
@@ -40,7 +40,8 @@ export default class Album {
         <div class="album__track">
           <div class="album__vinyl">
             <div class="album__vinyl__front">
-              ${this.resizeAlbum()}
+              <a href="#" class="playlist__control playlist__control--play"><i class="icon icon--lg icon--play"></i></a>
+              <img src="${this.resizeAlbum()}" alt=""/>
             </div>
 
             <div class="album__vinyl__back"></div>

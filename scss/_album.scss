@@ -140,6 +140,22 @@ $albumSize: 300px;
     }
   }
 
+  .playlist__control--play {
+    width: $albumSize;
+    height: $albumSize + 2px;
+    background-color: rgba($black, 0.15);
+
+    .icon {
+      @extend %center;
+    }
+
+    &.playlist__control--visible {
+      @media screen and (min-width: $screen-sm-min) {
+        display: block;
+      }
+    }
+  }
+
   /* ==========================================================================
   Modifiers
   ========================================================================== */

@@ -36,7 +36,7 @@ export default class Video {
       height: window.innerHeight + 600,
       videoId: options.id,
       playerVars: {
-        autoplay: Utils.isTabletOrDesktop() ? 1 : 0,
+        autoplay: 1,
         fs: 0,
         playsinline: 1,
         loop: 0,
@@ -66,10 +66,8 @@ export default class Video {
       // Set quality (small, medium, large, hd720, hd1080, highres)
       this.youtube.setPlaybackQuality('small')
       this.setDuration()
+      this.prefetchVideo()
 
-      if (Utils.isTabletOrDesktop()) {
-        this.prefetchVideo()
-      }
     })
   }
 
@@ -97,6 +95,7 @@ export default class Video {
       .then(iframe => {
         iframe.setAttribute('width', window.innerWidth)
         iframe.setAttribute('height', window.innerHeight + 600)
+        i
       })
     })
   }
@@ -160,14 +159,6 @@ export default class Video {
     this.isPlaying = true
     this.isPaused = false
     this.youtube.playVideo()
-
-    return new Promise(resolve => {
-      this.youtube.on('stateChange', event => {
-        if (this.events[event.data] === 'Playing') {
-          resolve(event)
-        }
-      })
-    })
   }
 
   seekVideo(seconds) {
@@ -179,19 +170,19 @@ export default class Video {
     this.isPaused = true
     this.pauseTime = (this.getCurrentTime() >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
 
-
     return this.fadeOut()
     .then(() => {
-      this.youtube.seekTo(this.pauseTime)
-
-      if (Utils.isTabletOrDesktop()) {
-        this.youtube.pauseVideo()
+      if (this.isMobile) {
+        setTimeout(() => {
+          this.youtube.stopVideo()
+        }, 250)
       }
 
       else {
-        this.youtube.stopVideo()
+        this.youtube.pauseVideo()
       }
 
+      this.youtube.pauseVideo()
       this.youtube.setVolume(0)
     })
   }

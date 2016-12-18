@@ -32,6 +32,10 @@ $module: 'aziz';
     * {
       display: none;
     }
+
+    @media screen and (max-width: $screen-xxs-max) {
+      @include rem(line-height, $h5-height);
+    }
   }
 
   &__subheading {

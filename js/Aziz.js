@@ -79,7 +79,7 @@ export default class Aziz extends Animation {
 
           <h4 class="aziz__subheading">A Curated Mixtape For Kanye West</h4>
 
-          <a class="aziz__button playlist__play" href="#">
+          <a class="aziz__button playlist__start" href="#">
             <span>
               Play Tracks
               <i class="icon icon--play"></i>

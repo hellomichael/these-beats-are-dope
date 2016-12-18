@@ -1,4 +1,5 @@
 import 'whatwg-fetch'
+import MobileDetect from 'mobile-detect'
 import Hammer from 'hammerjs'
 import Album from './Album.js'
 import Video from './Video.js'
@@ -11,10 +12,14 @@ require('../scss/_playlist.scss')
 export default class Playlist {
   constructor(options) {
     // Props
+    this.isMobile = false ? true : new MobileDetect(window.navigator.userAgent).is('mobile')
+    this.isPhone  = false ? true : new MobileDetect(window.navigator.userAgent).is('phone')
+    this.isTablet = false ? true : new MobileDetect(window.navigator.userAgent).is('tablet')
+
     this.matchesPolyfill()
+
     this.app = null
     this.playlist = []
-
     this.albums = []
     this.videos = []
     this.timelines = []
@@ -25,7 +30,6 @@ export default class Playlist {
     this.isTransitioning = false
     this.isZoom = true
     this.preloaded = 0
-
     Object.assign(this, options)
 
     // Only load first frame
@@ -89,7 +93,14 @@ export default class Playlist {
       let promise = fetch(`https://api.spotify.com/v1/tracks/${slide.spotifyID}`)
       .then(response => response.json())
       .then(data => {
-        return new Album(Object.assign({id:slide.youtubeID, year:slide.year}, data))
+        return new Album(Object.assign({
+          isMobile:   this.isMobile,
+          isPhone:    this.isPhone,
+          isTablet:   this.isTablet,
+
+          id:         slide.youtubeID,
+          year:       slide.year
+        }, data))
       })
 
       promises.push(promise)
@@ -101,6 +112,10 @@ export default class Playlist {
   setVideos() {
     this.playlist.map((slide, index) => {
       let video = new Video({
+        isMobile:   this.isMobile,
+        isPhone:    this.isPhone,
+        isTablet:   this.isTablet,
+
         id:             slide.youtubeID,
         name:           this.albums[index].name,
         element:        this.dom.slideshowVideos.children[index].querySelector('.video'),
@@ -209,15 +224,17 @@ export default class Playlist {
 
         this.preload(100)
         .then(() => {
-          // Show intro immediately for mobile
-          if (!Utils.isDesktop()) {
+          if (this.isMobile || window.innerWidth < 992) {
+            // Show intro immediately for mobile
             this.animations[0].showIntro()
           }
 
-          // Reset animations
-          this.animations.map(animation => {
-            animation.resetAnimation()
-          })
+          else {
+            // Reset animations
+            this.animations.map(animation => {
+              animation.resetAnimation()
+            })
+          }
 
           // Add events
           this.handleClick()
@@ -232,7 +249,7 @@ export default class Playlist {
   handleClick() {
     this.app.addEventListener('click', event => {
       // Next
-      if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__play, .playlist__play *')) {
+      if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *')) {
         event.preventDefault()
         this.nextSlide()
       }
@@ -241,6 +258,15 @@ export default class Playlist {
       else if (event.target.matches('.playlist__control--prev, .playlist__control--prev *')) {
         event.preventDefault()
         this.prevSlide()
+      }
+
+      else if (event.target.matches('.playlist__control--play, .playlist__control--play *, .album, .album *')) {
+        event.preventDefault()
+        this.videos[this.state.currentSlide].playVideo()
+
+        Array.from(this.dom.controlPlay).map(controlPlay => {
+          controlPlay.classList.remove('playlist__control--visible')
+        })
       }
 
       // Mute
@@ -265,10 +291,6 @@ export default class Playlist {
     })
 
     this.dom.playlist.style['touch-action'] = 'manipulation'
-
-    if (!Utils.isDesktop()) {
-      this.dom.playlist.style['cursor'] = 'pointer'
-    }
 
     manager.add(swipe)
 
@@ -338,10 +360,6 @@ export default class Playlist {
           slide.style.transform = `translateX(${index * 100}%)`
         })
       })
-
-      if (!Utils.isTabletOrDesktop()) {
-        this.zoomIn()
-      }
     })
   }
 
@@ -434,9 +452,12 @@ export default class Playlist {
 
     // Play video, timeline, and animations
     this.videos[this.state.currentSlide].prefetchVideo()
-    this.videos[this.state.currentSlide].playVideo()
     this.timelines[this.state.currentSlide].playTimeline()
     this.animations[this.state.currentSlide].playAnimation()
+
+    if (!this.isMobile) {
+      this.videos[this.state.currentSlide].playVideo()
+    }
 
     // Animate slide
     Array.from(this.dom.slideshows).map(slideshow => {
@@ -454,18 +475,31 @@ export default class Playlist {
 
   animateControls() {
     // Show/Hide controls
-    // if (this.state.currentSlide === this.albums.length - 1) {
-    //   this.dom.controlNext.classList.remove('playlist__control--visible')
-    // }
-
     if (this.state.currentSlide) {
-      this.dom.controlNext.classList.add('playlist__control--visible')
-      this.dom.controlPrev.classList.add('playlist__control--visible')
+      if (this.isMobile) {
+        Array.from(this.dom.controlPlay).map(controlPlay => {
+          controlPlay.classList.add('playlist__control--visible')
+        })
+
+        this.dom.slideshowAlbums.style.zIndex = 4
+      }
+
+      else {
+        this.dom.controlNext.classList.add('playlist__control--visible')
+        this.dom.controlPrev.classList.add('playlist__control--visible')
+      }
     }
 
     else {
       this.dom.controlNext.classList.remove('playlist__control--visible')
       this.dom.controlPrev.classList.remove('playlist__control--visible')
+      this.dom.slideshowAlbums.style.zIndex = 2
+
+      if (this.isMobile) {
+        Array.from(this.dom.controlPlay).map(controlPlay => {
+          controlPlay.classList.remove('playlist__control--visible')
+        })
+      }
     }
   }
 
@@ -499,6 +533,7 @@ export default class Playlist {
 
     this.dom.controlNext = document.querySelector('.playlist__control--next')
     this.dom.controlPrev = document.querySelector('.playlist__control--prev')
+    this.dom.controlPlay = document.querySelectorAll('.playlist__control--play')
 
     this.dom.frames = document.querySelectorAll('.playlist__frame')
     this.dom.preloader = document.querySelector('.playlist__preloader')
@@ -507,7 +542,6 @@ export default class Playlist {
     this.dom.progress = document.querySelector('.playlist__progress')
     this.dom.tracks = document.querySelectorAll('.playlist__progress__track')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
-    this.dom.controlPlay = document.querySelector('.playlist__play')
 
     this.dom.overlay = document.querySelector('.playlist__overlay')
     this.dom.about = document.querySelector('.playlist__about')
@@ -583,6 +617,7 @@ export default class Playlist {
 
         <a href="#" class="playlist__control playlist__control--prev"><i class="icon icon--lg icon--arrow"></i></a>
         <a href="#" class="playlist__control playlist__control--next"><i class="icon icon--lg icon--arrow"></i></a>
+        <a href="#" class="playlist__control playlist__control--play"><i class="icon icon--lg icon--play"></i></a>
 
         <div class="playlist__frame playlist__frame--top"></div>
         <div class="playlist__frame playlist__frame--right"></div>
