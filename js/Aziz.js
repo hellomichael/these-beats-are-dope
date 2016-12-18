@@ -20,16 +20,14 @@ export default class Aziz extends Animation {
   }
 
   showIntro() {
-    setTimeout(() => {
-      this.showThese()
-      this.showBeats()
-      this.showAre()
-      this.showDope()
-      this.showSubheading()
-      this.showButton()
-      this.scrollIntro1()
-      this.scrollIntro2()
-    }, 1500)
+    this.showThese()
+    this.showBeats()
+    this.showAre()
+    this.showDope()
+    this.showSubheading()
+    this.showButton()
+    this.scrollIntro1()
+    this.scrollIntro2()
   }
 
   showThese() {

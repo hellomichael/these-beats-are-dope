@@ -429,24 +429,14 @@ export default class Playlist {
             }
           })
         })
-
-        // Prefetch video after video
-        if (!Utils.isDesktop()) {
-          this.videos[this.state.currentSlide].prefetchVideo()
-          this.videos[this.state.currentSlide].playVideo()
-          this.timelines[this.state.currentSlide].playTimeline()
-          this.animations[this.state.currentSlide].playAnimation()
-        }
       })
     }
 
     // Play video, timeline, and animations
-    if (Utils.isDesktop()) {
-      this.videos[this.state.currentSlide].prefetchVideo()
-      this.videos[this.state.currentSlide].playVideo()
-      this.timelines[this.state.currentSlide].playTimeline()
-      this.animations[this.state.currentSlide].playAnimation()
-    }
+    this.videos[this.state.currentSlide].prefetchVideo()
+    this.videos[this.state.currentSlide].playVideo()
+    this.timelines[this.state.currentSlide].playTimeline()
+    this.animations[this.state.currentSlide].playAnimation()
 
     // Animate slide
     Array.from(this.dom.slideshows).map(slideshow => {
