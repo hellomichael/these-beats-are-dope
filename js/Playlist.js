@@ -339,7 +339,7 @@ export default class Playlist {
         })
       })
 
-      if (!Utils.isDesktop()) {
+      if (!Utils.isTabletOrDesktop()) {
         this.zoomIn()
       }
     })
