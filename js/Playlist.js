@@ -14,9 +14,9 @@ export default class Playlist {
   constructor(options) {
     // Props
     this.device = new MobileDetect(window.navigator.userAgent)
-    this.isMobile = true ? true : this.device.mobile()
+    this.isMobile = false ? true : this.device.mobile()
     this.isPhone  = false ? true : this.device.phone()
-    this.isTablet = true ? true : this.device.tablet()
+    this.isTablet = false ? true : this.device.tablet()
 
     this.matchesPolyfill()
 
