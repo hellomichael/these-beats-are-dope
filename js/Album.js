@@ -24,9 +24,9 @@ export default class Album {
   }
 
   resizeAlbum() {
-    let albumCover = this.isPhone ? '' : this.album.images[1].url
+    let albumCover = this.album.images[1].url
 
-    if (!this.isPhone && Utils.isHighDensity()) {
+    if (Utils.isHighDensity() || !this.isMobile) {
       albumCover = this.album.images[0].url
     }
 
@@ -48,12 +48,12 @@ export default class Album {
           </div>
 
           <h5 class="album__single">
-            ${this.name} (${this.year})
+            ${this.name} <span class="album__year">(${this.year})</span>
           </h5>
 
-          <h4 class="album__title">
+          <h5 class="album__title">
             ${this.album.name.replace(/ *\([^)]*\) */g, '')}
-          </h4>
+          </h5>
         </div>
       </div>
     `

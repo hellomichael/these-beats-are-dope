@@ -72,7 +72,7 @@ export default class Aziz extends Animation {
         <div class="aziz__intro">
           <h1 class="aziz__heading">
             <span class="aziz__heading__these">These</span>
-            <span class="aziz__heading__beats">Beats</span>
+            <span class="aziz__heading__beats">Beats</span> <br/>
             <span class="aziz__heading__are">Are</span>
             <span class="aziz__heading__dope">Dope</span>
           </h1>

@@ -6,6 +6,7 @@ import Video from './Video.js'
 import Timeline from './Timeline.js'
 import Aziz from './Aziz.js'
 import Kanye from './Kanye.js'
+import Disclaimer from './Disclaimer.js'
 import * as Utils from './Utils.js'
 require('../scss/_playlist.scss')
 
@@ -13,9 +14,9 @@ export default class Playlist {
   constructor(options) {
     // Props
     this.device = new MobileDetect(window.navigator.userAgent)
-    this.isMobile = false ? true : this.device.mobile()
+    this.isMobile = true ? true : this.device.mobile()
     this.isPhone  = false ? true : this.device.phone()
-    this.isTablet = false ? true : this.device.tablet()
+    this.isTablet = true ? true : this.device.tablet()
 
     this.matchesPolyfill()
 
@@ -154,7 +155,7 @@ export default class Playlist {
   }
 
   setFrames() {
-    Array.from(this.dom.frames).map(frame => {
+    Array.from(this.dom.frames).map((frame, index) => {
       frame.classList.add('playlist__frame--visible')
     })
 
@@ -439,7 +440,9 @@ export default class Playlist {
 
             else {
               if (index != this.state.currentSlide && index != (this.state.currentSlide + 1) && index != (this.state.currentSlide - 1)) {
-                slide.style.display = 'none'
+                setTimeout(() => {
+                  slide.style.display = 'none'
+                }, 250)
               }
 
               else {
@@ -497,8 +500,10 @@ export default class Playlist {
       this.dom.slideshowAlbums.style.zIndex = 2
 
       if (this.isMobile) {
-        Array.from(this.dom.controlPlay).map(controlPlay => {
-          controlPlay.classList.remove('playlist__control--visible')
+        Array.from(this.dom.controlPlay).map((controlPlay, index) => {
+          if (index === this.state.currentSlide) {
+            controlPlay.classList.remove('playlist__control--visible')
+          }
         })
       }
     }
@@ -595,6 +600,8 @@ export default class Playlist {
 
     this.app.innerHTML = `
       <!-- Playlist --!>
+      ${new Disclaimer().render()}
+
       <div class="playlist">
         <div class="playlist__slideshow playlist__slideshow--animations" style="width: ${this.width * (this.albums.length)}px; height: ${this.height}px;">
           ${animationSlides}
@@ -618,7 +625,6 @@ export default class Playlist {
 
         <a href="#" class="playlist__control playlist__control--prev"><i class="icon icon--lg icon--arrow"></i></a>
         <a href="#" class="playlist__control playlist__control--next"><i class="icon icon--lg icon--arrow"></i></a>
-        <a href="#" class="playlist__control playlist__control--play"><i class="icon icon--lg icon--play"></i></a>
 
         <div class="playlist__frame playlist__frame--top"></div>
         <div class="playlist__frame playlist__frame--right"></div>

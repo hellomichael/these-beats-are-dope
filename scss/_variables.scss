@@ -89,5 +89,11 @@ $screen-sm-max:              ($screen-md-min - 1);
 $screen-md-max:              ($screen-lg-min - 1);
 
 // Kanye Distance
+$kanye-distance-sm:          17.5vw;
 $kanye-distance-md:          22.5vw;
 $kanye-distance-lg:          17.25vw;
+
+// Album scale
+$album-size:                 300px;
+$album-scale-sm:             0.5;
+$album-scale-md:             0.75;

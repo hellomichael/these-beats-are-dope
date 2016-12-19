@@ -12,6 +12,14 @@ $module: 'playlist';
   overflow: visible;
   transition: 0.75s transform $ease-in-out-quart 0.15s;
 
+  @media only screen and (orientation:portrait) {
+    display: none;
+  }
+
+  @media only screen and (orientation:landscape) {
+    display: block;
+  }
+
   @if $debug {
     transform: scale(0.15);
     overflow: visible;
@@ -434,24 +442,6 @@ $module: 'playlist';
 
         &:hover {
           transform: translateY(-50%) translateZ(0) scale(1.1);
-        }
-      }
-    }
-
-    &--play {
-      display: block;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) scale(1.1);
-      transition: 0.25s transform $ease-out-quint, 0.25s opacity $ease-out-quint;
-
-      &.playlist__control--visible {
-        transform: translate(-50%, -50%) scale(1);
-        transition: 0.25s transform $ease-out-quint 0.5s, 0.25s opacity $ease-out-quint 0.5s;
-
-        @media screen and (min-width: $screen-md-min) {
-          display: none;
         }
       }
     }

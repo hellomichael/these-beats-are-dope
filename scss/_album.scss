@@ -2,28 +2,22 @@
   Album
   ========================================================================== */
 $module: 'album';
-$albumScale: 0.75;
-$albumSize: 300px;
 
 .#{$module} {
-  display: none;
   @extend %center;
-  width: $albumSize * $albumScale;
+  width: $album-size * $album-scale-sm;
   transform-origin: left top;
   transform: translateX(-50%) translateY(-50%);
   transition: 0.75s transform $ease-out-quint;
-
-  @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
-    display: block;
-    width: $albumSize;
-  }
+  transform: translateX(-50%) translateX($kanye-distance-sm) translateY(-50%);
 
   @media screen and (min-width: $screen-md-min) {
-    display: block;
+    width: $album-size * $album-scale-md;
     transform: translateX(-50%) translateX($kanye-distance-md) translateY(-50%);
   }
 
   @media screen and (min-width: $screen-lg-min) {
+    width: $album-size;
     transform: translateX(-50%) translateX($kanye-distance-lg) translateY(-50%);
   }
 
@@ -36,17 +30,22 @@ $albumSize: 300px;
 
   &__vinyl {
     @extend %before-after;
-    width: $albumSize * $albumScale;
-    height: $albumSize * $albumScale;
-    margin: 0 0 $gutter-md;
+    width: $album-size * $album-scale-sm;
+    height: $album-size * $album-scale-sm;
+    margin: 0 0 $gutter-sm;
     transform-style: preserve-3d;
     transform: rotateY(-#{75}deg);
     backface-visibility: hidden;
     transition: 1s transform $ease-in-out-quint 0.05s;
 
-    @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
-      width: $albumSize;
-      height: $albumSize;
+    @media screen and (min-width: $screen-md-min) {
+      width: $album-size * $album-scale-md;
+      height: $album-size * $album-scale-md;
+    }
+
+    @media screen and (min-width: $screen-lg-min) {
+      width: $album-size;
+      height: $album-size;
       margin: 0 0 $gutter-lg;
     }
 
@@ -69,27 +68,37 @@ $albumSize: 300px;
     &:after {
       @extend %center;
       z-index: 2;
-      width: $albumSize * 1.5 * $albumScale;
-      height: $albumSize * 1.5* $albumScale;
+      width: $album-size * 1.5 * $album-scale-sm;
+      height: $album-size * 1.5 * $album-scale-sm;
       background: url(../img/album-vinyl.png);
       background-size: cover;
       transform: translateX(-50%) translateY(-50%) translateZ(1px);
 
-      @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
-        width: ($albumSize * 1.5);
-        height: ($albumSize * 1.5);
+      @media screen and (min-width: $screen-md-min) {
+        width: $album-size * 1.5 * $album-scale-md;
+        height: $album-size * 1.5 * $album-scale-md;
+      }
+
+      @media screen and (min-width: $screen-lg-min) {
+        width: ($album-size * 1.5);
+        height: ($album-size * 1.5);
       }
     }
 
     img {
-      width: $albumSize * $albumScale;
-      height: $albumSize * $albumScale;
+      width: $album-size * $album-scale-sm;
+      height: $album-size * $album-scale-sm;
       border-radius: 3px;
       outline: 1px solid transparent;
 
-      @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
-        width: $albumSize;
-        height: $albumSize;
+      @media screen and (min-width: $screen-md-min) {
+        width: $album-size * $album-scale-md;
+        height: $album-size * $album-scale-md;
+      }
+
+      @media screen and (min-width: $screen-lg-min) {
+        width: $album-size;
+        height: $album-size;
       }
     }
 
@@ -100,8 +109,8 @@ $albumSize: 300px;
 
     &__back {
       display: block;
-      width: $albumSize * $albumScale;
-      height: $albumSize * $albumScale;
+      width: $album-size * $album-scale-sm;
+      height: $album-size * $album-scale-sm;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -110,19 +119,24 @@ $albumSize: 300px;
       background: $white url(../img/album-vinyl.png) center center;
       border-radius: 3px;
 
-      @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
-        width: $albumSize;
-        height: $albumSize;
+      @media screen and (min-width: $screen-md-min) {
+        width: $album-size * $album-scale-md;
+        height: $album-size * $album-scale-md;
+      }
+
+      @media screen and (min-width: $screen-lg-min) {
+        width: $album-size;
+        height: $album-size;
       }
     }
   }
 
   &__single, &__title {
-    width: $albumSize;
+    width: $album-size;
     transform: rotateY(-15deg);
     transition: 1s transform $ease-out-quint;
 
-    @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
+    @media screen and (min-width: $screen-lg-min) {
       width: 450px;
     }
 
@@ -134,25 +148,50 @@ $albumSize: 300px;
   &__title {
     margin: 0;
 
-    @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
+    @media screen and (min-width: $screen-xs-min) and (min-height: $screen-xs-min) {
+      @include rem(font-size, $h4-size);
+      @include rem(line-height, $h5-height);
+    }
+
+    @media screen and (min-width: $screen-lg-min) {
       @include rem(font-size, $h3-size);
       @include rem(line-height, $h3-height);
     }
   }
 
   .playlist__control--play {
-    width: $albumSize;
-    height: $albumSize + 2px;
-    background-color: rgba($black, 0.15);
+    @extend %center;
+    width: $album-size * $album-scale-sm;
+    height: $album-size * $album-scale-sm;
+    // background-color: rgba($black, 0.15);
+    transform: translate(-50%, -50%) scale(1.1);
+    transition: 0.25s transform $ease-out-quint, 0.25s opacity $ease-out-quint;
+
+    @media screen and (min-width: $screen-md-min) {
+      width: $album-size * $album-scale-md;
+      height: $album-size * $album-scale-md + 2px;
+    }
+
+    @media screen and (min-width: $screen-lg-min) {
+      width: $album-size;
+      height: $album-size + 2px;
+    }
 
     .icon {
       @extend %center;
     }
 
     &.playlist__control--visible {
-      @media screen and (min-width: $screen-sm-min) {
-        display: block;
-      }
+      transform: translate(-50%, -50%) scale(1);
+      transition: 0.25s transform $ease-out-quint 0.5s, 0.25s opacity $ease-out-quint 0.5s;
+    }
+  }
+
+  &__year {
+    display: none;
+
+    @media screen and (min-width: $screen-lg-min) {
+      display: inline-block;
     }
   }
 

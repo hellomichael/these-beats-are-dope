@@ -175,7 +175,7 @@ export default class Video {
       if (this.isMobile) {
         setTimeout(() => {
           this.youtube.stopVideo()
-        }, 250)
+        }, 750)
       }
 
       else {
