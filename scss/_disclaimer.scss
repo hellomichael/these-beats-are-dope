@@ -4,11 +4,21 @@
 $module: 'disclaimer';
 
 .#{$module} {
+  display: none;
   width: 100%;
   height: 100%;
   margin: 0;
   background: url(../img/disclaimer.jpg) center center;
   background-size: cover;
+  z-index: 9999;
+
+  @media only screen and (orientation:portrait) {
+    display: block;
+  }
+
+  @media only screen and (orientation:landscape) {
+    display: none;
+  }
 
   /* ==========================================================================
   Elements

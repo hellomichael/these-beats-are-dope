@@ -120,7 +120,11 @@ small {
 }
 
 h1, h2, h3, h4 {
-  margin: 0 0 $gutter-sm;
+  margin: 0 0 $gutter-xs;
+
+  @media screen and (min-height: $screen-xs-min) {
+    margin: 0 0 $gutter-sm;
+  }
 }
 
 h5, h6 {

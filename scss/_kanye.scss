@@ -10,6 +10,8 @@ $module: 'kanye';
   width: 100%;
   height: 100%;
   z-index: 3;
+  overflow-y: hidden;
+  transform: translateX(-(#{$kanye-distance-sm}));
 
   @media screen and (min-width: $screen-sm-min) {
     left: 15px;
@@ -20,7 +22,6 @@ $module: 'kanye';
   }
 
   @media screen and (min-width: $screen-lg-min) {
-    overflow-y: hidden;
     transform: translateX(-(#{$kanye-distance-lg}));
   }
 
