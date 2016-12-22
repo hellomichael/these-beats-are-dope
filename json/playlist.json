@@ -20,108 +20,13 @@
 
 
 		{
-			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
-			"youtubeID": "CDyrWWPt534",
-			"single": "Never Let Me Down",
-			"year": "2004",
-			"volume": 50,
-			"animation": "Kanye",
-			"animationMix": 0.3,
-			"animationThreshold": 0.4,
-			"keyframes": [
-				{"timecode": "00:10:10", 									"actions":	["breathing"]},
-				{"timecode": "00:18:00", 	"bpm": "81.7", 	"actions": 	["bopper"]},
-				{"timecode": "02:49:00", 									"actions":	["breathing"]}
-			]
-		},
-
-
-
-		{
-			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
-			"youtubeID": "QWb6losRD38",
-			"single": "Love Lockdown",
-			"year": "2008",
-			"volume": 100,
-			"animation": "Kanye",
-			"animationMix": 0.3,
-			"animationThreshold": 0.45,
-			"keyframes": [
-				{"timecode": "00:21:05", 									"actions":	["breathing"]},
-				{"timecode": "00:21:21", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "00:28:15", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "00:44:20", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "01:16:19", 	"bpm": "119.8", "actions": 	["bopper"]},
-				{"timecode": "01:32:23", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "02:20:26", 	"bpm": "119.8", "actions": 	["bopper"]},
-				{"timecode": "02:36:29", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "03:25:00", 	"bpm": "119.8", "actions": 	["bopper"]},
-				{"timecode": "03:57:06", 									"actions":	["breathing"]},
-				{"timecode": "04:01:10", 									"actions":	["breathing"]}
-			]
-		},
-
-
-		{
-			"spotifyID": "4Li2WHPkuyCdtmokzW2007",
-			"youtubeID": "gG_dA32oH44",
-			"single": "Ni**as In Paris",
-			"year": "2011",
-			"volume": 40,
-			"animation": "Kanye",
-			"animationMix": 0.3,
-			"animationThreshold": 0.35,
-			"keyframes": [
-				{"timecode": "00:19:00", 									"actions": ["breathing"]},
-				{"timecode": "00:20:00",	"bpm": "69.9", 	"actions": ["bopper"]},
-				{"timecode": "00:23:11",	"bpm": "140",		"actions": ["bopper"]},
-				{"timecode": "00:50:25",	"bpm": "70.15",	"actions": ["bopper"]},
-
-				{"timecode": "01:03:21",									"actions": ["breathing", "openCloseEyes"]},
-				{"timecode": "01:04:21",	"bpm": "70.15",	"actions": ["bopper"]},
-
-				{"timecode": "01:18:11",	"bpm": "140",		"actions": ["bopper"]},
-				{"timecode": "01:32:02",	"bpm": "70.15",	"actions": ["bopper"]},
-
-				{"timecode": "01:44:25",									"actions": ["breathing"]},
-				{"timecode": "01:45:25",	"bpm": "70.15",	"actions": ["bopper"]},
-
-				{"timecode": "01:48:10",									"actions": ["breathing"]},
-				{"timecode": "01:49:04",	"bpm": "70.15",	"actions": ["bopper"]},
-
-				{"timecode": "01:51:20",									"actions": ["breathing"]},
-				{"timecode": "01:52:15",	"bpm": "70.15",	"actions": ["bopper"]},
-
-				{"timecode": "01:55:05",									"actions": ["breathing"]},
-				{"timecode": "01:55:28",	"bpm": "70.15",	"actions": ["bopper"]},
-
-				{"timecode": "01:58:15",									"actions": ["breathing"]},
-
-				{"timecode": "01:59:10",	"bpm": "140",		"actions": ["bopper"]},
-				{"timecode": "02:13:05",	"bpm": "70.15",	"actions": ["bopper"]},
-
-				{"timecode": "02:25:02",									"actions": ["breathing"]},
-				{"timecode": "02:26:27",	"bpm": "70.15",	"actions": ["bopper"]},
-
-				{"timecode": "02:40:02",									"actions": ["breathing"]},
-				{"timecode": "02:47:13",	"bpm": "140",		"actions": ["bopper"]},
-				{"timecode": "02:57:21",	"bpm": "70.15",	"actions": ["bopper"]},
-
-				{"timecode": "03:01:03",									"actions": ["breathing"]},
-				{"timecode": "03:14:27",	"bpm": "70.15",	"actions": ["bopper"]},
-
-				{"timecode": "03:55:02",									"actions": ["breathing"]},
-				{"timecode": "04:09:15",									"actions": ["breathing"]}
-			]
-		},
-
-		{
 		  "spotifyID": "1YD3Dg7Olipi5FGVDLHWAu",
 		  "youtubeID": "_ABk7TmjnVk",
 		  "single": "All Day",
 		  "year": "2015",
 			"volume": 40,
 		  "animation": "Kanye",
+			"animationOutfit": "sweater",
 		  "animationMix": 0.3,
 		  "animationThreshold": 0.5,
 		  "keyframes": [
@@ -173,6 +78,105 @@
 		    {"timecode": "04:14:20", 									"actions": ["breathing"]},
 		    {"timecode": "04:20:00", 									"actions": ["breathing"]}
 		  ]
+		},
+
+
+		{
+			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
+			"youtubeID": "QWb6losRD38",
+			"single": "Love Lockdown",
+			"year": "2008",
+			"volume": 100,
+			"animation": "Kanye",
+			"animationOutfit": "suit",
+			"animationMix": 0.3,
+			"animationThreshold": 0.45,
+			"keyframes": [
+				{"timecode": "00:21:05", 									"actions":	["breathing"]},
+				{"timecode": "00:21:21", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "00:28:15", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "00:44:20", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "01:16:19", 	"bpm": "119.8", "actions": 	["bopper"]},
+				{"timecode": "01:32:23", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "02:20:26", 	"bpm": "119.8", "actions": 	["bopper"]},
+				{"timecode": "02:36:29", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "03:25:00", 	"bpm": "119.8", "actions": 	["bopper"]},
+				{"timecode": "03:57:06", 									"actions":	["breathing"]},
+				{"timecode": "04:01:10", 									"actions":	["breathing"]}
+			]
+		},
+
+
+		{
+			"spotifyID": "4Li2WHPkuyCdtmokzW2007",
+			"youtubeID": "gG_dA32oH44",
+			"single": "Ni**as In Paris",
+			"year": "2011",
+			"volume": 40,
+			"animation": "Kanye",
+			"animationOutfit": "sweater",
+			"animationMix": 0.3,
+			"animationThreshold": 0.35,
+			"keyframes": [
+				{"timecode": "00:19:00", 									"actions": ["breathing"]},
+				{"timecode": "00:20:00",	"bpm": "69.9", 	"actions": ["bopper"]},
+				{"timecode": "00:23:11",	"bpm": "140",		"actions": ["bopper"]},
+				{"timecode": "00:50:25",	"bpm": "70.15",	"actions": ["bopper"]},
+
+				{"timecode": "01:03:21",									"actions": ["breathing", "openCloseEyes"]},
+				{"timecode": "01:04:21",	"bpm": "70.15",	"actions": ["bopper"]},
+
+				{"timecode": "01:18:11",	"bpm": "140",		"actions": ["bopper"]},
+				{"timecode": "01:32:02",	"bpm": "70.15",	"actions": ["bopper"]},
+
+				{"timecode": "01:44:25",									"actions": ["breathing"]},
+				{"timecode": "01:45:25",	"bpm": "70.15",	"actions": ["bopper"]},
+
+				{"timecode": "01:48:10",									"actions": ["breathing"]},
+				{"timecode": "01:49:04",	"bpm": "70.15",	"actions": ["bopper"]},
+
+				{"timecode": "01:51:20",									"actions": ["breathing"]},
+				{"timecode": "01:52:15",	"bpm": "70.15",	"actions": ["bopper"]},
+
+				{"timecode": "01:55:05",									"actions": ["breathing"]},
+				{"timecode": "01:55:28",	"bpm": "70.15",	"actions": ["bopper"]},
+
+				{"timecode": "01:58:15",									"actions": ["breathing"]},
+
+				{"timecode": "01:59:10",	"bpm": "140",		"actions": ["bopper"]},
+				{"timecode": "02:13:05",	"bpm": "70.15",	"actions": ["bopper"]},
+
+				{"timecode": "02:25:02",									"actions": ["breathing"]},
+				{"timecode": "02:26:27",	"bpm": "70.15",	"actions": ["bopper"]},
+
+				{"timecode": "02:40:02",									"actions": ["breathing"]},
+				{"timecode": "02:47:13",	"bpm": "140",		"actions": ["bopper"]},
+				{"timecode": "02:57:21",	"bpm": "70.15",	"actions": ["bopper"]},
+
+				{"timecode": "03:01:03",									"actions": ["breathing"]},
+				{"timecode": "03:14:27",	"bpm": "70.15",	"actions": ["bopper"]},
+
+				{"timecode": "03:55:02",									"actions": ["breathing"]},
+				{"timecode": "04:09:15",									"actions": ["breathing"]}
+			]
+		},
+
+
+		{
+			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
+			"youtubeID": "CDyrWWPt534",
+			"single": "Never Let Me Down",
+			"year": "2004",
+			"volume": 50,
+			"animation": "Kanye",
+			"animationOutfit": "suit",
+			"animationMix": 0.3,
+			"animationThreshold": 0.4,
+			"keyframes": [
+				{"timecode": "00:10:10", 									"actions":	["breathing"]},
+				{"timecode": "00:18:00", 	"bpm": "81.7", 	"actions": 	["bopper"]},
+				{"timecode": "02:49:00", 									"actions":	["breathing"]}
+			]
 		}
 
 
