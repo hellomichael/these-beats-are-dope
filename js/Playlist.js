@@ -84,7 +84,14 @@ export default class Playlist {
 
   setAnimations() {
     this.playlist.map(slide => {
-      this.animations.push(slide.animation === 'Aziz' ? new Aziz({id: slide.youtubeID}) : new Kanye({id: slide.youtubeID, pixiAnimationMix: slide.animationMix}))
+      this.animations.push(slide.animation === 'Aziz' ?
+        new Aziz({id: slide.youtubeID}) :
+        new Kanye({
+          id: slide.youtubeID,
+          pixiAnimationMix: slide.animationMix,
+          kanyeOutfit : slide.animationOutfit
+        })
+      )
     })
   }
 

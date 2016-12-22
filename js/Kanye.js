@@ -15,8 +15,19 @@ export default class Kanye extends Animation {
     this.pixiAnimationMix = 0
     this.requestAnimationFrame = null
 
-    this.kanyeWidth = Utils.isHighDensity() ? 1884 : 1884/this.pixiResolution
-    this.kanyeHeight = Utils.isHighDensity() ? 1937 : 1937/this.pixiResolution
+    this.kanyeWidth = Utils.isHighDensity() ? 1960 : 1960/this.pixiResolution
+    this.kanyeHeight = Utils.isHighDensity() ? 1960 : 1960/this.pixiResolution
+
+    this.kanyeOutfit = null
+    this.kanyeOutfits = {
+      shared:     ['glasses', 'glasses-flare', 'face-shadow-glasses', 'neck-front', 'chest', 'shadow', 'shadow-left', 'shadow-right'],
+      hoodie:     [],
+      letterman:  [],
+      polo:       [],
+      suit:       ['suit-body', 'suit-collar', 'suit-lapel', 'suit-heart', 'suit-shirt', 'glasses', 'glasses-flare', 'face-shadow-glasses'],
+      sweater:    ['sweater-body', 'sweater-collar', 'neck-front', 'chest', 'shadow', 'shadow-left', 'shadow-right'],
+      tshirt:     []
+    }
 
     this.kanyeEyesOpen = false
     this.kanyeEyesRepeating = 0
@@ -28,6 +39,23 @@ export default class Kanye extends Animation {
 
     Object.assign(this, options)
     this.setIdle()
+  }
+
+  changeOutfit() {
+    let hideOutfits = [...this.kanyeOutfits.shared, ...this.kanyeOutfits.hoodie, ...this.kanyeOutfits.letterman, ...this.kanyeOutfits.polo, ...this.kanyeOutfits.suit, ...this.kanyeOutfits.sweater, ...this.kanyeOutfits.tshirt]
+
+    // Remove current outfit
+    hideOutfits = hideOutfits.filter(x => this.kanyeOutfits[this.kanyeOutfit].indexOf(x) < 0)
+
+    // Remove duplicates
+    hideOutfits = [ ...new Set(hideOutfits)]
+
+    console.log(hideOutfits)
+
+    // Hide outfits
+    hideOutfits.map(slot => {
+      this.kanye.skeleton.findSlot(slot).setAttachment(null)
+    })
   }
 
   handleMouseMove() {
@@ -102,7 +130,7 @@ export default class Kanye extends Animation {
       .load((loader, res) => {
         this.kanye = new PIXI.spine.Spine(res[`kanye--${this.id}`].spineData)
 
-        this.setAnimationMixes(['breathing', 'shiver', 'bop', 'bopFast', 'bopLeft', 'bopLeftFast', 'bopRight', 'bopRightFast'])
+        this.setAnimationMixes(['breathing', 'bop', 'bopFast', 'bopLeft', 'bopLeftFast', 'bopRight', 'bopRightFast'])
 
         if (!Utils.isHighDensity()) {
           this.kanye.scale.x = 1/this.pixiResolution
@@ -112,6 +140,7 @@ export default class Kanye extends Animation {
         this.kanye.position.x = this.kanyeWidth/2
         this.kanye.position.y = this.kanyeHeight
         this.pixiStage.addChild(this.kanye)
+        this.changeOutfit()
 
         // Events
         this.handleResize()
@@ -120,6 +149,9 @@ export default class Kanye extends Animation {
   }
 
   resetAnimation() {
+    this.kanyeBopCount = 0
+    this.kanye.skeleton.setToSetupPose()
+    this.changeOutfit()
     this.pixiRenderer.render(this.pixiStage)
   }
 
@@ -144,8 +176,7 @@ export default class Kanye extends Animation {
   stopAnimation() {
     setTimeout(() => {
       this.isPlaying = false
-      this.kanyeBopCount = 0
-      this.kanye.skeleton.setToSetupPose()
+      this.resetAnimation()
       cancelAnimationFrame(this.requestAnimationFrame)
       clearTimeout(this.pixiAnimation)
     }, 250)
@@ -153,6 +184,7 @@ export default class Kanye extends Animation {
 
   playAnimation() {
     this.isPlaying = true
+
     this.pixiAnimation = setTimeout(() => {
       this.requestAnimationFrame = requestAnimationFrame(this.playAnimation.bind(this))
       this.pixiRenderer.render(this.pixiStage)
@@ -336,6 +368,22 @@ export default class Kanye extends Animation {
     }
   }
 
+  hideSuit() {
+    this.kanye.state.setAnimation(0, 'hideSuit', true)
+  }
+
+  showSuit() {
+    this.kanye.state.setAnimation(0, 'showSuit', true)
+  }
+
+  hideSweater() {
+    this.kanye.state.setAnimation(1, 'hideSweater', true)
+  }
+
+  showSweater() {
+    this.kanye.state.setAnimation(1, 'showSweater', true)
+  }
+
   blink() {
     if (this.kanyeEyesOpen) {
       console.log('Blink')
@@ -347,11 +395,6 @@ export default class Kanye extends Animation {
     if (this.kanyeBopCount%(~~(Math.random() * 10) + 1) === 1) {
       this.blink()
     }
-  }
-
-  shiver() {
-    console.log('Shiver')
-    this.kanye.state.setAnimation(0, 'shiver', true)
   }
 
   render() {
