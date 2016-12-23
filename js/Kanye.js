@@ -25,7 +25,7 @@ export default class Kanye extends Animation {
       letterman:  [],
       polo:       [],
       suit:       ['suit-body', 'suit-collar', 'suit-lapel', 'suit-heart', 'suit-shirt', 'glasses', 'glasses-flare', 'face-shadow-glasses'],
-      sweater:    ['sweater-body', 'sweater-collar', 'neck-front', 'chest', 'shadow', 'shadow-left', 'shadow-right'],
+      sweater:    ['sweater-body', 'sweater-collar', 'sweater-chain-front', 'sweater-chain-back', 'sweater-chain-links', 'neck-front', 'chest', 'shadow', 'shadow-left', 'shadow-right'],
       tshirt:     []
     }
 
@@ -44,15 +44,13 @@ export default class Kanye extends Animation {
   changeOutfit() {
     let hideOutfits = [...this.kanyeOutfits.shared, ...this.kanyeOutfits.hoodie, ...this.kanyeOutfits.letterman, ...this.kanyeOutfits.polo, ...this.kanyeOutfits.suit, ...this.kanyeOutfits.sweater, ...this.kanyeOutfits.tshirt]
 
-    // Remove current outfit
-    hideOutfits = hideOutfits.filter(x => this.kanyeOutfits[this.kanyeOutfit].indexOf(x) < 0)
-
     // Remove duplicates
     hideOutfits = [ ...new Set(hideOutfits)]
 
-    console.log(hideOutfits)
+    // Remove current outfit
+    hideOutfits = hideOutfits.filter(x => this.kanyeOutfits[this.kanyeOutfit].indexOf(x) < 0)
 
-    // Hide outfits
+    // Hide slots
     hideOutfits.map(slot => {
       this.kanye.skeleton.findSlot(slot).setAttachment(null)
     })
