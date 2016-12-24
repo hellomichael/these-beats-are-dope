@@ -20,13 +20,23 @@ export default class Kanye extends Animation {
 
     this.kanyeOutfit = null
     this.kanyeOutfits = {
-      shared:     ['glasses', 'glasses-flare', 'face-shadow-glasses', 'neck-front', 'chest', 'shadow', 'shadow-left', 'shadow-right'],
+      shared:     [
+        'glasses',
+        'glasses-flare',
+        'face-shadow-glasses',
+        'neck-front', 'shadow',
+        'shadow-left',
+        'shadow-right',
+        'chain-front',
+        'chain-back',
+        'chain-links'
+      ],
       hoodie:     [],
       letterman:  [],
       polo:       [],
       suit:       ['suit-body', 'suit-collar', 'suit-lapel', 'suit-heart', 'suit-shirt', 'glasses', 'glasses-flare', 'face-shadow-glasses'],
-      sweater:    ['sweater-body', 'sweater-collar', 'sweater-chain-front', 'sweater-chain-back', 'sweater-chain-links', 'neck-front', 'chest', 'shadow', 'shadow-left', 'shadow-right'],
-      tshirt:     []
+      sweater:    ['sweater-body', 'chest', 'sweater-collar', 'chain-front', 'chain-back', 'chain-links', 'neck-front', 'shadow', 'shadow-left', 'shadow-right'],
+      tshirt:     ['tshirt-body', 'chest', 'tshirt-holes', 'tshirt-arms', 'chain-front', 'chain-back', 'chain-links', 'neck-front', 'shadow', 'shadow-left', 'shadow-right']
     }
 
     this.kanyeEyesOpen = false
@@ -147,8 +157,17 @@ export default class Kanye extends Animation {
   }
 
   resetAnimation() {
+    console.log('Reset Animation')
     this.kanyeBopCount = 0
     this.kanye.skeleton.setToSetupPose()
+
+    if (this.kanyeOutfit === 'tshirt') {
+      this.kanye.skeleton.findSlot('shadow').color.a = 0.35
+      this.kanye.skeleton.findSlot('shadow-left').color.a = 0.35
+      this.kanye.skeleton.findSlot('shadow-right').color.a = 0.35
+      this.kanye.skeleton.findSlot('chain-front').data.boneData.x = 450
+    }
+
     this.changeOutfit()
     this.pixiRenderer.render(this.pixiStage)
   }
