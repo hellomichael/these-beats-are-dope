@@ -237,13 +237,11 @@ export default class Playlist {
             // Show intro immediately for mobile
             this.animations[0].showIntro()
           }
-
-          else {
-            // Reset animations
-            this.animations.map(animation => {
-              animation.resetAnimation()
-            })
-          }
+          
+          // Reset animations
+          this.animations.map(animation => {
+            animation.resetAnimation()
+          })
 
           // Add events
           this.handleClick()
