@@ -33,7 +33,7 @@ export default class Kanye extends Animation {
       ],
       hoodie:     [],
       letterman:  [],
-      polo:       [],
+      polo:       ['polo-body', 'polo-collar', 'polo-backpack', 'polo-tshirt', 'neck-front', 'chest' , 'shadow', 'shadow-left', 'shadow-right'],
       suit:       ['suit-body', 'suit-collar', 'suit-lapel', 'suit-heart', 'suit-shirt', 'glasses', 'glasses-flare', 'face-shadow-glasses'],
       sweater:    ['sweater-body', 'chest', 'sweater-collar', 'chain-front', 'chain-back', 'chain-links', 'neck-front', 'shadow', 'shadow-left', 'shadow-right'],
       tshirt:     ['tshirt-body', 'chest', 'tshirt-holes', 'tshirt-arms', 'chain-front', 'chain-back', 'chain-links', 'neck-front', 'shadow', 'shadow-left', 'shadow-right']

@@ -107,7 +107,7 @@
 			"year": "2004",
 			"volume": 50,
 			"animation": "Kanye",
-			"animationOutfit": "tshirt",
+			"animationOutfit": "polo",
 			"animationMix": 0.3,
 			"animationThreshold": 0.4,
 			"keyframes": [
@@ -124,7 +124,7 @@
 			"year": "2015",
 			"volume": 40,
 			"animation": "Kanye",
-			"animationOutfit": "sweater",
+			"animationOutfit": "tshirt",
 			"animationMix": 0.3,
 			"animationThreshold": 0.5,
 			"keyframes": [
