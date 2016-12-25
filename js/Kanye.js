@@ -15,7 +15,7 @@ export default class Kanye extends Animation {
     this.pixiAnimationMix = 0
     this.requestAnimationFrame = null
 
-    this.kanyeWidth = Utils.isHighDensity() ? 1960 : 1960/this.pixiResolution
+    this.kanyeWidth = Utils.isHighDensity() ? 2015 : 2015/this.pixiResolution
     this.kanyeHeight = Utils.isHighDensity() ? 1960 : 1960/this.pixiResolution
 
     this.kanyeOutfit = null
@@ -32,11 +32,11 @@ export default class Kanye extends Animation {
         'chain-back',
         'chain-links'
       ],
-      hoodie:     [],
+      hoodie:     ['hoodie-body', 'hoodie-hood-front', 'hoodie-hood-back', 'sweater-body', 'sweater-collar', 'neck-front', 'shadow', 'shadow-left', 'shadow-right'],
       letterman:  ['letterman-body', 'letterman-sleeves', 'letterman-bowtie', 'suit-shirt', 'suit-collar', 'glasses', 'glasses-flare', 'face-shadow-glasses'],
       polo:       ['polo-body', 'polo-collar', 'polo-tshirt', 'neck-front', 'chain-front', 'chain-back', 'chain-links', 'chest' , 'shadow', 'shadow-left', 'shadow-right'],
       suit:       ['suit-body', 'suit-collar', 'suit-lapel', 'suit-heart', 'suit-shirt', 'glasses', 'glasses-flare', 'face-shadow-glasses'],
-      sweater:    ['sweater-body', 'chest', 'sweater-collar', 'chain-front', 'chain-back', 'chain-links', 'neck-front', 'shadow', 'shadow-left', 'shadow-right'],
+      sweater:    ['sweater-body', 'chest', 'sweater-collar', 'neck-front', 'shadow', 'shadow-left', 'shadow-right'],
       tshirt:     ['tshirt-body', 'chest', 'tshirt-holes', 'tshirt-arms', 'neck-front', 'shadow', 'shadow-left', 'shadow-right']
     }
 
@@ -63,6 +63,7 @@ export default class Kanye extends Animation {
 
     // Hide slots
     hideOutfits.map(slot => {
+      console.log(slot)
       this.kanye.skeleton.findSlot(slot).setAttachment(null)
     })
   }
@@ -384,22 +385,6 @@ export default class Kanye extends Animation {
       this.kanye.state.setAnimation(1, 'closeEyes', true)
       this.kanyeEyesOpen = false
     }
-  }
-
-  hideSuit() {
-    this.kanye.state.setAnimation(0, 'hideSuit', true)
-  }
-
-  showSuit() {
-    this.kanye.state.setAnimation(0, 'showSuit', true)
-  }
-
-  hideSweater() {
-    this.kanye.state.setAnimation(1, 'hideSweater', true)
-  }
-
-  showSweater() {
-    this.kanye.state.setAnimation(1, 'showSweater', true)
   }
 
   blink() {
