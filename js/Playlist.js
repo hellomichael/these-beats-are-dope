@@ -459,8 +459,6 @@ export default class Playlist {
       })
     }
 
-    // Prefetch next 2 slides
-
     // Play video, timeline, and animations
     this.videos[this.state.currentSlide].prefetchVideo()
     this.timelines[this.state.currentSlide].playTimeline()
