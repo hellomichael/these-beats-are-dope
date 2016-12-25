@@ -24,7 +24,8 @@ export default class Kanye extends Animation {
         'glasses',
         'glasses-flare',
         'face-shadow-glasses',
-        'neck-front', 'shadow',
+        'neck-front',
+        'shadow',
         'shadow-left',
         'shadow-right',
         'chain-front',
@@ -32,11 +33,11 @@ export default class Kanye extends Animation {
         'chain-links'
       ],
       hoodie:     [],
-      letterman:  [],
-      polo:       ['polo-body', 'polo-collar', 'polo-backpack', 'polo-tshirt', 'neck-front', 'chest' , 'shadow', 'shadow-left', 'shadow-right'],
+      letterman:  ['letterman-body', 'letterman-sleeves', 'letterman-bowtie', 'suit-shirt', 'suit-collar', 'glasses', 'glasses-flare', 'face-shadow-glasses'],
+      polo:       ['polo-body', 'polo-collar', 'polo-tshirt', 'neck-front', 'chain-front', 'chain-back', 'chain-links', 'chest' , 'shadow', 'shadow-left', 'shadow-right'],
       suit:       ['suit-body', 'suit-collar', 'suit-lapel', 'suit-heart', 'suit-shirt', 'glasses', 'glasses-flare', 'face-shadow-glasses'],
       sweater:    ['sweater-body', 'chest', 'sweater-collar', 'chain-front', 'chain-back', 'chain-links', 'neck-front', 'shadow', 'shadow-left', 'shadow-right'],
-      tshirt:     ['tshirt-body', 'chest', 'tshirt-holes', 'tshirt-arms', 'chain-front', 'chain-back', 'chain-links', 'neck-front', 'shadow', 'shadow-left', 'shadow-right']
+      tshirt:     ['tshirt-body', 'chest', 'tshirt-holes', 'tshirt-arms', 'neck-front', 'shadow', 'shadow-left', 'shadow-right']
     }
 
     this.kanyeEyesOpen = false
@@ -157,7 +158,6 @@ export default class Kanye extends Animation {
   }
 
   resetAnimation() {
-    console.log('Reset Animation')
     this.kanyeBopCount = 0
     this.kanye.skeleton.setToSetupPose()
 
@@ -166,6 +166,7 @@ export default class Kanye extends Animation {
       this.kanye.skeleton.findSlot('shadow-left').color.a = 0.35
       this.kanye.skeleton.findSlot('shadow-right').color.a = 0.35
       this.kanye.skeleton.findSlot('chain-front').data.boneData.x = 450
+      this.kanye.skeleton.findSlot('chest').data.boneData.y = 395
     }
 
     this.changeOutfit()

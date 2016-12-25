@@ -5,38 +5,65 @@ format: RGBA8888
 filter: Linear,Linear
 repeat: none
 brow-left
-  rotate: true
-  xy: 1936, 1328
+  rotate: false
+  xy: 403, 2
   size: 166, 78
   orig: 166, 78
   offset: 0, 0
   index: -1
 brow-right
   rotate: false
-  xy: 1564, 94
+  xy: 571, 22
   size: 170, 58
   orig: 170, 58
   offset: 0, 0
   index: -1
-chain-back
-  rotate: true
-  xy: 1936, 1496
-  size: 550, 109
-  orig: 550, 109
-  offset: 0, 0
-  index: -1
 eyes
-  rotate: true
-  xy: 1936, 927
+  rotate: false
+  xy: 2, 5
   size: 399, 75
   orig: 399, 75
   offset: 0, 0
   index: -1
 eyes-closed
-  rotate: false
-  xy: 1564, 154
+  rotate: true
+  xy: 2004, 1647
   size: 396, 38
   orig: 396, 38
+  offset: 0, 0
+  index: -1
+face-shadow-glasses
+  rotate: false
+  xy: 2, 82
+  size: 2000, 1961
+  orig: 2000, 1961
+  offset: 0, 0
+  index: -1
+nostril-left
+  rotate: true
+  xy: 824, 40
+  size: 40, 78
+  orig: 40, 78
+  offset: 0, 0
+  index: -1
+nostril-right
+  rotate: true
+  xy: 743, 37
+  size: 43, 79
+  orig: 43, 79
+  offset: 0, 0
+  index: -1
+
+kanye2.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chain-back
+  rotate: true
+  xy: 1936, 1496
+  size: 550, 109
+  orig: 550, 109
   offset: 0, 0
   index: -1
 glasses-flare
@@ -46,32 +73,25 @@ glasses-flare
   orig: 528, 186
   offset: 0, 0
   index: -1
+letterman-bowtie
+  rotate: false
+  xy: 1130, 13
+  size: 340, 179
+  orig: 340, 179
+  offset: 0, 0
+  index: -1
 lips
   rotate: false
-  xy: 1348, 33
+  xy: 1690, 33
   size: 214, 159
   orig: 214, 159
   offset: 0, 0
   index: -1
 nose
   rotate: true
-  xy: 1130, 31
+  xy: 1472, 31
   size: 161, 216
   orig: 161, 216
-  offset: 0, 0
-  index: -1
-nostril-left
-  rotate: true
-  xy: 1817, 112
-  size: 40, 78
-  orig: 40, 78
-  offset: 0, 0
-  index: -1
-nostril-right
-  rotate: true
-  xy: 1736, 109
-  size: 43, 79
-  orig: 43, 79
   offset: 0, 0
   index: -1
 polo-body
@@ -96,7 +116,7 @@ sweater-collar
   offset: 0, 0
   index: -1
 
-kanye2.png
+kanye3.png
 size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
@@ -144,113 +164,65 @@ tshirt-body
   offset: 0, 0
   index: -1
 
-kanye3.png
+kanye4.png
 size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 beard
   rotate: false
-  xy: 2, 18
+  xy: 2, 2
   size: 591, 306
   orig: 591, 306
   offset: 0, 0
   index: -1
+face-shadow
+  rotate: false
+  xy: 1535, 408
+  size: 467, 854
+  orig: 467, 854
+  offset: 0, 0
+  index: -1
 forehead
   rotate: false
-  xy: 1124, 93
+  xy: 595, 77
   size: 573, 231
   orig: 573, 231
   offset: 0, 0
   index: -1
 glasses
   rotate: true
-  xy: 1784, 1419
+  xy: 1784, 1422
   size: 614, 243
   orig: 614, 243
   offset: 0, 0
   index: -1
-neck-front
+letterman-body
+  rotate: false
+  xy: 2, 310
+  size: 1531, 952
+  orig: 1531, 952
+  offset: 0, 0
+  index: -1
+neck
+  rotate: false
+  xy: 1535, 37
+  size: 476, 369
+  orig: 476, 369
+  offset: 0, 0
+  index: -1
+suit-heart
   rotate: true
-  xy: 1612, 492
-  size: 767, 409
-  orig: 767, 409
-  offset: 0, 0
-  index: -1
-polo-backpack
-  rotate: false
-  xy: 2, 326
-  size: 1608, 933
-  orig: 1608, 933
-  offset: 0, 0
-  index: -1
-shadow-left
-  rotate: false
-  xy: 1699, 28
-  size: 197, 462
-  orig: 197, 462
-  offset: 0, 0
-  index: -1
-suit-collar
-  rotate: false
-  xy: 595, 2
-  size: 527, 322
-  orig: 527, 322
+  xy: 1170, 43
+  size: 265, 280
+  orig: 265, 280
   offset: 0, 0
   index: -1
 tshirt-holes
   rotate: false
-  xy: 2, 1261
+  xy: 2, 1264
   size: 1780, 772
   orig: 1780, 772
-  offset: 0, 0
-  index: -1
-
-kanye4.png
-size: 2048,2048
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-chest
-  rotate: true
-  xy: 1368, 944
-  size: 552, 626
-  orig: 552, 626
-  offset: 0, 0
-  index: -1
-face-shadow
-  rotate: false
-  xy: 1516, 88
-  size: 467, 854
-  orig: 467, 854
-  offset: 0, 0
-  index: -1
-shadow
-  rotate: false
-  xy: 2, 926
-  size: 1364, 570
-  orig: 1364, 570
-  offset: 0, 0
-  index: -1
-suit-lapel
-  rotate: true
-  xy: 2, 2
-  size: 922, 946
-  orig: 922, 946
-  offset: 0, 0
-  index: -1
-suit-shirt
-  rotate: false
-  xy: 950, 45
-  size: 564, 879
-  orig: 564, 879
-  offset: 0, 0
-  index: -1
-tshirt-arms
-  rotate: false
-  xy: 2, 1498
-  size: 1889, 529
-  orig: 1889, 529
   offset: 0, 0
   index: -1
 
@@ -259,52 +231,100 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+hair
+  rotate: true
+  xy: 1498, 771
+  size: 665, 548
+  orig: 665, 548
+  offset: 0, 0
+  index: -1
+letterman-sleeves
+  rotate: false
+  xy: 2, 1438
+  size: 1907, 603
+  orig: 1907, 603
+  offset: 0, 0
+  index: -1
+neck-front
+  rotate: true
+  xy: 1498, 2
+  size: 767, 409
+  orig: 767, 409
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: true
+  xy: 2, 72
+  size: 1364, 570
+  orig: 1364, 570
+  offset: 0, 0
+  index: -1
+shadow-left
+  rotate: false
+  xy: 574, 26
+  size: 197, 462
+  orig: 197, 462
+  offset: 0, 0
+  index: -1
+suit-collar
+  rotate: false
+  xy: 773, 166
+  size: 527, 322
+  orig: 527, 322
+  offset: 0, 0
+  index: -1
+suit-lapel
+  rotate: false
+  xy: 574, 490
+  size: 922, 946
+  orig: 922, 946
+  offset: 0, 0
+  index: -1
+
+kanye6.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
 chain-front
   rotate: false
-  xy: 550, 1243
+  xy: 568, 719
   size: 599, 790
   orig: 599, 790
   offset: 0, 0
   index: -1
 chain-links
-  rotate: false
-  xy: 2, 373
+  rotate: true
+  xy: 568, 151
   size: 566, 804
   orig: 566, 804
   offset: 0, 0
   index: -1
+chest
+  rotate: false
+  xy: 2, 2
+  size: 552, 626
+  orig: 552, 626
+  offset: 0, 0
+  index: -1
 face
   rotate: false
-  xy: 1151, 1273
+  xy: 1169, 749
   size: 618, 760
   orig: 618, 760
   offset: 0, 0
   index: -1
-face-shadow-glasses
+suit-shirt
   rotate: false
-  xy: 2, 1179
-  size: 546, 854
-  orig: 546, 854
+  xy: 2, 630
+  size: 564, 879
+  orig: 564, 879
   offset: 0, 0
   index: -1
-hair
-  rotate: true
-  xy: 570, 576
-  size: 665, 548
-  orig: 665, 548
-  offset: 0, 0
-  index: -1
-neck
+tshirt-arms
   rotate: false
-  xy: 2, 2
-  size: 476, 369
-  orig: 476, 369
-  offset: 0, 0
-  index: -1
-suit-heart
-  rotate: false
-  xy: 1771, 1753
-  size: 265, 280
-  orig: 265, 280
+  xy: 2, 1511
+  size: 1889, 529
+  orig: 1889, 529
   offset: 0, 0
   index: -1

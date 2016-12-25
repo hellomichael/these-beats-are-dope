@@ -237,7 +237,7 @@ export default class Playlist {
             // Show intro immediately for mobile
             this.animations[0].showIntro()
           }
-          
+
           // Reset animations
           this.animations.map(animation => {
             animation.resetAnimation()
@@ -458,6 +458,8 @@ export default class Playlist {
         })
       })
     }
+
+    // Prefetch next 2 slides
 
     // Play video, timeline, and animations
     this.videos[this.state.currentSlide].prefetchVideo()
