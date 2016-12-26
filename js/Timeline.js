@@ -85,7 +85,7 @@ export default class Timeline {
 
             this.keyframesClone.push({
               timecode: Utils.getTimecode(i),
-              bpm: Utils.getTwoDecimalPlaces(bpm),
+              bpm: bpm,
               actions: actionsClone
             })
 
@@ -141,32 +141,39 @@ export default class Timeline {
         keyframe.actions.map(action => {
           // Check if function exists in Animation class
           if (typeof this.animation[action] === 'function') {
-            // Bopping generator
             if (action === 'bopper') {
               // Automated bops with bopCycle
-              if (keyframeBpm && keyframeDuration <= 0.5) {
-                this.animation['bopper']('fast', 'angle')
-              }
-
-              else if (keyframeBpm && keyframeDuration <= 0.7) {
+              if (Utils.getBPM(keyframeBpm) >= 130) {
                 this.animation['bopper']('fast', 'cycle')
               }
 
-              else if (keyframeBpm && keyframeDuration > 0.7) {
-                this.animation['bopper'](false, 'cycle')
+              else if (Utils.getBPM(keyframeBpm) >= 85) {
+                this.animation['bopper']('medium', 'cycle')
+              }
+
+              else if (Utils.getBPM(keyframeBpm) >= 60) {
+                this.animation['bopper']('normal', 'cycle')
+              }
+
+              else if (Utils.getBPM(keyframeBpm)) {
+                this.animation['bopper']('slow', 'cycle')
               }
 
               // Manual bops with bopAngle
-              else if (keyframeDuration <= 0.75) {
+              else if (Utils.getBPM(keyframeDuration) >= 130) {
                 this.animation['bopper']('fast', 'angle')
               }
 
-              else if (keyframeDuration > 0.75) {
-                this.animation['bopper'](false, 'angle')
+              else if (Utils.getBPM(keyframeDuration) >= 85) {
+                this.animation['bopper']('medium', 'angle')
               }
 
-              else {
-                this.animation['bopper']()
+              else if (Utils.getBPM(keyframeDuration) >= 60) {
+                this.animation['bopper']('normal', 'angle')
+              }
+
+              else if (Utils.getBPM(keyframeDuration)) {
+                this.animation['bopper']('slow', 'angle')
               }
             }
 

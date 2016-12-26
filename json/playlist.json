@@ -20,6 +20,40 @@
 
 
 		{
+			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
+			"youtubeID": "CDyrWWPt534",
+			"single": "Never Let Me Down",
+			"year": "2004",
+			"volume": 45,
+			"animation": "Kanye",
+			"animationOutfit": "suit",
+			"animationThreshold": 0.4,
+			"keyframes": [
+				{"timecode": "00:10:10", 									"actions":	["breathing"]},
+				{"timecode": "00:18:00", 	"bpm": "81.7", 	"actions": 	["bopper"]},
+				{"timecode": "02:49:00", 									"actions":	["breathing"]}
+			]
+		},
+
+
+		{
+			"spotifyID": "79ek2oolIYyGUO4aVK5IY2",
+			"youtubeID": "kNzDO8eO220",
+			"single": "Jesus Walks",
+			"year": "2004",
+			"volume": 25,
+			"animation": "Kanye",
+			"animationOutfit": "polo",
+			"animationThreshold": 0.25,
+			"keyframes": [
+				{"timecode": "00:24:00", 									"actions":	["breathing"]},
+				{"timecode": "00:33:13",	"bpm": "96", 		"actions": 	["bopper"]},
+				{"timecode": "03:13:25", 									"actions":	["breathing"]}
+			]
+		},
+
+
+		{
 			"spotifyID": "4Li2WHPkuyCdtmokzW2007",
 			"youtubeID": "gG_dA32oH44",
 			"single": "Ni**as In Paris",
@@ -27,7 +61,6 @@
 			"volume": 35,
 			"animation": "Kanye",
 			"animationOutfit": "hoodie",
-			"animationMix": 0.3,
 			"animationThreshold": 0.35,
 			"keyframes": [
 				{"timecode": "00:19:00", 									"actions": ["breathing"]},
@@ -82,7 +115,6 @@
 			"volume": 100,
 			"animation": "Kanye",
 			"animationOutfit": "polo",
-			"animationMix": 0.3,
 			"animationThreshold": 0.45,
 			"keyframes": [
 				{"timecode": "00:21:05", 									"actions":	["breathing"]},
@@ -101,23 +133,6 @@
 
 
 		{
-			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
-			"youtubeID": "CDyrWWPt534",
-			"single": "Never Let Me Down",
-			"year": "2004",
-			"volume": 45,
-			"animation": "Kanye",
-			"animationOutfit": "suit",
-			"animationMix": 0.3,
-			"animationThreshold": 0.4,
-			"keyframes": [
-				{"timecode": "00:10:10", 									"actions":	["breathing"]},
-				{"timecode": "00:18:00", 	"bpm": "81.7", 	"actions": 	["bopper"]},
-				{"timecode": "02:49:00", 									"actions":	["breathing"]}
-			]
-		},
-
-		{
 			"spotifyID": "1YD3Dg7Olipi5FGVDLHWAu",
 			"youtubeID": "_ABk7TmjnVk",
 			"single": "All Day",
@@ -125,7 +140,6 @@
 			"volume": 35,
 			"animation": "Kanye",
 			"animationOutfit": "tshirt",
-			"animationMix": 0.3,
 			"animationThreshold": 0.5,
 			"keyframes": [
 				{"timecode": "00:00:15", 									"actions": ["breathing"]},
