@@ -52,6 +52,14 @@ export default class Kanye extends Animation {
   }
 
   changeOutfit() {
+    if (this.kanyeOutfit === 'tshirt') {
+      this.kanye.skeleton.findSlot('shadow').color.a = 0.35
+      this.kanye.skeleton.findSlot('shadow-left').color.a = 0.35
+      this.kanye.skeleton.findSlot('shadow-right').color.a = 0.35
+      this.kanye.skeleton.findSlot('chain-front').data.boneData.x = 450
+      this.kanye.skeleton.findSlot('chest').data.boneData.y = 395
+    }
+
     let hideOutfits = [...this.kanyeOutfits.shared, ...this.kanyeOutfits.hoodie, ...this.kanyeOutfits.letterman, ...this.kanyeOutfits.polo, ...this.kanyeOutfits.suit, ...this.kanyeOutfits.sweater, ...this.kanyeOutfits.tshirt]
 
     // Remove duplicates
@@ -153,8 +161,13 @@ export default class Kanye extends Animation {
 
         this.kanye.position.x = this.kanyeWidth/2
         this.kanye.position.y = this.kanyeHeight
-        this.pixiStage.addChild(this.kanye)
+
         this.changeOutfit()
+        this.pixiStage.addChild(this.kanye)
+
+        setTimeout(() => {
+          this.pixiRenderer.render(this.pixiStage)
+        }, 1000)
 
         // Events
         this.handleResize()
@@ -164,18 +177,7 @@ export default class Kanye extends Animation {
 
   resetAnimation() {
     this.kanyeBopCount = 0
-    this.kanye.skeleton.setToSetupPose()
-
-    if (this.kanyeOutfit === 'tshirt') {
-      this.kanye.skeleton.findSlot('shadow').color.a = 0.35
-      this.kanye.skeleton.findSlot('shadow-left').color.a = 0.35
-      this.kanye.skeleton.findSlot('shadow-right').color.a = 0.35
-      this.kanye.skeleton.findSlot('chain-front').data.boneData.x = 450
-      this.kanye.skeleton.findSlot('chest').data.boneData.y = 395
-    }
-
-    this.changeOutfit()
-    this.pixiRenderer.render(this.pixiStage)
+    // this.pixiRenderer.render(this.pixiStage)
   }
 
   setAnimationMixes(animations) {

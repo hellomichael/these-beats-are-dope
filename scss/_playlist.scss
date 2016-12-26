@@ -36,7 +36,7 @@ $module: 'playlist';
 
   &__slideshow {
     .#{$module}__slide {
-      display: none;
+      // display: none;
 
       &:first-child {
         display: block;
@@ -185,7 +185,7 @@ $module: 'playlist';
 
     &--left {
       left: 0;
-      transform: translateX(-100%);
+      transform: translateX(-100%) translateZ(0);
 
       &.#{$module}__frame--visible {
         transform: none;
@@ -194,7 +194,7 @@ $module: 'playlist';
 
     &--right {
       right: 0;
-      transform: scaleX(-1) translateX(-100%);
+      transform: scaleX(-1) translateX(-100%) translateZ(0);
 
       &.#{$module}__frame--visible {
         transform: scaleX(-1);
@@ -373,7 +373,7 @@ $module: 'playlist';
     height: auto;
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-50%) translateY(-50%) scale(1.25);
+    transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.25);
     transition: 0.5s transform $ease-in-out-quart, 0.5s opacity $ease-in-out-quart, 0.5s visibility $ease-in-out-quart;
 
     @media screen and (min-width: $screen-md-min) {
@@ -392,7 +392,7 @@ $module: 'playlist';
     &--visible {
       opacity: 1;
       visibility: visible;
-      transform: translateX(-50%) translateY(-50%) scale(1);
+      transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
       transition: 0.75s transform $ease-in-out-quart 0.15s, 0.75s opacity $ease-in-out-quart 0.15s, 0.75s visibility $ease-in-out-quart 0.15s;
     }
   }
