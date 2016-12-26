@@ -9,6 +9,7 @@ export default class Timeline {
     this.video = null
     this.animation = null
     this.keyframes = []
+    this.keyframesCache = []
     this.keyframesClone = []
     this.isResetting = false
     this.isLoop = false
@@ -20,6 +21,7 @@ export default class Timeline {
   }
 
   stopTimeline() {
+    this.resetTimeline()
     cancelAnimationFrame(this.requestAnimationFrame)
     clearTimeout(this.timeline)
   }
@@ -44,14 +46,14 @@ export default class Timeline {
 
     this.video.loopVideo()
     .then(() => {
-      this.generateKeyframes()
+      this.resetTimeline()
       this.isResetting = false
       this.playTimeline()
     })
   }
 
   resetTimeline() {
-    this.generateKeyframes()
+    this.keyframesClone = [...this.keyframesCache]
   }
 
   generateKeyframes() {
@@ -109,6 +111,8 @@ export default class Timeline {
         })
       }
     })
+
+    this.keyframesCache = [...this.keyframesClone]
   }
 
   removeKeyframes() {
@@ -143,7 +147,7 @@ export default class Timeline {
           if (typeof this.animation[action] === 'function') {
             if (action === 'bopper') {
               // Automated bops with bopCycle
-              if (Utils.getBPM(keyframeBpm) >= 130) {
+              if (Utils.getBPM(keyframeBpm) >= 115) {
                 this.animation['bopper']('fast', 'cycle')
               }
 
@@ -160,7 +164,7 @@ export default class Timeline {
               }
 
               // Manual bops with bopAngle
-              else if (Utils.getBPM(keyframeDuration) >= 130) {
+              else if (Utils.getBPM(keyframeDuration) >= 115) {
                 this.animation['bopper']('fast', 'angle')
               }
 

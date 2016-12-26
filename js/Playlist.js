@@ -35,7 +35,7 @@ export default class Playlist {
     Object.assign(this, options)
 
     // Only load first frame
-    this.playlist = this.playlist.slice(0, 3)
+    // this.playlist = this.playlist.slice(0, 2)
 
     // Dom
     this.dom = {
@@ -238,9 +238,9 @@ export default class Playlist {
           }
 
           // Reset animations
-          this.animations.map(animation => {
-            animation.resetAnimation()
-          })
+          // this.animations.map(animation => {
+          //   animation.resetAnimation()
+          // })
 
           // Add events
           this.handleClick()
@@ -432,10 +432,9 @@ export default class Playlist {
       this.videos[this.state.prevSlide].pauseVideo()
       .then(() => {
         this.timelines[this.state.prevSlide].resetTimeline()
-        this.timelines[this.state.prevSlide].stopTimeline()
         this.isTransitioning = false
 
-        // Optimize # of DOM elements on the screen
+        // // Optimize # of DOM elements on the screen
         Array.from(this.dom.slideshows).map(slideshow => {
           Array.from(slideshow.querySelectorAll('.playlist__slide')).map((slide, index) => {
             if (!this.isZoom) {
@@ -458,12 +457,26 @@ export default class Playlist {
       })
     }
 
+    else {
+      this.isTransitioning = false
+    }
+
     // Play video, timeline, and animations
-    this.videos[this.state.currentSlide].prefetchVideo()
     this.timelines[this.state.currentSlide].playTimeline()
     this.animations[this.state.currentSlide].playAnimation()
 
     if (!this.isMobile) {
+      // Prefetch previous/next/first videos
+      this.videos.map((video, index) => {
+        if ((index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1)) && index != this.state.prevSlide || (this.state.currentSlide === 0 && this.state.prevSlide === 0)) {
+          video.prefetchVideo()
+        }
+
+        // else if (index != (this.state.currentSlide) && index != (this.state.currentSlide + 1) && index != (this.state.currentSlide - 1)) {
+        //   video.stopVideo()
+        // }
+      })
+
       this.videos[this.state.currentSlide].playVideo()
     }
 

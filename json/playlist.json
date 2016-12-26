@@ -34,24 +34,7 @@
 				{"timecode": "02:49:00", 									"actions":	["breathing"]}
 			]
 		},
-
-
-		{
-			"spotifyID": "79ek2oolIYyGUO4aVK5IY2",
-			"youtubeID": "kNzDO8eO220",
-			"single": "Jesus Walks",
-			"year": "2004",
-			"volume": 25,
-			"animation": "Kanye",
-			"animationOutfit": "polo",
-			"animationThreshold": 0.25,
-			"keyframes": [
-				{"timecode": "00:24:00", 									"actions":	["breathing"]},
-				{"timecode": "00:33:13",	"bpm": "96", 		"actions": 	["bopper"]},
-				{"timecode": "03:13:25", 									"actions":	["breathing"]}
-			]
-		},
-
+		
 
 		{
 			"spotifyID": "4Li2WHPkuyCdtmokzW2007",

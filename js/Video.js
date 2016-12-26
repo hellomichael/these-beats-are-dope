@@ -36,7 +36,7 @@ export default class Video {
       height: window.innerHeight + 600,
       videoId: options.id,
       playerVars: {
-        autoplay: 1,
+        autoplay: 0,
         fs: 0,
         playsinline: 1,
         loop: 0,
@@ -66,8 +66,7 @@ export default class Video {
       // Set quality (small, medium, large, hd720, hd1080, highres)
       this.youtube.setPlaybackQuality('small')
       this.setDuration()
-      this.prefetchVideo()
-
+      // this.prefetchVideo()
     })
   }
 
@@ -165,10 +164,14 @@ export default class Video {
     this.youtube.seekTo(seconds)
   }
 
+  stopVideo() {
+    this.youtube.stopVideo()
+    this.youtube.setVolume(0)
+  }
+
   pauseVideo() {
     this.isPlaying = false
     this.isPaused = true
-    this.pauseTime = (this.getCurrentTime() >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
 
     return this.fadeOut()
     .then(() => {
@@ -182,7 +185,7 @@ export default class Video {
         this.youtube.pauseVideo()
       }
 
-      this.youtube.pauseVideo()
+      this.pauseTime = (this.getCurrentTime() >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
       this.youtube.setVolume(0)
     })
   }
