@@ -35,7 +35,7 @@ export default class Playlist {
     Object.assign(this, options)
 
     // Only load first frame
-    // this.playlist = this.playlist.slice(0,2)
+    this.playlist = this.playlist.slice(0, 3)
 
     // Dom
     this.dom = {
@@ -88,7 +88,6 @@ export default class Playlist {
         new Aziz({id: slide.youtubeID}) :
         new Kanye({
           id: slide.youtubeID,
-          pixiAnimationMix: slide.animationMix,
           kanyeOutfit : slide.animationOutfit
         })
       )
