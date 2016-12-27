@@ -90,6 +90,13 @@ $module: 'playlist';
       transition: 0.75s transform $ease-in-out-quart 0.1s;
 
       .#{$module}__slide {
+        &:first-child {
+          .video {
+            opacity: 0;
+            visibility: hidden;
+          }
+        }
+
         overflow: hidden;
       }
     }

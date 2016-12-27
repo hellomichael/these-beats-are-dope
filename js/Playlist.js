@@ -30,6 +30,7 @@ export default class Playlist {
     this.width = window.innerWidth
     this.height = window.innerHeight
     this.isTransitioning = false
+    this.transition = 500
     this.isZoom = true
     this.preloaded = 0
     Object.assign(this, options)
@@ -175,7 +176,7 @@ export default class Playlist {
   // Preloader
   preload(progress) {
     return new Promise((resolve, reject) => {
-      let speed = (progress === 100) ? Math.round((100 - this.preloaded)/15) : 1
+      let speed = (progress === 100) ? Math.round((100 - this.preloaded)/15) : 0.35
 
       let counter = setInterval(() => {
         if (this.preloaded >= 100 && progress === 100) {
@@ -206,47 +207,36 @@ export default class Playlist {
 
   // Ready
   handleReady() {
-    let animationPromises = []
-    let videoPromises = []
-    this.preload(88)
+    let assets = []
+    this.preload(35)
 
-    // Preload all animations
-    // this.animations.map((animation, index) => {
-    //   animationPromises.push(animation.isReady())
-    // })
+    // Preload animations
+    assets.push(this.animations[1].isReady())
 
     // Preload all videos
-    // this.videos.map(video => {
-    //   promises.push(video.isReady())
-    // })
+    this.videos.map((video, index) => {
+      assets.push(
+        video.isReady()
+      )
+    })
 
-    animationPromises.push(this.animations[1].isReady())
-    videoPromises.push(this.videos[0].isReady())
-
-    Promise.all(videoPromises)
+    Promise.all(assets)
     .then(() => {
-      Promise.all(animationPromises)
+      this.animateSlide()
+      this.animateProgress()
+
+      // Add buffer to loading
+      this.preload(100)
       .then(() => {
-        this.animateSlide()
-        this.animateProgress()
+        // Show mobile intro immediately
+        if (this.isMobile || window.innerWidth < 992) {
+          this.animations[0].showIntro()
+        }
 
-        this.preload(100)
-        .then(() => {
-          if (this.isMobile || window.innerWidth < 992) {
-            // Show intro immediately for mobile
-            this.animations[0].showIntro()
-          }
-
-          // Reset animations
-          // this.animations.map(animation => {
-          //   animation.resetAnimation()
-          // })
-
-          // Add events
-          this.handleClick()
-          this.handleSwipe()
-          this.handleKeypress()
-        })
+        // Add events
+        this.handleClick()
+        this.handleSwipe()
+        this.handleKeypress()
       })
     })
   }
@@ -432,7 +422,14 @@ export default class Playlist {
       this.videos[this.state.prevSlide].pauseVideo()
       .then(() => {
         this.timelines[this.state.prevSlide].stopTimeline()
-        this.isTransitioning = false
+
+        let currentSlide = this.state.currentSlide
+
+        setTimeout(() => {
+          if (currentSlide === this.state.currentSlide) {
+            this.isTransitioning = false
+          }
+        }, this.transition)
 
         // // Optimize # of DOM elements on the screen
         Array.from(this.dom.slideshows).map(slideshow => {
@@ -445,7 +442,7 @@ export default class Playlist {
               if (index != this.state.currentSlide && index != (this.state.currentSlide + 1) && index != (this.state.currentSlide - 1)) {
                 setTimeout(() => {
                   slide.style.display = 'none'
-                }, 250)
+                }, this.transition)
               }
 
               else {
@@ -458,7 +455,9 @@ export default class Playlist {
     }
 
     else {
-      this.isTransitioning = false
+      setTimeout(() => {
+        this.isTransitioning = false
+      }, this.transition)
     }
 
     // Play video, timeline, and animations
@@ -466,23 +465,6 @@ export default class Playlist {
     this.animations[this.state.currentSlide].playAnimation()
 
     if (!this.isMobile) {
-      // Prefetch
-      this.videos.map((video, index) => {
-        // First, Previous, Next
-        if (index === 0 && this.state.currentSlide === 0 || index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1)) {
-          // First Video
-          if (index != this.state.prevSlide || index === 0 && this.state.currentSlide === 0) {
-            video.prefetchVideo()
-          }
-        }
-
-        // else if (index != (this.state.currentSlide) && index != (this.state.currentSlide + 1) && index != (this.state.currentSlide - 1)) {
-        //   if (index != 0) {
-        //     video.stopVideo()
-        //   }
-        // }
-      })
-
       this.videos[this.state.currentSlide].playVideo()
     }
 
