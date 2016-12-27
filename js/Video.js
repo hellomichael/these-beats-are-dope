@@ -16,6 +16,7 @@ export default class Video {
     this.isBuffering = false
     this.isPlaying = false
     this.isPaused = false
+    this.quality = 'small'  //small, medium, large, hd720, hd1080, highres
     this.volume = 100
     this.isMute = false
     this.fadeInterval = null
@@ -56,17 +57,23 @@ export default class Video {
     // Events
     this.handleReady()
     this.handleStateChange()
+    // this.handleQualityChange()
     this.handleResize()
   }
 
   handleReady() {
     this.youtube.on('ready', () => {
       console.log(`${this.name} (${this.id}): Ready`)
-
-      // Set quality (small, medium, large, hd720, hd1080, highres)
-      this.youtube.setPlaybackQuality('small')
+      this.youtube.setPlaybackQuality(this.quality)
       this.setDuration()
       // this.prefetchVideo()
+    })
+  }
+
+  // Set Quality
+  handleQualityChange() {
+    this.youtube.on('onPlaybackQualityChange', () => {
+      this.youtube.setPlaybackQuality(this.quality)
     })
   }
 

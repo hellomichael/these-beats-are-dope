@@ -468,12 +468,14 @@ export default class Playlist {
     if (!this.isMobile) {
       // Prefetch previous/next/first videos
       this.videos.map((video, index) => {
-        if ((index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1)) && index != this.state.prevSlide || (this.state.currentSlide === 0 && this.state.prevSlide === 0)) {
+        if ((index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1)) && index != this.state.prevSlide || (this.state.currentSlide === 0 && this.state.prevSlide === 0 && index === 0)) {
           video.prefetchVideo()
         }
 
         // else if (index != (this.state.currentSlide) && index != (this.state.currentSlide + 1) && index != (this.state.currentSlide - 1)) {
-        //   video.stopVideo()
+        //   if (index != 0) {
+        //     video.stopVideo()
+        //   }
         // }
       })
 
