@@ -19,6 +19,33 @@
 		},
 
 
+
+		{
+			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
+			"youtubeID": "QWb6losRD38",
+			"single": "Love Lockdown",
+			"year": "2008",
+			"volume": 100,
+			"animation": "Kanye",
+			"animationOutfit": "suit",
+			"animationThreshold": 0.45,
+			"keyframes": [
+				{"timecode": "00:21:05", 									"actions":	["breathing"]},
+				{"timecode": "00:21:21", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "00:28:15", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "00:44:20", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "01:16:19", 	"bpm": "119.8", "actions": 	["bopper"]},
+				{"timecode": "01:32:23", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "02:20:26", 	"bpm": "119.8", "actions": 	["bopper"]},
+				{"timecode": "02:36:29", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "03:25:00", 	"bpm": "119.8", "actions": 	["bopper"]},
+				{"timecode": "03:57:06", 									"actions":	["breathing"]},
+				{"timecode": "04:01:10", 									"actions":	["breathing"]}
+			]
+		},
+
+
+
 		{
 			"spotifyID": "6mxyfdyF4LD7PctU3UNyjF",
 			"youtubeID": "uz9SrkOvLMs",
@@ -42,26 +69,10 @@
 				{"timecode": "00:48:09", 	"bpm": "106.6",	"actions": 	["bopper"]},
 
 				{"timecode": "01:30:15", 									"actions":	["breathing", "openCloseEyes"]},
-				{"timecode": "01:39:06", 									"actions":	["breathing"]}
+				{"timecode": "01:37:06", 									"actions":	["breathing"]}
 			]
 		},
 
-
-		{
-			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
-			"youtubeID": "CDyrWWPt534",
-			"single": "Never Let Me Down",
-			"year": "2004",
-			"volume": 40,
-			"animation": "Kanye",
-			"animationOutfit": "suit",
-			"animationThreshold": 0.4,
-			"keyframes": [
-				{"timecode": "00:10:10", 									"actions":	["breathing"]},
-				{"timecode": "00:18:00", 	"bpm": "81.7", 	"actions": 	["bopper"]},
-				{"timecode": "02:49:00", 									"actions":	["breathing"]}
-			]
-		},
 
 
 		{
@@ -75,42 +86,42 @@
 			"animationThreshold": 0.35,
 			"keyframes": [
 				{"timecode": "00:19:00", 									"actions": ["breathing"]},
-				{"timecode": "00:20:00",	"bpm": "69.9", 	"actions": ["bopper"]},
-				{"timecode": "00:23:11",	"bpm": "140",		"actions": ["bopper"]},
-				{"timecode": "00:50:25",	"bpm": "70.15",	"actions": ["bopper"]},
+				{"timecode": "00:20:00",	"bpm": "69.9", 	"actions":  ["bopper"]},
+				{"timecode": "00:23:11",	"bpm": "140",		"actions":  ["bopper"]},
+				{"timecode": "00:50:25",	"bpm": "70.15",	"actions":  ["bopper"]},
 
 				{"timecode": "01:03:21",									"actions": ["breathing", "openCloseEyes"]},
-				{"timecode": "01:04:21",	"bpm": "70.15",	"actions": ["bopper"]},
+				{"timecode": "01:04:21",	"bpm": "70.15",	"actions":  ["bopper"]},
 
-				{"timecode": "01:18:11",	"bpm": "140",		"actions": ["bopper"]},
-				{"timecode": "01:32:02",	"bpm": "70.15",	"actions": ["bopper"]},
+				{"timecode": "01:18:11",	"bpm": "140",		"actions":  ["bopper"]},
+				{"timecode": "01:32:02",	"bpm": "70.15",	"actions":  ["bopper"]},
 
 				{"timecode": "01:44:25",									"actions": ["breathing"]},
-				{"timecode": "01:45:25",	"bpm": "70.15",	"actions": ["bopper"]},
+				{"timecode": "01:45:25",	"bpm": "70.15",	"actions":  ["bopper"]},
 
 				{"timecode": "01:48:10",									"actions": ["breathing"]},
-				{"timecode": "01:49:04",	"bpm": "70.15",	"actions": ["bopper"]},
+				{"timecode": "01:49:04",	"bpm": "70.15",	"actions":  ["bopper"]},
 
 				{"timecode": "01:51:20",									"actions": ["breathing"]},
-				{"timecode": "01:52:15",	"bpm": "70.15",	"actions": ["bopper"]},
+				{"timecode": "01:52:15",	"bpm": "70.15",	"actions":  ["bopper"]},
 
 				{"timecode": "01:55:05",									"actions": ["breathing"]},
-				{"timecode": "01:55:28",	"bpm": "70.15",	"actions": ["bopper"]},
+				{"timecode": "01:55:28",	"bpm": "70.15",	"actions":  ["bopper"]},
 
 				{"timecode": "01:58:15",									"actions": ["breathing"]},
 
-				{"timecode": "01:59:10",	"bpm": "140",		"actions": ["bopper"]},
-				{"timecode": "02:13:05",	"bpm": "70.15",	"actions": ["bopper"]},
+				{"timecode": "01:59:10",	"bpm": "140",		"actions":  ["bopper"]},
+				{"timecode": "02:13:05",	"bpm": "70.15",	"actions":  ["bopper"]},
 
 				{"timecode": "02:25:02",									"actions": ["breathing"]},
-				{"timecode": "02:26:27",	"bpm": "70.15",	"actions": ["bopper"]},
+				{"timecode": "02:26:27",	"bpm": "70.15",	"actions":  ["bopper"]},
 
 				{"timecode": "02:40:02",									"actions": ["breathing"]},
-				{"timecode": "02:47:13",	"bpm": "140",		"actions": ["bopper"]},
-				{"timecode": "02:57:21",	"bpm": "70.15",	"actions": ["bopper"]},
+				{"timecode": "02:47:13",	"bpm": "140",		"actions":  ["bopper"]},
+				{"timecode": "02:57:21",	"bpm": "70.15",	"actions":  ["bopper"]},
 
 				{"timecode": "03:01:03",									"actions": ["breathing"]},
-				{"timecode": "03:14:27",	"bpm": "70.15",	"actions": ["bopper"]},
+				{"timecode": "03:14:27",	"bpm": "70.15",	"actions":  ["bopper"]},
 
 				{"timecode": "03:55:02",									"actions": ["breathing"]},
 				{"timecode": "04:09:15",									"actions": ["breathing"]}
@@ -118,27 +129,124 @@
 		},
 
 
+
 		{
-			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
-			"youtubeID": "QWb6losRD38",
-			"single": "Love Lockdown",
-			"year": "2008",
-			"volume": 100,
+			"spotifyID": "6uc03qm5fpp2NSlJgWAla2",
+			"youtubeID": "hCx4LfPDWSY",
+			"single": "The Good Life",
+			"year": "2007",
+			"volume": 40,
 			"animation": "Kanye",
-			"animationOutfit": "polo",
-			"animationThreshold": 0.45,
+			"animationOutfit": "letterman",
+			"animationThreshold": 0.2,
 			"keyframes": [
-				{"timecode": "00:21:05", 									"actions":	["breathing"]},
-				{"timecode": "00:21:21", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "00:28:15", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "00:44:20", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "01:16:19", 	"bpm": "119.8", "actions": 	["bopper"]},
-				{"timecode": "01:32:23", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "02:20:26", 	"bpm": "119.8", "actions": 	["bopper"]},
-				{"timecode": "02:36:29", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "03:25:00", 	"bpm": "119.8", "actions": 	["bopper"]},
-				{"timecode": "03:57:06", 									"actions":	["breathing"]},
-				{"timecode": "04:01:10", 									"actions":	["breathing"]}
+				{"timecode": "00:38:03", 									"actions": 	["breathing"]},
+
+				{"timecode": "00:42:03", 	"bpm": "88.16",	"actions": 	["bopper"]},
+
+				{"timecode": "01:01:03", 									"actions":	["breathing", "openCloseEyes"]},
+				{"timecode": "01:04:01", 	"bpm": "88.16",	"actions": 	["bopper"]},
+
+				{"timecode": "02:06:10", 									"actions":	["breathing", "openCloseEyes"]},
+				{"timecode": "02:09:15", 	"bpm": "88.16",	"actions": 	["bopper"]},
+
+				{"timecode": "02:13:07", 									"actions":	["breathing", "openCloseEyes"]},
+				{"timecode": "02:14:27", 	"bpm": "88.16",	"actions": 	["bopper"]},
+
+				{"timecode": "02:47:10", 									"actions":	["breathing", "openCloseEyes"]},
+				{"timecode": "02:50:09", 	"bpm": "88.16",	"actions": 	["bopper"]},
+
+				{"timecode": "03:11:24", 									"actions":	["breathing", "openCloseEyes"]},
+				{"timecode": "03:14:28", 	"bpm": "88.16",	"actions": 	["bopper"]},
+
+				{"timecode": "03:31:07", 									"actions":	["breathing"]},
+				{"timecode": "03:34:01", 	"bpm": "88.16",	"actions": 	["bopper"]},
+
+				{"timecode": "03:36:12", 									"actions":	["breathing"]},
+				{"timecode": "03:47:01", 	"bpm": "88.16",	"actions": 	["bopper"]},
+
+				{"timecode": "03:55:15", 									"actions":	["breathing"]},
+
+				{"timecode": "04:20:12", 									"actions":  ["bopper"]},
+				{"timecode": "04:20:26", 									"actions":  ["bopper"]},
+				{"timecode": "04:21:06", 									"actions":  ["bopper"]},
+				{"timecode": "04:21:17", 									"actions":  ["bopper"]},
+				{"timecode": "04:21:23", 									"actions":  ["bopper"]},
+				{"timecode": "04:22:08", 									"actions":  ["bopper"]},
+				{"timecode": "04:22:17", 									"actions":  ["bopper"]},
+				{"timecode": "04:22:29", 									"actions":  ["bopper"]},
+				{"timecode": "04:23:04", 									"actions":  ["bopper"]},
+
+				{"timecode": "04:25:27", 									"actions":  ["bopper"]},
+				{"timecode": "04:26:09", 									"actions":  ["bopper"]},
+				{"timecode": "04:26:19",									 "actions":  ["bopper"]},
+				{"timecode": "04:26:28", 									"actions":  ["bopper"]},
+				{"timecode": "04:27:05",									 "actions":  ["bopper"]},
+				{"timecode": "04:27:21", 									"actions":  ["bopper"]},
+				{"timecode": "04:28:01", 									"actions":  ["bopper"]},
+				{"timecode": "04:28:11", 									"actions":  ["bopper"]},
+				{"timecode": "04:28:17", 									"actions":  ["bopper"]},
+
+				{"timecode": "04:31:07", 									"actions":  ["bopper"]},
+				{"timecode": "04:31:24", 									"actions":  ["bopper"]},
+				{"timecode": "04:32:04", 									"actions":  ["bopper"]},
+				{"timecode": "04:32:13", 									"actions":  ["bopper"]},
+				{"timecode": "04:32:19", 									"actions":  ["bopper"]},
+				{"timecode": "04:33:05", 									"actions":  ["bopper"]},
+				{"timecode": "04:33:16",									"actions":  ["bopper"]},
+				{"timecode": "04:33:26", 									"actions":  ["bopper"]},
+				{"timecode": "04:34:02", 									"actions":  ["bopper"]},
+
+				{"timecode": "04:42:05", 									"actions":  ["bopper"]},
+				{"timecode": "04:42:20", 									"actions":  ["bopper"]},
+				{"timecode": "04:43:01", 									"actions":  ["bopper"]},
+				{"timecode": "04:43:10", 									"actions":  ["bopper"]},
+				{"timecode": "04:43:16", 									"actions":  ["bopper"]},
+				{"timecode": "04:44:01", 									"actions":  ["bopper"]},
+				{"timecode": "04:44:13", 									"actions":  ["bopper"]},
+				{"timecode": "04:44:21", 									"actions":  ["bopper"]},
+				{"timecode": "04:44:27", 									"actions":  ["bopper"]},
+
+				{"timecode": "04:47:21", 									"actions":  ["bopper"]},
+				{"timecode": "04:48:03", 									"actions":  ["bopper"]},
+				{"timecode": "04:48:13", 									"actions":  ["bopper"]},
+				{"timecode": "04:48:24", 									"actions":  ["bopper"]},
+				{"timecode": "04:49:01", 									"actions":  ["bopper"]},
+				{"timecode": "04:49:15", 									"actions":  ["bopper"]},
+				{"timecode": "04:49:27", 									"actions":  ["bopper"]},
+				{"timecode": "04:50:06",									"actions":  ["bopper"]},
+				{"timecode": "04:50:13",									"actions":  ["bopper"]},
+
+				{"timecode": "04:53:02", 									"actions":  ["bopper"]},
+				{"timecode": "04:53:18", 									"actions":  ["bopper"]},
+				{"timecode": "04:53:28", 									"actions":  ["bopper"]},
+				{"timecode": "04:54:09", 									"actions":  ["bopper"]},
+				{"timecode": "04:54:15", 									"actions":  ["bopper"]},
+				{"timecode": "04:55:01", 									"actions":  ["bopper"]},
+				{"timecode": "04:55:12", 									"actions":  ["bopper"]},
+				{"timecode": "04:55:19", 									"actions":  ["bopper"]},
+				{"timecode": "04:55:25", 									"actions":  ["bopper"]},
+
+				{"timecode": "04:55:25", 									"actions":  ["breathing"]},
+				{"timecode": "05:04:15", 									"actions":	["breathing"]}
+			]
+		},
+
+
+
+		{
+			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
+			"youtubeID": "CDyrWWPt534",
+			"single": "Never Let Me Down",
+			"year": "2004",
+			"volume": 40,
+			"animation": "Kanye",
+			"animationOutfit": "tshirt",
+			"animationThreshold": 0.4,
+			"keyframes": [
+				{"timecode": "00:10:10", 									"actions":	["breathing"]},
+				{"timecode": "00:18:00", 	"bpm": "81.7", 	"actions": 	["bopper"]},
+				{"timecode": "02:49:00", 									"actions":	["breathing"]}
 			]
 		},
 
@@ -150,54 +258,54 @@
 			"year": "2015",
 			"volume": 30,
 			"animation": "Kanye",
-			"animationOutfit": "tshirt",
+			"animationOutfit": "sweater",
 			"animationThreshold": 0.5,
 			"keyframes": [
 				{"timecode": "00:00:15", 									"actions": ["breathing"]},
 
-				{"timecode": "00:15:25",	"bpm": "61.52", "actions": ["bopper"]},
+				{"timecode": "00:15:25",	"bpm": "61.52", "actions":  ["bopper"]},
 
 				{"timecode": "00:43:21", 									"actions": ["bopper", "openCloseEyes"]},
-				{"timecode": "00:44:03", 									"actions": ["bopper"]},
-				{"timecode": "00:44:18", 									"actions": ["bopper"]},
-				{"timecode": "00:45:02", 									"actions": ["bopper"]},
+				{"timecode": "00:44:03", 									"actions":  ["bopper"]},
+				{"timecode": "00:44:18", 									"actions":  ["bopper"]},
+				{"timecode": "00:45:02", 									"actions":  ["bopper"]},
 
-				{"timecode": "00:47:01", 	"bpm": "61.52",	"actions": ["bopper"]},
+				{"timecode": "00:47:01", 	"bpm": "61.52",	"actions":  ["bopper"]},
 
-				{"timecode": "01:06:21", 									"actions": ["bopper"]},
-				{"timecode": "01:08:11", 	"bpm": "61.52", "actions": ["bopper"]},
+				{"timecode": "01:06:21", 									"actions":  ["bopper"]},
+				{"timecode": "01:08:11", 	"bpm": "61.52", "actions":  ["bopper"]},
 
-				{"timecode": "01:18:06", 	"bpm": "30.7", 	"actions": ["bopper"]},
+				{"timecode": "01:18:06", 	"bpm": "30.7", 	"actions":  ["bopper"]},
 				{"timecode": "01:33:15", 									"actions": ["breathing"]},
-				{"timecode": "01:41:22", 	"bpm": "61.52", "actions": ["bopper"]},
+				{"timecode": "01:41:22", 	"bpm": "61.52", "actions":  ["bopper"]},
 
 				{"timecode": "02:24:16",									"actions": ["bopper", "openCloseEyes"]},
-				{"timecode": "02:25:04",									"actions": ["bopper"]},
-				{"timecode": "02:25:18",									"actions": ["bopper"]},
-				{"timecode": "02:26:02",									"actions": ["bopper"]},
-				{"timecode": "02:26:17",									"actions": ["bopper"]},
+				{"timecode": "02:25:04",									"actions":  ["bopper"]},
+				{"timecode": "02:25:18",									"actions":  ["bopper"]},
+				{"timecode": "02:26:02",									"actions":  ["bopper"]},
+				{"timecode": "02:26:17",									"actions":  ["bopper"]},
 
 				{"timecode": "02:28:16", 									"actions": ["bopper", "openCloseEyes"]},
-				{"timecode": "02:29:00", 									"actions": ["bopper"]},
-				{"timecode": "02:32:11", 									"actions": ["bopper"]},
-				{"timecode": "02:32:24", 									"actions": ["bopper"]},
-				{"timecode": "02:36:09", 									"actions": ["bopper"]},
-				{"timecode": "02:36:22", 									"actions": ["bopper"]},
+				{"timecode": "02:29:00", 									"actions":  ["bopper"]},
+				{"timecode": "02:32:11", 									"actions":  ["bopper"]},
+				{"timecode": "02:32:24", 									"actions":  ["bopper"]},
+				{"timecode": "02:36:09", 									"actions":  ["bopper"]},
+				{"timecode": "02:36:22", 									"actions":  ["bopper"]},
 
-				{"timecode": "02:40:03", 									"actions": ["bopper"]},
-				{"timecode": "02:44:06", 	"bpm": "61.52", "actions": ["bopper"]},
+				{"timecode": "02:40:03", 									"actions":  ["bopper"]},
+				{"timecode": "02:44:06", 	"bpm": "61.52", "actions":  ["bopper"]},
 				{"timecode": "03:15:14", 									"actions": ["breathing"]},
 
 				{"timecode": "03:31:00", 									"actions": ["bopper", "openCloseEyes"]},
-				{"timecode": "03:31:12", 									"actions": ["bopper"]},
-				{"timecode": "03:34:24", 									"actions": ["bopper"]},
-				{"timecode": "03:35:07", 									"actions": ["bopper"]},
-				{"timecode": "03:38:22", 									"actions": ["bopper"]},
-				{"timecode": "03:39:06", 									"actions": ["bopper"]},
-				{"timecode": "03:42:19", 									"actions": ["bopper"]},
-				{"timecode": "03:43:02", 									"actions": ["bopper"]},
+				{"timecode": "03:31:12", 									"actions":  ["bopper"]},
+				{"timecode": "03:34:24", 									"actions":  ["bopper"]},
+				{"timecode": "03:35:07", 									"actions":  ["bopper"]},
+				{"timecode": "03:38:22", 									"actions":  ["bopper"]},
+				{"timecode": "03:39:06", 									"actions":  ["bopper"]},
+				{"timecode": "03:42:19", 									"actions":  ["bopper"]},
+				{"timecode": "03:43:02", 									"actions":  ["bopper"]},
 
-				{"timecode": "03:46:16", 	"bpm": "61.52", "actions": ["bopper"]},
+				{"timecode": "03:46:16", 	"bpm": "61.52", "actions":  ["bopper"]},
 				{"timecode": "04:14:20", 									"actions": ["breathing"]},
 				{"timecode": "04:20:00", 									"actions": ["breathing"]}
 			]

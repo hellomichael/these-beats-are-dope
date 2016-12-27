@@ -167,10 +167,10 @@ export default class Video {
     this.youtube.playVideo()
   }
 
-  stopVideo() {
-    this.youtube.stopVideo()
-    this.youtube.setVolume(0)
-  }
+  // stopVideo() {
+  //   this.youtube.stopVideo()
+  //   this.youtube.setVolume(0)
+  // }
 
   pauseVideo() {
     this.isPlaying = false
