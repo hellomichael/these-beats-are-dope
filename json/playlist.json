@@ -20,6 +20,34 @@
 
 
 		{
+			"spotifyID": "6mxyfdyF4LD7PctU3UNyjF",
+			"youtubeID": "uz9SrkOvLMs",
+			"single": "Touch the Sky",
+			"year": "2005",
+			"volume": 40,
+			"animation": "Kanye",
+			"animationOutfit": "polo",
+			"animationThreshold": 0.3,
+			"keyframes": [
+				{"timecode": "00:00:15", 									"actions":	["breathing"]},
+				{"timecode": "00:03:05", 	"bpm": "106.6",	"actions": 	["bopper"]},
+
+				{"timecode": "00:29:03", 									"actions":	["breathing", "openCloseEyes"]},
+				{"timecode": "00:30:08", 	"bpm": "106.6",	"actions": 	["bopper"]},
+
+				{"timecode": "00:38:03", 									"actions":	["breathing", "openCloseEyes"]},
+				{"timecode": "00:39:08", 	"bpm": "106.6",	"actions": 	["bopper"]},
+
+				{"timecode": "00:43:23", 									"actions":	["breathing", "openCloseEyes"]},
+				{"timecode": "00:48:09", 	"bpm": "106.6",	"actions": 	["bopper"]},
+
+				{"timecode": "01:30:15", 									"actions":	["breathing", "openCloseEyes"]},
+				{"timecode": "01:39:06", 									"actions":	["breathing"]}
+			]
+		},
+
+
+		{
 			"spotifyID": "06TqBu4Vi2DEu2F2wNTEnb",
 			"youtubeID": "CDyrWWPt534",
 			"single": "Never Let Me Down",

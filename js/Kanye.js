@@ -201,14 +201,14 @@ export default class Kanye extends Animation {
         // Medium
         else if (firstAnimation.includes('bopMedium') || firstAnimation.includes('bopMediumLeft') || firstAnimation.includes('bopMediumRight') ||
           secondAnimation.includes('bopMedium') || secondAnimation.includes('bopMediumLeft') || secondAnimation.includes('bopMediumRight')) {
-          this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.3)
+          this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.2)
         }
 
         // Normal
-        else if (firstAnimation.includes('bopNormal') || firstAnimation.includes('bopNormalLeft') || firstAnimation.includes('bopNormalRight') ||
-          secondAnimation.includes('bopNormal') || secondAnimation.includes('bopNormalLeft') || secondAnimation.includes('bopNormalRight')) {
-          this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.5)
-        }
+        // else if (firstAnimation.includes('bopNormal') || firstAnimation.includes('bopNormalLeft') || firstAnimation.includes('bopNormalRight') ||
+        //   secondAnimation.includes('bopNormal') || secondAnimation.includes('bopNormalLeft') || secondAnimation.includes('bopNormalRight')) {
+        //   this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.5)
+        // }
 
         // Slow
         // else if (firstAnimation.includes('bopSlow') || firstAnimation.includes('bopSlowLeft') || firstAnimation.includes('bopSlowRight') ||

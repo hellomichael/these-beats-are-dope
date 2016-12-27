@@ -145,7 +145,7 @@ export default class Playlist {
         keyframes:      slide.keyframes,
         threshold:      slide.animationThreshold,
         nextSlide:      this.nextSlide.bind(this),
-        isLoop:         (!(index)) ? true : false
+        isLoop:         (!index) ? true : false
       })
 
       this.timelines.push(timeline)
@@ -431,7 +431,7 @@ export default class Playlist {
       this.animations[this.state.prevSlide].stopAnimation()
       this.videos[this.state.prevSlide].pauseVideo()
       .then(() => {
-        this.timelines[this.state.prevSlide].resetTimeline()
+        this.timelines[this.state.prevSlide].stopTimeline()
         this.isTransitioning = false
 
         // // Optimize # of DOM elements on the screen
@@ -466,10 +466,14 @@ export default class Playlist {
     this.animations[this.state.currentSlide].playAnimation()
 
     if (!this.isMobile) {
-      // Prefetch previous/next/first videos
+      // Prefetch
       this.videos.map((video, index) => {
-        if ((index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1)) && index != this.state.prevSlide || (this.state.currentSlide === 0 && this.state.prevSlide === 0 && index === 0)) {
-          video.prefetchVideo()
+        // First, Previous, Next
+        if (index === 0 && this.state.currentSlide === 0 || index === (this.state.currentSlide + 1) || index === (this.state.currentSlide - 1)) {
+          // First Video
+          if (index != this.state.prevSlide || index === 0 && this.state.currentSlide === 0) {
+            video.prefetchVideo()
+          }
         }
 
         // else if (index != (this.state.currentSlide) && index != (this.state.currentSlide + 1) && index != (this.state.currentSlide - 1)) {
