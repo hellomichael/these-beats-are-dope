@@ -167,7 +167,7 @@ export default class Kanye extends Animation {
 
         setTimeout(() => {
           this.pixiRenderer.render(this.pixiStage)
-        }, 1000)
+        }, 500)
 
         // Events
         this.handleResize()
