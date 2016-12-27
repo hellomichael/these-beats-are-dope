@@ -167,10 +167,6 @@ export default class Video {
     this.youtube.playVideo()
   }
 
-  seekVideo(seconds) {
-    this.youtube.seekTo(seconds)
-  }
-
   stopVideo() {
     this.youtube.stopVideo()
     this.youtube.setVolume(0)
@@ -182,6 +178,8 @@ export default class Video {
 
     return this.fadeOut()
     .then(() => {
+      this.pauseTime = (this.getCurrentTime() >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
+
       if (this.isMobile) {
         setTimeout(() => {
           this.youtube.stopVideo()
@@ -189,10 +187,10 @@ export default class Video {
       }
 
       else {
+        this.youtube.seekTo(this.pauseTime)
         this.youtube.pauseVideo()
       }
 
-      this.pauseTime = (this.getCurrentTime() >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
       this.youtube.setVolume(0)
     })
   }
