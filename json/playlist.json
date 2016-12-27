@@ -85,7 +85,7 @@
 			"animationOutfit": "hoodie",
 			"animationThreshold": 0.35,
 			"keyframes": [
-				{"timecode": "00:19:00", 									"actions": ["breathing"]},
+				{"timecode": "00:19:00", 									"actions":  ["breathing"]},
 				{"timecode": "00:20:00",	"bpm": "69.9", 	"actions":  ["bopper"]},
 				{"timecode": "00:23:11",	"bpm": "140",		"actions":  ["bopper"]},
 				{"timecode": "00:50:25",	"bpm": "70.15",	"actions":  ["bopper"]},

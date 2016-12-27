@@ -14,9 +14,10 @@ export default class Video {
     this.currentTime = 0
     this.duration = -1
     this.isBuffering = false
+    this.isCurrent = false
     this.isPlaying = false
     this.isPaused = false
-    this.quality = 'small'  //small, medium, large, hd720, hd1080, highres
+    this.quality = 'medium'  //small, medium, large, hd720, hd1080, highres
     this.volume = 100
     this.isMute = false
     this.fadeInterval = null
@@ -38,6 +39,8 @@ export default class Video {
       videoId: options.id,
       playerVars: {
         autoplay: 0,
+        start: this.startTime,
+        end: this.endTime + 5,
         fs: 0,
         playsinline: 1,
         loop: 0,
@@ -66,14 +69,6 @@ export default class Video {
       console.log(`${this.name} (${this.id}): Ready`)
       this.youtube.setPlaybackQuality(this.quality)
       this.setDuration()
-      // this.prefetchVideo()
-    })
-  }
-
-  // Set Quality
-  handleQualityChange() {
-    this.youtube.on('onPlaybackQualityChange', () => {
-      this.youtube.setPlaybackQuality(this.quality)
     })
   }
 
@@ -101,7 +96,6 @@ export default class Video {
       .then(iframe => {
         iframe.setAttribute('width', window.innerWidth)
         iframe.setAttribute('height', window.innerHeight + 600)
-        i
       })
     })
   }
@@ -137,9 +131,6 @@ export default class Video {
     else {
       this.youtube.seekTo(this.startTime)
     }
-
-    this.youtube.setVolume(0)
-    this.youtube.pauseVideo()
   }
 
   loopVideo () {
@@ -163,33 +154,33 @@ export default class Video {
 
   playVideo() {
     this.isPlaying = true
+    this.isCurrent = true
     this.isPaused = false
-    this.youtube.playVideo()
-  }
 
-  // stopVideo() {
-  //   this.youtube.stopVideo()
-  //   this.youtube.setVolume(0)
-  // }
+    setTimeout(() => {
+      if (this.isCurrent) {
+        this.prefetchVideo()
+        this.youtube.playVideo()
+      }
+
+      else {
+        this.youtube.stopVideo()
+      }
+    }, 1250)
+  }
 
   pauseVideo() {
     this.isPlaying = false
+    this.isCurrent = false
     this.isPaused = true
 
     return this.fadeOut()
     .then(() => {
       this.pauseTime = (this.getCurrentTime() >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
 
-      if (this.isMobile) {
-        setTimeout(() => {
-          this.youtube.stopVideo()
-        }, 750)
-      }
-
-      else {
-        this.youtube.seekTo(this.pauseTime)
-        this.youtube.pauseVideo()
-      }
+      setTimeout(() => {
+        this.youtube.stopVideo()
+      }, 250)
 
       this.youtube.setVolume(0)
     })
