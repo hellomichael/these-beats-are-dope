@@ -147,7 +147,11 @@ export default class Timeline {
           if (typeof this.animation[action] === 'function') {
             if (action === 'bopper') {
               // Automated bops with bopCycle
-              if (Utils.getBPM(keyframeBpm) >= 115) {
+              if (Utils.getBPM(keyframeBpm) >= 150) {
+                this.animation['bopper']('normal', 'cycle')
+              }
+
+              else if (Utils.getBPM(keyframeBpm) >= 115) {
                 this.animation['bopper']('fast', 'cycle')
               }
 
@@ -155,7 +159,7 @@ export default class Timeline {
                 this.animation['bopper']('medium', 'cycle')
               }
 
-              else if (Utils.getBPM(keyframeBpm) >= 60) {
+              else if (Utils.getBPM(keyframeBpm) >= 50) {
                 this.animation['bopper']('normal', 'cycle')
               }
 
@@ -164,6 +168,10 @@ export default class Timeline {
               }
 
               // Manual bops with bopAngle
+              else if (Utils.getBPM(keyframeDuration) >= 150) {
+                this.animation['bopper']('normal', 'angle')
+              }
+
               else if (Utils.getBPM(keyframeDuration) >= 115) {
                 this.animation['bopper']('fast', 'angle')
               }
@@ -172,7 +180,7 @@ export default class Timeline {
                 this.animation['bopper']('medium', 'angle')
               }
 
-              else if (Utils.getBPM(keyframeDuration) >= 60) {
+              else if (Utils.getBPM(keyframeDuration) >= 50) {
                 this.animation['bopper']('normal', 'angle')
               }
 
@@ -186,7 +194,7 @@ export default class Timeline {
             }
 
             // Automatic breathing
-            if (action === 'bopper' || action === 'bopCycle' || action === 'bopCycleFast' || action === 'bopAngle' || action === 'bopAngleFast') {
+            if (action === 'bopper') {
               // Single manual action (no bpm)
               if (keyframeDuration > 1.5) {
                 setTimeout(() => {

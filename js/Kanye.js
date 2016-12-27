@@ -35,7 +35,7 @@ export default class Kanye extends Animation {
       letterman:  ['letterman-body', 'letterman-sleeves', 'letterman-bowtie', 'suit-shirt', 'suit-collar', 'glasses', 'glasses-flare', 'face-shadow-glasses'],
       polo:       ['polo-body', 'polo-collar', 'polo-tshirt', 'neck-front', 'chain-front', 'chain-back', 'chain-links', 'chest' , 'shadow', 'shadow-left', 'shadow-right'],
       suit:       ['suit-body', 'suit-collar', 'suit-lapel', 'suit-heart', 'suit-shirt', 'glasses', 'glasses-flare', 'face-shadow-glasses'],
-      sweater:    ['sweater-body', 'chest', 'sweater-collar', 'neck-front', 'shadow', 'shadow-left', 'shadow-right'],
+      sweater:    ['sweater-body', 'chest', 'sweater-collar', 'chain-front', 'chain-back', 'chain-links', 'neck-front', 'shadow', 'shadow-left', 'shadow-right'],
       tshirt:     ['tshirt-body', 'chest', 'tshirt-holes', 'tshirt-arms', 'neck-front', 'shadow', 'shadow-left', 'shadow-right']
     }
 
@@ -188,31 +188,27 @@ export default class Kanye extends Animation {
           this.kanye.stateData.setMix(firstAnimation, secondAnimation, 1.5)
         }
 
-        else if (firstAnimation.includes('breathing') || secondAnimation.includes('breathing')) {
-          this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.3)
-        }
-
         // Fast
-        else if (firstAnimation.includes('bopFast') || firstAnimation.includes('bopFastLeft') || firstAnimation.includes('bopFastRight') ||
-          secondAnimation.includes('bopFast') || secondAnimation.includes('bopFastLeft') || secondAnimation.includes('bopFastRight')) {
-          this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.2)
+        else if (firstAnimation.includes('bopFast') || firstAnimation.includes('bopFastLeft') || firstAnimation.includes('bopFastRight')) {
+          this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.15)
         }
 
-        // Medium
-        else if (firstAnimation.includes('bopMedium') || firstAnimation.includes('bopMediumLeft') || firstAnimation.includes('bopMediumRight') ||
-          secondAnimation.includes('bopMedium') || secondAnimation.includes('bopMediumLeft') || secondAnimation.includes('bopMediumRight')) {
-          this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.2)
-        }
-
-        // Normal
-        // else if (firstAnimation.includes('bopNormal') || firstAnimation.includes('bopNormalLeft') || firstAnimation.includes('bopNormalRight') ||
-        //   secondAnimation.includes('bopNormal') || secondAnimation.includes('bopNormalLeft') || secondAnimation.includes('bopNormalRight')) {
-        //   this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.5)
+        // // Medium
+        // else if (firstAnimation.includes('bopMedium') || firstAnimation.includes('bopMediumLeft') || firstAnimation.includes('bopMediumRight')) {
+        //   this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.3)
         // }
-
-        // Slow
-        // else if (firstAnimation.includes('bopSlow') || firstAnimation.includes('bopSlowLeft') || firstAnimation.includes('bopSlowRight') ||
-        //   secondAnimation.includes('bopSlow') || secondAnimation.includes('bopSlowLeft') || secondAnimation.includes('bopSlowRight')) {
+        //
+        // // Normal
+        // else if (firstAnimation.includes('bopNormal') || firstAnimation.includes('bopNormalLeft') || firstAnimation.includes('bopNormalRight')) {
+        //   this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.3)
+        // }
+        //
+        // // Slow
+        // else if (firstAnimation.includes('bopSlow') || firstAnimation.includes('bopSlowLeft') || firstAnimation.includes('bopSlowRight')) {
+        //   this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.3)
+        // }
+        //
+        // else if (firstAnimation.includes('breathing')) {
         //   this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.3)
         // }
 
