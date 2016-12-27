@@ -16,7 +16,7 @@ $module: 'album';
     transform: translateX(-50%) translateX($kanye-distance-md) translateY(-50%);
   }
 
-  @media screen and (min-width: $screen-lg-min) {
+  @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
     width: $album-size;
     transform: translateX(-50%) translateX($kanye-distance-lg) translateY(-50%);
   }
@@ -43,7 +43,7 @@ $module: 'album';
       height: $album-size * $album-scale-md;
     }
 
-    @media screen and (min-width: $screen-lg-min) {
+    @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
       width: $album-size;
       height: $album-size;
       margin: 0 0 $gutter-lg;
@@ -79,7 +79,7 @@ $module: 'album';
         height: $album-size * 1.5 * $album-scale-md;
       }
 
-      @media screen and (min-width: $screen-lg-min) {
+      @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
         width: ($album-size * 1.5);
         height: ($album-size * 1.5);
       }
@@ -96,7 +96,7 @@ $module: 'album';
         height: $album-size * $album-scale-md;
       }
 
-      @media screen and (min-width: $screen-lg-min) {
+      @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
         width: $album-size;
         height: $album-size;
       }
@@ -124,7 +124,7 @@ $module: 'album';
         height: $album-size * $album-scale-md;
       }
 
-      @media screen and (min-width: $screen-lg-min) {
+      @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
         width: $album-size;
         height: $album-size;
       }
@@ -136,7 +136,7 @@ $module: 'album';
     transform: rotateY(-15deg);
     transition: 1s transform $ease-out-quint;
 
-    @media screen and (min-width: $screen-lg-min) {
+    @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
       width: 450px;
     }
 
@@ -153,7 +153,7 @@ $module: 'album';
       @include rem(line-height, $h5-height);
     }
 
-    @media screen and (min-width: $screen-lg-min) {
+    @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
       @include rem(font-size, $h3-size);
       @include rem(line-height, $h3-height);
     }
@@ -172,7 +172,7 @@ $module: 'album';
       height: $album-size * $album-scale-md + 2px;
     }
 
-    @media screen and (min-width: $screen-lg-min) {
+    @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
       width: $album-size;
       height: $album-size + 2px;
     }
