@@ -187,9 +187,9 @@ a {
     background: url(../img/icon-arrow.png);
     background-size: cover;
 
-    @media screen and (max-width: $screen-xxs-max) {
-      width: $icon-sm;
-      height: $icon-sm;
+    @media screen and (max-width: $screen-xs-max) {
+      width: $icon-md;
+      height: $icon-md;
     }
   }
 }

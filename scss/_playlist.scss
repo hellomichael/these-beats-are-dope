@@ -395,6 +395,10 @@ $module: 'playlist';
       left: 40px;
       transform: translateY(-50%) scale(-1.25);
 
+      @media screen and (min-width: $screen-xs-min) {
+        left: $gutter-lg;
+      }
+
       @media screen and (min-width: $screen-sm-min) {
         left: $gutter-xl;
       }
@@ -412,6 +416,10 @@ $module: 'playlist';
     &--next {
       right: 40px;
       transform: translateY(-50%) scale(1.25);
+
+      @media screen and (min-width: $screen-xs-min) {
+        right: $gutter-lg;
+      }
 
       @media screen and (min-width: $screen-sm-min) {
         right: $gutter-xl;
