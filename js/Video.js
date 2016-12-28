@@ -199,15 +199,17 @@ export default class Video {
     })
   }
 
+  getDuration() {
+    return this.duration
+  }
+
   setCurrentTime() {
     return this.youtube.getCurrentTime()
     .then(seconds => {
-      this.currentTime = _round(seconds, 2)
+      if (seconds) {
+        this.currentTime = _round(seconds, 2)
+      }
     })
-  }
-
-  getDuration() {
-    return this.duration
   }
 
   getCurrentTime() {
