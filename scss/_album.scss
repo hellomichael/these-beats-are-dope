@@ -7,18 +7,17 @@ $module: 'album';
   @extend %center;
   width: $album-size * $album-scale-sm;
   transform-origin: left top;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateX($kanye-distance-sm) translateY(-50%) translateZ(0);
   transition: 0.75s transform $ease-out-quint;
-  transform: translateX(-50%) translateX($kanye-distance-sm) translateY(-50%);
 
   @media screen and (min-width: $screen-md-min) {
     width: $album-size * $album-scale-md;
-    transform: translateX(-50%) translateX($kanye-distance-md) translateY(-50%);
+    transform: translateX(-50%) translateX($kanye-distance-md) translateY(-50%) translateZ(0);
   }
 
   @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
     width: $album-size;
-    transform: translateX(-50%) translateX($kanye-distance-lg) translateY(-50%);
+    transform: translateX(-50%) translateX($kanye-distance-lg) translateY(-50%) translateZ(0);
   }
 
   /* ==========================================================================
@@ -26,6 +25,7 @@ $module: 'album';
   ========================================================================== */
   &__track {
     perspective: 1000px;
+    backface-visibility: hidden;
   }
 
   &__vinyl {
@@ -35,7 +35,6 @@ $module: 'album';
     margin: 0 0 $gutter-sm;
     transform-style: preserve-3d;
     transform: rotateY(-#{75}deg);
-    backface-visibility: hidden;
     transition: 1s transform $ease-in-out-quint 0.05s;
 
     @media screen and (min-width: $screen-md-min) {
@@ -61,7 +60,7 @@ $module: 'album';
       width: 125%;
       height: 30px;
       border-radius: 50%;
-      box-shadow: 0 -100px 20px rgba($black, 0.25);
+      // box-shadow: 0 -100px 20px rgba($black, 0.25);
       transition: 1s transform $ease-out-quint;
     }
 

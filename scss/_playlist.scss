@@ -36,21 +36,13 @@ $module: 'playlist';
 
   &__slideshow {
     .#{$module}__slide {
-      // display: none;
-
       &:first-child {
-        display: block;
         z-index: 1;
-      }
-
-      &:nth-child(2) {
-        display: block;
       }
     }
 
     &--animations {
       @extend %before-after;
-
       z-index: 3;
       transition: 0.75s transform $ease-in-out-quart;
 
@@ -59,25 +51,6 @@ $module: 'playlist';
           z-index: 1;
         }
       }
-
-      // Hide video overlap
-      // &:before, &:after {
-      //   position: absolute;
-      //   left: 50%;
-      //   height: 300px;
-      //   width: 150%;
-      //   background-color: $black;
-      // }
-      //
-      // &:before {
-      //   top: 0;
-      //   transform: translateX(-50%) translateY(-100%);
-      // }
-      //
-      // &:after {
-      //   bottom: 0;
-      //   transform: translateX(-50%) translateY(100%);
-      // }
     }
 
     &--albums {
@@ -192,7 +165,7 @@ $module: 'playlist';
 
     &--left {
       left: 0;
-      transform: translateX(-100%) translateZ(0);
+      transform: translateX(-100%);
 
       &.#{$module}__frame--visible {
         transform: none;
@@ -201,7 +174,7 @@ $module: 'playlist';
 
     &--right {
       right: 0;
-      transform: scaleX(-1) translateX(-100%) translateZ(0);
+      transform: scaleX(-1) translateX(-100%);
 
       &.#{$module}__frame--visible {
         transform: scaleX(-1);
@@ -419,7 +392,7 @@ $module: 'playlist';
     ========================================================================== */
     &--prev {
       left: 40px;
-      transform: translateY(-50%) translateZ(0) scale(-1.25);
+      transform: translateY(-50%) scale(-1.25);
 
       @media screen and (min-width: $screen-sm-min) {
         left: $gutter-xl;
@@ -427,17 +400,17 @@ $module: 'playlist';
 
       &.playlist__control--visible {
         transition: 0.25s transform $ease-out-quint, 0.25s opacity $ease-out-quint 0.5s;
-        transform: translateY(-50%) translateZ(0) scale(-1);
+        transform: translateY(-50%) scale(-1);
 
         &:hover {
-          transform: translateY(-50%) translateZ(0) scale(-1.1);
+          transform: translateY(-50%) scale(-1.1);
         }
       }
     }
 
     &--next {
       right: 40px;
-      transform: translateY(-50%) translateZ(0) scale(1.25);
+      transform: translateY(-50%) scale(1.25);
 
       @media screen and (min-width: $screen-sm-min) {
         right: $gutter-xl;
@@ -445,10 +418,10 @@ $module: 'playlist';
 
       &.playlist__control--visible {
         transition: 0.25s transform $ease-out-quint, 0.25s opacity $ease-out-quint 0.5s;
-        transform: translateY(-50%) translateZ(0) scale(1);
+        transform: translateY(-50%) scale(1);
 
         &:hover {
-          transform: translateY(-50%) translateZ(0) scale(1.1);
+          transform: translateY(-50%) scale(1.1);
         }
       }
     }

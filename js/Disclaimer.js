@@ -6,7 +6,7 @@ export default class Disclaimer {
       <div class="disclaimer">
         <div class="disclaimer__content">
           <h2 class="disclaimer__heading">These beats are dope, but portrait mode ain't.</h2>
-          <h5 class="disclaimer__heading">Please rotate your mobile device for the full Kanye experience.</h5>
+          <h5 class="disclaimer__heading">Please rotate your mobile device for the full experience.</h5>
         </div>
       </div>
     `)
