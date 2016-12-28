@@ -17,9 +17,9 @@ export default class Playlist {
   constructor(options) {
     // Props
     this.device = new MobileDetect(window.navigator.userAgent)
-    this.isMobile = false ? true : this.device.mobile()
-    this.isPhone  = false ? true : this.device.phone()
-    this.isTablet = false ? true : this.device.tablet()
+    this.isMobile = true ? true : this.device.mobile()
+    this.isPhone  = true ? true : this.device.phone()
+    this.isTablet = true ? true : this.device.tablet()
 
     this.matchesPolyfill()
 
@@ -256,7 +256,7 @@ export default class Playlist {
       }
 
       // Play
-      else if (event.target.matches('.playlist__control--play, .playlist__control--play *, .album, .album *')) {
+      else if (event.target.matches('.playlist__control--play, .playlist__control--play *')) {
         event.preventDefault()
         this.videos[this.state.currentSlide].playVideo()
 
