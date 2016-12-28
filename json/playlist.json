@@ -30,7 +30,7 @@
 			"animationOutfit": "suit",
 			"animationThreshold": 0.45,
 			"keyframes": [
-				{"timecode": "00:21:05", 									"actions":	["breathing"]},
+				{"timecode": "00:21:08", 									"actions":	["breathing"]},
 				{"timecode": "00:21:21", 	"bpm": "59.91", "actions": 	["bopper"]},
 				{"timecode": "00:28:15", 	"bpm": "59.91", "actions": 	["bopper"]},
 				{"timecode": "00:44:20", 	"bpm": "59.91", "actions": 	["bopper"]},
@@ -56,7 +56,7 @@
 			"animationOutfit": "polo",
 			"animationThreshold": 0.3,
 			"keyframes": [
-				{"timecode": "00:00:15", 									"actions":	["breathing"]},
+				{"timecode": "00:00:17", 									"actions":	["breathing"]},
 				{"timecode": "00:03:05", 	"bpm": "106.6",	"actions": 	["bopper"]},
 
 				{"timecode": "00:29:03", 									"actions":	["breathing", "openCloseEyes"]},

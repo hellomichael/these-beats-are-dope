@@ -149,44 +149,44 @@ export default class Timeline {
             if (action === 'bopper') {
               // Automated bops with bopCycle
               if (Utils.getBPM(keyframeBpm) >= 150) {
-                this.animation['bopper']('normal', 'cycle')
+                this.animation['bopper']('Normal', 'Cycle')
               }
 
               else if (Utils.getBPM(keyframeBpm) >= 115) {
-                this.animation['bopper']('fast', 'cycle')
+                this.animation['bopper']('Fast', 'Cycle')
               }
 
               else if (Utils.getBPM(keyframeBpm) >= 85) {
-                this.animation['bopper']('medium', 'cycle')
+                this.animation['bopper']('Medium', 'Cycle')
               }
 
               else if (Utils.getBPM(keyframeBpm) >= 50) {
-                this.animation['bopper']('normal', 'cycle')
+                this.animation['bopper']('Normal', 'Cycle')
               }
 
               else if (Utils.getBPM(keyframeBpm)) {
-                this.animation['bopper']('slow', 'cycle')
+                this.animation['bopper']('Slow', 'Cycle')
               }
 
               // Manual bops with bopAngle
               else if (Utils.getBPM(keyframeDuration) >= 150) {
-                this.animation['bopper']('normal', 'angle')
+                this.animation['bopper']('Normal', 'Angle')
               }
 
               else if (Utils.getBPM(keyframeDuration) >= 115) {
-                this.animation['bopper']('fast', 'angle')
+                this.animation['bopper']('Fast', 'Angle')
               }
 
               else if (Utils.getBPM(keyframeDuration) >= 85) {
-                this.animation['bopper']('medium', 'angle')
+                this.animation['bopper']('Medium', 'Angle')
               }
 
               else if (Utils.getBPM(keyframeDuration) >= 50) {
-                this.animation['bopper']('normal', 'angle')
+                this.animation['bopper']('Normal', 'Angle')
               }
 
               else if (Utils.getBPM(keyframeDuration)) {
-                this.animation['bopper']('slow', 'angle')
+                this.animation['bopper']('Slow', 'Angle')
               }
             }
 

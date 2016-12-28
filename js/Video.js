@@ -127,6 +127,8 @@ export default class Video {
     else {
       this.youtube.seekTo(this.startTime)
     }
+
+    this.youtube.setVolume(0)
   }
 
   loopVideo () {
