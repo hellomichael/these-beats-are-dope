@@ -119,7 +119,7 @@ export default class Timeline {
   removeKeyframes() {
     let skippedKeyframes = 0
 
-    this.keyframesClone.map((keyframe) => {
+    this.keyframesClone.map(keyframe => {
       if (this.video.getCurrentTime() > Utils.getSeconds(keyframe.timecode)) {
         skippedKeyframes++
       }
@@ -139,6 +139,14 @@ export default class Timeline {
     let nextKeyframe = this.keyframesClone.length > 2 ? this.keyframesClone[1] : null
     let keyframeBpm = keyframe ? keyframe.bpm : 0
     let keyframeDuration = nextKeyframe ? _round(Utils.getSeconds(nextKeyframe.timecode) - Utils.getSeconds(keyframe.timecode), 2) : 0
+
+    if (this.video.getBuffering()) {
+      if (typeof this.animation['breathing'] === 'function') {
+        this.animation['breathing']()
+      }
+
+      return false
+    }
 
     if (keyframe && this.video.getCurrentTime() >= Utils.getSeconds(keyframe.timecode)) {
       // Play the actions
