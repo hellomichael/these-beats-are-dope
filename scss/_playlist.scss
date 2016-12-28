@@ -269,9 +269,9 @@ $module: 'playlist';
 
       @keyframes beating {
         0%   { transform: scale(0.5) translate(-50%, -50%);}
-        35%   { transform: scale(0.45) translate(-50%, -50%);}
-        50% { transform: scale(0.45) translate(-50%, -50%);}
-        65% { transform: scale(0.45) translate(-50%, -50%);}
+        35%  { transform: scale(0.45) translate(-50%, -50%);}
+        50%  { transform: scale(0.45) translate(-50%, -50%);}
+        65%  { transform: scale(0.45) translate(-50%, -50%);}
         100% { transform: scale(0.5) translate(-50%, -50%);}
       }
     }
@@ -382,6 +382,7 @@ $module: 'playlist';
     position: fixed;
     z-index: 5;
     opacity: 0;
+    visibility: hidden;
     cursor: default;
     filter: blur(0);
     backface-visibility: hidden;
@@ -429,6 +430,7 @@ $module: 'playlist';
     &--visible {
       cursor: pointer;
       opacity: 1;
+      visibility: visible;
     }
   }
 

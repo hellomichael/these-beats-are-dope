@@ -39,8 +39,9 @@ export default class Album {
       <div class="album album-${this.id}">
         <div class="album__track">
           <div class="album__vinyl">
+            <a href="#" class="playlist__control playlist__control--play"><i class="icon icon--lg icon--play"></i></a>
+
             <div class="album__vinyl__front">
-              <a href="#" class="playlist__control playlist__control--play"><i class="icon icon--lg icon--play"></i></a>
               <img src="${this.resizeAlbum()}" alt=""/>
             </div>
 

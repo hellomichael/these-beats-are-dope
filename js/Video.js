@@ -17,7 +17,6 @@ export default class Video {
     this.isCurrent = false
     this.isPlaying = false
     this.isPaused = false
-    this.quality = 'medium'  //small, medium, large, hd720, hd1080, highres
     this.volume = 100
     this.isMute = false
     this.fadeInterval = null
@@ -64,7 +63,7 @@ export default class Video {
   handleReady() {
     this.youtube.on('ready', () => {
       console.log(`${this.name} (${this.id}): Ready`)
-      this.youtube.setPlaybackQuality(this.quality)
+      this.youtube.setPlaybackQuality(this.isPhone ? 'small' : 'large') //small, medium, large, hd720, hd1080, highres
       this.setDuration()
     })
   }
@@ -154,7 +153,7 @@ export default class Video {
     this.isCurrent = true
     this.isPaused = false
 
-    setTimeout(() => {
+    if (this.isMobile) {
       if (this.isCurrent) {
         this.prefetchVideo()
         this.youtube.playVideo()
@@ -163,7 +162,20 @@ export default class Video {
       else {
         this.youtube.stopVideo()
       }
-    }, 1250)
+    }
+
+    else {
+      setTimeout(() => {
+        if (this.isCurrent) {
+          this.prefetchVideo()
+          this.youtube.playVideo()
+        }
+
+        else {
+          this.youtube.stopVideo()
+        }
+      }, 1250)
+    }
   }
 
   stopVideo() {

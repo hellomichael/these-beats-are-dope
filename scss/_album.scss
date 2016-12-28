@@ -7,17 +7,17 @@ $module: 'album';
   @extend %center;
   width: $album-size * $album-scale-sm;
   transform-origin: left top;
-  transform: translateX(-50%) translateX($kanye-distance-sm) translateY(-50%) translateZ(0);
+  transform: translateX(-50%) translateX($kanye-distance-sm) translateY(-50%) translateY($gutter-xs) translateZ(0);
   transition: 0.75s transform $ease-out-quint;
 
   @media screen and (min-width: $screen-md-min) {
     width: $album-size * $album-scale-md;
-    transform: translateX(-50%) translateX($kanye-distance-md) translateY(-50%) translateZ(0);
+    transform: translateX(-50%) translateX($kanye-distance-md) translateY(-50%) translateY($gutter-xs) translateZ(0);
   }
 
   @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
     width: $album-size;
-    transform: translateX(-50%) translateX($kanye-distance-lg) translateY(-50%) translateZ(0);
+    transform: translateX(-50%) translateX($kanye-distance-lg) translateY(-50%) translateY($gutter-xs) translateZ(0);
   }
 
   /* ==========================================================================
@@ -32,12 +32,13 @@ $module: 'album';
     @extend %before-after;
     width: $album-size * $album-scale-sm;
     height: $album-size * $album-scale-sm;
-    margin: 0 0 $gutter-sm;
+    margin: 0 0 $gutter-xs;
     transform-style: preserve-3d;
     transform: rotateY(-#{75}deg);
     transition: 1s transform $ease-in-out-quint 0.05s;
 
     @media screen and (min-width: $screen-md-min) {
+      margin: 0 0 $gutter-sm;
       width: $album-size * $album-scale-md;
       height: $album-size * $album-scale-md;
     }
@@ -52,17 +53,17 @@ $module: 'album';
       transition: none;
     }
 
-    &:before {
-      @extend %center-horizontally;
-      position: absolute;
-      bottom: -115px;
-      z-index: 0;
-      width: 125%;
-      height: 30px;
-      border-radius: 50%;
-      // box-shadow: 0 -100px 20px rgba($black, 0.25);
-      transition: 1s transform $ease-out-quint;
-    }
+    // &:before {
+    //   @extend %center-horizontally;
+    //   position: absolute;
+    //   bottom: -115px;
+    //   z-index: 0;
+    //   width: 125%;
+    //   height: 30px;
+    //   border-radius: 50%;
+    //   box-shadow: 0 -100px 20px rgba($black, 0.25);
+    //   transition: 1s transform $ease-out-quint;
+    // }
 
     &:after {
       @extend %center;
@@ -102,7 +103,9 @@ $module: 'album';
     }
 
     &__front, &__back {
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
       z-index: 1;
     }
 
@@ -162,8 +165,7 @@ $module: 'album';
     @extend %center;
     width: $album-size * $album-scale-sm;
     height: $album-size * $album-scale-sm;
-    // background-color: rgba($black, 0.15);
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: translateX(-50%) translateY(-50%) scale(1.1);
     transition: 0.25s transform $ease-out-quint, 0.25s opacity $ease-out-quint;
 
     @media screen and (min-width: $screen-md-min) {
@@ -181,7 +183,7 @@ $module: 'album';
     }
 
     &.playlist__control--visible {
-      transform: translate(-50%, -50%) scale(1);
+      transform: translateX(-50%) translateY(-50%) translateZ(3px) scale(1);
       transition: 0.25s transform $ease-out-quint 0.5s, 0.25s opacity $ease-out-quint 0.5s;
     }
   }
