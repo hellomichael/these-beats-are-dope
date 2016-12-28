@@ -80,7 +80,7 @@ export default class Video {
         this.fadeVideoIn()
       }
 
-      else if (this.events[event.data] === 'Buffering') {
+      else if (this.events[event.data] === 'Buffering' || this.events[event.data] === 'Video cued' || this.events[event.data] === 'Unstarted') {
         this.isBuffering = true
       }
     })
@@ -187,7 +187,10 @@ export default class Video {
     this.fadeOut()
 
     setTimeout(() => {
-      this.pauseTime = (this.getCurrentTime() >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
+      if (!this.getBuffering()) {
+        this.pauseTime = (this.getCurrentTime() >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
+      }
+
       this.youtube.stopVideo()
     }, 750)
   }
@@ -206,7 +209,11 @@ export default class Video {
   setCurrentTime() {
     return this.youtube.getCurrentTime()
     .then(seconds => {
-      if (seconds) {
+      if (this.getCurrentTime() >= this.endTime) {
+        this.currentTime = this.startTime
+      }
+
+      else if (!this.getBuffering()) {
         this.currentTime = _round(seconds, 2)
       }
     })
@@ -222,6 +229,10 @@ export default class Video {
 
   getEndTime() {
     return this.endTime
+  }
+
+  getBuffering() {
+    return this.isBuffering
   }
 
   fadeVideoIn() {

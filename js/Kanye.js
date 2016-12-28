@@ -36,6 +36,7 @@ export default class Kanye extends Animation {
     this.kanyeEyesRepeating = 0
     this.kanyeDirection = 'Left'
     this.kanyeBopCount = 2
+    this.kanyeBreathing = false
     this.kanyeIdle = false
     this.mouseDirection = null
     this.mouseTimeout = null
@@ -174,11 +175,7 @@ export default class Kanye extends Animation {
   setAnimationMixes(animations) {
     animations.map(firstAnimation => {
       animations.map(secondAnimation => {
-        if (firstAnimation.includes('breathing') && secondAnimation.includes('breathing')) {
-          this.kanye.stateData.setMix(firstAnimation, secondAnimation, 1.5)
-        }
-
-        else if (firstAnimation.includes('bopFast') || firstAnimation.includes('bopFastLeft') || firstAnimation.includes('bopFastRight')) {
+        if (firstAnimation.includes('bopFast') || firstAnimation.includes('bopFastLeft') || firstAnimation.includes('bopFastRight')) {
           this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.15)
         }
 
@@ -225,6 +222,7 @@ export default class Kanye extends Animation {
     }
 
     this.blinkRandom()
+    this.kanyeBreathing = false
     this.kanyeBopCount++
   }
 
@@ -276,9 +274,13 @@ export default class Kanye extends Animation {
   }
 
   breathing() {
-    console.log('Breathing')
-    this.kanye.state.setAnimation(0, 'breathing', true)
-    this.switchBopDirection()
+    if (!this.kanyeBreathing) {
+      console.log('Breathing')
+      this.kanye.state.setAnimation(0, 'breathing', true)
+      this.switchBopDirection()
+
+      this.kanyeBreathing = true
+    }
   }
 
   openCloseEyes() {
