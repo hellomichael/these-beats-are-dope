@@ -30,6 +30,9 @@ export default class Video {
       3: 'Buffering',
       5: 'Video cued'
     }
+    this.state = {
+      event: -1
+    }
     Object.assign(this, options)
 
     // Youtube
@@ -52,15 +55,9 @@ export default class Video {
       }
     })
 
-    // State
-    this.state = {
-      event: -1
-    }
-
     // Events
     this.handleReady()
     this.handleStateChange()
-    // this.handleQualityChange()
     this.handleResize()
   }
 
@@ -169,21 +166,16 @@ export default class Video {
     }, 1250)
   }
 
-  pauseVideo() {
+  stopVideo() {
     this.isPlaying = false
     this.isCurrent = false
     this.isPaused = true
+    this.fadeOut()
 
-    return this.fadeOut()
-    .then(() => {
+    setTimeout(() => {
       this.pauseTime = (this.getCurrentTime() >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
-
-      setTimeout(() => {
-        this.youtube.stopVideo()
-      }, 750)
-
-      this.youtube.setVolume(0)
-    })
+      this.youtube.stopVideo()
+    }, 750)
   }
 
   setDuration() {
@@ -253,8 +245,8 @@ export default class Video {
 
       else {
         let volume = this.volume
-
         clearInterval(this.fadeInterval)
+
         this.fadeInterval = setInterval(() => {
           if (this.isPlaying) {
             clearInterval(this.fadeInterval)
@@ -269,10 +261,7 @@ export default class Video {
             else {
               this.youtube.setVolume(0)
               clearInterval(this.fadeInterval)
-
-              setTimeout(() => {
-                resolve()
-              }, 250)
+              resolve()
             }
           }
         }, 15)

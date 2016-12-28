@@ -445,40 +445,22 @@ export default class Playlist {
   animateSlide() {
     console.log('Animate Slide')
 
+    // Animate slide
+    this.isTransitioning = true
+
     // Reset previous video, timeline, and animations
     if (this.state.currentSlide || this.state.prevSlide) {
-      this.isTransitioning = true
-
       this.animations[this.state.prevSlide].stopAnimation()
-      this.videos[this.state.prevSlide].pauseVideo()
-      .then(() => {
-        this.timelines[this.state.prevSlide].stopTimeline()
+      this.videos[this.state.prevSlide].stopVideo()
+      this.timelines[this.state.prevSlide].stopTimeline()
 
-        let currentSlide = this.state.currentSlide
+      let currentSlide = this.state.currentSlide
 
+      setTimeout(() => {
         if (currentSlide === this.state.currentSlide) {
           this.isTransitioning = false
         }
-
-        // // Optimize # of DOM elements on the screen
-        // Array.from(this.dom.slideshows).map(slideshow => {
-        //   Array.from(slideshow.querySelectorAll('.playlist__slide')).map((slide, index) => {
-        //     if (!this.isZoom) {
-        //       slide.style.display = 'block'
-        //     }
-        //
-        //     else {
-        //       if (index != this.state.currentSlide && index != (this.state.currentSlide + 1) && index != (this.state.currentSlide - 1)) {
-        //         slide.style.display = 'none'
-        //       }
-        //
-        //       else {
-        //         slide.style.display = 'block'
-        //       }
-        //     }
-        //   })
-        // })
-      })
+      }, 750)
     }
 
     else {
@@ -493,7 +475,6 @@ export default class Playlist {
       this.videos[this.state.currentSlide].playVideo()
     }
 
-    // Animate slide
     Array.from(this.dom.slideshows).map(slideshow => {
       slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px) translateZ(0)`
     })
@@ -553,7 +534,10 @@ export default class Playlist {
         this.dom.indicator.classList.remove('playlist__progress__indicator--reset')
       }
 
-      this.dom.indicator.style.width = `${progress}%`
+      if (this.dom.indicator.style.width != progress) {
+        this.dom.indicator.style.width = `${progress}%`
+      }
+
     }, 1000/60)
   }
 

@@ -231,7 +231,9 @@ export default class Timeline {
 
   getProgress() {
     let duration = this.video.getEndTime() - this.video.getStartTime()
-    let currentTime = this.video.getCurrentTime() - this.video.getStartTime()
-    return Utils.getPercentage(currentTime/duration)
+    let currentTime = (this.video.state.event === 1) ? this.video.getCurrentTime() - this.video.getStartTime() : this.video.pauseTime - this.video.getStartTime()
+    let progress = Utils.getPercentage(currentTime/duration)
+
+    return progress > 0 ? progress : 0
   }
 }
