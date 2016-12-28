@@ -1,5 +1,9 @@
-import Animation from './Animation'
+import _round from 'lodash/round'
+import _union from 'lodash/union'
+import _difference from 'lodash/difference'
 import * as Utils from './Utils.js'
+
+import Animation from './Animation'
 require('../scss/_kanye.scss')
 
 export default class Kanye extends Animation {
@@ -19,18 +23,7 @@ export default class Kanye extends Animation {
 
     this.kanyeOutfit = null
     this.kanyeOutfits = {
-      shared:     [
-        'glasses',
-        'glasses-flare',
-        'face-shadow-glasses',
-        'neck-front',
-        'shadow',
-        'shadow-left',
-        'shadow-right',
-        'chain-front',
-        'chain-back',
-        'chain-links'
-      ],
+      shared:     ['glasses', 'glasses-flare', 'face-shadow-glasses', 'neck-front', 'shadow', 'shadow-left', 'shadow-right', 'chain-front', 'chain-back', 'chain-links'],
       hoodie:     ['hoodie-body', 'hoodie-hood-front', 'hoodie-hood-back', 'sweater-body', 'sweater-collar', 'neck-front', 'shadow', 'shadow-left', 'shadow-right'],
       letterman:  ['letterman-body', 'letterman-sleeves', 'letterman-bowtie', 'suit-shirt', 'suit-collar', 'glasses', 'glasses-flare', 'face-shadow-glasses'],
       polo:       ['polo-body', 'polo-collar', 'polo-tshirt', 'neck-front', 'chain-front', 'chain-back', 'chain-links', 'chest' , 'shadow', 'shadow-left', 'shadow-right'],
@@ -60,13 +53,11 @@ export default class Kanye extends Animation {
       this.kanye.skeleton.findSlot('chest').data.boneData.y = 395
     }
 
-    let hideOutfits = [...this.kanyeOutfits.shared, ...this.kanyeOutfits.hoodie, ...this.kanyeOutfits.letterman, ...this.kanyeOutfits.polo, ...this.kanyeOutfits.suit, ...this.kanyeOutfits.sweater, ...this.kanyeOutfits.tshirt]
-
-    // Remove duplicates
-    hideOutfits = [ ...new Set(hideOutfits)]
+    // Merge all outfits
+    let hideOutfits = _union(this.kanyeOutfits.shared, this.kanyeOutfits.hoodie, this.kanyeOutfits.letterman, this.kanyeOutfits.polo, this.kanyeOutfits.suit, this.kanyeOutfits.sweater, this.kanyeOutfits.tshirt)
 
     // Remove current outfit
-    hideOutfits = hideOutfits.filter(x => this.kanyeOutfits[this.kanyeOutfit].indexOf(x) < 0)
+    hideOutfits = _difference(hideOutfits, this.kanyeOutfits[this.kanyeOutfit])
 
     // Hide slots
     hideOutfits.map(slot => {
@@ -117,7 +108,7 @@ export default class Kanye extends Animation {
   }
 
   resizeRenderer() {
-    this.pixiScale = Utils.getTwoDecimalPlaces((window.innerHeight + 20)/this.kanyeHeight)
+    this.pixiScale = _round((window.innerHeight + 20)/this.kanyeHeight, 2)
     this.pixiRenderer.view.style.transform = `scale(${this.pixiScale}) translateX(-50%)`
   }
 
@@ -183,34 +174,13 @@ export default class Kanye extends Animation {
   setAnimationMixes(animations) {
     animations.map(firstAnimation => {
       animations.map(secondAnimation => {
-        // Breathing
         if (firstAnimation.includes('breathing') && secondAnimation.includes('breathing')) {
           this.kanye.stateData.setMix(firstAnimation, secondAnimation, 1.5)
         }
 
-        // Fast
         else if (firstAnimation.includes('bopFast') || firstAnimation.includes('bopFastLeft') || firstAnimation.includes('bopFastRight')) {
           this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.15)
         }
-
-        // // Medium
-        // else if (firstAnimation.includes('bopMedium') || firstAnimation.includes('bopMediumLeft') || firstAnimation.includes('bopMediumRight')) {
-        //   this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.3)
-        // }
-        //
-        // // Normal
-        // else if (firstAnimation.includes('bopNormal') || firstAnimation.includes('bopNormalLeft') || firstAnimation.includes('bopNormalRight')) {
-        //   this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.3)
-        // }
-        //
-        // // Slow
-        // else if (firstAnimation.includes('bopSlow') || firstAnimation.includes('bopSlowLeft') || firstAnimation.includes('bopSlowRight')) {
-        //   this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.3)
-        // }
-        //
-        // else if (firstAnimation.includes('breathing')) {
-        //   this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.3)
-        // }
 
         else {
           this.kanye.stateData.setMix(firstAnimation, secondAnimation, 0.3)

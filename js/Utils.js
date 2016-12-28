@@ -1,9 +1,11 @@
+import _round from 'lodash/round'
+
 export function getSeconds(timecode) {
   let separator = timecode.split(':')
   let minutes = parseInt(separator[0])
   let seconds = parseInt(separator[1])
   let milliseconds = parseInt(separator[2])
-  return getTwoDecimalPlaces((minutes * 60) + (seconds) + (milliseconds/30))
+  return _round((minutes * 60) + (seconds) + (milliseconds/30), 2)
 }
 
 export function getTimecode(value) {
@@ -27,12 +29,8 @@ export function getTimecode(value) {
   return minutes + ':' + seconds + ':' + milliseconds
 }
 
-export function getTwoDecimalPlaces(value) {
-  return +(Math.round(value + 'e+2') + 'e-2')
-}
-
 export function getPercentage(value) {
-  return getTwoDecimalPlaces(value * 100)
+  return _round((value * 100), 2)
 }
 
 export function isHighDensity() {
@@ -56,7 +54,7 @@ export function getWordNumber(num) {
 
 export function getBPM(seconds) {
   if (seconds) {
-    return this.getTwoDecimalPlaces(1/seconds * 60)
+    return _round(1/seconds * 60, 2)
   }
 
   return 0

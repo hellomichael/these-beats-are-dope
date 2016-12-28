@@ -1,6 +1,8 @@
 import 'whatwg-fetch'
+import _throttle from 'lodash/throttle'
 import MobileDetect from 'mobile-detect'
 import Hammer from 'hammerjs'
+
 import Album from './Album.js'
 import Video from './Video.js'
 import Timeline from './Timeline.js'
@@ -8,6 +10,7 @@ import Aziz from './Aziz.js'
 import Kanye from './Kanye.js'
 import Disclaimer from './Disclaimer.js'
 import * as Utils from './Utils.js'
+
 require('../scss/_playlist.scss')
 
 export default class Playlist {
@@ -30,7 +33,6 @@ export default class Playlist {
     this.width = window.innerWidth
     this.height = window.innerHeight
     this.isTransitioning = false
-    this.transition = 500
     this.isZoom = true
     this.preloaded = 0
     Object.assign(this, options)
@@ -173,7 +175,6 @@ export default class Playlist {
     this.dom.preloader.classList.add('playlist__preloader--visible')
   }
 
-  // Preloader
   preload(progress) {
     return new Promise((resolve, reject) => {
       let speed = (progress === 100) ? Math.round((100 - this.preloaded)/15) : 0.35
@@ -205,10 +206,9 @@ export default class Playlist {
     })
   }
 
-  // Ready
   handleReady() {
     let assets = []
-    this.preload(35)
+    this.preload(88)
 
     // Preload animations
     assets.push(this.animations[1].isReady())
@@ -241,9 +241,8 @@ export default class Playlist {
     })
   }
 
-  // Controls
   handleClick() {
-    this.app.addEventListener('click', event => {
+    this.app.addEventListener('click', _throttle(event => {
       // Next
       if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *')) {
         event.preventDefault()
@@ -256,6 +255,7 @@ export default class Playlist {
         this.prevSlide()
       }
 
+      // Play
       else if (event.target.matches('.playlist__control--play, .playlist__control--play *, .album, .album *')) {
         event.preventDefault()
         this.videos[this.state.currentSlide].playVideo()
@@ -273,11 +273,76 @@ export default class Playlist {
         })
       }
 
+      // Close
       else if (event.target.matches('.playlist__close')) {
         event.preventDefault()
         this.zoomIn()
       }
+    }, 750, {
+      'leading': true,
+      'trailing': false
+    }))
+
+    this.app.addEventListener('click', () => {
+      // Next
+      if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *')) {
+        event.preventDefault()
+      }
+
+      // Previous
+      else if (event.target.matches('.playlist__control--prev, .playlist__control--prev *')) {
+        event.preventDefault()
+      }
+
+      // Play
+      else if (event.target.matches('.playlist__control--play, .playlist__control--play *, .album, .album *')) {
+        event.preventDefault()
+      }
+
+      // Mute
+      else if (event.target.matches('.playlist__social__icon--mute')) {
+        event.preventDefault()
+      }
+
+      // Close
+      else if (event.target.matches('.playlist__close')) {
+        event.preventDefault()
+      }
     })
+  }
+
+  handleKeypress() {
+    window.addEventListener('keydown', _throttle(event => {
+      event.preventDefault()
+
+      // Next
+      if (event.keyCode === 39) {
+        this.nextSlide()
+      }
+
+      // Previous
+      else if (event.keyCode === 37) {
+        this.prevSlide()
+      }
+
+      // Zoom Out (Down)
+      else if (event.keyCode === 40) {
+        this.zoomOut()
+      }
+
+      // Zoom In (Up)
+      else if (event.keyCode === 38 || event.keyCode === 27) {
+        this.zoomIn()
+      }
+
+      // Spacebar
+      else if (event.keyCode === 32) {
+        console.log(Utils.getTimecode(this.videos[this.state.currentSlide].getCurrentTime()))
+      }
+    }, 750, {
+      'leading': true,
+      'trailing': false
+    }))
   }
 
   handleSwipe() {
@@ -291,48 +356,14 @@ export default class Playlist {
     manager.add(swipe)
 
     manager.on('swipeleft', () => {
-      // this.nextSlide()
       this.dom.controlNext.click()
     })
 
     manager.on('swiperight', () => {
-      // this.prevSlide()
       this.dom.controlPrev.click()
     })
   }
 
-  handleKeypress() {
-    window.addEventListener('keydown', event => {
-      event.preventDefault()
-
-      // Next
-      if (event.keyCode === 39) {
-        this.nextSlide()
-      }
-
-      // Previous
-      else if (event.keyCode === 37) {
-        this.prevSlide()
-      }
-
-      // Spacebar
-      else if (event.keyCode === 32) {
-        console.log(Utils.getTimecode(this.videos[this.state.currentSlide].getCurrentTime()))
-      }
-
-      // Zoom Out (Down)
-      else if (event.keyCode === 40) {
-        this.zoomOut()
-      }
-
-      // Zoom In (Up)
-      else if (event.keyCode === 38 || event.keyCode === 27) {
-        this.zoomIn()
-      }
-    })
-  }
-
-  // Resizing
   handleResize() {
     window.addEventListener('resize', () => {
       // Update state
@@ -345,7 +376,7 @@ export default class Playlist {
       // Update slides
       Array.from(this.dom.slideshows).map(slideshow => {
         // Update animation, albums, video
-        slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
+        slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px) translateZ(0)`
         slideshow.style.width = `${this.width * (this.albums.length)}px`
         slideshow.style.height = `${this.height}px`
 
@@ -353,7 +384,7 @@ export default class Playlist {
         Array.from(slideshow.children).map((slide, index) => {
           slide.style.width = `${this.width}px`
           slide.style.height = `${this.height}px`
-          slide.style.transform = `translateX(${index * 100}%)`
+          slide.style.transform = `translateX(${index * 100}%) translateZ(0)`
         })
       })
     })
@@ -425,39 +456,33 @@ export default class Playlist {
 
         let currentSlide = this.state.currentSlide
 
-        setTimeout(() => {
-          if (currentSlide === this.state.currentSlide) {
-            this.isTransitioning = false
-          }
-        }, this.transition)
+        if (currentSlide === this.state.currentSlide) {
+          this.isTransitioning = false
+        }
 
         // // Optimize # of DOM elements on the screen
-        Array.from(this.dom.slideshows).map(slideshow => {
-          Array.from(slideshow.querySelectorAll('.playlist__slide')).map((slide, index) => {
-            if (!this.isZoom) {
-              slide.style.display = 'block'
-            }
-
-            else {
-              if (index != this.state.currentSlide && index != (this.state.currentSlide + 1) && index != (this.state.currentSlide - 1)) {
-                setTimeout(() => {
-                  slide.style.display = 'none'
-                }, this.transition)
-              }
-
-              else {
-                slide.style.display = 'block'
-              }
-            }
-          })
-        })
+        // Array.from(this.dom.slideshows).map(slideshow => {
+        //   Array.from(slideshow.querySelectorAll('.playlist__slide')).map((slide, index) => {
+        //     if (!this.isZoom) {
+        //       slide.style.display = 'block'
+        //     }
+        //
+        //     else {
+        //       if (index != this.state.currentSlide && index != (this.state.currentSlide + 1) && index != (this.state.currentSlide - 1)) {
+        //         slide.style.display = 'none'
+        //       }
+        //
+        //       else {
+        //         slide.style.display = 'block'
+        //       }
+        //     }
+        //   })
+        // })
       })
     }
 
     else {
-      setTimeout(() => {
-        this.isTransitioning = false
-      }, this.transition)
+      this.isTransitioning = false
     }
 
     // Play video, timeline, and animations
@@ -470,7 +495,7 @@ export default class Playlist {
 
     // Animate slide
     Array.from(this.dom.slideshows).map(slideshow => {
-      slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px)`
+      slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px) translateZ(0)`
     })
 
     // Animate albums
@@ -478,8 +503,8 @@ export default class Playlist {
     let nextAlbum = this.dom.slideshowAlbums.children[this.state.currentSlide].querySelector('.album__vinyl')
     let slideRotation = (this.state.direction === 'rtl') ? -75 : 75
 
-    prevAlbum ? prevAlbum.style.transform = `rotateY(${-slideRotation}deg)` : null
-    nextAlbum ? nextAlbum.style.transform = `rotateY(${-15}deg)` : null
+    prevAlbum ? prevAlbum.style.transform = `rotateY(${-slideRotation}deg) translateZ(0)` : null
+    nextAlbum ? nextAlbum.style.transform = `rotateY(${-15}deg) translateZ(0)` : null
   }
 
   animateControls() {
@@ -577,7 +602,7 @@ export default class Playlist {
   render() {
     let videoSlides = this.playlist.map((slide, index) => {
       return (`
-        <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
+        <div class="playlist__slide" style="transform: translateX(${index * 100}%) translateZ(0); width: ${this.width}px; height: ${this.height}px;">
           <div class="video video--${slide.youtubeID}"></div>
         </div>
       `)
@@ -587,7 +612,7 @@ export default class Playlist {
       let album = index ? this.albums[index].render() : ''
 
       return (`
-        <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
+        <div class="playlist__slide" style="transform: translateX(${index * 100}%) translateZ(0); width: ${this.width}px; height: ${this.height}px;">
           ${album}
         </div>
       `)
@@ -597,7 +622,7 @@ export default class Playlist {
       let animation = this.animations[index].render()
 
       return (`
-        <div class="playlist__slide" style="transform: translateX(${index * 100}%); width: ${this.width}px; height: ${this.height}px;">
+        <div class="playlist__slide" style="transform: translateX(${index * 100}%) translateZ(0); width: ${this.width}px; height: ${this.height}px;">
           ${animation}
         </div>
       `)

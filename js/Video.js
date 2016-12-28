@@ -1,5 +1,5 @@
+import _round from 'lodash/round'
 import YouTube from 'youtube-player'
-import * as Utils from './Utils.js'
 require('../scss/_video.scss')
 
 export default class Video {
@@ -180,7 +180,7 @@ export default class Video {
 
       setTimeout(() => {
         this.youtube.stopVideo()
-      }, 250)
+      }, 750)
 
       this.youtube.setVolume(0)
     })
@@ -189,14 +189,14 @@ export default class Video {
   setDuration() {
     return this.youtube.getDuration()
     .then(seconds => {
-      this.duration = Utils.getTwoDecimalPlaces(seconds)
+      this.duration = _round(seconds, 2)
     })
   }
 
   setCurrentTime() {
     return this.youtube.getCurrentTime()
     .then(seconds => {
-      this.currentTime = Utils.getTwoDecimalPlaces(seconds)
+      this.currentTime = _round(seconds, 2)
     })
   }
 
