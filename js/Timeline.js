@@ -12,6 +12,7 @@ export default class Timeline {
     this.keyframes = []
     this.keyframesCache = []
     this.keyframesClone = []
+    this.isPlaying = false
     this.isResetting = false
     this.isLoop = false
     this.nextSlide = null
@@ -22,12 +23,18 @@ export default class Timeline {
   }
 
   stopTimeline() {
+    this.isPlaying = false
+    this.animation.stopAnimation()
     this.resetTimeline()
     cancelAnimationFrame(this.requestAnimationFrame)
     clearTimeout(this.timeline)
   }
 
   playTimeline() {
+    if (!this.isPlaying) {
+      this.animation.playAnimation()
+    }
+
     this.timeline = setTimeout(() => {
       this.requestAnimationFrame = requestAnimationFrame(this.playTimeline.bind(this))
 
@@ -39,6 +46,8 @@ export default class Timeline {
       })
 
     }, 1000/60)
+
+    this.isPlaying = true
   }
 
   loopTimeline() {
