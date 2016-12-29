@@ -68,9 +68,11 @@ $module: 'playlist';
             opacity: 0;
             visibility: hidden;
 
-            @media screen and (min-width: $screen-md-min) {
-              opacity: 1;
-              visibility: visible;
+            &--visible {
+              @media screen and (min-width: $screen-md-min) {
+                opacity: 1;
+                visibility: visible;
+              }
             }
           }
         }
@@ -128,7 +130,7 @@ $module: 'playlist';
   }
 
   &__frame {
-    z-index: 2;
+    z-index: 4;
 
     &--top, &--right, &--bottom, &--left {
       position: absolute;
@@ -391,7 +393,7 @@ $module: 'playlist';
     cursor: default;
     filter: blur(0);
     backface-visibility: hidden;
-    transition: 0.75s transform $ease-out-quint, 0.5s opacity $ease-out-quint;
+    transition: 0.75s transform $ease-out-quint, 0.5s opacity $ease-out-quint, 0.5s visibility $ease-out-quint 1s;
 
     /* ==========================================================================
     Modifiers

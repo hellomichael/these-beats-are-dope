@@ -163,6 +163,7 @@ $module: 'album';
 
   .playlist__control--play {
     @extend %center;
+    visibility: visible;
     width: $album-size * $album-scale-sm;
     height: $album-size * $album-scale-sm;
     transform: translateX(-50%) translateY(-50%) scale(1.1);
