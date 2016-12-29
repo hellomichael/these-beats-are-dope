@@ -67,6 +67,11 @@ $module: 'playlist';
           .video {
             opacity: 0;
             visibility: hidden;
+
+            @media screen and (min-width: $screen-md-min) {
+              opacity: 1;
+              visibility: visible;
+            }
           }
         }
 
