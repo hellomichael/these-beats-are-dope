@@ -38,7 +38,7 @@ export default class Playlist {
     Object.assign(this, options)
 
     // Only load first frame
-    this.playlist = this.isMobile ? this.playlist.slice(0, 3) : this.playlist
+    this.playlist = this.isMobile ? this.playlist.slice(0, 5) : this.playlist
 
     // Dom
     this.dom = {
@@ -86,18 +86,20 @@ export default class Playlist {
   }
 
   setAnimations() {
-    this.playlist.map(slide => {
-      this.animations.push(slide.animation === 'Aziz' ?
-        new Aziz({id: slide.youtubeID}) :
-        new Kanye({
-          isMobile:   this.isMobile,
-          isPhone:    this.isPhone,
-          isTablet:   this.isTablet,
+    this.playlist.map((slide, index) => {
+      if (index <= 2) {
+        this.animations.push(slide.animation === 'Aziz' ?
+          new Aziz({id: slide.youtubeID}) :
+          new Kanye({
+            isMobile:   this.isMobile,
+            isPhone:    this.isPhone,
+            isTablet:   this.isTablet,
 
-          id: slide.youtubeID,
-          kanyeOutfit : slide.animationOutfit
-        })
-      )
+            id: slide.youtubeID,
+            kanyeOutfit : slide.animationOutfit
+          })
+        )
+      }
     })
   }
 
@@ -133,7 +135,7 @@ export default class Playlist {
 
         id:             slide.youtubeID,
         name:           this.albums[index].name,
-        element:        this.dom.slideshowVideos.children[index].querySelector('.video'),
+        element:        this.dom.videos.children[index].querySelector('.video'),
         startTime:      Utils.getSeconds(slide.keyframes[0].timecode),
         endTime:        Utils.getSeconds(slide.keyframes[slide.keyframes.length - 1].timecode),
         volume:         slide.volume
@@ -148,7 +150,7 @@ export default class Playlist {
       let timeline = new Timeline({
         id:             slide.youtubeID,
         video:          this.videos[index],
-        animation:      this.animations[index],
+        animation:      index === 0 ? this.animations[0] : this.animations[2 - (index % 2)],
         keyframes:      slide.keyframes,
         threshold:      slide.animationThreshold,
         nextSlide:      this.nextSlide.bind(this),
@@ -377,7 +379,7 @@ export default class Playlist {
       // Update track
       this.setProgress()
 
-      // Update slides
+      // Update slideshow
       Array.from(this.dom.slideshows).map(slideshow => {
         // Update animation, albums, video
         slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px) translateZ(0)`
@@ -391,6 +393,10 @@ export default class Playlist {
           slide.style.transform = `translateX(${index * 100}%) translateZ(0)`
         })
       })
+
+      if (this.state.currentSlide) {
+        this.dom[`animation${2 - this.state.currentSlide % 2}`].style.transform = `translateX(${this.state.currentSlide * this.width}px) translateZ(0)`
+      }
     })
   }
 
@@ -454,7 +460,6 @@ export default class Playlist {
 
     // Reset previous video, timeline, and animations
     if (this.state.currentSlide || this.state.prevSlide) {
-      this.animations[this.state.prevSlide].stopAnimation()
       this.videos[this.state.prevSlide].stopVideo()
       this.timelines[this.state.prevSlide].stopTimeline()
 
@@ -473,7 +478,6 @@ export default class Playlist {
 
     // Play video, timeline, and animations
     this.timelines[this.state.currentSlide].playTimeline()
-    this.animations[this.state.currentSlide].playAnimation()
 
     if (!this.isMobile) {
       this.videos[this.state.currentSlide].playVideo()
@@ -483,9 +487,14 @@ export default class Playlist {
       slideshow.style.transform = `translateX(-${this.state.currentSlide * this.width}px) translateZ(0)`
     })
 
+    // Shift animations
+    if (this.state.currentSlide) {
+      this.dom[`animation${2 - this.state.currentSlide % 2}`].style.transform = `translateX(${this.state.currentSlide * this.width}px) translateZ(0)`
+    }
+
     // Animate albums
-    let prevAlbum = this.dom.slideshowAlbums.children[this.state.prevSlide].querySelector('.album__vinyl')
-    let nextAlbum = this.dom.slideshowAlbums.children[this.state.currentSlide].querySelector('.album__vinyl')
+    let prevAlbum = this.dom.albums.children[this.state.prevSlide].querySelector('.album__vinyl')
+    let nextAlbum = this.dom.albums.children[this.state.currentSlide].querySelector('.album__vinyl')
     let slideRotation = (this.state.direction === 'rtl') ? -75 : 75
 
     prevAlbum ? prevAlbum.style.transform = `rotateY(${-slideRotation}deg) translateZ(0)` : null
@@ -500,7 +509,7 @@ export default class Playlist {
           controlPlay.classList.add('playlist__control--visible')
         })
 
-        this.dom.slideshowAlbums.style.zIndex = 4
+        this.dom.albums.style.zIndex = 4
       }
 
       this.dom.controlNext.classList.add('playlist__control--visible')
@@ -510,8 +519,8 @@ export default class Playlist {
     else {
       this.dom.controlNext.classList.remove('playlist__control--visible')
       this.dom.controlPrev.classList.remove('playlist__control--visible')
-      
-      this.dom.slideshowAlbums.style.zIndex = 2
+
+      this.dom.albums.style.zIndex = 2
 
       if (this.isMobile) {
         Array.from(this.dom.controlPlay).map((controlPlay, index) => {
@@ -550,9 +559,12 @@ export default class Playlist {
     this.dom.playlist = document.querySelector('.playlist')
     this.dom.slideshows = document.querySelectorAll('.playlist__slideshow')
 
-    this.dom.slideshowVideos = document.querySelector('.playlist__slideshow--videos')
-    this.dom.slideshowAlbums = document.querySelector('.playlist__slideshow--albums')
-    this.dom.slideshowAnimations = document.querySelector('.playlist__slideshow--animations')
+    this.dom.videos = document.querySelector('.playlist__slideshow--videos')
+    this.dom.albums = document.querySelector('.playlist__slideshow--albums')
+    this.dom.animations = document.querySelector('.playlist__slideshow--animations')
+
+    this.dom.animation1 = document.querySelector('.playlist__slideshow--animations .playlist__slide:nth-child(2)')
+    this.dom.animation2 = document.querySelector('.playlist__slideshow--animations .playlist__slide:nth-child(3)')
 
     this.dom.controlNext = document.querySelector('.playlist__control--next')
     this.dom.controlPrev = document.querySelector('.playlist__control--prev')
@@ -605,7 +617,7 @@ export default class Playlist {
       `)
     }).join('')
 
-    let animationSlides = this.playlist.map((slide, index) => {
+    let animationSlides = this.animations.map((slide, index) => {
       let animation = this.animations[index].render()
 
       return (`
