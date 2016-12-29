@@ -28,6 +28,7 @@ export default class Kanye extends Animation {
 
     this.kanyeWidth = this.isMobile ? 2015/2 : 2015
     this.kanyeHeight = this.isMobile ? 1960/2 : 1960
+    this.kanyeOutfit = null
     this.kanyeEyesOpen = false
     this.kanyeEyesRepeating = 0
     this.kanyeDirection = 'Left'
@@ -42,26 +43,31 @@ export default class Kanye extends Animation {
   }
 
   changeOutfit(outfit) {
-    this.kanye.skeleton.setToSetupPose()
+    if (outfit != this.kanyeOutfit) {
+      this.kanye.skeleton.setToSetupPose()
+      
+      // Tshirt
+      if (outfit === 'tshirt') {
+        this.kanye.skeleton.findSlot('shadow').color.a = 0.35
+        this.kanye.skeleton.findSlot('shadow-left').color.a = 0.35
+        this.kanye.skeleton.findSlot('shadow-right').color.a = 0.35
+        this.kanye.skeleton.findSlot('chain-front').data.boneData.x = 450
+        this.kanye.skeleton.findSlot('chest').data.boneData.y = 395
+      }
 
-    if (outfit === 'tshirt') {
-      this.kanye.skeleton.findSlot('shadow').color.a = 0.35
-      this.kanye.skeleton.findSlot('shadow-left').color.a = 0.35
-      this.kanye.skeleton.findSlot('shadow-right').color.a = 0.35
-      this.kanye.skeleton.findSlot('chain-front').data.boneData.x = 450
-      this.kanye.skeleton.findSlot('chest').data.boneData.y = 395
+      // Merge all outfits
+      let hideOutfits = _union(this.kanyeOutfits.shared, this.kanyeOutfits.hoodie, this.kanyeOutfits.letterman, this.kanyeOutfits.polo, this.kanyeOutfits.suit, this.kanyeOutfits.sweater, this.kanyeOutfits.tshirt)
+
+      // Remove current outfit
+      hideOutfits = _difference(hideOutfits, this.kanyeOutfits[outfit])
+
+      // Hide slots
+      hideOutfits.map(slot => {
+        this.kanye.skeleton.findSlot(slot).setAttachment(null)
+      })
     }
 
-    // Merge all outfits
-    let hideOutfits = _union(this.kanyeOutfits.shared, this.kanyeOutfits.hoodie, this.kanyeOutfits.letterman, this.kanyeOutfits.polo, this.kanyeOutfits.suit, this.kanyeOutfits.sweater, this.kanyeOutfits.tshirt)
-
-    // Remove current outfit
-    hideOutfits = _difference(hideOutfits, this.kanyeOutfits[outfit])
-
-    // Hide slots
-    hideOutfits.map(slot => {
-      this.kanye.skeleton.findSlot(slot).setAttachment(null)
-    })
+    this.kanyeOutfit = outfit
   }
 
   handleMouseMove() {
@@ -170,6 +176,7 @@ export default class Kanye extends Animation {
           'bopSlow', 'bopSlowLeft', 'bopSlowRight'
         ])
 
+        this.changeOutfit('suit')
         this.resizeRenderer()
         this.pixiStage.addChild(this.kanye)
 
