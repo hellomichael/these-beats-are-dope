@@ -38,7 +38,7 @@ export default class Playlist {
     Object.assign(this, options)
 
     // Only load first frame
-    this.playlist = this.isMobile ? this.playlist.slice(0, 4) : this.playlist
+    this.playlist = this.isMobile ? this.playlist.slice(0, 3) : this.playlist
 
     // Dom
     this.dom = {
@@ -510,6 +510,7 @@ export default class Playlist {
     else {
       this.dom.controlNext.classList.remove('playlist__control--visible')
       this.dom.controlPrev.classList.remove('playlist__control--visible')
+      
       this.dom.slideshowAlbums.style.zIndex = 2
 
       if (this.isMobile) {
