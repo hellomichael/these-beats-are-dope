@@ -17,9 +17,9 @@ export default class Playlist {
   constructor(options) {
     // Props
     this.device = new MobileDetect(window.navigator.userAgent)
-    this.isMobile = false ? true : this.device.mobile()
-    this.isPhone  = false ? true : this.device.phone()
-    this.isTablet = false ? true : this.device.tablet()
+    this.isMobile = this.device.mobile()
+    this.isPhone  = this.device.phone()
+    this.isTablet = this.device.tablet()
 
     this.matchesPolyfill()
 
@@ -38,7 +38,7 @@ export default class Playlist {
     Object.assign(this, options)
 
     // Only load first frame
-    // this.playlist = this.playlist.slice(0, 2)
+    this.playlist = this.isMobile ? this.playlist.slice(0, 4) : this.playlist
 
     // Dom
     this.dom = {
