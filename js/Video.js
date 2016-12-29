@@ -118,7 +118,7 @@ export default class Video {
   }
 
   prefetchVideo() {
-    console.log(`${this.name} (${this.id}): Prefetch Video`)
+    console.log(`${this.name} (${this.id}): Prefetch`)
 
     if (this.pauseTime) {
       this.youtube.seekTo(this.pauseTime)
