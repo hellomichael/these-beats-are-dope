@@ -38,7 +38,7 @@ export default class Playlist {
     Object.assign(this, options)
 
     // Only load first frame
-    this.playlist = this.isMobile ? this.playlist.slice(0, 5) : this.playlist
+    // this.playlist = this.isMobile ? this.playlist.slice(0, 5) : this.playlist
 
     // Dom
     this.dom = {
@@ -94,9 +94,7 @@ export default class Playlist {
             isMobile:   this.isMobile,
             isPhone:    this.isPhone,
             isTablet:   this.isTablet,
-
-            id: slide.youtubeID,
-            kanyeOutfit : slide.animationOutfit
+            id: slide.youtubeID
           })
         )
       }
@@ -489,6 +487,7 @@ export default class Playlist {
 
     // Shift animations
     if (this.state.currentSlide) {
+      this.animations[2 - this.state.currentSlide % 2].changeOutfit(this.playlist[this.state.currentSlide].animationOutfit)
       this.dom[`animation${2 - this.state.currentSlide % 2}`].style.transform = `translateX(${this.state.currentSlide * this.width}px) translateZ(0)`
     }
 

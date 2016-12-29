@@ -130,7 +130,7 @@ $module: 'playlist';
   }
 
   &__frame {
-    z-index: 4;
+    z-index: 2;
 
     &--top, &--right, &--bottom, &--left {
       position: absolute;
