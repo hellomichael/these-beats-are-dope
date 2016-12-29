@@ -134,7 +134,7 @@ export default class Kanye extends Animation {
 
     // Add assets
     this.pixiLoader = PIXI.loader
-      .add(`kanye--${this.id}`, 'img/kanye.json')
+      .add(`kanye--${this.id}`, 'animation/kanye.json')
       .load((loader, res) => {
         this.kanye = new PIXI.spine.Spine(res[`kanye--${this.id}`].spineData)
 
