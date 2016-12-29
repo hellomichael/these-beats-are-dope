@@ -1,0 +1,357 @@
+
+kanye@2x.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+brow-left
+  rotate: false
+  xy: 403, 2
+  size: 166, 78
+  orig: 166, 78
+  offset: 0, 0
+  index: -1
+brow-right
+  rotate: false
+  xy: 571, 22
+  size: 170, 58
+  orig: 170, 58
+  offset: 0, 0
+  index: -1
+eyes
+  rotate: false
+  xy: 2, 5
+  size: 399, 75
+  orig: 399, 75
+  offset: 0, 0
+  index: -1
+eyes-closed
+  rotate: true
+  xy: 2006, 1647
+  size: 396, 38
+  orig: 396, 38
+  offset: 0, 0
+  index: -1
+hoodie-body
+  rotate: false
+  xy: 2, 82
+  size: 2002, 1961
+  orig: 2002, 1961
+  offset: 0, 0
+  index: -1
+nostril-left
+  rotate: false
+  xy: 2006, 1567
+  size: 40, 78
+  orig: 40, 78
+  offset: 0, 0
+  index: -1
+nostril-right
+  rotate: true
+  xy: 743, 37
+  size: 43, 79
+  orig: 43, 79
+  offset: 0, 0
+  index: -1
+
+kanye@2x2.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+face-shadow-glasses
+  rotate: false
+  xy: 2, 2
+  size: 2000, 1961
+  orig: 2000, 1961
+  offset: 0, 0
+  index: -1
+
+kanye@2x3.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chain-back
+  rotate: true
+  xy: 1936, 1496
+  size: 550, 109
+  orig: 550, 109
+  offset: 0, 0
+  index: -1
+glasses-flare
+  rotate: false
+  xy: 600, 6
+  size: 528, 186
+  orig: 528, 186
+  offset: 0, 0
+  index: -1
+letterman-bowtie
+  rotate: false
+  xy: 1130, 13
+  size: 340, 179
+  orig: 340, 179
+  offset: 0, 0
+  index: -1
+lips
+  rotate: false
+  xy: 1690, 33
+  size: 214, 159
+  orig: 214, 159
+  offset: 0, 0
+  index: -1
+nose
+  rotate: true
+  xy: 1472, 31
+  size: 161, 216
+  orig: 161, 216
+  offset: 0, 0
+  index: -1
+polo-body
+  rotate: false
+  xy: 2, 1120
+  size: 1932, 926
+  orig: 1932, 926
+  offset: 0, 0
+  index: -1
+sweater-body
+  rotate: false
+  xy: 2, 194
+  size: 1932, 924
+  orig: 1932, 924
+  offset: 0, 0
+  index: -1
+sweater-collar
+  rotate: false
+  xy: 2, 2
+  size: 596, 190
+  orig: 596, 190
+  offset: 0, 0
+  index: -1
+
+kanye@2x4.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ears
+  rotate: false
+  xy: 2, 11
+  size: 723, 194
+  orig: 723, 194
+  offset: 0, 0
+  index: -1
+polo-collar
+  rotate: false
+  xy: 727, 9
+  size: 597, 196
+  orig: 597, 196
+  offset: 0, 0
+  index: -1
+polo-tshirt
+  rotate: true
+  xy: 1888, 533
+  size: 530, 150
+  orig: 530, 150
+  offset: 0, 0
+  index: -1
+shadow-right
+  rotate: true
+  xy: 1326, 2
+  size: 203, 542
+  orig: 203, 542
+  offset: 0, 0
+  index: -1
+suit-body
+  rotate: false
+  xy: 2, 207
+  size: 1884, 856
+  orig: 1884, 856
+  offset: 0, 0
+  index: -1
+tshirt-body
+  rotate: false
+  xy: 2, 1065
+  size: 1907, 960
+  orig: 1907, 960
+  offset: 0, 0
+  index: -1
+
+kanye@2x5.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+face-shadow
+  rotate: false
+  xy: 1535, 378
+  size: 467, 854
+  orig: 467, 854
+  offset: 0, 0
+  index: -1
+glasses
+  rotate: true
+  xy: 1784, 1392
+  size: 614, 243
+  orig: 614, 243
+  offset: 0, 0
+  index: -1
+letterman-body
+  rotate: false
+  xy: 2, 280
+  size: 1531, 952
+  orig: 1531, 952
+  offset: 0, 0
+  index: -1
+tshirt-arms
+  rotate: false
+  xy: 2, 2
+  size: 1889, 276
+  orig: 1889, 276
+  offset: 0, 0
+  index: -1
+tshirt-holes
+  rotate: false
+  xy: 2, 1234
+  size: 1780, 772
+  orig: 1780, 772
+  offset: 0, 0
+  index: -1
+
+kanye@2x6.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chain-links
+  rotate: false
+  xy: 1031, 396
+  size: 566, 804
+  orig: 566, 804
+  offset: 0, 0
+  index: -1
+forehead
+  rotate: false
+  xy: 1031, 1202
+  size: 573, 231
+  orig: 573, 231
+  offset: 0, 0
+  index: -1
+hoodie-hood-back
+  rotate: false
+  xy: 841, 4
+  size: 767, 278
+  orig: 767, 278
+  offset: 0, 0
+  index: -1
+hoodie-hood-front
+  rotate: true
+  xy: 574, 284
+  size: 1149, 455
+  orig: 1149, 455
+  offset: 0, 0
+  index: -1
+letterman-sleeves
+  rotate: false
+  xy: 2, 1435
+  size: 1907, 603
+  orig: 1907, 603
+  offset: 0, 0
+  index: -1
+neck
+  rotate: true
+  xy: 1610, 188
+  size: 476, 369
+  orig: 476, 369
+  offset: 0, 0
+  index: -1
+neck-front
+  rotate: true
+  xy: 1610, 666
+  size: 767, 409
+  orig: 767, 409
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: true
+  xy: 2, 69
+  size: 1364, 570
+  orig: 1364, 570
+  offset: 0, 0
+  index: -1
+suit-heart
+  rotate: false
+  xy: 574, 2
+  size: 265, 280
+  orig: 265, 280
+  offset: 0, 0
+  index: -1
+
+kanye@2x7.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+beard
+  rotate: true
+  xy: 1527, 1443
+  size: 591, 306
+  orig: 591, 306
+  offset: 0, 0
+  index: -1
+chain-front
+  rotate: false
+  xy: 926, 1244
+  size: 599, 790
+  orig: 599, 790
+  offset: 0, 0
+  index: -1
+chest
+  rotate: true
+  xy: 1188, 23
+  size: 552, 626
+  orig: 552, 626
+  offset: 0, 0
+  index: -1
+face
+  rotate: false
+  xy: 568, 326
+  size: 618, 760
+  orig: 618, 760
+  offset: 0, 0
+  index: -1
+hair
+  rotate: true
+  xy: 1188, 577
+  size: 665, 548
+  orig: 665, 548
+  offset: 0, 0
+  index: -1
+shadow-left
+  rotate: true
+  xy: 1527, 1244
+  size: 197, 462
+  orig: 197, 462
+  offset: 0, 0
+  index: -1
+suit-collar
+  rotate: false
+  xy: 568, 2
+  size: 527, 322
+  orig: 527, 322
+  offset: 0, 0
+  index: -1
+suit-lapel
+  rotate: false
+  xy: 2, 1088
+  size: 922, 946
+  orig: 922, 946
+  offset: 0, 0
+  index: -1
+suit-shirt
+  rotate: false
+  xy: 2, 207
+  size: 564, 879
+  orig: 564, 879
+  offset: 0, 0
+  index: -1

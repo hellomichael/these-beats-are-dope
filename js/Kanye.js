@@ -27,8 +27,8 @@ export default class Kanye extends Animation {
       tshirt:     ['tshirt-body', 'chest', 'tshirt-holes', 'tshirt-arms', 'neck-front', 'shadow', 'shadow-left', 'shadow-right']
     }
 
-    this.kanyeWidth = 2015
-    this.kanyeHeight = 1960
+    this.kanyeWidth = this.isMobile ? 2015/2 : 2015
+    this.kanyeHeight = this.isMobile ? 1960/2 : 1960
     this.kanyeEyesOpen = false
     this.kanyeEyesRepeating = 0
     this.kanyeDirection = 'Left'
@@ -157,7 +157,7 @@ export default class Kanye extends Animation {
 
     // Add assets
     this.pixiLoader = PIXI.loader
-      .add(`kanye--${this.id}`, 'animation/kanye.json')
+      .add(`kanye--${this.id}`, this.isMobile ? 'animation/kanye.json' : 'animation/kanye@2x.json')
       .load((loader, res) => {
         this.kanye = new PIXI.spine.Spine(res[`kanye--${this.id}`].spineData)
 
