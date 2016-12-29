@@ -16,7 +16,6 @@ export default class Kanye extends Animation {
     this.pixiAnimation = null
     this.requestAnimationFrame = null
 
-    this.kanyeOutfit = null
     this.kanyeOutfits = {
       shared:     ['glasses', 'glasses-flare', 'face-shadow-glasses', 'neck-front', 'shadow', 'shadow-left', 'shadow-right', 'chain-front', 'chain-back', 'chain-links'],
       hoodie:     ['hoodie-body', 'hoodie-hood-front', 'hoodie-hood-back', 'sweater-body', 'sweater-collar', 'neck-front', 'shadow', 'shadow-left', 'shadow-right'],
@@ -42,8 +41,10 @@ export default class Kanye extends Animation {
     this.setIdle()
   }
 
-  changeOutfit() {
-    if (this.kanyeOutfit === 'tshirt') {
+  changeOutfit(outfit) {
+    this.kanye.skeleton.setToSetupPose()
+
+    if (outfit === 'tshirt') {
       this.kanye.skeleton.findSlot('shadow').color.a = 0.35
       this.kanye.skeleton.findSlot('shadow-left').color.a = 0.35
       this.kanye.skeleton.findSlot('shadow-right').color.a = 0.35
@@ -55,7 +56,7 @@ export default class Kanye extends Animation {
     let hideOutfits = _union(this.kanyeOutfits.shared, this.kanyeOutfits.hoodie, this.kanyeOutfits.letterman, this.kanyeOutfits.polo, this.kanyeOutfits.suit, this.kanyeOutfits.sweater, this.kanyeOutfits.tshirt)
 
     // Remove current outfit
-    hideOutfits = _difference(hideOutfits, this.kanyeOutfits[this.kanyeOutfit])
+    hideOutfits = _difference(hideOutfits, this.kanyeOutfits[outfit])
 
     // Hide slots
     hideOutfits.map(slot => {
@@ -170,7 +171,6 @@ export default class Kanye extends Animation {
         ])
 
         this.resizeRenderer()
-        this.changeOutfit()
         this.pixiStage.addChild(this.kanye)
 
         setTimeout(() => {
@@ -185,7 +185,6 @@ export default class Kanye extends Animation {
 
   resetAnimation() {
     this.kanyeBopCount = 0
-    // this.pixiRenderer.render(this.pixiStage)
   }
 
   setAnimationMixes(animations) {
