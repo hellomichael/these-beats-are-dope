@@ -90,6 +90,10 @@ export default class Playlist {
       this.animations.push(slide.animation === 'Aziz' ?
         new Aziz({id: slide.youtubeID}) :
         new Kanye({
+          isMobile:   this.isMobile,
+          isPhone:    this.isPhone,
+          isTablet:   this.isTablet,
+
           id: slide.youtubeID,
           kanyeOutfit : slide.animationOutfit
         })

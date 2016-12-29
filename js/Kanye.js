@@ -13,13 +13,8 @@ export default class Kanye extends Animation {
     this.pixiStage = null
     this.pixiLoader = null
     this.pixiRenderer = null
-    this.pixiScale = 1
-    this.pixiResolution = Utils.isHighDensity() ? 1 : 1.5
     this.pixiAnimation = null
     this.requestAnimationFrame = null
-
-    this.kanyeWidth = Utils.isHighDensity() ? 2015 : 2015/this.pixiResolution
-    this.kanyeHeight = Utils.isHighDensity() ? 1960 : 1960/this.pixiResolution
 
     this.kanyeOutfit = null
     this.kanyeOutfits = {
@@ -32,6 +27,8 @@ export default class Kanye extends Animation {
       tshirt:     ['tshirt-body', 'chest', 'tshirt-holes', 'tshirt-arms', 'neck-front', 'shadow', 'shadow-left', 'shadow-right']
     }
 
+    this.kanyeWidth = 2015
+    this.kanyeHeight = 1960
     this.kanyeEyesOpen = false
     this.kanyeEyesRepeating = 0
     this.kanyeDirection = 'Left'
@@ -78,6 +75,7 @@ export default class Kanye extends Animation {
 
   handleResize() {
     window.addEventListener('resize', () => {
+      this.resizePixi()
       this.resizeRenderer()
     })
   }
@@ -89,7 +87,7 @@ export default class Kanye extends Animation {
 
   setDirection(mousePosition) {
     if (!this.kanyeIdle) {
-      let bounds = this.element.querySelector('canvas').getBoundingClientRect()
+      let bounds = this.pixiCanvas.querySelector('canvas').getBoundingClientRect()
       let center = (bounds.left) + (bounds.width)/2
       let threshold = (bounds.width/10)
       let offset = -(bounds.width/60)
@@ -108,9 +106,36 @@ export default class Kanye extends Animation {
     }
   }
 
-  resizeRenderer() {
+  resizePixi() {
     this.pixiScale = _round((window.innerHeight + 20)/this.kanyeHeight, 2)
-    this.pixiRenderer.view.style.transform = `scale(${this.pixiScale}) translateX(-50%)`
+    this.pixiResolution = this.isMobile ? 2 : 1.5
+    this.pixiWidth = this.isMobile ? _round(this.kanyeWidth * (this.pixiScale * this.pixiResolution) + 10) : this.kanyeWidth / this.pixiResolution
+    this.pixiHeight = this.isMobile ? _round(this.kanyeHeight * (this.pixiScale * this.pixiResolution)) : this.kanyeHeight / this.pixiResolution
+  }
+
+  resizeRenderer() {
+    // Resize renderer
+    this.pixiRenderer.resize(this.pixiWidth, this.pixiHeight)
+
+    if (this.isMobile) {
+      this.pixiRenderer.view.style.transform = `scale(${_round(1/this.pixiResolution, 2)}) translateX(-50%)`
+
+      this.kanye.scale.x = (this.pixiScale * this.pixiResolution)
+      this.kanye.scale.y = (this.pixiScale * this.pixiResolution)
+
+      this.kanye.position.x = this.pixiWidth/2
+      this.kanye.position.y = this.pixiHeight
+    }
+
+    else {
+      this.pixiRenderer.view.style.transform = `scale(${_round(this.pixiScale * this.pixiResolution , 2)}) translateX(-50%)`
+
+      this.kanye.scale.x = 1 / this.pixiResolution
+      this.kanye.scale.y = 1 / this.pixiResolution
+
+      this.kanye.position.x = this.pixiWidth / 2
+      this.kanye.position.y = this.pixiHeight
+    }
   }
 
   isReady() {
@@ -122,15 +147,13 @@ export default class Kanye extends Animation {
   }
 
   componentDidMount() {
-    this.element = document.querySelector(`.kanye--${this.id}`)
-
-    // Create renderer
-    this.pixiStage = new PIXI.Container()
-    this.pixiRenderer = PIXI.autoDetectRenderer(this.kanyeWidth + 10, this.kanyeHeight, {transparent: true})
-    this.element.appendChild(this.pixiRenderer.view)
+    this.pixiCanvas = document.querySelector(`.kanye--${this.id}`)
 
     // Resize renderer
-    this.resizeRenderer()
+    this.resizePixi()
+    this.pixiStage = new PIXI.Container()
+    this.pixiRenderer = PIXI.autoDetectRenderer(this.pixiWidth, this.pixiHeight, {transparent: true})
+    this.pixiCanvas.appendChild(this.pixiRenderer.view)
 
     // Add assets
     this.pixiLoader = PIXI.loader
@@ -146,14 +169,7 @@ export default class Kanye extends Animation {
           'bopSlow', 'bopSlowLeft', 'bopSlowRight'
         ])
 
-        if (!Utils.isHighDensity()) {
-          this.kanye.scale.x = 1/this.pixiResolution
-          this.kanye.scale.y = 1/this.pixiResolution
-        }
-
-        this.kanye.position.x = this.kanyeWidth/2
-        this.kanye.position.y = this.kanyeHeight
-
+        this.resizeRenderer()
         this.changeOutfit()
         this.pixiStage.addChild(this.kanye)
 
