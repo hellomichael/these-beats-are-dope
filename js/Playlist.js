@@ -626,6 +626,9 @@ export default class Playlist {
       `)
     }).join('')
 
+    let share = 'https://www.facebook.com/sharer/sharer.php?u=these.beatsaredope.com'
+    let tweet = 'https://twitter.com/intent/tweet?text=pic.twitter.com/bBRjeJRbTW%20%40kanyewest%20%40azizansari%20%23thesebeatsaredope%20&url=http://these.beatsaredope.com'
+
     this.app.innerHTML = `
       <!-- Playlist --!>
       ${new Disclaimer().render()}
@@ -665,11 +668,11 @@ export default class Playlist {
         </div>
 
         <div class="playlist__social">
-          <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=these.beatsaredope.com" class="playlist__social__icon--facebook playlist__social__icon icon" alt=""></a>
-          <a target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%40kanyewest%20%40azizansari&url=http://these.beatsaredope.com" class="playlist__social__icon--twitter playlist__social__icon icon" alt=""></a>
+          <a target="_blank" href="${share}" class="playlist__social__icon--facebook playlist__social__icon icon" alt=""></a>
+          <a target="_blank" href="${tweet}" class="playlist__social__icon--twitter playlist__social__icon icon" alt=""></a>
           <a href="#" class="playlist__social__icon--mute playlist__social__icon icon" alt=""></a>
 
-          <h6 class="playlist__social__hashtag"><a target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%40kanyewest%20%40azizansari&url=http://these.beatsaredope.com">#thesebeatsaredope</a></h6>
+          <h6 class="playlist__social__hashtag"><a target="_blank" href="${tweet}">#thesebeatsaredope</a></h6>
           <small class="playlist__social__credits"><a target="_blank" href="http://anumation.ca/">Anu Chouhan</a> x <a target="_blank" href="https://hellomichael.com">Michael Ngo</a></small>
         </div>
       </div>
@@ -679,9 +682,9 @@ export default class Playlist {
         <h6 class="playlist__about__author">- Kanye West</h6>
 
         <div class="playlist__about__social">
-          <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=these.beatsaredope.com" class="playlist__social__icon--facebook playlist__social__icon icon" alt=""></a>
-          <a target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%40kanyewest%20%40azizansari&url=http://these.beatsaredope.com" class="playlist__social__icon--twitter playlist__social__icon icon" alt=""></a>
-          <a class="playlist__social__hashtag" target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%40kanyewest%20%40azizansari&url=http://these.beatsaredope.com">#thesebeatsaredope</a>
+          <a target="_blank" href="${share}" class="playlist__social__icon--facebook playlist__social__icon icon" alt=""></a>
+          <a target="_blank" href="${tweet}" class="playlist__social__icon--twitter playlist__social__icon icon" alt=""></a>
+          <a class="playlist__social__hashtag" target="_blank" href="${tweet}">#thesebeatsaredope</a>
         </div>
       </div>
 
