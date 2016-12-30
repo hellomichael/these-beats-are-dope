@@ -45,7 +45,7 @@ export default class Kanye extends Animation {
   changeOutfit(outfit) {
     if (outfit != this.kanyeOutfit) {
       this.kanye.skeleton.setToSetupPose()
-      
+
       // Tshirt
       if (outfit === 'tshirt') {
         this.kanye.skeleton.findSlot('shadow').color.a = 0.35
@@ -114,35 +114,29 @@ export default class Kanye extends Animation {
   }
 
   resizePixi() {
-    this.pixiScale = _round((window.innerHeight + 20)/this.kanyeHeight, 2)
+    if (this.isMobile && window.innerHeight > window.innerWidth) {
+      this.pixiScale = _round((window.innerWidth + 20)/this.kanyeHeight, 2)
+    }
+
+    else {
+      this.pixiScale = _round((window.innerHeight + 20)/this.kanyeHeight, 2)
+    }
+
     this.pixiResolution = this.isMobile ? 2 : 1.5
-    this.pixiWidth = this.isMobile ? _round(this.kanyeWidth * (this.pixiScale * this.pixiResolution) + 10) : this.kanyeWidth / this.pixiResolution
-    this.pixiHeight = this.isMobile ? _round(this.kanyeHeight * (this.pixiScale * this.pixiResolution)) : this.kanyeHeight / this.pixiResolution
+    this.pixiWidth = this.kanyeWidth / this.pixiResolution
+    this.pixiHeight = this.kanyeHeight / this.pixiResolution
   }
 
   resizeRenderer() {
     // Resize renderer
     this.pixiRenderer.resize(this.pixiWidth, this.pixiHeight)
+    this.pixiRenderer.view.style.transform = `scale(${_round(this.pixiScale * this.pixiResolution , 2)}) translateX(-50%)`
 
-    if (this.isMobile) {
-      this.pixiRenderer.view.style.transform = `scale(${_round(1/this.pixiResolution, 2)}) translateX(-50%)`
+    this.kanye.scale.x = 1 / this.pixiResolution
+    this.kanye.scale.y = 1 / this.pixiResolution
 
-      this.kanye.scale.x = (this.pixiScale * this.pixiResolution)
-      this.kanye.scale.y = (this.pixiScale * this.pixiResolution)
-
-      this.kanye.position.x = this.pixiWidth/2
-      this.kanye.position.y = this.pixiHeight
-    }
-
-    else {
-      this.pixiRenderer.view.style.transform = `scale(${_round(this.pixiScale * this.pixiResolution , 2)}) translateX(-50%)`
-
-      this.kanye.scale.x = 1 / this.pixiResolution
-      this.kanye.scale.y = 1 / this.pixiResolution
-
-      this.kanye.position.x = this.pixiWidth / 2
-      this.kanye.position.y = this.pixiHeight
-    }
+    this.kanye.position.x = this.pixiWidth / 2
+    this.kanye.position.y = this.pixiHeight
   }
 
   isReady() {
