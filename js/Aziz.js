@@ -20,14 +20,21 @@ export default class Aziz extends Animation {
   }
 
   showIntro() {
-    this.showThese()
-    this.showBeats()
-    this.showAre()
-    this.showDope()
-    this.showSubheading()
-    this.showButton()
-    this.scrollIntro1()
-    this.scrollIntro2()
+    setTimeout(() => {
+      this.showThese()
+      this.showBeats()
+      this.showAre()
+      this.showDope()
+      this.scrollIntro2()
+    }, 25)
+
+    setTimeout(() => {
+      this.showSubheading()
+    }, 75)
+
+    setTimeout(() => {
+      this.showButton()
+    }, 125)
   }
 
   showThese() {
@@ -70,9 +77,9 @@ export default class Aziz extends Animation {
     return (`
       <div class="aziz aziz--${this.id}">
         <div class="aziz__intro">
-          <h1 class="aziz__heading">
+          <h1 class="aziz__heading mega">
             <span class="aziz__heading__these">These</span>
-            <span class="aziz__heading__beats">Beats</span> <br/>
+            <span class="aziz__heading__beats">Beats</span>
             <span class="aziz__heading__are">Are</span>
             <span class="aziz__heading__dope">Dope</span>
           </h1>

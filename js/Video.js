@@ -46,10 +46,11 @@ export default class Video {
         fs: 0,
         playsinline: 1,
         loop: 0,
+        autohide: 1,
+        showInfo: 0,
         controls: 0,
         modestbranding: 1,
         rel: 0,
-        showInfo: 0,
         iv_load_policy: 3
       }
     })

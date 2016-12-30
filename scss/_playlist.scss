@@ -227,16 +227,20 @@ $module: 'playlist';
     }
 
     &__hashtag {
-      margin: $gutter-xxs/2 0;
-      letter-spacing: -1px;
+      margin: $gutter-xxs 0;
+      letter-spacing: 0;
     }
 
     &__credits {
       display: block;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: normal;
-      margin: 0;
+      margin: $gutter-xs 0 0;
       letter-spacing: 1px;
+
+      @media screen and (min-width: $screen-md-min) {
+        margin: 0;
+      }
 
       a {
         display: inline-block;
@@ -257,7 +261,7 @@ $module: 'playlist';
 
   &__preloader {
     @extend %center;
-    margin-top: $gutter-xs;
+    margin-top: $gutter-xxs;
     word-wrap: break-word;
     width: 100%;
     text-align: center;
@@ -368,19 +372,38 @@ $module: 'playlist';
       margin-left: $gutter-md;
     }
 
-    br {
-      display: none;
-
-      @media screen and (min-width: $screen-md-min) {
-        display: block;
-      }
-    }
-
     &--visible {
       opacity: 1;
       visibility: visible;
       transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
       transition: 0.75s transform $ease-in-out-quart 0.15s, 0.75s opacity $ease-in-out-quart 0.15s, 0.75s visibility $ease-in-out-quart 0.15s;
+    }
+
+    &__social {
+      margin: $gutter-sm 0 0 0;
+      transform: translateY($gutter-xs);
+
+      @media screen and (min-width: $screen-md-min) {
+        transform: translateY($gutter-lg);
+      }
+    }
+
+    &__author {
+      margin: 0;
+
+      @media screen and (min-width: $screen-md-min) {
+        @include rem(font-size, $h5-size);
+        @include rem(line-height, $h5-height);
+      }
+    }
+
+    .playlist__social__hashtag {
+      margin: 0 0 0 $gutter-sm;
+
+      @media screen and (min-width: $screen-md-min) {
+        @include rem(font-size, $h6-size);
+        @include rem(line-height, $h6-height);
+      }
     }
   }
 

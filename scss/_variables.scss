@@ -26,23 +26,26 @@ $font-family-serif:         Georgia, Times, "Times New Roman", serif;
 $font-size:                 16px;
 $font-height:               24px;
 
-$h1-size: 	                64px;
-$h1-height:                 72px;
+$mega-size:                 64px;
+$mega-height:               72px;
 
-$h2-size: 	                48px;
+$h1-size: 	                48px;
+$h1-height:                 64px;
+
+$h2-size: 	                42px;
 $h2-height:                 64px;
 
-$h3-size: 	                42px;
-$h3-height:                 64px;
+$h3-size: 	                36px;
+$h3-height:                 48px;
 
 $h4-size: 	                28px;
 $h4-height:                 48px;
 
 $h5-size: 	                18px;
-$h5-height:                 36px;
+$h5-height:                 38px;
 
 $h6-size: 	                14px;
-$h6-height:                 24px;
+$h6-height:                 26px;
 
 $small-size: 	              11px;
 $small-height:              16px;
@@ -95,5 +98,6 @@ $kanye-distance-lg:          17.25vw;
 
 // Album scale
 $album-size:                 300px;
+$album-scale-xs:             0.35;
 $album-scale-sm:             0.5;
 $album-scale-md:             0.75;
