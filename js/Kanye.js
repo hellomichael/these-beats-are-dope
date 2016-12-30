@@ -55,6 +55,10 @@ export default class Kanye extends Animation {
         this.kanye.skeleton.findSlot('chest').data.boneData.y = 395
       }
 
+      else if (outfit === 'hoodie') {
+        this.kanye.skeleton.findSlot('sweater-collar').data.boneData.y = 644.81 - 15
+      }
+
       // Merge all outfits
       let hideOutfits = _union(this.kanyeOutfits.shared, this.kanyeOutfits.hoodie, this.kanyeOutfits.letterman, this.kanyeOutfits.polo, this.kanyeOutfits.suit, this.kanyeOutfits.sweater, this.kanyeOutfits.tshirt)
 
