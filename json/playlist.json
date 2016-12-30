@@ -261,6 +261,8 @@
 			"animationOutfit": "sweater",
 			"animationThreshold": 0.5,
 			"keyframes": [
+				{"timecode": "00:00:15", 									"actions":	["breathing"]},
+
 				{"timecode": "00:15:25",	"bpm": "61.52", "actions":  ["bopper"]},
 
 				{"timecode": "00:43:21", 									"actions": 	["bopper", "openCloseEyes"]},
