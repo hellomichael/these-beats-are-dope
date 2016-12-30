@@ -15,6 +15,7 @@ $module: 'aziz';
   &__intro {
     @extend %center;
     width: calc(100% - #{$gutter-xxl});
+    margin: $gutter-xxs 0 0 0;
     text-align: center;
     transform: translateX(-50%) translateY(-50%) translateY(75px);
     transition: 1.25s transform $ease-out-quint;
@@ -31,12 +32,6 @@ $module: 'aziz';
   &__heading {
     span {
       display: none;
-    }
-
-    br {
-      @media screen and (min-width: $screen-sm) {
-        display: none;
-      }
     }
 
     @media screen and (max-width: $screen-xxs-max) {
@@ -59,7 +54,7 @@ $module: 'aziz';
     position: relative;
     width: 250px;
     height: 50px;
-    margin: 15px 0 0;
+    margin: 12.5px 0 0;
     border-radius: 999px;
     background: url(../img/playlist-button.png) center center;
     background-size: cover;
@@ -68,16 +63,23 @@ $module: 'aziz';
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     cursor: pointer;
-    transform: translateX(-50%) scale(1);
+    transform: translateX(-50%) scale(0.9);
     transition: 1s opacity $ease-out-quint, 1s visibility $ease-out-quint, 0.5s transform $ease-out-quint;
     @include rem(font-size, $h5-size);
 
-    @media screen and (min-height: $screen-xs-min) {
-      margin: 25px 0 0;
+    @media screen and (min-width: $screen-sm-min) {
+      margin: $gutter-sm 0 0;
+      transform: translateX(-50%) scale(1);
+    }
+
+    @media screen and (min-width: $screen-xl-min) {
+      margin: $gutter-md 0 0;
     }
 
     &:hover {
-      transform: translateX(-50%) scale(1.1);
+      @media screen and (min-width: $screen-sm-min) {
+        transform: translateX(-50%) scale(1.1);
+      }
     }
 
     > span {

@@ -49,16 +49,31 @@ a {
 /* ==========================================================================
    Type
    ========================================================================== */
+.mega {
+  @include rem(font-size, $h3-size);
+  @include rem(line-height, $h3-height);
+
+  @media screen and (min-width: $screen-sm-min) {
+    @include rem(font-size, $h1-size);
+    @include rem(line-height, $h1-height);
+  }
+
+  @media screen and (min-width: $screen-md-min) {
+    @include rem(font-size, $mega-size);
+    @include rem(line-height, $mega-height);
+  }
+}
+
 h1 {
   @include rem(font-size, $h4-size);
   @include rem(line-height, $h4-height);
 
-  @media screen and (min-width: $screen-xs-min) {
+  @media screen and (min-width: $screen-sm-min) {
     @include rem(font-size, $h2-size);
     @include rem(line-height, $h2-height);
   }
 
-  @media screen and (min-width: $screen-sm-min) {
+  @media screen and (min-width: $screen-md-min) {
     @include rem(font-size, $h1-size);
     @include rem(line-height, $h1-height);
   }
@@ -69,16 +84,28 @@ h2 {
   @include rem(line-height, $h4-height);
 
   @media screen and (min-width: $screen-sm-min) {
-    @include rem(font-size, $h2-size);
-    @include rem(line-height, $h2-height);
+    @include rem(font-size, $h3-size);
+    @include rem(line-height, $h3-height);
+  }
+
+  @media screen and (min-width: $screen-md-min) {
+    @media screen and (min-width: $screen-sm-min) {
+      @include rem(font-size, $h2-size);
+      @include rem(line-height, $h2-height);
+    }
   }
 }
 
 h3 {
-  @include rem(font-size, $h4-size);
-  @include rem(line-height, $h4-height);
+  @include rem(font-size, $h5-size);
+  @include rem(line-height, $h5-height);
 
   @media screen and (min-width: $screen-sm-min) {
+    @include rem(font-size, $h4-size);
+    @include rem(line-height, $h4-height);
+  }
+
+  @media screen and (min-width: $screen-md-min) {
     @include rem(font-size, $h3-size);
     @include rem(line-height, $h3-height);
   }
@@ -88,12 +115,12 @@ h4 {
   @include rem(font-size, $h6-size);
   @include rem(line-height, $h6-height);
 
-  @media screen and (min-width: $screen-xs-min) {
+  @media screen and (min-width: $screen-sm-min) {
     @include rem(font-size, $h5-size);
     @include rem(line-height, $h5-height);
   }
 
-  @media screen and (min-width: $screen-sm-min) {
+  @media screen and (min-width: $screen-md-min) {
     @include rem(font-size, $h4-size);
     @include rem(line-height, $h4-height);
   }
@@ -103,7 +130,7 @@ h5 {
   @include rem(font-size, $h6-size);
   @include rem(line-height, $h6-height);
 
-  @media screen and (min-width: $screen-sm-min) {
+  @media screen and (min-width: $screen-md-min) {
     @include rem(font-size, $h5-size);
     @include rem(line-height, $h5-height);
   }
@@ -119,10 +146,14 @@ small {
   @include rem(line-height, $small-height);
 }
 
-h1, h2, h3, h4 {
+.mega, h1, h2, h3, h4 {
   margin: 0 0 $gutter-xs;
 
-  @media screen and (min-height: $screen-xs-min) {
+  @media screen and (min-width: $screen-md-min) {
+    margin: 0 0 15px;
+  }
+
+  @media screen and (min-width: $screen-xl-min) {
     margin: 0 0 $gutter-sm;
   }
 }
@@ -131,7 +162,7 @@ h5, h6 {
   margin: 0 0 $gutter-xxs;
 }
 
-h1, h2, h3 {
+.mega, h1, h2, h3 {
   letter-spacing: 1px;
 }
 
@@ -181,6 +212,13 @@ a {
   &--play {
     background: url(../img/icon-play.png);
     background-size: cover;
+  }
+
+  &--close {
+    @media screen and (max-width: $screen-xs-max) {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   &--arrow {

@@ -38,7 +38,7 @@ export default class Playlist {
     Object.assign(this, options)
 
     // Only load first frame
-    // this.playlist = this.isMobile ? this.playlist.slice(0, 5) : this.playlist
+    // this.playlist = this.playlist.slice(0, 2)
 
     // Dom
     this.dom = {
@@ -660,27 +660,33 @@ export default class Playlist {
         <div class="playlist__frame playlist__frame--left"></div>
 
         <div class="playlist__preloader">
-          <h3 class="playlist__preloader__percentage"></h3>
+          <h2 class="playlist__preloader__percentage"></h2>
           <i class="playlist__preloader__icon icon" alt=""></i>
         </div>
 
         <div class="playlist__social">
           <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=these.beatsaredope.com" class="playlist__social__icon--facebook playlist__social__icon icon" alt=""></a>
-          <a target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%23silversurfer%20%23wavy%20%40kanyewest%20%40azizansari" class="playlist__social__icon--twitter playlist__social__icon icon" alt=""></a>
+          <a target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%40kanyewest%20%40azizansari&url=http://these.beatsaredope.com" class="playlist__social__icon--twitter playlist__social__icon icon" alt=""></a>
           <a href="#" class="playlist__social__icon--mute playlist__social__icon icon" alt=""></a>
 
-          <h6 class="playlist__social__hashtag"><a target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%23silversurfer%20%23wavy%20%40kanyewest%20%40azizansari">#thesebeatsaredope</a></h6>
+          <h6 class="playlist__social__hashtag"><a target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%40kanyewest%20%40azizansari&url=http://these.beatsaredope.com">#thesebeatsaredope</a></h6>
           <small class="playlist__social__credits"><a target="_blank" href="http://anumation.ca/">Anu Chouhan</a> x <a target="_blank" href="https://hellomichael.com">Michael Ngo</a></small>
         </div>
       </div>
 
       <div class="playlist__about">
-        <h4>People always say that you can't please everybody. I think that's a cop-out. <br/> Why not attempt it? 'Cause think of all the people you will please if you try.</h4>
-        <h5>- Kanye West</h5>
+        <h4 class="playlist__about__quote">"People always say that you can't please everybody. I think that's a cop-out. Why not attempt it? 'Cause think of all the people you will please if you try."</h4>
+        <h6 class="playlist__about__author">- Kanye West</h6>
+
+        <div class="playlist__about__social">
+          <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=these.beatsaredope.com" class="playlist__social__icon--facebook playlist__social__icon icon" alt=""></a>
+          <a target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%40kanyewest%20%40azizansari&url=http://these.beatsaredope.com" class="playlist__social__icon--twitter playlist__social__icon icon" alt=""></a>
+          <a class="playlist__social__hashtag" target="_blank" href="https://twitter.com/intent/tweet?text=%23thesebeatsaredope%20%40kanyewest%20%40azizansari&url=http://these.beatsaredope.com">#thesebeatsaredope</a>
+        </div>
       </div>
 
       <div class="playlist__overlay"></div>
-      <a href="#" class="playlist__close icon icon--lg"></a>
+      <a href="#" class="playlist__close icon icon--lg icon--close"></a>
     `
 
     this.animations.map(animation => {

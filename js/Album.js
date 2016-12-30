@@ -52,9 +52,9 @@ export default class Album {
             ${this.name} <span class="album__year">(${this.year})</span>
           </h5>
 
-          <h5 class="album__title">
+          <h3 class="album__title">
             ${this.album.name.replace(/ *\([^)]*\) */g, '')}
-          </h5>
+          </h3>
         </div>
       </div>
     `

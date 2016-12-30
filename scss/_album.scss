@@ -5,10 +5,15 @@ $module: 'album';
 
 .#{$module} {
   @extend %center;
-  width: $album-size * $album-scale-sm;
+  width: $album-size * $album-scale-xs;
   transform-origin: left top;
-  transform: translateX(-50%) translateX($kanye-distance-sm) translateY(-50%) translateY($gutter-xs) translateZ(0);
+  transform: translateX(-50%) translateX($kanye-distance-sm - 5vw) translateY(-50%) translateY($gutter-xs) translateZ(0);
   transition: 0.75s transform $ease-out-quint;
+
+  @media screen and (min-height: $screen-xs-min) {
+    transform: translateX(-50%) translateX($kanye-distance-sm) translateY(-50%) translateY($gutter-xs) translateZ(0);
+    width: $album-size * $album-scale-sm;
+  }
 
   @media screen and (min-width: $screen-md-min) {
     width: $album-size * $album-scale-md;
@@ -30,12 +35,18 @@ $module: 'album';
 
   &__vinyl {
     @extend %before-after;
-    width: $album-size * $album-scale-sm;
-    height: $album-size * $album-scale-sm;
+    width: $album-size * $album-scale-xs;
+    height: $album-size * $album-scale-xs;
     margin: 0 0 $gutter-xs;
     transform-style: preserve-3d;
     transform: rotateY(-#{75}deg);
     transition: 1s transform $ease-in-out-quint 0.05s;
+
+    @media screen and (min-height: $screen-xs-min) {
+      margin: 0 0 15px;
+      width: $album-size * $album-scale-sm;
+      height: $album-size * $album-scale-sm;
+    }
 
     @media screen and (min-width: $screen-md-min) {
       margin: 0 0 $gutter-sm;
@@ -46,33 +57,38 @@ $module: 'album';
     @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
       width: $album-size;
       height: $album-size;
-      margin: 0 0 $gutter-lg;
+      margin: 0 0 $gutter-md;
     }
 
     &.no-transition {
       transition: none;
     }
 
-    // &:before {
-    //   @extend %center-horizontally;
-    //   position: absolute;
-    //   bottom: -115px;
-    //   z-index: 0;
-    //   width: 125%;
-    //   height: 30px;
-    //   border-radius: 50%;
-    //   box-shadow: 0 -100px 20px rgba($black, 0.25);
-    //   transition: 1s transform $ease-out-quint;
-    // }
+    &:before {
+      @extend %center-horizontally;
+      position: absolute;
+      bottom: -115px;
+      z-index: 0;
+      width: 125%;
+      height: 30px;
+      border-radius: 50%;
+      box-shadow: 0 -100px 20px rgba($black, 0.25);
+      transition: 1s transform $ease-out-quint;
+    }
 
     &:after {
       @extend %center;
       z-index: 2;
-      width: $album-size * 1.5 * $album-scale-sm;
-      height: $album-size * 1.5 * $album-scale-sm;
+      width: $album-size * 1.5 * $album-scale-xs;
+      height: $album-size * 1.5 * $album-scale-xs;
       background: url(../img/album-vinyl.png);
       background-size: cover;
       transform: translateX(-50%) translateY(-50%) translateZ(1px);
+
+      @media screen and (min-height: $screen-xs-min) {
+        width: $album-size * 1.5 * $album-scale-sm;
+        height: $album-size * 1.5 * $album-scale-sm;
+      }
 
       @media screen and (min-width: $screen-md-min) {
         width: $album-size * 1.5 * $album-scale-md;
@@ -86,10 +102,15 @@ $module: 'album';
     }
 
     img {
-      width: $album-size * $album-scale-sm;
-      height: $album-size * $album-scale-sm;
+      width: $album-size * $album-scale-xs;
+      height: $album-size * $album-scale-xs;
       border-radius: 3px;
       outline: 1px solid transparent;
+
+      @media screen and (min-height: $screen-xs-min) {
+        width: $album-size * $album-scale-sm;
+        height: $album-size * $album-scale-sm;
+      }
 
       @media screen and (min-width: $screen-md-min) {
         width: $album-size * $album-scale-md;
@@ -111,8 +132,8 @@ $module: 'album';
 
     &__back {
       display: block;
-      width: $album-size * $album-scale-sm;
-      height: $album-size * $album-scale-sm;
+      width: $album-size * $album-scale-xs;
+      height: $album-size * $album-scale-xs;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -120,6 +141,11 @@ $module: 'album';
       transform: translateX(-50%) translateY(-50%) translateZ(-2px) scale(0.99);
       background: $white url(../img/album-vinyl.png) center center;
       border-radius: 3px;
+
+      @media screen and (min-height: $screen-xs-min) {
+        width: $album-size * $album-scale-sm;
+        height: $album-size * $album-scale-sm;
+      }
 
       @media screen and (min-width: $screen-md-min) {
         width: $album-size * $album-scale-md;
@@ -134,12 +160,25 @@ $module: 'album';
   }
 
   &__single, &__title {
-    width: $album-size;
+    width: $album-size * $album-scale-md;
+    margin: 0;
     transform: rotateY(-15deg);
     transition: 1s transform $ease-out-quint;
 
+    @media screen and (min-height: $screen-xs-min) {
+      margin: 0 0 $gutter-xxs/2;
+    }
+
+    @media screen and (min-width: $screen-sm-min) {
+      width: $album-size;
+    }
+
     @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
       width: 450px;
+    }
+
+    @media screen and (min-width: $screen-xl-min) and (min-height: $screen-sm-min) {
+      width: 550px;
     }
 
     &.no-transition {
@@ -149,25 +188,30 @@ $module: 'album';
 
   &__title {
     margin: 0;
-
-    @media screen and (min-width: $screen-xs-min) and (min-height: $screen-xs-min) {
+    
+    @media screen and (max-width: $screen-sm-max) {
       @include rem(font-size, $h4-size);
       @include rem(line-height, $h5-height);
     }
 
     @media screen and (min-width: $screen-lg-min) and (min-height: $screen-sm-min) {
-      @include rem(font-size, $h3-size);
-      @include rem(line-height, $h3-height);
+      @include rem(font-size, $h2-size);
+      @include rem(line-height, $h2-height);
     }
   }
 
   .playlist__control--play {
     @extend %center;
     visibility: visible;
-    width: $album-size * $album-scale-sm;
-    height: $album-size * $album-scale-sm;
+    width: $album-size * $album-scale-xs;
+    height: $album-size * $album-scale-xs;
     transform: translateX(-50%) translateY(-50%) scale(1.1);
     transition: 0.25s transform $ease-out-quint, 0.25s opacity $ease-out-quint;
+
+    @media screen and (min-height: $screen-xs-min) {
+      width: $album-size * $album-scale-sm;
+      height: $album-size * $album-scale-sm;
+    }
 
     @media screen and (min-width: $screen-md-min) {
       width: $album-size * $album-scale-md;
