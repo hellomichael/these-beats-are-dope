@@ -627,7 +627,7 @@ export default class Playlist {
     }).join('')
 
     let share = 'https://www.facebook.com/sharer/sharer.php?u=these.beatsaredope.com'
-    let tweet = 'https://twitter.com/intent/tweet?text=pic.twitter.com/bBRjeJRbTW%20%40kanyewest%20%40azizansari%20%23thesebeatsaredope%20&url=http://these.beatsaredope.com'
+    let tweet = 'https://twitter.com/intent/tweet?text=pic.twitter.com/TF7mx3KvDL%20%40kanyewest%20%40azizansari%20%23thesebeatsaredope%20&url=http://these.beatsaredope.com'
 
     this.app.innerHTML = `
       <!-- Playlist --!>
