@@ -106,6 +106,10 @@ export default class Video {
     })
   }
 
+  isStopped() {
+    return !this.isPlaying
+  }
+
   muteVideo() {
     this.isMute = !this.isMute
 
@@ -179,6 +183,12 @@ export default class Video {
         }
       }, 1250)
     }
+  }
+
+  pauseVideo() {
+    this.isPlaying = false
+    this.isPaused = true
+    this.youtube.pauseVideo()
   }
 
   stopVideo() {
