@@ -247,6 +247,7 @@ export default class Playlist {
 
   handleClick() {
     this.app.addEventListener('click', _throttle(event => {
+      
       // Next
       if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *')) {
         event.preventDefault()
@@ -260,13 +261,24 @@ export default class Playlist {
       }
 
       // Play
-      else if (event.target.matches('.playlist__control--play, .playlist__control--play *')) {
+      else if (event.target.matches('.playlist__slide, .playlist__slide *') && this.isMobile) {
         event.preventDefault()
-        this.videos[this.state.currentSlide].playVideo()
 
-        Array.from(this.dom.controlPlay).map(controlPlay => {
-          controlPlay.classList.remove('playlist__control--visible')
-        })
+        if (this.state.currentSlide && this.videos[this.state.currentSlide].isStopped()) {
+          this.videos[this.state.currentSlide].playVideo()
+
+          Array.from(this.dom.controlPlay).map(controlPlay => {
+            controlPlay.classList.remove('playlist__control--visible')
+          })
+        }
+
+        else {
+          this.videos[this.state.currentSlide].pauseVideo()
+
+          Array.from(this.dom.controlPlay).map(controlPlay => {
+            controlPlay.classList.add('playlist__control--visible')
+          })
+        }
       }
 
       // Mute

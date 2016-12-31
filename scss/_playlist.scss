@@ -384,6 +384,7 @@ $module: 'playlist';
       transform: translateY($gutter-xs);
 
       @media screen and (min-width: $screen-md-min) {
+        margin: 0;
         transform: translateY($gutter-lg);
       }
     }

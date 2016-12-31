@@ -63,7 +63,7 @@ $module: 'album';
     &.no-transition {
       transition: none;
     }
-    
+
     &:after {
       @extend %center;
       z-index: 2;
@@ -194,7 +194,7 @@ $module: 'album';
     width: $album-size * $album-scale-xs;
     height: $album-size * $album-scale-xs;
     transform: translateX(-50%) translateY(-50%) scale(1.1);
-    transition: 0.25s transform $ease-out-quint, 0.25s opacity $ease-out-quint;
+    transition: 0.5s transform $ease-out-quint, 0.5s opacity $ease-out-quint;
 
     @media screen and (min-height: $screen-xs-min) {
       width: $album-size * $album-scale-sm;
@@ -217,7 +217,6 @@ $module: 'album';
 
     &.playlist__control--visible {
       transform: translateX(-50%) translateY(-50%) translateZ(3px) scale(1);
-      transition: 0.25s transform $ease-out-quint 0.5s, 0.25s opacity $ease-out-quint 0.5s;
     }
   }
 
