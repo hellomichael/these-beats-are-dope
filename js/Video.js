@@ -220,12 +220,12 @@ export default class Video {
   setCurrentTime() {
     return this.youtube.getCurrentTime()
     .then(seconds => {
-      if (this.getCurrentTime() >= this.endTime) {
-        this.currentTime = this.startTime
+      if (!this.getBuffering()) {
+        this.currentTime = _round(seconds, 2)
       }
 
-      else if (!this.getBuffering()) {
-        this.currentTime = _round(seconds, 2)
+      else if (this.getCurrentTime() >= this.endTime) {
+        this.currentTime = this.startTime
       }
     })
   }
