@@ -146,6 +146,9 @@ export default class Kanye extends Animation {
   isReady() {
     return new Promise(resolve => {
       this.pixiLoader.once('complete', event => {
+        this.resizePixi()
+        this.resizeRenderer()
+
         resolve(event)
       })
     })
