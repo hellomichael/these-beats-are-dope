@@ -188,6 +188,7 @@ export default class Video {
   pauseVideo() {
     this.isPlaying = false
     this.isPaused = true
+    this.pauseTime = this.getCurrentTime()
     this.youtube.pauseVideo()
   }
 
