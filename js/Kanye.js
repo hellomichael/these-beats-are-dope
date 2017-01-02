@@ -175,11 +175,11 @@ export default class Kanye extends Animation {
         ])
 
         this.changeOutfit('suit')
-        this.resizeRenderer()
         this.pixiStage.addChild(this.kanye)
 
         setTimeout(() => {
           this.pixiRenderer.render(this.pixiStage)
+          this.resizeRenderer()
         }, 500)
 
         // Events
