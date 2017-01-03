@@ -13,7 +13,7 @@ export default class Video {
     this.pauseTime = 0
     this.currentTime = 0
     this.duration = -1
-    this.isBuffering = false
+    this.isBuffering = true
     this.isCurrent = false
     this.isPlaying = false
     this.isPaused = false
