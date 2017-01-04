@@ -196,13 +196,11 @@ export default class Video {
     this.isPlaying = false
     this.isCurrent = false
     this.isPaused = true
+    this.isBuffering = true
     this.fadeOut()
 
     setTimeout(() => {
-      if (!this.getBuffering()) {
-        this.pauseTime = (this.getCurrentTime() >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
-      }
-
+      this.pauseTime = (this.getCurrentTime() >= (this.endTime - 5)) ? this.startTime : this.getCurrentTime()
       this.youtube.stopVideo()
     }, 750)
   }
@@ -237,6 +235,10 @@ export default class Video {
 
   getStartTime() {
     return this.startTime
+  }
+
+  getPauseTime() {
+    return this.pauseTime
   }
 
   getEndTime() {

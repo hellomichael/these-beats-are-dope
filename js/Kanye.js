@@ -210,16 +210,25 @@ export default class Kanye extends Animation {
     })
   }
 
-  stopAnimation() {
+  stopAnimation(direction) {
+    if (direction === 'rtl') {
+      this.bopRight('Normal')
+    }
+
+    else {
+      this.bopLeft('Normal')
+    }
+
     setTimeout(() => {
       this.isPlaying = false
+      this.kanyeBreathing = false
       this.resetAnimation()
       cancelAnimationFrame(this.requestAnimationFrame)
       clearTimeout(this.pixiAnimation)
     }, 250)
   }
 
-  playAnimation() {
+  playAnimation(direction) {
     this.isPlaying = true
 
     this.pixiAnimation = setTimeout(() => {
@@ -302,6 +311,22 @@ export default class Kanye extends Animation {
       console.log('Breathing')
       this.kanye.state.setAnimation(0, 'breathing', true)
       this.switchBopDirection()
+
+      this.kanyeBreathing = true
+    }
+  }
+
+  tilt(direction) {
+    if (!this.kanyeBreathing) {
+      if (direction === 'rtl') {
+        this.kanye.state.setAnimation(0, 'bopSlowRight', false)
+      }
+
+      else {
+        this.kanye.state.setAnimation(0, 'bopSlowLeft', false)
+      }
+
+      this.kanye.state.addAnimation(0, 'breathing', true, 0)
 
       this.kanyeBreathing = true
     }

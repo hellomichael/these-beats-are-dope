@@ -22,17 +22,17 @@ export default class Timeline {
     this.generateKeyframes()
   }
 
-  stopTimeline() {
+  stopTimeline(direction) {
     this.isPlaying = false
-    this.animation.stopAnimation()
+    this.animation.stopAnimation(direction)
     this.resetTimeline()
     cancelAnimationFrame(this.requestAnimationFrame)
     clearTimeout(this.timeline)
   }
 
-  playTimeline() {
+  playTimeline(direction) {
     if (!this.isPlaying) {
-      this.animation.playAnimation()
+      this.animation.playAnimation(direction)
     }
 
     this.timeline = setTimeout(() => {
@@ -42,7 +42,7 @@ export default class Timeline {
       this.video.setCurrentTime()
       .then(() => {
         // Play keyframes
-        this.playKeyframes()
+        this.playKeyframes(direction)
       })
 
     }, 1000/60)
@@ -139,7 +139,7 @@ export default class Timeline {
     }
   }
 
-  playKeyframes() {
+  playKeyframes(direction) {
     // Remove skipped keyframes
     this.removeKeyframes()
 
@@ -149,9 +149,17 @@ export default class Timeline {
     let keyframeBpm = keyframe ? keyframe.bpm : 0
     let keyframeDuration = nextKeyframe ? _round(Utils.getSeconds(nextKeyframe.timecode) - Utils.getSeconds(keyframe.timecode), 2) : 0
 
-    if (this.video.getBuffering()) {
+    if (this.video.getBuffering() && this.video.getCurrentTime() <= this.video.getStartTime() || this.video.getCurrentTime() === this.video.getPauseTime()) {
+      if (typeof this.animation['tilt'] === 'function') {
+        this.animation['tilt'](direction)
+      }
+
+      return false
+    }
+
+    else if (this.video.getBuffering()) {
       if (typeof this.animation['breathing'] === 'function') {
-        this.animation['breathing']()
+        this.animation['breathing'](direction)
       }
 
       return false

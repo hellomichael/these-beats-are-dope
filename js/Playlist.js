@@ -247,7 +247,7 @@ export default class Playlist {
 
   handleClick() {
     this.app.addEventListener('click', _throttle(event => {
-      
+
       // Next
       if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *')) {
         event.preventDefault()
@@ -471,7 +471,7 @@ export default class Playlist {
     // Reset previous video, timeline, and animations
     if (this.state.currentSlide || this.state.prevSlide) {
       this.videos[this.state.prevSlide].stopVideo()
-      this.timelines[this.state.prevSlide].stopTimeline()
+      this.timelines[this.state.prevSlide].stopTimeline(this.state.direction)
 
       let currentSlide = this.state.currentSlide
 
@@ -487,7 +487,7 @@ export default class Playlist {
     }
 
     // Play video, timeline, and animations
-    this.timelines[this.state.currentSlide].playTimeline()
+    this.timelines[this.state.currentSlide].playTimeline(this.state.direction)
 
     if (!this.isMobile) {
       this.videos[this.state.currentSlide].playVideo()
