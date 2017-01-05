@@ -16,6 +16,7 @@ export default class Aziz extends Animation {
       azizDope:             document.querySelector('.aziz__heading__dope'),
       azizSubheading:       document.querySelector('.aziz__subheading'),
       azizButton:           document.querySelector('.aziz__button'),
+      azizSkip:             document.querySelector('.aziz__skip'),
     }
   }
 
@@ -65,6 +66,16 @@ export default class Aziz extends Animation {
     this.dom.azizButton.classList.add('aziz__button--visible')
   }
 
+  showSkip() {
+    console.log('These')
+    this.dom.azizSkip.classList.add('aziz__skip--visible')
+  }
+
+  hideSkip() {
+    console.log('These')
+    this.dom.azizSkip.classList.remove('aziz__skip--visible')
+  }
+
   scrollIntro1() {
     this.dom.azizIntro.classList.add('aziz__intro--scroll-1')
   }
@@ -93,6 +104,10 @@ export default class Aziz extends Animation {
             </span>
           </a>
         </div>
+
+        <a class="aziz__skip playlist__skip" href="#">
+          Skip intro
+        </a>
       </div>
     `)
   }

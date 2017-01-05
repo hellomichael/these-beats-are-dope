@@ -29,6 +29,25 @@ $module: 'aziz';
     }
   }
 
+  &__skip {
+    @extend %center-horizontally;
+    display: none;
+    position: fixed;
+    bottom: $gutter-lg;
+    visibility: hidden;
+    opacity: 0;
+    transition: 1s opacity $ease-out-quint, 1s visibility $ease-out-quint;
+
+    @media screen and (min-width: $screen-sm-min) {
+      display: block;
+    }
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
   &__heading {
     span {
       display: none;

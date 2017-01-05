@@ -249,7 +249,7 @@ export default class Playlist {
     this.app.addEventListener('click', _throttle(event => {
 
       // Next
-      if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *')) {
+      if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *, .playlist__skip')) {
         event.preventDefault()
         this.nextSlide()
       }
@@ -301,7 +301,7 @@ export default class Playlist {
 
     this.app.addEventListener('click', () => {
       // Next
-      if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *')) {
+      if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *, .playlist__skip')) {
         event.preventDefault()
       }
 
@@ -460,6 +460,8 @@ export default class Playlist {
     else if (!this.isTransitioning) {
       this.zoomOut()
     }
+
+    this.dom.skip.classList.remove('aziz__skip--visible')
   }
 
   animateSlide() {
@@ -588,6 +590,7 @@ export default class Playlist {
     this.dom.progress = document.querySelector('.playlist__progress')
     this.dom.tracks = document.querySelectorAll('.playlist__progress__track')
     this.dom.indicator = document.querySelector('.playlist__progress__indicator')
+    this.dom.skip = document.querySelector('.playlist__skip')
 
     this.dom.overlay = document.querySelector('.playlist__overlay')
     this.dom.about = document.querySelector('.playlist__about')
