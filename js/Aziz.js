@@ -15,7 +15,7 @@ export default class Aziz extends Animation {
       azizAre:              document.querySelector('.aziz__heading__are'),
       azizDope:             document.querySelector('.aziz__heading__dope'),
       azizSubheading:       document.querySelector('.aziz__subheading'),
-      azizButton:           document.querySelector('.aziz__button'),
+      azizStart:            document.querySelector('.aziz__start'),
       azizSkip:             document.querySelector('.aziz__skip'),
     }
   }
@@ -34,7 +34,7 @@ export default class Aziz extends Animation {
     }, 75)
 
     setTimeout(() => {
-      this.showButton()
+      this.showStart()
     }, 125)
   }
 
@@ -62,17 +62,19 @@ export default class Aziz extends Animation {
     this.dom.azizSubheading.classList.add('aziz__subheading--visible')
   }
 
-  showButton() {
-    this.dom.azizButton.classList.add('aziz__button--visible')
+  showStart() {
+    this.dom.azizStart.classList.add('aziz__start--visible')
   }
 
   showSkip() {
-    console.log('These')
-    this.dom.azizSkip.classList.add('aziz__skip--visible')
+    console.log('Skip')
+    if (!this.dom.azizStart.classList.contains('aziz__start--visible')) {
+      this.dom.azizSkip.classList.add('aziz__skip--visible')
+    }
   }
 
   hideSkip() {
-    console.log('These')
+    console.log('Skip')
     this.dom.azizSkip.classList.remove('aziz__skip--visible')
   }
 
@@ -97,7 +99,7 @@ export default class Aziz extends Animation {
 
           <h4 class="aziz__subheading">A Curated Mixtape For Kanye West</h4>
 
-          <a class="aziz__button playlist__start" href="#">
+          <a class="aziz__button aziz__start playlist__start" href="#">
             <span>
               Play Tracks
               <i class="icon icon--play"></i>
@@ -105,8 +107,11 @@ export default class Aziz extends Animation {
           </a>
         </div>
 
-        <a class="aziz__skip playlist__skip" href="#">
-          Skip intro
+        <a class="aziz__button aziz__skip playlist__skip playlist__start" href="#">
+          <span>
+            Skip intro
+            <i class="icon icon--play"></i>
+          </span>
         </a>
       </div>
     `)

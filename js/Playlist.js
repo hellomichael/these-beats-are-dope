@@ -249,7 +249,7 @@ export default class Playlist {
     this.app.addEventListener('click', _throttle(event => {
 
       // Next
-      if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *, .playlist__skip')) {
+      if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *')) {
         event.preventDefault()
         this.nextSlide()
       }
@@ -301,7 +301,7 @@ export default class Playlist {
 
     this.app.addEventListener('click', () => {
       // Next
-      if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *, .playlist__skip')) {
+      if (event.target.matches('.playlist__control--next, .playlist__control--next *, .playlist__start, .playlist__start *')) {
         event.preventDefault()
       }
 

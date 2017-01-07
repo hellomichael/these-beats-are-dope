@@ -9,13 +9,13 @@
 			"keyframes": [
 				{"timecode": "01:35:02"},
 				{"timecode": "01:35:15",	"actions": ["showSkip"]},
-				{"timecode": "01:48:00",	"actions": ["hideSkip"]},
+				{"timecode": "01:47:10",	"actions": ["hideSkip"]},
 				{"timecode": "01:49:20",	"actions": ["showThese"]},
 				{"timecode": "01:49:28", 	"actions": ["showBeats"]},
 				{"timecode": "01:50:07", 	"actions": ["showAre"]},
 				{"timecode": "01:50:15",	"actions": ["showDope"]},
 				{"timecode": "01:51:10", 	"actions": ["showSubheading", "scrollIntro1"]},
-				{"timecode": "01:51:13", 	"actions": ["showButton", "scrollIntro2"]},
+				{"timecode": "01:51:13", 	"actions": ["showStart", "scrollIntro2"]},
 				{"timecode": "01:53:00"}
 			]
 		},
