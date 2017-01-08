@@ -42,7 +42,7 @@ export default class Aziz extends Animation {
 
   setIdle() {
     clearTimeout(this.mouseTimeout)
-    this.mouseTimeout = setTimeout(() => {this.hideSkip()}, 2000)
+    this.mouseTimeout = setTimeout(() => {this.hideSkip()}, 3000)
   }
 
   showIntro() {
