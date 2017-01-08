@@ -4,11 +4,15 @@ require('../scss/_aziz.scss')
 export default class Aziz extends Animation {
   constructor(options) {
     super()
+    this.mouseTimeout = null
+    this.disableSkip = false
     Object.assign(this, options)
+    this.setIdle()
   }
 
   componentDidMount() {
     this.dom = {
+      aziz:                 document.querySelector('.aziz'),
       azizIntro:            document.querySelector('.aziz__intro'),
       azizThese:            document.querySelector('.aziz__heading__these'),
       azizBeats:            document.querySelector('.aziz__heading__beats'),
@@ -17,7 +21,28 @@ export default class Aziz extends Animation {
       azizSubheading:       document.querySelector('.aziz__subheading'),
       azizStart:            document.querySelector('.aziz__start'),
       azizSkip:             document.querySelector('.aziz__skip'),
+      preloader:            document.querySelector('.playlist__preloader')
     }
+
+    this.handleMouseMove()
+  }
+
+  handleMouseMove() {
+    this.dom.aziz.addEventListener('mousemove', event => {
+      if (!this.disableSkip && !this.dom.preloader.classList.contains('playlist__preloader--visible')) {
+        this.showSkip()
+        this.setIdle()
+      }
+
+      else {
+        clearTimeout(this.mouseTimeout)
+      }
+    })
+  }
+
+  setIdle() {
+    clearTimeout(this.mouseTimeout)
+    this.mouseTimeout = setTimeout(() => {this.hideSkip()}, 2000)
   }
 
   showIntro() {
@@ -41,6 +66,8 @@ export default class Aziz extends Animation {
   showThese() {
     console.log('These')
     this.dom.azizThese.style.display = 'inline-block'
+    this.disableSkip = true
+    this.hideSkip()
   }
 
   showBeats() {
@@ -67,14 +94,12 @@ export default class Aziz extends Animation {
   }
 
   showSkip() {
-    console.log('Skip')
     if (!this.dom.azizStart.classList.contains('aziz__start--visible')) {
       this.dom.azizSkip.classList.add('aziz__skip--visible')
     }
   }
 
   hideSkip() {
-    console.log('Skip')
     this.dom.azizSkip.classList.remove('aziz__skip--visible')
   }
 

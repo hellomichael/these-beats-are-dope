@@ -9,6 +9,7 @@
 			"keyframes": [
 				{"timecode": "01:35:02"},
 				{"timecode": "01:35:15",	"actions": ["showSkip"]},
+				{"timecode": "01:38:10",	"actions": ["hideSkip"]},
 				{"timecode": "01:47:10",	"actions": ["hideSkip"]},
 				{"timecode": "01:49:20",	"actions": ["showThese"]},
 				{"timecode": "01:49:28", 	"actions": ["showBeats"]},

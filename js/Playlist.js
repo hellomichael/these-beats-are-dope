@@ -569,32 +569,34 @@ export default class Playlist {
   // Mounting
   componentDidMount() {
     // Update Dom
-    this.dom.playlist = document.querySelector('.playlist')
-    this.dom.slideshows = document.querySelectorAll('.playlist__slideshow')
+    this.dom = {
+      playlist:             document.querySelector('.playlist'),
+      slideshows:           document.querySelectorAll('.playlist__slideshow'),
 
-    this.dom.videos = document.querySelector('.playlist__slideshow--videos')
-    this.dom.albums = document.querySelector('.playlist__slideshow--albums')
-    this.dom.animations = document.querySelector('.playlist__slideshow--animations')
+      videos:               document.querySelector('.playlist__slideshow--videos'),
+      albums:               document.querySelector('.playlist__slideshow--albums'),
+      animations:           document.querySelector('.playlist__slideshow--animations'),
 
-    this.dom.animation1 = document.querySelector('.playlist__slideshow--animations .playlist__slide:nth-child(2)')
-    this.dom.animation2 = document.querySelector('.playlist__slideshow--animations .playlist__slide:nth-child(3)')
+      animation1:           document.querySelector('.playlist__slideshow--animations .playlist__slide:nth-child(2)'),
+      animation2:           document.querySelector('.playlist__slideshow--animations .playlist__slide:nth-child(3)'),
 
-    this.dom.controlNext = document.querySelector('.playlist__control--next')
-    this.dom.controlPrev = document.querySelector('.playlist__control--prev')
-    this.dom.controlPlay = document.querySelectorAll('.playlist__control--play')
+      controlNext:          document.querySelector('.playlist__control--next'),
+      controlPrev:          document.querySelector('.playlist__control--prev'),
+      controlPlay:          document.querySelectorAll('.playlist__control--play'),
 
-    this.dom.frames = document.querySelectorAll('.playlist__frame')
-    this.dom.preloader = document.querySelector('.playlist__preloader')
-    this.dom.preloaderPercentage = document.querySelector('.playlist__preloader__percentage')
-    this.dom.social = document.querySelector('.playlist__social')
-    this.dom.progress = document.querySelector('.playlist__progress')
-    this.dom.tracks = document.querySelectorAll('.playlist__progress__track')
-    this.dom.indicator = document.querySelector('.playlist__progress__indicator')
-    this.dom.skip = document.querySelector('.playlist__skip')
+      frames:               document.querySelectorAll('.playlist__frame'),
+      preloader:            document.querySelector('.playlist__preloader'),
+      preloaderPercentage:  document.querySelector('.playlist__preloader__percentage'),
+      social:               document.querySelector('.playlist__social'),
+      progress:             document.querySelector('.playlist__progress'),
+      tracks:               document.querySelectorAll('.playlist__progress__track'),
+      indicator:            document.querySelector('.playlist__progress__indicator'),
+      skip:                 document.querySelector('.playlist__skip'),
 
-    this.dom.overlay = document.querySelector('.playlist__overlay')
-    this.dom.about = document.querySelector('.playlist__about')
-    this.dom.close = document.querySelector('.playlist__close')
+      overlay:              document.querySelector('.playlist__overlay'),
+      about:                document.querySelector('.playlist__about'),
+      close:                document.querySelector('.playlist__close')
+    }
 
     // Show preloader
     setTimeout(() => {
