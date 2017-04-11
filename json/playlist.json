@@ -22,33 +22,6 @@
 		},
 
 
-
-		{
-			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
-			"youtubeID": "QWb6losRD38",
-			"single": "Love Lockdown",
-			"year": "2008",
-			"volume": 100,
-			"animation": "Kanye",
-			"animationOutfit": "suit",
-			"animationThreshold": 0.15,
-			"keyframes": [
-				{"timecode": "00:21:08", 									"actions":	["breathing"]},
-				{"timecode": "00:21:21", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "00:28:15", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "00:44:20", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "01:16:19", 	"bpm": "119.8", "actions": 	["bopper"]},
-				{"timecode": "01:32:23", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "02:20:26", 	"bpm": "119.8", "actions": 	["bopper"]},
-				{"timecode": "02:36:29", 	"bpm": "59.91", "actions": 	["bopper"]},
-				{"timecode": "03:25:00", 	"bpm": "119.8", "actions": 	["bopper"]},
-				{"timecode": "03:57:20", 									"actions":	["breathing"]},
-				{"timecode": "04:01:10", 									"actions":	["breathing"]}
-			]
-		},
-
-
-
 		{
 			"spotifyID": "4Li2WHPkuyCdtmokzW2007",
 			"youtubeID": "gG_dA32oH44",
@@ -102,6 +75,30 @@
 			]
 		},
 
+
+		{
+			"spotifyID": "4xMBL6zax57S2EHzI2Vloy",
+			"youtubeID": "QWb6losRD38",
+			"single": "Love Lockdown",
+			"year": "2008",
+			"volume": 100,
+			"animation": "Kanye",
+			"animationOutfit": "suit",
+			"animationThreshold": 0.15,
+			"keyframes": [
+				{"timecode": "00:21:08", 									"actions":	["breathing"]},
+				{"timecode": "00:21:21", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "00:28:15", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "00:44:20", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "01:16:19", 	"bpm": "119.8", "actions": 	["bopper"]},
+				{"timecode": "01:32:23", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "02:20:26", 	"bpm": "119.8", "actions": 	["bopper"]},
+				{"timecode": "02:36:29", 	"bpm": "59.91", "actions": 	["bopper"]},
+				{"timecode": "03:25:00", 	"bpm": "119.8", "actions": 	["bopper"]},
+				{"timecode": "03:57:20", 									"actions":	["breathing"]},
+				{"timecode": "04:01:10", 									"actions":	["breathing"]}
+			]
+		},
 
 
 		{
