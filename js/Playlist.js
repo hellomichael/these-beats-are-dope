@@ -24,6 +24,7 @@ export default class Playlist {
     this.matchesPolyfill()
 
     this.app = null
+    this.token = null
     this.playlist = []
     this.albums = []
     this.videos = []
@@ -57,6 +58,7 @@ export default class Playlist {
 
     // Set data
     this.setAnimations()
+    this.setToken()
     this.setAlbums()
     .then(albums => {
       this.albums = albums
@@ -101,11 +103,30 @@ export default class Playlist {
     })
   }
 
+  setToken() {
+    this.token = window.location.hash.substr(1)
+
+    if (this.token) {
+      this.token = this.token.replace('access_token=', '')
+      this.token = this.token.replace('&token_type=Bearer&expires_in=3600', '')
+    }
+
+    else {
+      window.location = 'https://accounts.spotify.com/authorize?client_id=6db74688ff0349308c85371275ab285a&redirect_uri=http%3A%2F%2Fthese.beatsaredope.com&response_type=token'
+    }
+  }
+
   setAlbums() {
     let promises = []
 
     this.playlist.map(slide => {
-      let promise = fetch(`https://api.spotify.com/v1/tracks/${slide.spotifyID}`)
+      let promise = fetch(`https://api.spotify.com/v1/tracks/${slide.spotifyID}`,
+        {
+          headers: {
+            'Authorization': 'Bearer ' + this.token
+          }
+        }
+      )
       .then(response => response.json())
       .then(data => {
         return new Album(Object.assign({
